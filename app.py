@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, \
+    session, redirect
 
 app = Flask(__name__)
 app.debug =True
@@ -10,6 +11,22 @@ app.config['SECRET_KEY'] = 'cdvfdjn43439acd9*&^$%&*&^%G&^%FGYH'
 def index():
     print(url_for('index'))
     return render_template('index.html', title='minkult-CRM')
+
+
+@app.route('/profile/<username>')
+def profile(username):
+    return f'профиль пользователя {username}'
+
+
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    if 'userLogged' in session:
+        return redirect(url_for('profile', username=session['userLogged']))
+    elif request.method == 'POST':
+        return redirect(url_for('profile', username=session['userLogged']))
+
+    return render_template('login.html', title='Авторизация')
+
 
 
 # пример создания ссылок

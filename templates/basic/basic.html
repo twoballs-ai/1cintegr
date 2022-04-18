@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="">
     <meta name="generator" content="Hugo 0.88.1">
     {% block title %}
     {% if title %}
@@ -33,17 +33,26 @@
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
   </head>
-    <header class="header">
-        <h1>Мини CRM</h1>
+    <header class="header AppBar">
+        <a href="{{ url_for('index') }}"><img class="logo" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
     </header>
-  <body class="d-flex h-100 text-center text-white bg-dark">
+  <body class="body">
+  <div class="widget">
+  <ul>
+    <li><a href="{{ url_for('search') }}">Поиск</a></li>
+    <li><a href="{{ url_for('category') }}">Категория учреждения</a></li>
+    <li><a href="">Подведомственные организации</a></li>
+    <li><a href="">Объекты недвижимости</a></li>
+    <li><a href="">Контакты</a></li>
+  </ul>
+</div>
   <div class="content">
     {% block content %}
 {#        #}
     {% endblock %}
   </div>
-    <footer class="footer">
-        <h1>Footer</h1>
-    </footer>
+{#    <footer class="footer">#}
+{#        <h1>Footer</h1>#}
+{#    </footer>#}
   </body>
 </html>

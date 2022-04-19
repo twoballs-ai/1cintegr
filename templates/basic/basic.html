@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block title %}
     {% if title %}
     <title>Министерство культуры - {{ title }}</title>
@@ -13,35 +13,22 @@
     <title>Министерство культуры</title>
     {% endif %}
     {% endblock %}
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
-    <!-- Bootstrap core CSS -->
 <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style.css') }}" rel="stylesheet">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
   </head>
+  <div class="container">
     <header class="header AppBar">
         <a href="{{ url_for('index') }}"><img class="logo" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
     </header>
+  </div>
   <body class="body">
+
+  <div class="container">
+  <section>
   <div class="widget">
   <ul>
     <li><a href="{{ url_for('search') }}">Поиск</a></li>
     <li><a href="{{ url_for('category') }}">Категория учреждения</a></li>
-    <li><a href="">Подведомственные организации</a></li>
+    <li><a href="{{ url_for('documents') }}">Подведомственные организации</a></li>
     <li><a href="">Объекты недвижимости</a></li>
     <li><a href="">Контакты</a></li>
   </ul>
@@ -54,5 +41,7 @@
 {#    <footer class="footer">#}
 {#        <h1>Footer</h1>#}
 {#    </footer>#}
+    </section>
+  </div>
   </body>
 </html>

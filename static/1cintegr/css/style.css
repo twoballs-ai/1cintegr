@@ -255,10 +255,10 @@ html, body {
   color: #dd3333;
   margin-right: 14px;
 }
-.widget li:nth-child(1):before {content: url("/static/1cintegr/img/search.svg");}
+.widget li:nth-child(1):before {content: url("/static/1cintegr/img/home.svg");}
 .widget li:nth-child(2):before {content: url("/static/1cintegr/img/category.svg");}
-.widget li:nth-child(3):before {content: url("/static/1cintegr/img/home.svg");}
-.widget li:nth-child(4):before {content: url("/static/1cintegr/img/objects.svg");}
+.widget li:nth-child(3):before {content: url("/static/1cintegr/img/objects.svg");}
+.widget li:nth-child(4):before {content: url("/static/1cintegr/img/search.svg");}
 .widget li:nth-child(5):before {content: url("/static/1cintegr/img/message.svg");}
 /*Конец левого меню*/
 
@@ -300,4 +300,10 @@ html, body {
     border-bottom: 1px solid rgba(224, 224, 224, 1);
     letter-spacing: 0.01071em;
     vertical-align: inherit;
+}
+
+.table{
+    border: 1px #dd3333;
+    width: 40px;
+    height: 40px;
 }

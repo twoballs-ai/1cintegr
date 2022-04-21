@@ -1,10 +1,158 @@
-{% extends 'basic/basic.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+  box-sizing: border-box;
+}
+.d-table{
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+.d-tr{
+  display: block;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+.d-td{
+  display: inline-flex;
+  text-align: center;
+    width:77px;
+    height:77px;
+    margin-left: 10px;
+  border: none;
+  border: 1px solid #ccc;
+    background-color: #616a6b;
+  {#vertical-align: middle;#}
+}
+.d-step1{
+  display: inline-flex;
+  text-align: center;
+    width:530px;
+    height:77px;
+    margin-left: 10px;
+  border: none;
+  border: 1px solid #ccc;
+  background-color: #eaeaea;
+  {#vertical-align: middle;#}
+}
+.d-step2{
+  display: inline-flex;
+  text-align: center;
+    width:530px;
+    height:77px;
+    margin-left: 10px;
+  border: none;
+  border: 1px solid #ccc;
+    background-color: #eaeaea;
+  {#vertical-align: middle;#}
+}
+.d-td:not(.no-p){
+  padding: 4px;
+}
+    </style>
+</head>
+<body>
+<div class="d-table">
+  <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+    <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+      <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-step1">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+      <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+      <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-step2">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
 
-{% block content %}
-    {{ super() }}
-<form action="/login" method="post" class="form_login">
-    <p><label>Имя</label><input type="text" name="username" value="" required />
-    <p><label>Пароль</label><input type="password" name="psw" value="" required />
-    <p><input type="submit" value="Войти" />
-</form>
-{% endblock %}
+      <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+      <div class="d-tr">
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+    <div class="d-td">lorem</div>
+  </div>
+</div>
+</body>
+</html>

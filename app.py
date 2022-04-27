@@ -48,12 +48,22 @@ def login():
 
     return render_template('login.html', title='Авторизация')
 
+@app.route('/login2', methods=['POST', 'GET'])
+def login2():
+    if 'userLogged' in session:
+        return redirect(url_for('profile', username=session['userLogged']))
+    elif request.method == 'POST':
+        return redirect(url_for('profile', username=session['userLogged']))
+
+    return render_template('login2.html', title='Авторизация')
+
+
 
 @app.route('/get')
 def get():
     # if key doesn't exist, returns None
     param_request = {'USR': 'test', 'PWD': '2200'}
-    response = requests.get("https://localhost/copy_1/hs/HTTP_SERVER/auth_test", params=param_request, verify=False)
+    response = requests.get("https://localhost/copy_1/hs/HTTP_SERVER/auth_chek", params=param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
@@ -74,19 +84,19 @@ def get():
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
     param_request = {'USR': 'test', 'PWD': '2200'}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/auth_test", params=param_request, verify=False)
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/auth_chek", data=param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
     print("response:\n{}\n\n".format(response))
     print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
-    print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
-    print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
     print("response.text:\n{}\n\n".format(response.text))  # Text Output
     # print("response.json:\n{}\n\n".format(response.json()))
-    print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
-    print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
+    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
+    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     return "response.text:\n{}\n\n".format(response.text)
 
 

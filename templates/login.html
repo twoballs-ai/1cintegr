@@ -59,7 +59,7 @@ width: 100%;
 }
 .gerb{
     width: 80%;
-    height:80%;
+    height:70%;
 
 }
 .step_icon{
@@ -160,7 +160,7 @@ border-radius: 25px;
     <div class="d-td"><div class="icon_ellips"><p class="step_icon">ШАГ 1</p></div></div>
     <div class="d-step1">
         <div id="step_block_left"><p>УСТАНОВИТЕ ЗАЩИЩЕННОЕ СОЕДИНЕНИЕ, ИСПОЛЬЗУЯ СЕРТИФИКАТ</p><img src="../static/1cintegr/img/step1_img.png" id="step1_img"></div>
-        <div id="step_block_right"><p class="step_icon">СОЕДИНЕНИЕ</p></div>
+        <div id="step_block_right"><input type="submit" name="download" value="СОЕДИНЕНИЕ" class="step_icon"></div>
     </div>
   <div class="d-td"><img src="../static/1cintegr/img/login/29.png" class="lm"></div>
 <div class="d-td"><img src="../static/1cintegr/img/login/30.png" class="lm"></div>
@@ -187,11 +187,22 @@ border-radius: 25px;
     <div class="d-td"><img src="../static/1cintegr/img/login/47.png" class="lm"></div>
     <div class="d-td"><div class="icon_ellips"><p class="step_icon">ШАГ 1</p></div></div>
     <div class="d-step2">
+         <form class ="col-md-3 col-sm-6" action="/auth" method="POST">
         <div id="step_block_left">
-            <div id="login_step2"><p>Логин</p></div>
-            <div id="password_step2"><p>Пароль</p></div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="mt-1">username</label>
+                <input name="username" type="text" class="form-control mt-2" id="exampleInputEmail1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="mt-1">password</label>
+                <input name="password" type="password" class="form-control mt-2" id="exampleInputPassword1">
+                <button type="submit" class="btn btn-primary mt-3">auth</button>
+            </div>
+
         </div>
         <div id="step_block_right"> <p class="step_icon">Вход</p></div>
+        </form>
     </div>
     <div class="d-td"><img src="../static/1cintegr/img/login/48.png" class="lm"></div>
     <div class="d-td"><img src="../static/1cintegr/img/login/49.png" class="lm"></div>
@@ -226,7 +237,7 @@ border-radius: 25px;
     <div class="d-td"><img src="../static/1cintegr/img/login/73.png" class="lm"></div>
     <div class="d-td"><img src="../static/1cintegr/img/login/74.png" class="lm"></div>
     <div class="d-td"><img src="../static/1cintegr/img/login/75.png" class="lm"></div>
-    <div class="d-td">logo</div>
+    <div class="d-td"><img src="../static/1cintegr/img/auipik.png" class="gerb"></div>
 
 
   </div>

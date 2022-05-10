@@ -27,6 +27,14 @@ def documents():
     print(url_for('documents'))
     return render_template('documents.html', title='minkult-CRM')
 
+
+@app.route('/cardhousedetail')
+@app.route('/cardhousedetail/')
+def cardhousedetail():
+    print(url_for('cardhousedetail'))
+    return render_template('cardhousedetail.html', title='minkult-CRM')
+
+
 @app.route('/search')
 @app.route('/search/')
 def search():

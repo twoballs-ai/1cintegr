@@ -13,14 +13,15 @@
     <title>Министерство культуры</title>
     {% endif %}
     {% endblock %}
-<link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style2.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/root.css') }}" rel="stylesheet">
+  <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/custom.css') }}" rel="stylesheet">
   </head>
 <body>
 <div class="wrapper">
     <div class="header">
         <a href="{{ url_for('index') }}"><img class="logo" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
     </div>
-    <nav class="navbar">
+    <nav class="navbar bgnd-white border border-grey">
          <ul>
           <li><a href="{{ url_for('documents') }}">Подведомственные организации</a></li>
           <li><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
@@ -29,12 +30,12 @@
           <li><a href="">Контакты</a></li>
         </ul>
     </nav>
-    <div class="content rounded spacing" >
-        <main class="container">
+    <div class="content rounded spacing bgnd-white overflow-auto border border-grey">
+
             {% block content %}
                 {#        #}
             {% endblock %}
-        </main>
+
     </div>
 </div>
 </body>

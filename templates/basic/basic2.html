@@ -19,16 +19,17 @@
 <body>
 <div class="wrapper">
     <div class="header">
-        <a href="{{ url_for('index') }}"><img class="logo" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
+        <a href="{{ url_for('index') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
     </div>
-    <nav class="navbar bgnd-white border border-grey">
-         <ul>
-          <li><a href="{{ url_for('documents') }}">Подведомственные организации</a></li>
-          <li><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
-          <li><a href="">Объекты недвижимости</a></li>
-          <li><a href="{{ url_for('search') }}">Поиск</a></li>
-          <li><a href="">Контакты</a></li>
-        </ul>
+    <nav class="nav_bar bgnd-white border border-grey">
+        <div class="navbar">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><a href="{{ url_for('documents') }}"><button type="button" class="btn btn-light col-12 text-start">Подведомственные организации</button></a></li>
+              <li class="list-group-item"><a href="{{ url_for('category') }}"><button type="button" class="btn btn-light col-12 text-start">Категория подведомственной организации</button></a></li>
+              <li class="list-group-item"><a href=""><button type="button" class="btn btn-light col-12 text-start">Объекты недвижимости</button></a></li>
+              <li class="list-group-item"><a href="{{ url_for('search') }}"><button type="button" class="btn btn-light col-12 text-start">Поиск</button></a></li>
+            </ul>
+        </div>
     </nav>
     <div class="content rounded spacing bgnd-white overflow-auto border border-grey">
 

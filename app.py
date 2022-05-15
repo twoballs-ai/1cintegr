@@ -21,11 +21,12 @@ def category():
     print(url_for('category'))
     return render_template('category.html', title='minkult-CRM')
 
+
 @app.route('/documents')
 @app.route('/documents/')
 def documents():
-    print(url_for('documents'))
-    return render_template('documents.html', title='minkult-CRM')
+    print(url_for('index'))
+    return render_template('index.html', title='minkult-CRM')
 
 
 @app.route('/cardhousedetail')

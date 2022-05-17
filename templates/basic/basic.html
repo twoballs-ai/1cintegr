@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block title %}
     {% if title %}
     <title>Министерство культуры - {{ title }}</title>
@@ -13,37 +10,61 @@
     <title>Министерство культуры</title>
     {% endif %}
     {% endblock %}
-<link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
-  <div class="container">
-    <header class="header AppBar">
-        <a href="{{ url_for('index') }}"><img class="logo" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
-    </header>
-  </div>
-  <body class="body">
 
-  <div class="container">
-  <section>
-  <div class="widget">
-  <ul>
-      <li><a href="{{ url_for('documents') }}">Подведомственные организации</a></li>
-      <li><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
-      <li><a href="">Объекты недвижимости</a></li>
-      <li><a href="{{ url_for('search') }}">Поиск</a></li>
-      <li><a href="">Контакты</a></li>
-  </ul>
-</div>
-  <div class="content">
-  <main class="container">
-    {% block content %}
-{#        #}
-    {% endblock %}
-  </main>
+  <body>
+    <div class="wrapper">
+
+    <nav class="header navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a href="{{ url_for('index') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
   </div>
-{#    <footer class="footer">#}
-{#        <h1>Footer</h1>#}
-{#    </footer>#}
-    </section>
-  </div>
+</nav>
+{#    <div class="header">#}
+{#        <a href="{{ url_for('index') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>#}
+{#    </div>#}
+
+
+    <div class="sidebar navbar-expand-lg border navbar-light bg-light">
+
+            <ul class="list-group border-0 list-group-flush paddingtop-3">
+                <li class="list-group-item border-0 d-grid gap-2 "><a href="{{ url_for('documents') }}"><button id="home" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="boxmin2">Подведомственные организации</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('category') }}"><button id="category" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1610"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div><div class="boxmin2">Категория подведомственной организации</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href=""><button id="objects" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><div class="boxmin2"> Объекты недвижимости</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('search') }}"><button id="search" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><div class="boxmin2"> Поиск</div></button></a></li>
+            </ul>
+
+    </div>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+      </div>
+      <div class="offcanvas-body">
+                    <ul class="list-group list-group-flush paddingtop-3">
+                <li class="list-group-item border-0 d-grid gap-2 "><a href="{{ url_for('documents') }}"><button id="home" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="boxmin2">Подведомственные организации</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('category') }}"><button id="category" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1610"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div><div class="boxmin2">Категория подведомственной организации</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href=""><button id="objects" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><div class="boxmin2"> Объекты недвижимости</div></button></a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('search') }}"><button id="search" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><div class="boxmin2"> Поиск</div></button></a></li>
+            </ul>
+      </div>
+    </div>
+    <div class="content">
+            <div class="container-xxl rounded spacing bgnd-white border border-grey overflow-auto">
+
+            {% block content %}
+                {#        #}
+            {% endblock %}
+            </div>
+
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -29,11 +29,25 @@ def documents():
     return render_template('index.html', title='minkult-CRM')
 
 
+@app.route('/cardhouse')
+@app.route('/cardhouse/')
+def cardhouse():
+    print(url_for('cardhouse'))
+    return render_template('cardhouse.html', title='minkult-CRM')
+
+
 @app.route('/cardhousedetail')
 @app.route('/cardhousedetail/')
 def cardhousedetail():
     print(url_for('cardhousedetail'))
     return render_template('cardhousedetail.html', title='minkult-CRM')
+
+
+@app.route('/customers')
+@app.route('/customers/')
+def customers():
+    print(url_for('customers'))
+    return render_template('customers.html', title='minkult-CRM')
 
 
 @app.route('/search')
@@ -57,6 +71,7 @@ def login():
 
     return render_template('login.html', title='Авторизация')
 
+
 @app.route('/login2', methods=['POST', 'GET'])
 def login2():
     if 'userLogged' in session:
@@ -65,7 +80,6 @@ def login2():
         return redirect(url_for('profile', username=session['userLogged']))
 
     return render_template('login2.html', title='Авторизация')
-
 
 
 @app.route('/get')
@@ -109,7 +123,6 @@ def post(*args, **kwargs):
     return "response.text:\n{}\n\n".format(response.text)
 
 
-
 # пример создания ссылок
 # @app.route('/url/<int:variable>/<variable>')
 
@@ -121,7 +134,6 @@ def post(*args, **kwargs):
 @app.errorhandler(404)
 def pageNotFound(error):
     return render_template('page_404.html', title='страница не найдена'), 404
-
 
 
 if __name__ == '__main__':

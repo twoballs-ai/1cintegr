@@ -22,13 +22,6 @@ def category():
     return render_template('category.html', title='minkult-CRM')
 
 
-@app.route('/documents')
-@app.route('/documents/')
-def documents():
-    print(url_for('index'))
-    return render_template('index.html', title='minkult-CRM')
-
-
 @app.route('/cardhouse')
 @app.route('/cardhouse/')
 def cardhouse():
@@ -55,6 +48,20 @@ def customers():
 def search():
     print(url_for('search'))
     return render_template('search.html', title='minkult-CRM')
+
+
+@app.route('/about')
+@app.route('/about/')
+def about():
+    print(url_for('about'))
+    return render_template('about.html', title='minkult-CRM')
+
+
+@app.route('/contacts')
+@app.route('/contacts/')
+def contacts():
+    print(url_for('contacts'))
+    return render_template('contacts.html', title='minkult-CRM')
 
 
 @app.route('/profile/<username>')

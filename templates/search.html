@@ -4,7 +4,68 @@
     {{ super() }}
     <div id="container" class="container-xl rounded px-0 bg-white border border-grey">
 
-
+         <ul class="list-group list-group-flush box overflow-auto">
+          <li class="list-group-item">Поиск объектов недвижимости</li>
+         </ul>
+        <div class="border-top px-3">
+            <div class="row justify-content-between">
+             <div class="col">
+            <fieldset class="border p-2 container">
+                <legend  class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
+            </fieldset>
+             </div>
+                <div class="col">
+        <button type="button" class="btn btn-primary mt-2 float-end">Поиск</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-top mt-2">
+            <div class="row mx-3"><span class="container-xxl">Расширенный поиск объектов недвижимости</span></div>
+            <div class="row mx-3"><span class="container-xxl">поиск объектов недвижимости возможен в комбинации полей</span></div>
+        </div>
+         <div class="border-top px-3 my-3">
+            <fieldset class="border p-2 container-xxl my-3">
+                <legend  class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
+            </fieldset>
+             <div class="row my-3">
+             <div class="col">
+                <fieldset class="border p-2 container">
+                    <legend  class="float-none w-auto"><h6>Дата создания *</h6></legend>
+                </fieldset>
+                 </div>
+             <div class="col">
+             <fieldset class="border p-2 container">
+                 <legend  class="float-none w-auto"><h6>Адрес *</h6></legend>
+            </fieldset>
+             </div>
+             </div>
+             <div class="row my-3">
+             <div class="col">
+            <fieldset class="border p-2 container">
+                <legend  class="float-none w-auto"><h6>Вид обЪекта *</h6></legend>
+            </fieldset>
+             </div>
+                 <div class="col">
+             <fieldset class="border p-2 container">
+                 <legend  class="float-none w-auto"><h6>Категория подведомственной организации *</h6></legend>
+            </fieldset>
+                     </div>
+             </div>
+             <div class="row my-3">
+             <div class="col">
+             <fieldset class="border p-2 container">
+                 <legend  class="float-none w-auto"><h6>Регион *</h6></legend>
+            </fieldset>
+             </div>
+                 <div class="col">
+            <fieldset class="border p-2 container">
+                <legend  class="float-none w-auto"><h6>Номер в едином гос.реестре *</h6></legend>
+            </fieldset>
+             </div>
+             </div>
+        </div>
+        <div class="border-top px-3 mt-3">
+        <button type="button" class="btn btn-primary mt-2 float-end">Поиск</button>
+        </div>
     </div>
-
 {% endblock %}

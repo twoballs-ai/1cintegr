@@ -22,9 +22,9 @@ def category():
     return render_template('category.html', title='minkult-CRM')
 
 
-@app.route('/cardhouse')
-@app.route('/cardhouse/')
-def cardhouse():
+@app.route('/cardhouse/<int:page_num>')
+@app.route('/cardhouse/<int:page_num>/')
+def cardhouse(page_num):
     print(url_for('cardhouse'))
     return render_template('cardhouse.html', title='minkult-CRM')
 

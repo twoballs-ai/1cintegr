@@ -10,6 +10,9 @@
     color: white;
     font-size: 15px;
 }
+.fieldset:hover {
+  border: 3px solid #f26522; /* Рамка при наведении на рисунок курсора мыши */
+}
 
 .footer {
     grid-area: ft;

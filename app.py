@@ -21,10 +21,10 @@ def category():
     print(url_for('category'))
     return render_template('category.html', title='minkult-CRM')
 
-
-@app.route('/cardhouse/<int:page_num>')
-@app.route('/cardhouse/<int:page_num>/')
-def cardhouse(page_num):
+# https://localhost/copy_1/hs/HTTP_SERVER/get_objects_list?code=
+@app.route('/cardhouse/')
+@app.route('/cardhouse/')
+def cardhouse():
     print(url_for('cardhouse'))
     return render_template('cardhouse.html', title='minkult-CRM')
 

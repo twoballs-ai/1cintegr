@@ -91,24 +91,34 @@ def login2():
 
 @app.route('/get')
 def get():
+    datatop = getdata()
+    context = {'datatop':datatop}
+
+
+    return render_template('get.html', **context)
+
+
+def getdata():
+    url="https://localhost/copy_1/hs/HTTP_SERVER/get_objects_list?code=000000787"
     # if key doesn't exist, returns None
-    param_request = {'USR': 'test', 'PWD': '2200'}
-    response = requests.get("https://localhost/copy_1/hs/HTTP_SERVER/auth_chek", params=param_request, verify=False)
+    # param_request = {'USR': 'test', 'PWD': '2200'}
+    response = requests.get(url, verify=False)
+    # response = requests.get(url, verify=False, param_request)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    print("response:\n{}\n\n".format(response))
-    print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
-    print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
-    print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+    data= response.json()
+    # print("response:\n{}\n\n".format(response))
+    # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
     print("response.text:\n{}\n\n".format(response.text))  # Text Output
     # print("response.json:\n{}\n\n".format(response.json()))
-    print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
-    print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
-
-    return "response.text:\n{}\n\n".format(response.text)
-
+    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
+    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
+    # pprint((data)['list_OC'])
+    return (data)['list_OC']
 
 @app.route('/post')
 def post(*args, **kwargs):

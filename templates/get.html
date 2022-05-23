@@ -1,0 +1,14 @@
+{% extends 'basic/basic.html' %}
+
+{% block content %}
+    {{ super() }}
+    <div id="container" class="container-xl rounded px-0 bg-white border border-grey">
+
+        {% for keys, values in datatop.items() %}
+
+            {{ values }}
+    {% endfor %}
+
+
+    </div>
+{% endblock %}

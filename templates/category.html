@@ -2,7 +2,8 @@
 
 {% block content %}
     {{ super() }}
-        <ul class="list-group list-group-flush box">
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+        <ul class="list-group list-group-flush box my-1">
           <li class="list-group-item">Категории</li>
             <li class="list-group-item list-group-item-action border-top"><span>Театрально-зрелищные учреждения</span><p>Количество 2</p></li>
             <li class="list-group-item list-group-item-action border-top"><span>Государственный академический Большой театр России</span><p>Количество 2</p></li>
@@ -18,4 +19,5 @@
             <li class="list-group-item list-group-item-action border-top"><span>Государственный академический Большой театр России</span><p>Количество 2</p></li>
             <li class="list-group-item list-group-item-action border-top"><span>Государственный академический Большой театр России</span><p>Количество 2</p></li>
         </ul>
+    </div>
 {% endblock %}

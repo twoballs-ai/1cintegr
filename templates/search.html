@@ -2,15 +2,15 @@
 
 {% block content %}
     {{ super() }}
-    <div id="container" class="container-xl rounded px-0 bg-white border border-grey">
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
 
-         <ul class="list-group list-group-flush box overflow-auto">
+         <ul class="list-group list-group-flush box overflow-auto my-1">
           <li class="list-group-item">Поиск объектов недвижимости</li>
          </ul>
         <div class="border-top px-3">
             <div class="row justify-content-between">
              <div class="col">
-            <fieldset class="border p-2 container">
+            <fieldset class="border p-2 container shadow-sm">
                 <legend  class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="Дом культуры" aria-label="Search" aria-describedby="button-addon2">

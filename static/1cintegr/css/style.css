@@ -23,6 +23,9 @@
 .sidebar {
     grid-area: sb;
 }
+body{
+    height: 100vh;
+}
 .wrapper {
         display: grid;
         height: 100vh;

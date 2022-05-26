@@ -39,8 +39,36 @@ def cardhousedetail():
 @app.route('/customers')
 @app.route('/customers/')
 def customers():
-    print(url_for('customers'))
-    return render_template('customers.html', title='minkult-CRM')
+    data = getcustomers()
+    context = {'data': data}
+
+    return render_template('customers.html', **context)
+
+
+def getcustomers():
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
+    # if key doesn't exist, returns None
+    param_request = {'page': '1', 'limitpage': '20'}
+    # response = requests.get(url, verify=False)
+    response = requests.get(url, param_request, verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()['list_OC']
+    # print("response:\n{}\n\n".format(response))
+    # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+    # print("response.json:\n{}\n\n".format(response.json()))
+    print("response.json:\n{}\n\n".format(data))
+    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
+    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
+    # pprint((data)['list_OC'])
+    # print((data))
+
+    return (data)
 
 
 @app.route('/search')
@@ -118,7 +146,7 @@ def getdata():
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # pprint((data)['list_OC'])
-    return (data)['list_OC']
+    return (data)
 
 @app.route('/post')
 def post(*args, **kwargs):

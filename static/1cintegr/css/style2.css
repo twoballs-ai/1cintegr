@@ -41,22 +41,27 @@ height: 77px;
    grid-column-end: 11;
         grid-column-gap: 10px;
     grid-row-gap: 10px;
+    z-index: 2;
 
 }
 .rows6 {
     grid-area: rw6;
         grid-column-gap: 10px;
     grid-row-gap: 10px;
+    z-index: 1;
 
 }
 .rows7 {
     grid-area: rw7;
+    z-index: 1;
 }
 .rows8 {
     grid-area: rw8;
+    z-index: 1;
 }
 .rows9 {
     grid-area: rw9;
+    z-index: 1;
 }
 .rows10 {
     grid-area: rw10;

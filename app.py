@@ -1,11 +1,21 @@
 from flask import Flask, render_template, url_for, request, \
-    session, redirect
+    session, redirect, Blueprint
 import requests
 import json
+
+import os
+# MEDIA_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+#
+# path = "/"
+# print(path)
+
 
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'cdvfdjn43439acd9*&^$%&*&^%G&^%FGYH'
+
+blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
+app.register_blueprint(blueprint)
 
 
 @app.route('/')
@@ -56,13 +66,28 @@ def getcustomers():
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_OC']
+    img = json.loads(response.text)['list_OC']
+    # print(img)
+    #
+    # print("json")
+    # for i in img:
+    #     if not i['dikpic']:
+    #         print('gbcmrf')
+    #         continue
+    #     print(i['dikpic']['fotoAdr'])
+        # img_response = i['dikpic']
+    #     imgresponse = requests.get(img_response, param_request, verify=False)
+    #
+    #     print(imgresponse.text)
+    img_response = img[0]['dikpic']['fotoAdr']
+    print(img_response )
     # print("response:\n{}\n\n".format(response))
     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
     # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
     # print("response.text:\n{}\n\n".format(response.text))  # Text Output
     # print("response.json:\n{}\n\n".format(response.json()))
-    print("response.json:\n{}\n\n".format(data))
+    # print("response.json:\n{}\n\n".format(data))
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # pprint((data)['list_OC'])

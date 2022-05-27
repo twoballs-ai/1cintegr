@@ -26,14 +26,20 @@
     </tr>
   </thead>
   <tbody>
+
+{#  <img src="{{url_for('site.static', filename = data)}}">#}
+{#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
       {% for i in data %}
           <tr>
-              <td>{{ i.short_adress}}</td>
+          <td>{{ i.short_adress}}</td>
           <td>{{ i.full_adress }}</td>
           <td>{{ i.type_object }}</td>
           <td>{{ i.owner }}</td>
           <td>{{ i.encumbrance }}</td>
           <td>{{ i.okn }}</td>
+          <td><img src="{{url_for('site.static', filename = i.dikpic.fotoAdr )}}" ></td>
+{#          <img src="{{url_for('site.static', filename = data)}}">#}
+
           </tr>
     {% endfor %}
   </tbody>

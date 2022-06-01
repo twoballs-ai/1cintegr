@@ -81,7 +81,7 @@ height: 77px;
         width: 100vw;
         grid-template-columns: repeat(13, 7%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1 rw2 rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11 rw12 rw13";
     }
@@ -101,7 +101,7 @@ height: 77px;
         height: 100vh;
         grid-template-columns: repeat(13, 7.65%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1 rw2 rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11 rw12 rw13"
             "rw1 rw2 rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11 rw12 rw13";
@@ -186,7 +186,7 @@ height: 77px;
         height: 100vh;
         grid-template-columns: repeat(7, 14%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1  rw4 rw5 rw6 rw7 rw8  rw13"
             "rw1  rw4 rw5 rw6 rw7 rw8 rw13";
@@ -231,7 +231,7 @@ height: 77px;
         height: 100vh;
         grid-template-columns: repeat(9, 11%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1  rw4 rw5 rw6 rw7 rw8 rw9 rw10  rw13"
             "rw1  rw4 rw5 rw6 rw7 rw8 rw9 rw10  rw13";
@@ -266,7 +266,7 @@ height: 77px;
         height: 100vh;
         grid-template-columns: repeat(11, 9%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1  rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11  rw13"
             "rw1 rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11 rw13";
@@ -299,7 +299,7 @@ height: 77px;
         height: 100vh;
         grid-template-columns: repeat(11, 9%);
         grid-auto-rows: minmax(65px, auto);
-        background-color: #F4F6F8;
+        background-color: white;
         grid-template-areas:
           "rw1  rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11  rw13"
             "rw1 rw3 rw4 rw5 rw6 rw7 rw8 rw9 rw10 rw11 rw13";

@@ -39,11 +39,22 @@ def cardhouse():
     return render_template('cardhouse.html', title='minkult-CRM')
 
 
-@app.route('/cardhousedetail')
-@app.route('/cardhousedetail/')
-def cardhousedetail():
-    print(url_for('cardhousedetail'))
-    return render_template('cardhousedetail.html', title='minkult-CRM')
+@app.route('/cardhousedetail/<id>', methods=['GET'])
+@app.route('/cardhousedetail/<id>/', methods=['GET'])
+def cardhousedetail(id):
+    print(id)
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
+    param_request = {'code': id}
+    print(param_request)
+    response = requests.get(url, param_request, verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()
+    print(data)
+    context = {'data': data}
+    return render_template('cardhousedetail.html',  **context)
 
 
 @app.route('/customers')
@@ -54,6 +65,14 @@ def customers():
 
     return render_template('customers.html', **context)
 
+
+# @app.route('/customers/', methods=['POST'])
+# @app.route('/customers/', methods=['POST'])
+# def my_form_post():
+#     text = request.form['text']
+#     processed_text = text
+#     print(processed_text)
+#     return processed_text
 
 def getcustomers():
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
@@ -66,9 +85,9 @@ def getcustomers():
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_OC']
-    img = json.loads(response.text)['list_OC']
-    # print(img)
-    #
+
+
+
     # print("json")
     # for i in img:
     #     if not i['dikpic']:
@@ -79,8 +98,8 @@ def getcustomers():
     #     imgresponse = requests.get(img_response, param_request, verify=False)
     #
     #     print(imgresponse.text)
-    img_response = img[0]['dikpic']['fotoAdr']
-    print(img_response )
+    # img_response = img[0]['dikpic']['fotoAdr']
+    # print(img_response )
     # print("response:\n{}\n\n".format(response))
     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
@@ -91,7 +110,6 @@ def getcustomers():
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # pprint((data)['list_OC'])
-    # print((data))
 
     return (data)
 
@@ -152,11 +170,12 @@ def get():
 
 
 def getdata():
-    url="https://localhost/copy_1/hs/HTTP_SERVER/get_objects_list?code=000000787"
+
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
     # if key doesn't exist, returns None
-    # param_request = {'USR': 'test', 'PWD': '2200'}
-    response = requests.get(url, verify=False)
-    # response = requests.get(url, verify=False, param_request)
+    param_request = {'code': '000000748'}
+    # response = requests.get(url, verify=False)
+    response = requests.get(url,param_request, verify=False )
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
@@ -166,12 +185,12 @@ def getdata():
     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
     # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
-    print("response.text:\n{}\n\n".format(response.text))  # Text Output
+    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
     # print("response.json:\n{}\n\n".format(response.json()))
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
-    # pprint((data)['list_OC'])
-    return (data)
+    # print(response.json())
+    return data
 
 @app.route('/post')
 def post(*args, **kwargs):

@@ -34,8 +34,7 @@
 {#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
       {% for i in data %}
 
-          <tr>
-              <td><a href="{{ url_for("cardhousedetail", id=i.code) }}">ссылка</a></td>
+          <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}">
           <td class="col-3"><img src="{{url_for('site.static', filename = i.dikpic.fotoAdr )}}" width="40" height="40" class="rounded-circle" ><span class="ms-1">{{ i.short_adress}}</span></td>
           <td>{{ i.full_adress }}</td>
           <td>{{ i.type_object }}</td>

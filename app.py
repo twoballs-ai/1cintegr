@@ -57,14 +57,6 @@ def cardhousedetail(id):
     return render_template('cardhousedetail.html',  **context)
 
 
-@app.route('/customers')
-@app.route('/customers/')
-def customers():
-    data = getcustomers()
-    context = {'data': data}
-
-    return render_template('customers.html', **context)
-
 
 # @app.route('/customers/', methods=['POST'])
 # @app.route('/customers/', methods=['POST'])
@@ -74,7 +66,9 @@ def customers():
 #     print(processed_text)
 #     return processed_text
 
-def getcustomers():
+@app.route('/customers')
+@app.route('/customers/')
+def customers():
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
     # if key doesn't exist, returns None
     param_request = {'page': '1', 'limitpage': '20'}
@@ -110,8 +104,8 @@ def getcustomers():
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # pprint((data)['list_OC'])
-
-    return (data)
+    context = {'data': data}
+    return render_template('customers.html', **context)
 
 
 @app.route('/search')
@@ -162,14 +156,6 @@ def login2():
 
 @app.route('/get')
 def get():
-    datatop = getdata()
-    context = {'datatop':datatop}
-
-
-    return render_template('get.html', **context)
-
-
-def getdata():
 
     url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
     # if key doesn't exist, returns None
@@ -190,7 +176,8 @@ def getdata():
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # print(response.json())
-    return data
+    context = {'data': data}
+    return render_template('get.html', **context)
 
 @app.route('/post')
 def post(*args, **kwargs):

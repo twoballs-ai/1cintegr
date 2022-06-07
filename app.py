@@ -54,8 +54,17 @@ def cardhousedetail(id):
     data = response.json()
     # print(data)
     context = {'data': data}
-    datas = request.form
-    print(datas)
+    if request.method == 'POST':
+        address_full = request.form.get('adress')
+        egrn_nomer = request.form.get('egrn')
+        kadastr= request.form.get('kadastr')
+        object_type = request.form.get('object')
+        object_area = request.form.get('area')
+        encumbrance = request.form.get('encumbr')
+        param_request = {'address_full': 'address_full', 'egrn_nomer': '2200'}
+        response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=param_request, verify=False)
+    # print(address_full, egrn_nomer, kadastr, object_type, object_area, encumbrance)
+    print(context)
     return render_template('cardhousedetail.html',  **context)
 
 
@@ -158,17 +167,16 @@ def login2():
 
 @app.route('/get')
 def get():
-
-    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
     # if key doesn't exist, returns None
-    param_request = {'code': '000000748'}
+    param_request = {'page': '1', 'limitpage': '20'}
     # response = requests.get(url, verify=False)
-    response = requests.get(url,param_request, verify=False )
+    response = requests.get(url, param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    data= response.json()
+    data= response.json()['list_OC']
     # print("response:\n{}\n\n".format(response))
     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
@@ -179,13 +187,14 @@ def get():
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # print(response.json())
     context = {'data': data}
+    print(context)
     return render_template('get.html', **context)
 
 @app.route('/post')
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
-    param_request = {'USR': 'test', 'PWD': '2200'}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/auth_chek", data=param_request, verify=False)
+    param_request = {'code': '000000748'}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:

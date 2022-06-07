@@ -39,21 +39,23 @@ def cardhouse():
     return render_template('cardhouse.html', title='minkult-CRM')
 
 
-@app.route('/cardhousedetail/<id>', methods=['GET'])
-@app.route('/cardhousedetail/<id>/', methods=['GET'])
+@app.route('/cardhousedetail/<id>', methods=['GET', 'POST'])
+@app.route('/cardhousedetail/<id>/', methods=['GET', 'POST'])
 def cardhousedetail(id):
-    print(id)
+    # print(id)
     url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
     param_request = {'code': id}
-    print(param_request)
+    # print(param_request)
     response = requests.get(url, param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()
-    print(data)
+    # print(data)
     context = {'data': data}
+    datas = request.form
+    print(datas)
     return render_template('cardhousedetail.html',  **context)
 
 

@@ -16,13 +16,75 @@
                 <div class="col-md-7"> Описание: {{ data.description }}</div>
                 </div>
             </li>
-           <li class="list-group-item">Адрес: {{ data.address_full }}</li>
-           <li class="list-group-item">ЕГРН: {{ data.egrn_nomer }}</li>
-           <li class="list-group-item">Кадастровый номер: {{ data.kadastr }}</li>
-           <li class="list-group-item">Тип объекта: {{ data.object_type }}</li>
-           <li class="list-group-item">Площадь объекта: {{ data.object_area }}{{ data.unit }}</li>
-           <li class="list-group-item">Обременение: {{ data.encumbrance }}</li>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+         <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Документы</button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Дополнительные сведения</button>
+    </div>
+</nav>
+<div class="tab-content mb-2" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+      <form method="POST">
+      <li class="list-group-item">Адрес: {{ data.address_full }}
+       <div class="col-7">
+    <label for="staticAdress" class="visually-hidden">Adress</label>
+    <input type="text" class="form-control" id="staticAdress" value="{{ data.address_full }}">
+  </div>
+    </li>
+           <li class="list-group-item">ЕГРН: {{ data.egrn_nomer }}
+                  <div class="col-7">
+    <label for="staticEgrn" class="visually-hidden">egrn</label>
+    <input type="text" class="form-control" id="staticEgrn" value="{{ data.egrn_nomer }}">
+  </div>
+           </li>
+           <li class="list-group-item">Кадастровый номер: {{ data.kadastr }}
+                             <div class="col-7">
+    <label for="staticKadastr" class="visually-hidden">kadastr</label>
+    <input type="text" class="form-control" id="staticKadastr" value="{{ data.kadastr }}">
+  </div>
+           </li>
+           <li class="list-group-item">Тип объекта: {{ data.object_type }}
+                                        <div class="col-7">
+    <label for="staticObjectType" class="visually-hidden">object_type</label>
+    <input type="text" class="form-control" id="staticObjectType" value="{{ data.object_type }}">
+  </div></li>
+           <li class="list-group-item">Площадь объекта: {{ data.object_area }}{{ data.unit }}
+           <div class="col-7">
+    <label for="staticObjectArea" class="visually-hidden">object_area</label>
+    <input type="text" class="form-control" id="staticObjectArea" value="{{ data.object_area }}">
+  </div>
+           </li>
+           <li class="list-group-item">Обременение: {{ data.encumbrance }}
+                      <div class="col-7">
+    <label for="staticEncumbrance" class="visually-hidden">encumbrance</label>
+    <input type="text" class="form-control" id="staticEncumbrance" value="{{ data.encumbrance }}">
+  </div>
+           </li>
+      <li><div class="col-4 m-2"><button id="editButton" type="button" class="btn btn-primary">Редактировать</button> <button id="save" type="submit" class="btn btn-primary">Сохранить</button></div></li>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <div class="row">
+      <li class="col-7 m-2 py-2 border-bottom border-1">План БТИ *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">Акт технического состояния *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">Акт осмотра *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на земельный участок *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на здание *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">Охранное обязательство *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">Акт приема передачи *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+      <li class="col-7 m-2 py-2 border-bottom border-1">Договор *</li><div class="col-4"><button type="button" class="btn btn-primary">Загрузить</button></div>
+
+      </div>
+
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+      окно в разработке
+  </div>
+ </div>
+
+
+            <div class="row row-cols-1 row-cols-md-3 g-3">
              {% for i in data.foto_list %}
 
   <div class="col">

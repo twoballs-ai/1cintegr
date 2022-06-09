@@ -63,9 +63,18 @@ def cardhousedetail(id):
         object_type = request.form.get('object')
         object_area = request.form.get('area')
         encumbrance = request.form.get('encumbr')
-        param_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer}
-        response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=param_request, verify=False)
-    # print(address_full, egrn_nomer, kadastr, object_type, object_area, encumbrance)
+        post_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer,
+                        'kadastr':kadastr,'object_type':object_type,
+                        'object_area':object_area,'encumbrance':encumbrance
+                        }
+        responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request, verify=False)
+        print("response:\n{}\n\n".format(responsePost))
+        print("response.url:\n{}\n\n".format(responsePost.url))  # Посмотреть формат URL (с параметрами)
+        print("response.headers:\n{}\n\n".format(responsePost.headers))  # Header of the request
+        print("response.status_code:\n{}\n\n".format(responsePost.status_code))  # Получить код ответа
+        print("response.text:\n{}\n\n".format(responsePost.text))  # Text Output
+        print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
+        print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
     # print(context)
     return render_template('cardhousedetail.html',  **context)
 

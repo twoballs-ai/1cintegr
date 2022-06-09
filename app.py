@@ -21,8 +21,10 @@ app.register_blueprint(blueprint)
 @app.route('/')
 @app.route('/index')
 def index():
+
     print(url_for('index'))
-    return render_template('index.html', title='minkult-CRM')
+
+    return render_template('index.html')
 
 
 @app.route('/category')
@@ -61,10 +63,10 @@ def cardhousedetail(id):
         object_type = request.form.get('object')
         object_area = request.form.get('area')
         encumbrance = request.form.get('encumbr')
-        param_request = {'address_full': 'address_full', 'egrn_nomer': '2200'}
+        param_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer}
         response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=param_request, verify=False)
     # print(address_full, egrn_nomer, kadastr, object_type, object_area, encumbrance)
-    print(context)
+    # print(context)
     return render_template('cardhousedetail.html',  **context)
 
 
@@ -77,22 +79,26 @@ def cardhousedetail(id):
 #     print(processed_text)
 #     return processed_text
 
-@app.route('/customers')
-@app.route('/customers/')
-def customers():
+
+
+@app.route('/customers/<number>/')
+def customers(number):
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
-    # if key doesn't exist, returns None
-    param_request = {'page': '1', 'limitpage': '20'}
-    # response = requests.get(url, verify=False)
+    number = int(number)
+
+    param_request = {'page': number}
+    number2 = param_request["page"]
+    print(number2)
+    print(number)
     response = requests.get(url, param_request, verify=False)
+    # page = request.args.get('page', 1 ,type=int)
+    # response = requests.get(url, verify=False)
+
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_OC']
-
-
-
     # print("json")
     # for i in img:
     #     if not i['dikpic']:
@@ -115,9 +121,14 @@ def customers():
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     # pprint((data)['list_OC'])
-    context = {'data': data}
-    return render_template('customers.html', **context)
+    # c=[]
+    # for i in range(1,100):
+    #     c.append(i)
+    context = {'data': data,
+               'number2':number2}
 
+
+    return render_template('customers.html',  **context)
 
 @app.route('/search')
 @app.route('/search/')

@@ -41,8 +41,8 @@ def cardhouse():
     return render_template('cardhouse.html', title='minkult-CRM')
 
 
-@app.route('/cardhousedetail/<id>', methods=['GET', 'POST'])
-@app.route('/cardhousedetail/<id>/', methods=['GET', 'POST'])
+@app.route('/cardhousedetail/<id>', methods=['GET'])
+@app.route('/cardhousedetail/<id>/', methods=['GET'])
 def cardhousedetail(id):
     # print(id)
     url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
@@ -55,7 +55,27 @@ def cardhousedetail(id):
         print('Not auth.')
     data = response.json()
     # print(data)
-    context = {'data': data}
+    context = {'data': data,
+               'id':id}
+    # print(context)
+    return render_template('cardhousedetail.html',  **context)
+
+
+@app.route('/cardhousedetail/<id>/edit', methods=['GET', 'POST'])
+@app.route('/cardhousedetail/<id>/edit/', methods=['GET', 'POST'])
+def cardhousedetailEdit(id):
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
+    param_request = {'code': id}
+    # print(param_request)
+    response = requests.get(url, param_request, verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()
+    # print(data)
+    context = {'data': data,
+               'id': id}
     if request.method == 'POST':
         address_full = request.form.get('adress')
         egrn_nomer = request.form.get('egrn')
@@ -65,18 +85,20 @@ def cardhousedetail(id):
         encumbrance = request.form.get('encumbr')
         post_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer,
                         'kadastr':kadastr,'object_type':object_type,
-                        'object_area':object_area,'encumbrance':encumbrance
+                        'object_area':object_area,'encumbrance':encumbrance,
+                        'code': id
                         }
         responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request, verify=False)
-        print("response:\n{}\n\n".format(responsePost))
-        print("response.url:\n{}\n\n".format(responsePost.url))  # Посмотреть формат URL (с параметрами)
-        print("response.headers:\n{}\n\n".format(responsePost.headers))  # Header of the request
-        print("response.status_code:\n{}\n\n".format(responsePost.status_code))  # Получить код ответа
-        print("response.text:\n{}\n\n".format(responsePost.text))  # Text Output
-        print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
-        print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
+        return redirect(url_for('cardhousedetail',id=id))
+        # print("response:\n{}\n\n".format(responsePost))
+        # print("response.url:\n{}\n\n".format(responsePost.url))  # Посмотреть формат URL (с параметрами)
+        # print("response.headers:\n{}\n\n".format(responsePost.headers))  # Header of the request
+        # print("response.status_code:\n{}\n\n".format(responsePost.status_code))  # Получить код ответа
+        # print("response.text:\n{}\n\n".format(responsePost.text))  # Text Output
+        # print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
+        # print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
     # print(context)
-    return render_template('cardhousedetail.html',  **context)
+    return render_template('cardhousedetailedit.html',  **context)
 
 
 

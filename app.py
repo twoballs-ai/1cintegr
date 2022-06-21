@@ -2,12 +2,16 @@ from flask import Flask, render_template, url_for, request, \
     session, redirect, Blueprint
 import requests
 import json
-
+from dadata import Dadata
+token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"
+secret = "6a40c77de8faddcc68c6f90d4de5cae8608767e3"
 import os
 # MEDIA_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
 #
 # path = "/"
 # print(path)
+import requests
+from requests.structures import CaseInsensitiveDict
 
 
 app = Flask(__name__)
@@ -61,6 +65,38 @@ def cardhousedetail(id):
     return render_template('cardhousedetail.html',  **context)
 
 
+@app.route('/addcardhousedetail', methods=['GET', 'POST'])
+@app.route('/addcardhousedetail/', methods=['GET', 'POST'])
+def addcardhousedetail():
+    if request.method == 'POST':
+        # inputState = request.form.get('inputState')
+
+        # address_full = request.form.get('adress')
+        region= request.form.get('region')
+        area= request.form.get('area')
+        city= request.form.get('city')
+        settlement= request.form.get('settlement')
+        street= request.form.get('street')
+        house= request.form.get('house')
+        flat= request.form.get('flat')
+        postal_code= request.form.get('postal_code')
+        egrn_nomer = request.form.get('egrn')
+        kadastr = request.form.get('kadastr')
+        object_type = request.form.get('object')
+        object_area = request.form.get('area')
+        encumbrance = request.form.get('encumbr')
+        post_request = {'region': region, 'area': area,'city':city, 'settlement': settlement, 'street':street,
+                        'house': house, 'flat': flat, 'postal_code':postal_code,
+                        'egrn_nomer': egrn_nomer, 'kadastr': kadastr, 'object_type': object_type,
+                        'object_area': object_area, 'encumbrance': encumbrance, 'code':'new'
+                        }
+        print(post_request)
+        responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request, verify=False)
+        print(responsePost.text)
+        return "вы что то добавили"
+    return render_template('addcardhousedetail.html')
+
+
 @app.route('/cardhousedetail/<id>/edit', methods=['GET', 'POST'])
 @app.route('/cardhousedetail/<id>/edit/', methods=['GET', 'POST'])
 def cardhousedetailEdit(id):
@@ -101,16 +137,24 @@ def cardhousedetailEdit(id):
     return render_template('cardhousedetailedit.html',  **context)
 
 
+@app.route('/dadata')
+def dadata():
+    dadata = Dadata(token, secret)
+    response = dadata.clean("address", "мск сухонска 11/-89")
+    # print("response:\n{}\n\n".format(response))
+    # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+    # print("response.json:\n{}\n\n".format(response.json()))
+    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
+    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
+    # print(response.json())
+    # context = {'data': data}
+    # print(context)
+    print(response)
 
-# @app.route('/customers/', methods=['POST'])
-# @app.route('/customers/', methods=['POST'])
-# def my_form_post():
-#     text = request.form['text']
-#     processed_text = text
-#     print(processed_text)
-#     return processed_text
-
-
+    return response
 
 @app.route('/customers/<number>/')
 def customers(number):
@@ -235,8 +279,8 @@ def get():
 @app.route('/post')
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
-    param_request = {'code': '000000748'}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=param_request, verify=False)
+    param_request = {"query": "москва хабар"}
+    response = requests.post("https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address", data=param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:

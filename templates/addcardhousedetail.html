@@ -2,33 +2,37 @@
 
 {% block content %}
     {{ super() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+
 
     <div id="container" class="container-fluid rounded p-3 bg-white border border-grey">
         <form method="POST">
-              <div class="col-md-4">
-    <section class="container">
-  <h1>Подставить индекс после выбора адреса в отдельное поле (гранулярные подсказки)</h1>
-  <label for="region">Регион:</label><input id="region" name="region" type="text" />
-  <br/><br/>
-  <label for="area">Район:</label><input id="area" name="area" type="text" />
-  <br/><br/>
-  <label for="city">Город:</label><input id="city" name="city" type="text" />
-  <br/><br/>
-  <label for="settlement">Населенный пункт:</label><input id="settlement" name="settlement" type="text" />
-  <br/><br/>
-  <label for="street">Улица:</label><input id="street" name="street" type="text" />
-  <br/><br/>
-  <label for="house">Дом:</label><input id="house" name="house" type="text" />
-  <br/><br/>
-  <label for="flat">Квартира:</label><br/><input id="flat" name="flat" type="text" />
-  <br/><br/>
-  <input id="postal_code" name="postal_code" type="text" placeholder="индекс" />
-</section>
-  </div>
 
+    <div class="container">
+        <div class="row">
+  <h1>Подставить индекс после выбора адреса в отдельное поле (гранулярные подсказки)</h1>
+  <div class="col-6 mb-3"><label for="region">Регион:</label><input id="region" name="region" type="text" /></div>
+   <div class="col-6 mb-3"><label for="area">Район:</label><input id="area" name="area" type="text" /></div>
+
+            <div class="col-6 mb-3"><label for="city">Город:</label><input id="city" name="city" type="text" /></div>
+            <div class="col-6 mb-3"><label for="settlement">Населенный пункт:</label><input id="settlement" name="settlement" type="text" /></div>
+
+            <div class="col-6 mb-3"><label for="street">Улица:</label><input id="street" name="street" type="text" /></div>
+
+            <div class="col-6 mb-3"><label for="house">Дом:</label><input id="house" name="house" type="text" /></div>
+
+            <div class="col-6 mb-3"><label for="flat">Квартира:</label><br/><input id="flat" name="flat" type="text" /></div>
+
+            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс:</label><br/><input id="postal_code" name="postal_code" type="text" placeholder="индекс" /></div>
+            </div>
+</div>
+
+           <li class="list-group-item">Название объекта недвижимости:
+                  <div class="col-7">
+
+    <label for="staticName" class="visually-hidden">name</label>
+    <input type="text" class="form-control" id="staticName"  name = "name">
+  </div>
+           </li>
            <li class="list-group-item">ЕГРН:
                   <div class="col-7">
            
@@ -49,11 +53,12 @@
     <label for="staticObjectType" class="visually-hidden">object_type</label>
     <input type="text" class="form-control" id="staticObjectType"  name = "object">
   </div></li>
-           <li class="list-group-item">Площадь объекта:
-           <div class="col-7">
-               
-    <label for="staticObjectArea" class="visually-hidden">object_area</label>
-    <input type="text" class="form-control" id="staticObjectArea" name = "area">
+
+           <li class="list-group-item">площадь:
+                             <div class="col-7">
+
+    <label for="staticObject_area" class="visually-hidden">object_area</label>
+    <input type="text" class="form-control" id="staticObject_area" name ="object_area">
   </div>
            </li>
            <li class="list-group-item">Обременение:
@@ -76,90 +81,94 @@
 {#          <input type="submit" value="Submit">#}
     </form>
 
-<script>
-    // Замените на свой API-ключ
-var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
-
-var type = "ADDRESS";
-var $region = $("#region");
-var $area = $("#area");
-var $city = $("#city");
-var $settlement = $("#settlement");
-var $street = $("#street");
-var $house = $("#house");
-
-function showPostalCode(suggestion) {
-  $("#postal_code").val(suggestion.data.postal_code);
-}
-
-function clearPostalCode() {
-  $("#postal_code").val("");
-}
-
-// регион
-$region.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "region"
-});
-
-// район
-$area.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "area",
-  constraints: $region
-});
-
-// город и населенный пункт
-$city.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "city",
-  constraints: $area,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
-
-// geolocateCity($city);
-
-// город и населенный пункт
-$settlement.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "settlement",
-  constraints: $city,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
-
-// улица
-$street.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "street",
-  constraints: $settlement,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
-
-// дом
-$house.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "house",
-  constraints: $street,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
-
-</script>
+{#<script>#}
+{#    // Замените на свой API-ключ#}
+{#var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";#}
+{##}
+{#var type = "ADDRESS";#}
+{#var $region = $("#region");#}
+{#var $area = $("#area");#}
+{#var $city = $("#city");#}
+{#var $settlement = $("#settlement");#}
+{#var $street = $("#street");#}
+{#var $house = $("#house");#}
+{##}
+{#function showPostalCode(suggestion) {#}
+{#  $("#postal_code").val(suggestion.data.postal_code);#}
+{#}#}
+{##}
+{#function clearPostalCode() {#}
+{#  $("#postal_code").val("");#}
+{#}#}
+{##}
+{#// регион#}
+{#$region.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "region"#}
+{#});#}
+{##}
+{#// район#}
+{#$area.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "area",#}
+{#  constraints: $region#}
+{#});#}
+{##}
+{#// город и населенный пункт#}
+{#$city.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "city",#}
+{#  constraints: $area,#}
+{#  onSelect: showPostalCode,#}
+{#  onSelectNothing: clearPostalCode#}
+{#});#}
+{##}
+{#// geolocateCity($city);#}
+{##}
+{#// город и населенный пункт#}
+{#$settlement.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "settlement",#}
+{#  constraints: $city,#}
+{#  onSelect: showPostalCode,#}
+{#  onSelectNothing: clearPostalCode#}
+{#});#}
+{##}
+{#// улица#}
+{#$street.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "street",#}
+{#  constraints: $settlement,#}
+{#  onSelect: showPostalCode,#}
+{#  onSelectNothing: clearPostalCode#}
+{#});#}
+{##}
+{#// дом#}
+{#$house.suggestions({#}
+{#  token: token,#}
+{#  type: type,#}
+{#  hint: false,#}
+{#  bounds: "house",#}
+{#  constraints: $street,#}
+{#  onSelect: showPostalCode,#}
+{#  onSelectNothing: clearPostalCode#}
+{#});#}
+{##}
+{#</script>#}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+    <script src="{{ url_for('static', filename='1cintegr/js/script.js') }}"></script>
     </div>
 
 {% endblock %}

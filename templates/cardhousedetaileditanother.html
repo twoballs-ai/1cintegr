@@ -1,0 +1,78 @@
+{% extends 'basic/basic.html' %}
+
+{% block content %}
+    {{ super() }}
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+         <ul class="list-group list-group-flush box overflow-auto my-1">
+          <li class="list-group-item">
+              <h1 class="display-6 text-center">{{ data.name }}</h1>
+              <h1 class="display-6 text-center text-danger">Редактирование дополнительных сведений</h1>
+          </li>
+         <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения</button>
+    </div>
+</nav>
+<div class="tab-content mb-2" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+{#      <form method="POST">#}
+{#      <li class="list-group-item">Адрес: {{ data.address_full }}#}
+{#       <div class="col-7">#}
+{#           <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticAdress" class="visually-hidden">Adress</label>#}
+{#    <input type="text" class="form-control" id="staticAdress" value="{{ data.address_full }}" name = "adress">#}
+{#  </div>#}
+{#    </li>#}
+{#           <li class="list-group-item">ЕГРН: {{ data.egrn_nomer }}#}
+{#                  <div class="col-7">#}
+{#           <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticEgrn" class="visually-hidden">egrn</label>#}
+{#    <input type="text" class="form-control" id="staticEgrn" value="{{ data.egrn_nomer }}" name = "egrn">#}
+{#  </div>#}
+{#           </li>#}
+{#           <li class="list-group-item">Кадастровый номер: {{ data.kadastr }}#}
+{#                             <div class="col-7">#}
+{#           <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticKadastr" class="visually-hidden">kadastr</label>#}
+{#    <input type="text" class="form-control" id="staticKadastr" value="{{ data.kadastr }}" name ="kadastr">#}
+{#  </div>#}
+{#           </li>#}
+{#           <li class="list-group-item">Тип объекта: {{ data.object_type }}#}
+{#                                        <div class="col-7">#}
+{#           <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticObjectType" class="visually-hidden">object_type</label>#}
+{#    <input type="text" class="form-control" id="staticObjectType" value="{{ data.object_type }}" name = "object">#}
+{#  </div></li>#}
+{#           <li class="list-group-item">Площадь объекта: {{ data.object_area }}{{ data.unit }}#}
+{#           <div class="col-7">#}
+{#               <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticObjectArea" class="visually-hidden">object_area</label>#}
+{#    <input type="text" class="form-control" id="staticObjectArea" value="{{ data.object_area }}" name = "area">#}
+{#  </div>#}
+{#           </li>#}
+{#           <li class="list-group-item">Обременение: {{ data.encumbrance }}#}
+{#                      <div class="col-7">#}
+{#                          <p><span class="text-danger">Введите новые данные:</span></p>#}
+{#    <label for="staticEncumbrance" class="visually-hidden">encumbrance</label>#}
+{#    <input type="text" class="form-control" id="staticEncumbrance" value="{{ data.encumbrance }}" name = "encumbr">#}
+{#  </div>#}
+{#           </li>#}
+{#      <li><div class="col-4 m-2">#}
+{#          <button id="save" type="submit" class="btn btn-primary">Сохранить</button>#}
+{#      </div></li>#}
+{#          <input type="submit" value="Submit">#}
+{#    </form>#}
+<p><span>Здесь будет отдельное окно для сохранения дополнительных данных. функция уже готова осталось реализовать на сервере 1с.</span></p>
+  </div>
+
+
+ </div>
+
+
+
+         </ul>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'basic/basic.html' %}
+
+{% block content %}
+    {{ super() }}
+<div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+        <ul class="list-group list-group-flush box overflow-auto my-1">
+           <li class="list-group-item">Наименование подведомственной организации</li>
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Наименование подведомственной организации</th>
+
+    </tr>
+  </thead>
+  <tbody>
+            {% for i in data %}
+
+{#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
+         <tr data-href="{{ url_for("cardhouse", id=i.code) }}">
+
+          <td>{{ i.name}}</td>
+
+
+{#          <img src="{{url_for('site.static', filename = data)}}">#}
+
+          </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+        </ul>
+
+            </div>
+{% endblock %}

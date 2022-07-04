@@ -29,6 +29,26 @@ def index():
 
     return render_template('index.html')
 
+@app.route('/podved')
+@app.route('/podved/')
+def podved():
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+    # if key doesn't exist, returns None
+    param_request = {'page': '1'}
+    # response = requests.get(url, verify=False)
+    response = requests.post(url, param_request, verify=False)
+    # page = request.args.get('page', 1 ,type=int)
+    # response = requests.get(url, verify=False)
+
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()['list_PD']
+    context = {'data': data}
+    print(data)
+    return render_template('podved.html', **context)
+
 
 @app.route('/category')
 @app.route('/category/')
@@ -133,16 +153,42 @@ def cardhousedetailEdit(id):
         responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
                                      verify=False)
         return redirect(url_for('cardhousedetail', id=id))
-        # print("response:\n{}\n\n".format(responsePost))
-        # print("response.url:\n{}\n\n".format(responsePost.url))  # Посмотреть формат URL (с параметрами)
-        # print("response.headers:\n{}\n\n".format(responsePost.headers))  # Header of the request
-        # print("response.status_code:\n{}\n\n".format(responsePost.status_code))  # Получить код ответа
-        # print("response.text:\n{}\n\n".format(responsePost.text))  # Text Output
-        # print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
-        # print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
     # print(context)
     return render_template('cardhousedetailedit.html', **context)
 
+
+@app.route('/cardhousedetail/<id>/editanother', methods=['GET', 'POST'])
+@app.route('/cardhousedetail/<id>/editanother/', methods=['GET', 'POST'])
+def cardhousedetailEditAnother(id):
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
+    param_request = {'code': id}
+    # print(param_request)
+    response = requests.get(url, param_request, verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()
+    # print(data)
+    context = {'data': data,
+               'id': id}
+    if request.method == 'POST':
+        address_full = request.form.get('adress')
+        egrn_nomer = request.form.get('egrn')
+        kadastr = request.form.get('kadastr')
+        object_type = request.form.get('object')
+        object_area = request.form.get('area')
+        encumbrance = request.form.get('encumbr')
+        post_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer,
+                        'kadastr': kadastr, 'object_type': object_type,
+                        'object_area': object_area, 'encumbrance': encumbrance,
+                        'code': id
+                        }
+        responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
+                                     verify=False)
+        return redirect(url_for('cardhousedetail', id=id))
+    # print(context)
+    return render_template('cardhousedetaileditanother.html', **context)
 
 @app.route('/dadata')
 def dadata():
@@ -273,8 +319,8 @@ def get():
 @app.route('/post')
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
-    param_request = {"query": "москва хабар"}
-    response = requests.post("https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address", data=param_request,
+    param_request = {"page": "1"}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/podved_list", data=param_request,
                              verify=False)
     if response.status_code == 200:
         print('Success!')

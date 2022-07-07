@@ -58,11 +58,23 @@ def category():
 
 
 # https://localhost/copy_1/hs/HTTP_SERVER/get_objects_list?code=
-@app.route('/cardhouse/')
-@app.route('/cardhouse/')
-def cardhouse():
-    print(url_for('cardhouse'))
-    return render_template('cardhouse.html', title='minkult-CRM')
+@app.route('/cardhouse/<id>', methods=['GET'])
+@app.route('/cardhouse/<id>/', methods=['GET'])
+def cardhouse(id):
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_card"
+    param_request = {'code': id}
+    # print(param_request)
+    response = requests.post(url, param_request, verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()
+    # print(data)
+    context = {'data': data,
+               'id': id}
+    print(context)
+    return render_template('cardhouse.html', **context)
 
 
 @app.route('/cardhousedetail/<id>', methods=['GET'])
@@ -228,7 +240,7 @@ def customers(number):
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_OC']
-    # print("json")
+    print(data)
     # for i in img:
     #     if not i['dikpic']:
     #         print('gbcmrf')
@@ -319,8 +331,8 @@ def get():
 @app.route('/post')
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
-    param_request = {"page": "1"}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/podved_list", data=param_request,
+    param_request = {"code": "0000000080"}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/podved_card", data=param_request,
                              verify=False)
     if response.status_code == 200:
         print('Success!')
@@ -330,8 +342,8 @@ def post(*args, **kwargs):
     print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
     # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
-    print("response.text:\n{}\n\n".format(response.text))  # Text Output
-    # print("response.json:\n{}\n\n".format(response.json()))
+    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+    print("response.json:\n{}\n\n".format(response.json()))
     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
     return "response.text:\n{}\n\n".format(response.text)

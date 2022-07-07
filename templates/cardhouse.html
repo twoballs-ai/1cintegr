@@ -3,7 +3,7 @@
 {% block content %}
     {{ super() }}
    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
-        <h3 class="mx-2">Московский государственный академический детский музыкальный театр имени Н.И. Сац</h3>
+        <h3 class="mx-2">{{ data.podved_info.name }}</h3>
     <div class="container rounded px-0 mx-2 bg-white border border-grey">
         <table class="table">
 
@@ -22,27 +22,27 @@
     </tr>
     <tr>
         <td>ИНН:</td>
-      <td>7707079537</td>
+      <td>{{ data.podved_info.INN }}</td>
       <td>КПП:</td>
-      <td>770701001</td>
+      <td>{{ data.podved_info.KPP }}</td>
     </tr>
       <tr>
         <td>ОГРН:</td>
-      <td>1027739856539</td>
+      <td>{{ data.podved_info.OGRN }}</td>
       <td>КОПУК:</td>
-      <td>040027</td>
+      <td></td>
     </tr>
       <tr>
         <td>Адрес:</td>
-      <td>125009, Москва, площадь Театральная, 1</td>
+      <td></td>
       <td>Номер телефона:</td>
-      <td>7-495-692-66-90</td>
+      <td></td>
     </tr>
       <tr>
         <td>Электронная почта:</td>
-      <td>theatre@bolshoi.ru</td>
+      <td></td>
       <td>ФИО Руководителя:</td>
-      <td>Урин Владимир Георгиевич</td>
+      <td>{{ data.podved_info.director }}</td>
     </tr>
   </tbody>
 </table>
@@ -50,25 +50,56 @@
     <h3 class="mx-2">Объекты недвижимости</h3>
     <div class="container rounded px-0 mx-2 bg-white border border-grey">
         <table class="table table-hover">
-         <thead>
+  <thead>
     <tr>
-      <th scope="col">Имя</th>
-      <th scope="col">Email</th>
+      <th scope="col">Регион</th>
       <th scope="col">Адрес</th>
-      <th scope="col">Телефон</th>
-      <th scope="col">Дата регистрации</th>
+      <th scope="col">Вид объекта</th>
+      <th scope="col">Вид собственности</th>
+      <th scope="col">Обременение</th>
+        <th scope="col">ОКН</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Особняк Рябушинского</td>
-      <td>info@yandex.ru</td>
-      <td>Москва, ЮВАО, Россия</td>
-      <td>+7(916)000-00-00</td>
-      <td>12/04/2019</td>
-    </tr>
+
+{#  <img src="{{url_for('site.static', filename = data)}}">#}
+{#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
+      {% for i in data.list_OC %}
+
+          <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}">
+          <td class="col-3"><img src="{{url_for('site.static', filename = i.dikpic.fotoAdr )}}" width="40" height="40" class="rounded-circle" ><span class="ms-1">{{ i.short_adress}}</span></td>
+          <td>{{ i.full_adress }}</td>
+          <td>{{ i.type_object }}</td>
+          <td>{{ i.owner }}</td>
+          <td>{{ i.encumbrance }}</td>
+          <td>{{ i.okn }}</td>
+
+{#          <img src="{{url_for('site.static', filename = data)}}">#}
+
+          </tr>
+    {% endfor %}
   </tbody>
 </table>
+{#        <table class="table table-hover">#}
+{#         <thead>#}
+{#    <tr>#}
+{#      <th scope="col">Имя</th>#}
+{#      <th scope="col">Email</th>#}
+{#      <th scope="col">Адрес</th>#}
+{#      <th scope="col">Телефон</th>#}
+{#      <th scope="col">Дата регистрации</th>#}
+{#    </tr>#}
+{#  </thead>#}
+{#  <tbody>#}
+{#    <tr>#}
+{#      <td>Особняк Рябушинского</td>#}
+{#      <td>info@yandex.ru</td>#}
+{#      <td>Москва, ЮВАО, Россия</td>#}
+{#      <td>+7(916)000-00-00</td>#}
+{#      <td>12/04/2019</td>#}
+{#    </tr>#}
+{#  </tbody>#}
+{#</table>#}
     </div>
     </div>
 {% endblock %}

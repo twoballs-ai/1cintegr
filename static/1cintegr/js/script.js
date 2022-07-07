@@ -83,6 +83,14 @@ $house.suggestions({
   onSelectNothing: clearPostalCode
 });
 
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
+//
+// myModal.addEventListener('shown.bs.modal', () => {
+//   myInput.focus()
+// })
+
+
 // $('#editable').click(function (){
 //
 // });

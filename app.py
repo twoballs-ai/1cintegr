@@ -22,13 +22,16 @@ blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_f
 app.register_blueprint(blueprint)
 
 
+# @app.route('/')
+# @app.route('/index')
+# def index():
+#     print(url_for('index'))
+#
+#     return render_template('index.html')
+
+
 @app.route('/')
 @app.route('/index')
-def index():
-    print(url_for('index'))
-
-    return render_template('index.html')
-
 @app.route('/podved')
 @app.route('/podved/')
 def podved():
@@ -126,8 +129,17 @@ def addcardhousedetail():
         print(post_request)
         responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
                                      verify=False)
+        responsePost.encoding = "ANSI"
         id = responsePost.json()['code']
-        print(id)
+        # print(id)
+        print("response:\n{}\n\n".format(responsePost))
+        # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+        # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+        # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+        # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+        # print("response.json:\n{}\n\n".format(response.json()))
+        print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
+        print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
         # print(responsePost.text)
         # context = {'id': id}
         # return render_template('cardhousedetail/id.html')
@@ -240,7 +252,8 @@ def customers(number):
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_OC']
-    print(data)
+    data1 = response.json()
+    print(data1)
     # for i in img:
     #     if not i['dikpic']:
     #         print('gbcmrf')

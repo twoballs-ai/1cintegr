@@ -3,7 +3,7 @@
 {% block content %}
     {{ super() }}
    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
-        <h3 class="mx-2">{{ data.podved_info.name }}</h3>
+        <h3 class="mx-2 text-center">{{ data.podved_info.name }}</h3>
     <div class="container rounded px-0 mx-2 bg-white border border-grey">
         <table class="table">
 
@@ -34,7 +34,7 @@
     </tr>
       <tr>
         <td>Адрес:</td>
-      <td></td>
+      <td>{{ data.podved_info.full_adress }}</td>
       <td>Номер телефона:</td>
       <td></td>
     </tr>
@@ -47,7 +47,7 @@
   </tbody>
 </table>
     </div>
-    <h3 class="mx-2">Объекты недвижимости</h3>
+    <h3 class="mx-2 text-center">Объекты недвижимости</h3>
     <div class="container rounded px-0 mx-2 bg-white border border-grey">
         <table class="table table-hover">
   <thead>

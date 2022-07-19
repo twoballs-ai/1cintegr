@@ -234,7 +234,7 @@ def dadata():
     return response
 
 
-@app.route('/customers/<number>/')
+@app.route('/customers/<number>/' , methods=['GET', 'POST'])
 def customers(number):
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
     number = int(number)
@@ -265,6 +265,47 @@ def customers(number):
     #     c.append(i)
     context = {'data': data,
                'number2': number2}
+    if request.method == 'POST':
+        # inputState = request.form.get('inputState')
+        name = request.form.get('name')
+        # address_full = request.form.get('adress')
+        region = request.form.get('region')
+        area = request.form.get('area')
+        city = request.form.get('city')
+        settlement = request.form.get('settlement')
+        street = request.form.get('street')
+        house = request.form.get('house')
+        flat = request.form.get('flat')
+        postal_code = request.form.get('postal_code')
+        egrn_nomer = request.form.get('egrn')
+        kadastr = request.form.get('kadastr')
+        object_type = request.form.get('object')
+        object_area = request.form.get('object_area')
+        encumbrance = request.form.get('encumbr')
+        description = request.form.get('description')
+        post_request = {'region': region, 'area': area, 'city': city, 'settlement': settlement, 'street': street,
+                        'house': house, 'flat': flat, 'postal_code': postal_code, 'name': name,
+                        'egrn_nomer': egrn_nomer, 'kadastr': kadastr, 'object_type': object_type,
+                        'object_area': object_area, 'encumbrance': encumbrance, 'description': description, 'code': 'new_object'
+                        }
+        print(post_request)
+        responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
+                                     verify=False)
+        responsePost.encoding = "ANSI"
+        id = responsePost.json()['code']
+        # print(id)
+        print("response:\n{}\n\n".format(responsePost))
+        # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+        # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+        # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+        # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+        # print("response.json:\n{}\n\n".format(response.json()))
+        print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
+        print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
+        # print(responsePost.text)
+        # context = {'id': id}
+        # return render_template('cardhousedetail/id.html')
+        return redirect(url_for('cardhousedetail', id = id))
 
     return render_template('customers.html', **context)
 

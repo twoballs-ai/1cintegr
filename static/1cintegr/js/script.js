@@ -83,6 +83,17 @@ $house.suggestions({
   onSelectNothing: clearPostalCode
 });
 
+$('.btn').click(function(){
+  $('#form-2 [name="postal_code"]').val($('#form-1 [name="postal_code"]').val());
+  $('#form-2 [name="flat"]').val($('#form-1 [name="flat"]').val());
+  $('#form-2 [name="house"]').val($('#form-1 [name="house"]').val());
+  $('#form-2 [name="street"]').val($('#form-1 [name="street"]').val());
+  $('#form-2 [name="settlement"]').val($('#form-1 [name="settlement"]').val());
+  $('#form-2 [name="city"]').val($('#form-1 [name="city"]').val());
+  $('#form-2 [name="area"]').val($('#form-1 [name="area"]').val());
+  $('#form-2 [name="region"]').val($('#form-1 [name="region"]').val());
+});
+
 // const myModal = document.getElementById('myModal')
 // const myInput = document.getElementById('myInput')
 //

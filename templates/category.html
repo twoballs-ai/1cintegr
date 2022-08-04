@@ -6,7 +6,7 @@
         <ul class="list-group list-group-flush box my-1">
           <li class="list-group-item">Категории</li>
             {% for list in data %}
-            <a href="{{ url_for ("categoryobjects", id =list.code) }}" class="text-decoration-none"><li class="list-group-item list-group-item-action border-top"><span>{{ list.name }}</span><p>Количество {{ list.amount }}</p></li></a>
+            <a href="{{ url_for ("category_podved", id =list.code) }}" class="text-decoration-none"><li class="list-group-item list-group-item-action border-top"><span>{{ list.name }}</span><p>Количество {{ list.amount }}</p></li></a>
             {% endfor %}
         </ul>
     </div>

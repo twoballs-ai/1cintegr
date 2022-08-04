@@ -36,7 +36,12 @@
            <li class="list-group-item">Тип объекта: {{ data.object_type }}
                                         <div class="col-7">
     <label for="staticObjectType" class="visually-hidden">object_type</label>
-    <input type="text" class="form-control" id="staticObjectType" value="{{ data.object_type }}" name = "object">
+            <select class="form-select" aria-label="Default select example">
+  <option selected>Выбеите тип объекта</option>
+            {% for values in object_type_val %}
+  <option value="{{ values.id }}">{{ values.value }}</option>
+  {% endfor %}
+</select>
   </div></li>
            <li class="list-group-item">Площадь объекта: {{ data.object_area }}{{ data.unit }}
            <div class="col-7">

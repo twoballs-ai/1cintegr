@@ -1,12 +1,23 @@
-from flask import Flask, render_template, url_for, request, \
+import os
+from flask import Flask, flash, render_template, url_for, request, \
     session, redirect, Blueprint
+from flask import send_from_directory
+from werkzeug.utils import secure_filename
 import requests
 import json
 from dadata import Dadata
+from flask_wtf import FlaskForm
+from flask_wtf.file import FileField
+from wtforms import SubmitField
 
+
+UPLOAD_FOLDER = '/mnt/disk_d/upload'
+# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"
 secret = "6a40c77de8faddcc68c6f90d4de5cae8608767e3"
-import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 # MEDIA_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
 #
 # path = "/"
@@ -14,9 +25,13 @@ import os
 import requests
 from requests.structures import CaseInsensitiveDict
 
+
+
+
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'cdvfdjn43439acd9*&^$%&*&^%G&^%FGYH'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
 app.register_blueprint(blueprint)
@@ -29,6 +44,47 @@ app.register_blueprint(blueprint)
 #
 #     return render_template('index.html')
 
+
+
+# class MyForm(FlaskForm):
+#     file = FileField('File')
+#     submit = SubmitField('Submit')
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# @app.route('/downloads', methods=['GET', 'POST'])
+# def upload_file():
+#     if request.method == 'POST':
+#         # check if the post request has the file part
+#         if 'file' not in request.files:
+#             flash('No file part')
+#             return redirect(request.url)
+#         file = request.files['file']
+#         # If the user does not select a file, the browser submits an
+#         # empty file without a filename.
+#         if file.filename == '':
+#             flash('No selected file')
+#             return redirect(request.url)
+#         if file and allowed_file(file.filename):
+#             filename = secure_filename(file.filename)
+#             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             return redirect(url_for('download_file', name=filename))
+#     return '''
+#     <!doctype html>
+#     <title>Upload new File</title>
+#     <h1>Upload new File</h1>
+#     <form method=post enctype=multipart/form-data>
+#       <input type=file name=file>
+#       <input type=submit value=Upload>
+#     </form>
+#     '''
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
 @app.route('/')
 @app.route('/index')
@@ -52,6 +108,26 @@ def podved():
     print(data)
     return render_template('podved.html', **context)
 
+@app.route('/category_podved<id>')
+@app.route('/category_podved/<id>/')
+def category_podved(id):
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+    # if key doesn't exist, returns None
+    param_request = {'page': '1',
+                     'cat_code': id}
+    # response = requests.get(url, verify=False)
+    response = requests.post(url, param_request, verify=False)
+    # page = request.args.get('page', 1 ,type=int)
+    # response = requests.get(url, verify=False)
+
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()['list_PD']
+    context = {'data': data}
+    print(data)
+    return render_template('podved.html', **context)
 
 @app.route('/category')
 @app.route('/category/')
@@ -65,6 +141,7 @@ def category():
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()['list_cat']
+    data1 = response.json()
     context = {'data': data}
     print(data)
     return render_template('category.html', **context)
@@ -122,8 +199,12 @@ def cardhousedetail(id):
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()
+    object_type_val =response.json()['DataTypes']['object_type']
+    print(object_type_val)
     context = {'data': data,
+               'object_type_val': object_type_val,
                'id': id}
+    print(data)
     if request.method == 'POST':
         address_full = request.form.get('adress')
         egrn_nomer = request.form.get('egrn')
@@ -290,7 +371,7 @@ def customers(number):
         print('Not auth.')
     data = response.json()['list_OC']
     data1 = response.json()
-    print(data1)
+    print(data)
     context = {'data': data,
                'number2': number2}
     if request.method == 'POST':
@@ -311,10 +392,28 @@ def customers(number):
         object_area = request.form.get('object_area')
         encumbrance = request.form.get('encumbr')
         description = request.form.get('description')
+        if 'file' not in request.files:
+            # После перенаправления на страницу загрузки
+            # покажем сообщение пользователю
+            flash('Не могу прочитать файл')
+            return redirect(request.url)
+        file = request.files['file']
+        # Если файл не выбран, то браузер может
+        # отправить пустой файл без имени.
+        if file.filename == '':
+            flash('Нет выбранного файла')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            # безопасно извлекаем оригинальное имя файла
+            filename = secure_filename(file.filename)
+            # сохраняем файл
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        foto_main ="%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
         post_request = {'region': region, 'area': area, 'city': city, 'settlement': settlement, 'street': street,
                         'house': house, 'flat': flat, 'postal_code': postal_code, 'name': name,
                         'egrn_nomer': egrn_nomer, 'kadastr': kadastr, 'object_type': object_type,
-                        'object_area': object_area, 'encumbrance': encumbrance, 'description': description, 'code': 'new_object'
+                        'object_area': object_area, 'encumbrance': encumbrance, 'description': description, 'code': 'new_object',
+                        'foto_main': foto_main
                         }
         print(post_request)
         responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
@@ -381,16 +480,16 @@ def login2():
 
 @app.route('/get')
 def get():
-    url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
     # if key doesn't exist, returns None
-    param_request = {'page': '1', 'limitpage': '20'}
+    param_request = {'page': '1', 'cat_code': '000000005'}
     # response = requests.get(url, verify=False)
     response = requests.get(url, param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    data = response.json()['list_OC']
+    data = response.json()
     # print("response:\n{}\n\n".format(response))
     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
@@ -408,9 +507,8 @@ def get():
 @app.route('/post')
 def post(*args, **kwargs):
     # if key doesn't exist, returns None
-    param_request = {"code": "000000004",
-                    "page": "1"}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/objects_list_by_cat", data=param_request,
+    param_request = {'page': '1', 'cat_code': '000000001'}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/podved_list", data=param_request,
                              verify=False)
     if response.status_code == 200:
         print('Success!')

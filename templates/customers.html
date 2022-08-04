@@ -54,7 +54,7 @@
 </div>
 
       <div class="modal-body">
-<form method="POST" id="form-2">
+<form method="POST" id="form-2" enctype="multipart/form-data">
 <input class="form-control" id="region" name="region" type="hidden" />
    <input class="form-control" id="area" name="area" type="hidden" />
 
@@ -105,6 +105,11 @@
     <label for="staticEncumbrance"  >Обременение *</label>
     <input type="text" class="form-control" id="staticEncumbrance"  name = "encumbr">
   </div>
+            <div class="col-12 mb-3 ">
+                  <label for="formFile" class="form-label">Выберите обложку объекта недвижимости</label>
+                <input class="form-control" type="file" id="formFile"  name="file">
+
+            </div>
     <div class="col-12 mb-3 ">
   <label for="staticEncumbrance"  >Описание *</label>
   <textarea class="form-control" id="exampleFormControlTextarea1" name = "description"rows="3"></textarea>

@@ -1,0 +1,112 @@
+{% extends 'basic/basic.html' %}
+
+{% block content %}
+    {{ super() }}
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+        <ul class="list-group list-group-flush box overflow-auto my-1">
+            <li class="list-group-item">
+                <h5 class="display-7 text-center">{{ data.name }}</h5>
+                <h4 class="display-6 text-center text-danger">Редактирование</h4>
+            </li>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения
+                    </button>
+                </div>
+            </nav>
+            <div class="tab-content mb-2" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                     tabindex="0">
+
+                    <form method="POST">
+                        <li class="list-group-item">Адрес: {{ data.address_full }}
+                            <div class="col-7">
+                                <label for="staticAdress" class="visually-hidden">Adress</label>
+                                <input type="text" class="form-control" id="staticAdress"
+                                       value="{{ data.address_full }}" name="adress">
+                            </div>
+                        </li>
+                        <li class="list-group-item">ЕГРН: {{ data.egrn_nomer }}
+                            <div class="col-7">
+                                <label for="staticEgrn" class="visually-hidden">egrn</label>
+                                <input type="text" class="form-control" id="staticEgrn" value="{{ data.egrn_nomer }}"
+                                       name="egrn">
+                            </div>
+                        </li>
+                        <li class="list-group-item">Кадастровый номер: {{ data.kadastr }}
+                            <div class="col-7">
+                                <label for="staticKadastr" class="visually-hidden">kadastr</label>
+                                <input type="text" class="form-control" id="staticKadastr" value="{{ data.kadastr }}"
+                                       name="kadastr">
+                            </div>
+                        </li>
+                        <li class="list-group-item">Тип объекта: {{ data.object_type }}
+                            <div class="col-7">
+                                <label for="staticObjectType" class="visually-hidden">object_type</label>
+                                <input type="text" class="form-control" id="staticObjectType"
+                                       value="{{ data.object_type }}" name="object">
+                            </div>
+                        </li>
+                        <li class="list-group-item">Площадь объекта: {{ data.object_area }}{{ data.unit }}
+                            <div class="col-7">
+                                <label for="staticObjectArea" class="visually-hidden">object_area</label>
+                                <input type="text" class="form-control" id="staticObjectArea"
+                                       value="{{ data.object_area }}" name="area">
+                            </div>
+                        </li>
+                        <li class="list-group-item">Обременение: {{ data.encumbrance }}
+                            <div class="col-7">
+                                <label for="staticEncumbrance" class="visually-hidden">encumbrance</label>
+                                <input type="text" class="form-control" id="staticEncumbrance"
+                                       value="{{ data.encumbrance }}" name="encumbr">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-4 m-2">
+                                <button id="save" type="submit" class="btn btn-primary">Сохранить</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Сохранить модально
+                                </button>
+                            </div>
+                        </li>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Вы сохраняете данные, внимательно
+                                            проверяйте все данные</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Перед сохранением убедитесь что вы ввели все данные верно. После сохранения
+                                        будет создан новый объект и вы окажетесь на странице нового объекта.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button id="save" type="submit" class="btn btn-primary">Сохранить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#          <input type="submit" value="Submit">#}
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
+        </ul>
+
+    </div>
+
+{% endblock %}

@@ -4,98 +4,103 @@
     {{ super() }}
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
 
-         <ul class="list-group list-group-flush box overflow-auto my-1">
-          <li class="list-group-item">Поиск объектов недвижимости</li>
-         </ul>
+        <ul class="list-group list-group-flush box overflow-auto my-1">
+            <li class="list-group-item">Поиск объектов недвижимости</li>
+        </ul>
         <div class="border-top px-3">
             <div class="row justify-content-between">
-             <div class="col">
-            <fieldset class="border p-2 container shadow-sm">
-                <legend  class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Дом культуры" aria-label="Search" aria-describedby="button-addon2">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Поиск</button>
-                </div>
-            </fieldset>
+                <div class="col">
+                    <fieldset class="border p-2 container shadow-sm">
+                        <legend class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Дом культуры" aria-label="Search"
+                                   aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Поиск</button>
+                        </div>
+                    </fieldset>
 
-             </div>
+                </div>
             </div>
         </div>
         <div class="border-top mt-2">
             <div class="row mx-3"><span class="container-xxl">Расширенный поиск объектов недвижимости</span></div>
-            <div class="row mx-3"><span class="container-xxl">поиск объектов недвижимости возможен в комбинации полей</span></div>
+            <div class="row mx-3"><span
+                    class="container-xxl">поиск объектов недвижимости возможен в комбинации полей</span></div>
         </div>
-         <div class="border-top px-3 my-3">
+        <div class="border-top px-3 my-3">
             <fieldset class="border p-2 container-xxl my-3">
-                <legend  class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
-                                <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Дом культуры">
-                </div>
-            </fieldset>
-             <div class="row my-3">
-             <div class="col">
-                <fieldset class="border p-2 container">
-                    <legend  class="float-none w-auto"><h6>Дата создания *</h6></legend>
-                                                    <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="1920">
-                </div>
-                </fieldset>
-                 </div>
-             <div class="col">
-             <fieldset class="border p-2 container">
-                 <legend  class="float-none w-auto"><h6>Адрес *</h6></legend>
-                 <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Никольская ул.">
-                </div>
-            </fieldset>
-             </div>
-             </div>
-             <div class="row my-3">
-             <div class="col">
-            <fieldset class="border p-2 container">
-                <legend  class="float-none w-auto"><h6>Вид объекта *</h6></legend>
+                <legend class="float-none w-auto"><h6>Наименование объекта недвижимости *</h6></legend>
                 <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Выберите вид объекта">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Дом культуры">
                 </div>
             </fieldset>
-             </div>
-                 <div class="col">
-             <fieldset class="border p-2 container">
-                 <legend  class="float-none w-auto"><h6>Категория подведомственной организации *</h6></legend>
-                 <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Музей">
+            <div class="row my-3">
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Дата создания *</h6></legend>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="1920">
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
-                     </div>
-             </div>
-             <div class="row my-3">
-             <div class="col">
-             <fieldset class="border p-2 container">
-                 <legend  class="float-none w-auto"><h6>Регион *</h6></legend>
-                     <div class="input-group mb-3">
-                      <select class="form-select" id="inputGroupSelect02">
-                        <option selected>Выберите...</option>
-                        <option value="1">Москва</option>
-                        <option value="2">Санкт-Петербург</option>
-                        <option value="3">Нижний Новгород</option>
-                      </select>
-                      <label class="input-group-text" for="inputGroupSelect02">Город</label>
-                    </div>
-            </fieldset>
-             </div>
-                 <div class="col">
-            <fieldset class="border p-2 container">
-                <legend  class="float-none w-auto"><h6>Номер в едином гос.реестре *</h6></legend>
-                                <div class="mb-3">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Выберите вид объекта">
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Адрес *</h6></legend>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                   placeholder="Никольская ул.">
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
-             </div>
-             </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Вид объекта *</h6></legend>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                   placeholder="Выберите вид объекта">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Категория подведомственной организации *</h6></legend>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Музей">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Регион *</h6></legend>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputGroupSelect02">
+                                <option selected>Выберите...</option>
+                                <option value="1">Москва</option>
+                                <option value="2">Санкт-Петербург</option>
+                                <option value="3">Нижний Новгород</option>
+                            </select>
+                            <label class="input-group-text" for="inputGroupSelect02">Город</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col">
+                    <fieldset class="border p-2 container">
+                        <legend class="float-none w-auto"><h6>Номер в едином гос.реестре *</h6></legend>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                   placeholder="Выберите вид объекта">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
 
         </div>
         <div class="border-top px-3 mt-3">
-        <button type="button" class="btn btn-secondary mt-2 float-end">Поиск</button>
+            <button type="button" class="btn btn-secondary mt-2 float-end">Поиск</button>
         </div>
     </div>
 {% endblock %}

@@ -2,43 +2,44 @@
 
 {% block content %}
     {{ super() }}
-<div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
         <ul class="list-group list-group-flush box overflow-auto my-1">
-{#           <li class="list-group-item">Наименование подведомственной организации</li>#}
-        <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col-12">Наименование подведомственной организации</th><th></th>
+            {#           <li class="list-group-item">Наименование подведомственной организации</li>#}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col-12">Наименование подведомственной организации</th>
+                    <th></th>
 
-    </tr>
-  </thead>
-  <tbody>
-            {% for i in data %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in data %}
 
-{#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
-         <tr data-href="{{ url_for("cardhouse", id=i.code) }}">
+                    {#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
+                    <tr data-href="{{ url_for("cardhouse", id=i.code) }}">
 
-          <td>{{ i.name}}</td>       <td>>>></td>
+                        <td>{{ i.name }}</td>
+                        <td>>>></td>
 
 
+                        {#          <img src="{{url_for('site.static', filename = data)}}">#}
 
-{#          <img src="{{url_for('site.static', filename = data)}}">#}
-
-          </tr>
-    {% endfor %}
-  </tbody>
-</table>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
         </ul>
 
-            </div>
-{#    <script>#}
-{#    const myModal = document.getElementById('myModal')#}
-{#const myInput = document.getElementById('myInput')#}
-{##}
-{#myModal.addEventListener('shown.bs.modal', () => {#}
-{#  myInput.focus()#}
-{#})#}
-{##}
-{#    </script>#}
+    </div>
+    {#    <script>#}
+    {#    const myModal = document.getElementById('myModal')#}
+    {#const myInput = document.getElementById('myInput')#}
+    {##}
+    {#myModal.addEventListener('shown.bs.modal', () => {#}
+    {#  myInput.focus()#}
+    {#})#}
+    {##}
+    {#    </script>#}
 {% endblock %}

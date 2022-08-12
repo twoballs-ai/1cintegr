@@ -3,97 +3,102 @@
 {% block content %}
     {{ super() }}
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
-         <ul class="list-group list-group-flush box overflow-auto my-1">
-          <li class="list-group-item">О проекте</li>
+        <ul class="list-group list-group-flush box overflow-auto my-1">
+            <li class="list-group-item">О проекте</li>
 
-             <p class="mx-3 mt-2">База данных для ведения информации по наличию документов и юридически значимых сведений в информационной системе по объектам недвижимого имущества Министерства культуры Российской Федерации и его подведомственных учреждений предназначена для сбора, хранения, поиска данных и документов по объектам недвижимости, получаемых по запросу структурных подразделений Министерства культуры Российской Федерации, подведомственных организаций, научных и учебных заведений, юридических и физических лиц, выполняющих работы по сохранению объектов культурного наследия</p>
-         </ul>
+            <p class="mx-3 mt-2">База данных для ведения информации по наличию документов и юридически значимых сведений
+                в информационной системе по объектам недвижимого имущества Министерства культуры Российской Федерации и
+                его подведомственных учреждений предназначена для сбора, хранения, поиска данных и документов по
+                объектам недвижимости, получаемых по запросу структурных подразделений Министерства культуры Российской
+                Федерации, подведомственных организаций, научных и учебных заведений, юридических и физических лиц,
+                выполняющих работы по сохранению объектов культурного наследия</p>
+        </ul>
 
 
-<script>
-    // Замените на свой API-ключ
-var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
+        <script>
+            // Замените на свой API-ключ
+            var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
 
-var type = "ADDRESS";
-var $region = $("#region");
-var $area = $("#area");
-var $city = $("#city");
-var $settlement = $("#settlement");
-var $street = $("#street");
-var $house = $("#house");
+            var type = "ADDRESS";
+            var $region = $("#region");
+            var $area = $("#area");
+            var $city = $("#city");
+            var $settlement = $("#settlement");
+            var $street = $("#street");
+            var $house = $("#house");
 
-function showPostalCode(suggestion) {
-  $("#postal_code").val(suggestion.data.postal_code);
-}
+            function showPostalCode(suggestion) {
+                $("#postal_code").val(suggestion.data.postal_code);
+            }
 
-function clearPostalCode() {
-  $("#postal_code").val("");
-}
+            function clearPostalCode() {
+                $("#postal_code").val("");
+            }
 
-// регион
-$region.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "region"
-});
+            // регион
+            $region.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "region"
+            });
 
-// район
-$area.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "area",
-  constraints: $region
-});
+            // район
+            $area.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "area",
+                constraints: $region
+            });
 
-// город и населенный пункт
-$city.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "city",
-  constraints: $area,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
+            // город и населенный пункт
+            $city.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "city",
+                constraints: $area,
+                onSelect: showPostalCode,
+                onSelectNothing: clearPostalCode
+            });
 
-// geolocateCity($city);
+            // geolocateCity($city);
 
-// город и населенный пункт
-$settlement.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "settlement",
-  constraints: $city,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
+            // город и населенный пункт
+            $settlement.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "settlement",
+                constraints: $city,
+                onSelect: showPostalCode,
+                onSelectNothing: clearPostalCode
+            });
 
-// улица
-$street.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "street",
-  constraints: $settlement,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
+            // улица
+            $street.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "street",
+                constraints: $settlement,
+                onSelect: showPostalCode,
+                onSelectNothing: clearPostalCode
+            });
 
-// дом
-$house.suggestions({
-  token: token,
-  type: type,
-  hint: false,
-  bounds: "house",
-  constraints: $street,
-  onSelect: showPostalCode,
-  onSelectNothing: clearPostalCode
-});
+            // дом
+            $house.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "house",
+                constraints: $street,
+                onSelect: showPostalCode,
+                onSelectNothing: clearPostalCode
+            });
 
-</script>
+        </script>
     </div>
 
 {% endblock %}

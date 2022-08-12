@@ -3,252 +3,339 @@
 {% block content %}
     {{ super() }}
 
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel">ШАГ-1</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-        <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
-</div>
-      <div class="modal-body">
- <form method="POST" id="form-1">
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">ШАГ-1</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                         aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="form-1">
 
 
-        <div class="row">
-  <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control" id="region" name="region" type="text" /></div>
-   <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control" id="area" name="area" type="text" /></div>
+                        <div class="row">
+                            <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control"
+                                                                                               id="region" name="region"
+                                                                                               type="text"/></div>
+                            <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control"
+                                                                                            id="area" name="area"
+                                                                                            type="text"/></div>
 
-            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control" id="city" name="city" type="text" /></div>
-            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input class="form-control" id="settlement" name="settlement" type="text" /></div>
+                            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control"
+                                                                                             id="city" name="city"
+                                                                                             type="text"/></div>
+                            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input
+                                    class="form-control" id="settlement" name="settlement" type="text"/></div>
 
-            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control" id="street" name="street" type="text" /></div>
+                            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control"
+                                                                                              id="street" name="street"
+                                                                                              type="text"/></div>
 
-            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control" id="house" name="house" type="text" /></div>
+                            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control"
+                                                                                           id="house" name="house"
+                                                                                           type="text"/></div>
 
-            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control" id="flat" name="flat" type="text" /></div>
+                            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control"
+                                                                                                    id="flat"
+                                                                                                    name="flat"
+                                                                                                    type="text"/></div>
 
-            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input class="form-control" id="postal_code" name="postal_code" type="text" placeholder="индекс" /></div>
+                            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input
+                                    class="form-control" id="postal_code" name="postal_code" type="text"
+                                    placeholder="индекс"/></div>
 
-     </div>
-     </form>
-      </div>
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>
-{#      <div class="modal-footer">#}
-{#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>#}
-{#      </div>#}
+                        </div>
+                    </form>
+                </div>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                    Продолжить
+                </button>
+                {#      <div class="modal-footer">#}
+                {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>#}
+                {#      </div>#}
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2">ШАГ-2</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-             <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-</div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">ШАГ-2</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+                </div>
 
-      <div class="modal-body">
-<form method="POST" id="form-2" enctype="multipart/form-data">
-<input class="form-control" id="region" name="region" type="hidden" />
-   <input class="form-control" id="area" name="area" type="hidden" />
+                <div class="modal-body">
+                    <form method="POST" id="form-2" enctype="multipart/form-data">
+                        <input class="form-control" id="region" name="region" type="hidden"/>
+                        <input class="form-control" id="area" name="area" type="hidden"/>
 
-            <input class="form-control" id="city" name="city" type="hidden" />
-            <input class="form-control" id="settlement" name="settlement" type="hidden" />
+                        <input class="form-control" id="city" name="city" type="hidden"/>
+                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
 
-           <input class="form-control" id="street" name="street" type="hidden" />
+                        <input class="form-control" id="street" name="street" type="hidden"/>
 
-            <input class="form-control" id="house" name="house" type="hidden"/>
+                        <input class="form-control" id="house" name="house" type="hidden"/>
 
-            <input class="form-control" id="flat" name="flat" type="hidden" />
-<input class="form-control" id="postal_code" name="postal_code" type="hidden" placeholder="индекс" />
+                        <input class="form-control" id="flat" name="flat" type="hidden"/>
+                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"
+                               placeholder="индекс"/>
 
-        <div class="row">
-        <div class="col-6 mb-3 ">
-    <label for="staticName" >Название объекта недвижимости *</label>
-    <input type="text" class="form-control" id="staticName"  name = "name">
-  </div>
+                        <div class="row">
+                            <div class="col-6 mb-3 ">
+                                <label for="staticName">Название объекта недвижимости *</label>
+                                <input type="text" class="form-control" id="staticName" name="name">
+                            </div>
 
-      <div class="col-6 mb-3 ">
-    <label for="staticEgrn"  >ЕГРН *</label>
-    <input type="text" class="form-control" id="staticEgrn"  name = "egrn">
-  </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="staticEgrn">ЕГРН *</label>
+                                <input type="text" class="form-control" id="staticEgrn" name="egrn">
+                            </div>
 
-          <div class="col-6 mb-3 ">
+                            <div class="col-6 mb-3 ">
 
-    <label for="staticKadastr">Кадастровый номер *</label>
-    <input type="text" class="form-control" id="staticKadastr" name ="kadastr">
-  </div>
-            <div class="col-6 mb-3 ">
+                                <label for="staticKadastr">Кадастровый номер *</label>
+                                <input type="text" class="form-control" id="staticKadastr" name="kadastr">
+                            </div>
+                            <div class="col-6 mb-3 ">
 
-    <label for="staticObjectType"  >Тип объекта *</label>
-{#    <input type="text" class="form-control" id="staticObjectType"  name = "object">#}
+                                <label for="staticObjectType">Тип объекта *</label>
+                                {#    <input type="text" class="form-control" id="staticObjectType"  name = "object">#}
 
-<select class="form-select" aria-label="Default select example" id="staticObjectType"  name = "object">
-  <option selected>Выберите</option>
-  <option value="Здание">Здание</option>
-  <option value="Улица">Улица</option>
-  <option value="3">Three</option>
-</select>
+                                <select class="form-select" aria-label="Default select example" id="staticObjectType"
+                                        name="object">
+                                    <option selected>Выберите</option>
+                                    <option value="Здание">Здание</option>
+                                    <option value="Улица">Улица</option>
+                                    <option value="3">Объект</option>
+                                </select>
 
-  </div>
-    <div class="col-6 mb-3 ">
-    <label for="staticObject_area"  >площадь *</label>
-    <input type="text" class="form-control" id="staticObject_area" name ="object_area">
-  </div>
-                <div class="col-6 mb-3 ">
-    <label for="staticEncumbrance"  >Обременение *</label>
-    <input type="text" class="form-control" id="staticEncumbrance"  name = "encumbr">
-  </div>
-            <div class="col-12 mb-3 ">
-                  <label for="formFile" class="form-label">Выберите обложку объекта недвижимости</label>
-                <input class="form-control" type="file" id="formFile"  name="file">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="staticObject_area">площадь *</label>
+                                <input type="text" class="form-control" id="staticObject_area" name="object_area">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="staticEncumbrance">Обременение *</label>
+                                <input type="text" class="form-control" id="staticEncumbrance" name="encumbr">
+                            </div>
+                            <div class="col-12 mb-3 ">
+                                <label for="formFile" class="form-label">Выберите обложку объекта недвижимости</label>
+                                <input class="form-control" type="file" id="formFile" name="file">
+
+                            </div>
+                            <div class="col-12 mb-3 ">
+                                <label for="formFileMultiple" class="form-label">Выберите несколько фотографий объекта
+                                    недвижимости</label>
+                                <input class="form-control" name="files[]" type="file" multiple="true"
+                                       id="formFileMultiple">
+                            </div>
+                            <div class="col-12 mb-3 ">
+                                <label for="staticEncumbrance">Описание *</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+                        <p class="text-warning">Проверьте всю информацию, преде чем нажать на кнопку сохранить.
+                            <button id="save" type="submit" class="btn btn-primary float-end">Сохранить</button>
+                        </p>
+
+
+                    </form>
+                </div>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на
+                    1 шаг
+                </button>
+                {#      <div class="modal-footer">#}
+                {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
+                {#      </div>#}
 
             </div>
-    <div class="col-12 mb-3 ">
-  <label for="staticEncumbrance"  >Описание *</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" name = "description"rows="3"></textarea>
-                </div>
-                 </div>
-            <p class="text-warning">Проверьте всю информацию, преде чем нажать на кнопку сохранить.<button id="save" type="submit" class="btn btn-primary float-end">Сохранить</button></p>
-
-
-</form>
-      </div>
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>
-{#      <div class="modal-footer">#}
-{#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
-{#      </div>#}
-
+        </div>
     </div>
-  </div>
-</div>
 
     <div class="d-grid gap-2  justify-content-md-end bg-transparent">
-        <div class="col-12 m-2"><a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Добавить объект недвижимости</a></div>
+        <div class="col-12 m-2"><a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle"
+                                   role="button">Добавить объект недвижимости</a></div>
     </div>
 
 
-        <form class="d-flex">
+    <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Поиск недвижимости" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Поиск</button>
-      </form>
-<form method="POST">
-    <input name="text">
-    <input type="submit">
-</form>
+    </form>
+    <form method="POST">
+        <input name="text">
+        <input type="submit">
+    </form>
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Регион</th>
-      <th scope="col">Адрес</th>
-      <th scope="col">Вид объекта</th>
-      <th scope="col">Вид собственности</th>
-      <th scope="col">Обременение</th>
-        <th scope="col">ОКН</th>
-    </tr>
-  </thead>
-  <tbody>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Регион</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Вид объекта</th>
+                <th scope="col">Вид собственности</th>
+                <th scope="col">Обременение</th>
+                <th scope="col">ОКН</th>
+            </tr>
+            </thead>
+            <tbody>
 
-{#  <img src="{{url_for('site.static', filename = data)}}">#}
-{#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
-      {% for i in data %}
+            {#  <img src="{{url_for('site.static', filename = data)}}">#}
+            {#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
+            {% for i in data %}
 
-          <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}">
-          <td class="col-3"><img src="{{url_for('site.static', filename = i.dikpic.fotoAdr )}}" width="40" height="40" class="rounded-circle" ><span class="ms-1">{{ i.short_adress}}</span></td>
-          <td>{{ i.full_adress }}</td>
-          <td>{{ i.type_object }}</td>
-          <td>{{ i.owner }}</td>
-          <td>{{ i.encumbrance }}</td>
-          <td class="col-1">{{ i.okn }}</td>
+                <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}">
+                    <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}" width="40"
+                                           height="40" class="rounded-circle"><span
+                            class="ms-1">{{ i.short_adress }}</span></td>
+                    <td>{{ i.full_adress }}</td>
+                    <td>{{ i.type_object }}</td>
+                    <td>{{ i.owner }}</td>
+                    <td>{{ i.encumbrance }}</td>
+                    <td class="col-1">{{ i.okn }}</td>
 
-{#          <img src="{{url_for('site.static', filename = data)}}">#}
+                    {#          <img src="{{url_for('site.static', filename = data)}}">#}
 
-          </tr>
-    {% endfor %}
-  </tbody>
-</table>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-<nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example">
 
-  <ul class="pagination">
-{#{% for x in range(1,100) %}#}
-{#            {% if x == number2 and x<4 %}#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
-{#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
-{#    {% elif x == number2 %}#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 3) }}">{{ x - 3 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
-{#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
-{#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
-{##}
-{#    {% endif %}#}
-
-
-{#{% endfor %}#}
-        {% if number2 == 2 %}
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a></li>
-         <li class="page-item active"><a class="page-link" href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">{{ number2 + 1 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 2 ) }}">{{ number2 + 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a></li>
-            {% elif number2 ==1 %}
-                 <li class="page-item disabled"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a></li>
-         <li class="page-item active"><a class="page-link" href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">{{ number2 + 1 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 2 ) }}">{{ number2 + 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next </a></li>
-            {% elif number2 ==37 %}
-                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a></li>
-         <li class="page-item active"><a class="page-link" href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
-            <li class="page-item disabled"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a></li>
-            {% elif number2 ==36 %}
-                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a></li>
-         <li class="page-item"><a class="page-link active" href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1) }}">{{ number2 + 1 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a></li>
-            {% else %}
-             <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a></li>
-         <li class="page-item active"><a class="page-link" href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
-             <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1) }}">{{ number2 + 1 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 2) }}">{{ number2 + 2 }} </a></li>
-            <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a></li>
-      {% endif %}
-  </ul>
-
-</nav>
+            <ul class="pagination">
+                {#{% for x in range(1,100) %}#}
+                {#            {% if x == number2 and x<4 %}#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
+                {#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
+                {#    {% elif x == number2 %}#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 3) }}">{{ x - 3 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
+                {#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
+                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
+                {##}
+                {#    {% endif %}#}
 
 
+                {#{% endfor %}#}
+                {% if number2 == 2 %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link"
+                                                    href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 1 ) }}">{{ number2 + 1 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 2 ) }}">{{ number2 + 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a>
+                    </li>
+                {% elif number2 ==1 %}
+                    <li class="page-item disabled"><a class="page-link"
+                                                      href="{{ url_for("customers", number=number2 - 1) }}">Prev </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link"
+                                                    href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 1 ) }}">{{ number2 + 1 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 2 ) }}">{{ number2 + 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next </a>
+                    </li>
+                {% elif number2 ==37 %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link"
+                                                    href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a>
+                    </li>
+                    <li class="page-item disabled"><a class="page-link"
+                                                      href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a>
+                    </li>
+                {% elif number2 ==36 %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link active"
+                                             href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a></li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 1) }}">{{ number2 + 1 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 - 1) }}">Prev </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 2) }}">{{ number2 - 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 - 1) }}">{{ number2 - 1 }} </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link"
+                                                    href="{{ url_for("customers", number=number2) }}">{{ number2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 1) }}">{{ number2 + 1 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers", number=number2 + 2) }}">{{ number2 + 2 }} </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=number2 + 1 ) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
-    <script src="{{ url_for('static', filename='1cintegr/js/script.js') }}"></script>
+        </nav>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
+              rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+        <script src="{{ url_for('static', filename='1cintegr/js/script.js') }}"></script>
     </div>
 
 {% endblock %}

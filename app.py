@@ -10,8 +10,8 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 
-
 UPLOAD_FOLDER = '/mnt/disk_d/upload'
+UPLOAD_FOLDER_MULTI = '/mnt/disk_d/upload/multi'
 # ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"
@@ -25,13 +25,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 import requests
 from requests.structures import CaseInsensitiveDict
 
-
-
-
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'cdvfdjn43439acd9*&^$%&*&^%G&^%FGYH'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER_MULTI'] = UPLOAD_FOLDER_MULTI
 
 blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
 app.register_blueprint(blueprint)
@@ -45,15 +43,13 @@ app.register_blueprint(blueprint)
 #     return render_template('index.html')
 
 
-
 # class MyForm(FlaskForm):
 #     file = FileField('File')
 #     submit = SubmitField('Submit')
 
-
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 # @app.route('/downloads', methods=['GET', 'POST'])
 # def upload_file():
@@ -86,6 +82,7 @@ def allowed_file(filename):
 def download_file(name):
     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
+
 @app.route('/')
 @app.route('/index')
 @app.route('/podved')
@@ -108,6 +105,7 @@ def podved():
     print(data)
     return render_template('podved.html', **context)
 
+
 @app.route('/category_podved<id>')
 @app.route('/category_podved/<id>/')
 def category_podved(id):
@@ -128,6 +126,7 @@ def category_podved(id):
     context = {'data': data}
     print(data)
     return render_template('podved.html', **context)
+
 
 @app.route('/category')
 @app.route('/category/')
@@ -168,6 +167,7 @@ def categoryobjects(id):
     print(data)
     return render_template('category_objects.html', **context)
 
+
 # https://localhost/copy_1/hs/HTTP_SERVER/get_objects_list?code=
 @app.route('/cardhouse/<id>', methods=['GET'])
 @app.route('/cardhouse/<id>/', methods=['GET'])
@@ -199,7 +199,7 @@ def cardhousedetail(id):
     elif response.status_code == 401:
         print('Not auth.')
     data = response.json()
-    object_type_val =response.json()['DataTypes']['object_type']
+    object_type_val = response.json()['DataTypes']['object_type']
     print(object_type_val)
     context = {'data': data,
                'object_type_val': object_type_val,
@@ -299,7 +299,7 @@ def cardhousedetailEdit(id):
                                      verify=False)
         return redirect(url_for('cardhousedetail', id=id))
     # print(context)
-    return render_template('cardhousedetailedit.html', **context)
+    return render_template('trash/cardhousedetailedit.html', **context)
 
 
 @app.route('/cardhousedetail/<id>/editanother', methods=['GET', 'POST'])
@@ -333,7 +333,8 @@ def cardhousedetailEditAnother(id):
                                      verify=False)
         return redirect(url_for('cardhousedetail', id=id))
     # print(context)
-    return render_template('cardhousedetaileditanother.html', **context)
+    return render_template('trash/cardhousedetaileditanother.html', **context)
+
 
 @app.route('/dadata')
 def dadata():
@@ -355,15 +356,13 @@ def dadata():
     return response
 
 
-@app.route('/customers/<number>/' , methods=['GET', 'POST'])
+@app.route('/customers/<number>/', methods=['GET', 'POST'])
 def customers(number):
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
     number = int(number)
 
     param_request = {'page': number}
     number2 = param_request["page"]
-    print(number2)
-    print(number)
     response = requests.get(url, param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
@@ -371,9 +370,9 @@ def customers(number):
         print('Not auth.')
     data = response.json()['list_OC']
     data1 = response.json()
-    print(data)
     context = {'data': data,
                'number2': number2}
+    print(data, data1)
     if request.method == 'POST':
         # inputState = request.form.get('inputState')
         name = request.form.get('name')
@@ -408,12 +407,24 @@ def customers(number):
             filename = secure_filename(file.filename)
             # сохраняем файл
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        foto_main ="%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
+        foto_main = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
+        # загрузка мультифото
+        if 'files[]' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        files = request.files.getlist('files[]')
+        foto_list = []
+        for file in files:
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER_MULTI'], filename))
+                foto_list.append("%s/%s" % (app.config['UPLOAD_FOLDER_MULTI'], filename))
+        foto_multi = foto_list
         post_request = {'region': region, 'area': area, 'city': city, 'settlement': settlement, 'street': street,
                         'house': house, 'flat': flat, 'postal_code': postal_code, 'name': name,
                         'egrn_nomer': egrn_nomer, 'kadastr': kadastr, 'object_type': object_type,
-                        'object_area': object_area, 'encumbrance': encumbrance, 'description': description, 'code': 'new_object',
-                        'foto_main': foto_main
+                        'object_area': object_area, 'encumbrance': encumbrance, 'description': description,
+                        'foto_main': foto_main, 'foto_multi': foto_multi, 'code': 'new_object'
                         }
         print(post_request)
         responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
@@ -427,7 +438,7 @@ def customers(number):
         # print(responsePost.text)
         # context = {'id': id}
         # return render_template('cardhousedetail/id.html')
-        return redirect(url_for('cardhousedetail', id = id))
+        return redirect(url_for('cardhousedetail', id=id))
 
     return render_template('customers.html', **context)
 

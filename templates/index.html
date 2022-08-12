@@ -2,33 +2,87 @@
 
 {% block content %}
     {{ super() }}
-<div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
         <ul class="list-group list-group-flush box overflow-auto my-1">
-          <li class="list-group-item">Наименование подведомственной организации</li>
-          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографииРоссийский государственный симфонический оркестр кинематографии</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографии</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографии</li>    <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографии</li>    <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический театр оперы и балета</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографии</li>
-          <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический оркестр кинематографии1</li>
+            <li class="list-group-item">Наименование подведомственной организации</li>
+            <a href="{{ url_for('cardhouse') }}" class="text-decoration-none">
+                <li class="list-group-item list-group-item-action border-top">Государственный академический Большой
+                    театр России
+                </li>
+            </a>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографииРоссийский государственный симфонический оркестр кинематографии
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографии
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр
+                России
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографии
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографии
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Новосибирский государственный академический
+                театр оперы и балета
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографии
+            </li>
+            <li class="list-group-item list-group-item-action border-top">Российский государственный симфонический
+                оркестр кинематографии1
+            </li>
         </ul>
 
-            </div>
+    </div>
 {% endblock %}

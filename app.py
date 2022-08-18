@@ -4,11 +4,17 @@ from flask import Flask, flash, render_template, url_for, request, \
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
 import requests
+from requests.structures import CaseInsensitiveDict
 import json
+import datetime
 from dadata import Dadata
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
+from auth import auth_func
+
+datetime = datetime.datetime.now()
+print(datetime)
 
 UPLOAD_FOLDER = '/mnt/disk_d/upload'
 UPLOAD_FOLDER_MULTI = '/mnt/disk_d/upload/multi'
@@ -17,13 +23,16 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"
 secret = "6a40c77de8faddcc68c6f90d4de5cae8608767e3"
 
+
+
+
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 # MEDIA_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
 #
 # path = "/"
 # print(path)
-import requests
-from requests.structures import CaseInsensitiveDict
+
 
 app = Flask(__name__)
 app.debug = True
@@ -31,8 +40,17 @@ app.config['SECRET_KEY'] = 'cdvfdjn43439acd9*&^$%&*&^%G&^%FGYH'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_FOLDER_MULTI'] = UPLOAD_FOLDER_MULTI
 
+# аутентификация
+
+
+
 blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
 app.register_blueprint(blueprint)
+app.register_blueprint(auth_func)
+
+
+
+
 
 
 # @app.route('/')
@@ -77,10 +95,10 @@ def allowed_file(filename):
 #       <input type=submit value=Upload>
 #     </form>
 #     '''
-
-@app.route('/uploads/<name>')
-def download_file(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+#
+# @app.route('/uploads/<name>')
+# def download_file(name):
+#     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
 
 @app.route('/')
@@ -469,71 +487,24 @@ def profile(username):
     return f'профиль пользователя {username}'
 
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    if 'userLogged' in session:
-        return redirect(url_for('profile', username=session['userLogged']))
-    elif request.method == 'POST':
-        return redirect(url_for('profile', username=session['userLogged']))
-
-    return render_template('login.html', title='Авторизация')
-
-
-@app.route('/login2', methods=['POST', 'GET'])
-def login2():
-    if 'userLogged' in session:
-        return redirect(url_for('profile', username=session['userLogged']))
-    elif request.method == 'POST':
-        return redirect(url_for('profile', username=session['userLogged']))
-
-    return render_template('login2.html', title='Авторизация')
-
-
-@app.route('/get')
-def get():
-    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
-    # if key doesn't exist, returns None
-    param_request = {'page': '1', 'cat_code': '000000005'}
-    # response = requests.get(url, verify=False)
-    response = requests.get(url, param_request, verify=False)
-    if response.status_code == 200:
-        print('Success!')
-    elif response.status_code == 401:
-        print('Not auth.')
-    data = response.json()
-    # print("response:\n{}\n\n".format(response))
-    # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
-    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
-    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
-    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
-    # print("response.json:\n{}\n\n".format(response.json()))
-    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
-    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
-    # print(response.json())
-    context = {'data': data}
-    print(context)
-    return render_template('get.html', **context)
-
-
-@app.route('/post')
-def post(*args, **kwargs):
-    # if key doesn't exist, returns None
-    param_request = {'page': '1', 'cat_code': '000000001'}
-    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/podved_list", data=param_request,
-                             verify=False)
-    if response.status_code == 200:
-        print('Success!')
-    elif response.status_code == 401:
-        print('Not auth.')
-    print("response:\n{}\n\n".format(response))
-    print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
-    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
-    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
-    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
-    print("response.json:\n{}\n\n".format(response.json()))
-    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
-    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
-    return "response.text:\n{}\n\n".format(response.text)
+# @app.route('/login', methods=['POST', 'GET'])
+# def login():
+#     if 'userLogged' in session:
+#         return redirect(url_for('profile', username=session['userLogged']))
+#     elif request.method == 'POST':
+#         return redirect(url_for('profile', username=session['userLogged']))
+#
+#     return render_template('login.html', title='Авторизация')
+#
+#
+# @app.route('/login2', methods=['POST', 'GET'])
+# def login2():
+#     if 'userLogged' in session:
+#         return redirect(url_for('profile', username=session['userLogged']))
+#     elif request.method == 'POST':
+#         return redirect(url_for('profile', username=session['userLogged']))
+#
+#     return render_template('logintest.html', title='Авторизация')
 
 
 # пример создания ссылок

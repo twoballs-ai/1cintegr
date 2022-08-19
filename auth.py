@@ -65,11 +65,13 @@ def login(refresh_token = None):
     # if request.cookies.get('refresh_token') != None:
     #
     #     return makeAccesToken()
-    if request.cookies.get('access_token'):
+    if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         return validateAccesToken()
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+        return makeAccesToken()
 
     # если нет ни токена рефреш ни акцес
-    if not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+    elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         if request.method == 'POST':
             login = request.form.get('username')
             password = request.form.get('password')
@@ -89,9 +91,9 @@ def login(refresh_token = None):
                 return makeRefreshToken(refresh_token)
             else:
                 return 'вы не имеете права'
-    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
-        return makeAccesToken()
-        # return render_template('logintest.html')
+
+
+    return render_template('logintest.html')
 
 
 #
@@ -115,12 +117,46 @@ def makeAccesToken():
     print("response.text:\n{}\n\n".format(response.text))
     if success == True and blockuser == False:
         print('dsvdsvd')
-        response = make_response(render_template('logintest.html'))
+        response = make_response(redirect('podved'))
         response.set_cookie('access_token', access_token, samesite='Lax', max_age=86400)
         return response
     elif success == False and blockuser == False:
         return 'вы не имеете права'
 
+def refreshAccesToken(*args,**kwargs):
+    print(*args)
+    print('судьба вас примвела в refreshAccesToken')
+    refresh_token = request.cookies.get('refresh_token')
+    print(refresh_token)
+    param_request = {'RefreshToken': refresh_token}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
+                                    verify=False)
+    access_token = response.json()['AccessToken']
+    print(access_token)
+    success = response.json()['success']
+    blockuser = response.json()['blockuser']
+    print("response.text:\n{}\n\n".format(response.text))
+    if success == True and blockuser == False:
 
-def validateAccesToken():
-    return 'validate access'
+        response = make_response(redirect(url_for(*args)))
+        response.set_cookie('access_token', access_token, samesite='Lax', max_age=86400)
+        print('dsvdsvd')
+        return response
+    elif success == False and blockuser == False:
+        return 'вы не имеете права'
+
+
+def validateAccesToken(*args, **kwargs):
+    access_token = request.cookies.get('access_token')
+    param_request = {'AccessToken': access_token}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
+                             verify=False)
+    success = response.json()['success']
+    blockuser = response.json()['blockuser']
+    token_expired = response.json()['AccessTokenTokenExpired']
+    print('test', success, blockuser, token_expired)
+    if success == True and blockuser == False and token_expired == False:
+        return True
+    elif success == True and blockuser == False and token_expired == True:
+        return refreshAccesToken()
+

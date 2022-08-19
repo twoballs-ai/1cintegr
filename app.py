@@ -11,7 +11,10 @@ from dadata import Dadata
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
-from auth import auth_func
+
+import auth
+from auth import auth_func, validateAccesToken, refreshAccesToken
+
 
 datetime = datetime.datetime.now()
 print(datetime)
@@ -105,26 +108,38 @@ def allowed_file(filename):
 @app.route('/index')
 @app.route('/podved')
 @app.route('/podved/')
-def podved():
-    url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
-    # if key doesn't exist, returns None
-    param_request = {'page': '1'}
-    # response = requests.get(url, verify=False)
-    response = requests.post(url, param_request, verify=False)
-    # page = request.args.get('page', 1 ,type=int)
-    # response = requests.get(url, verify=False)
+def podved(*args, **kwargs):
+    if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        valid = validateAccesToken()
+        if valid:
+            print(valid)
 
-    if response.status_code == 200:
-        print('Success!')
-    elif response.status_code == 401:
-        print('Not auth.')
-    data = response.json()['list_PD']
-    context = {'data': data}
-    print(data)
-    return render_template('podved.html', **context)
+            url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+            # if key doesn't exist, returns None
+            param_request = {'page': '1'}
+            # response = requests.get(url, verify=False)
+            response = requests.post(url, param_request, verify=False)
+            # page = request.args.get('page', 1 ,type=int)
+            # response = requests.get(url, verify=False)
+
+            if response.status_code == 200:
+                print('Success!')
+            elif response.status_code == 401:
+                print('Not auth.')
+            data = response.json()['list_PD']
+            context = {'data': data}
+            print(data)
+            return render_template('podved.html', **context)
+    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        refresh = refreshAccesToken('podved')
+        return refresh
+    elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+        return render_template('logintest.html')
 
 
-@app.route('/category_podved<id>')
+
+
+@app.route('/category_podved/<id>')
 @app.route('/category_podved/<id>/')
 def category_podved(id):
     url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"

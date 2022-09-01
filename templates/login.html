@@ -75,26 +75,26 @@
         </div>
         <div class="col mt-3 border"><img src="../static/1cintegr/img/login/36.png" class="lm"></div>
         <div class="d-step2 mt-3 border">
+            <form method="POST" action="/login">
             <div class="row m-0">
-                <div id="step2-block-left" class="col-8 border">
-                    <form>
-                        <div class="col-12 border-bottom ">
 
-                            <input type="email" class="form-control border-0" id="exampleFormControlInput1"
-                                   placeholder="Логин:">
+                <div id="step2-block-left" class="col-8 px-0">
+
+                        <div class="col-12 border-bottom ">
+                            <input class="input form-control col-12 border-0 " type="username" name="username" placeholder="Логин" autofocus="">
                         </div>
 
                         <div class="col-12 border-top">
-
-                            <input type="password" class="form-control border-0" id="exampleFormControlInput1"
-                                   placeholder="Пароль:">
+                            <input class="input form-control col-12 border-0" type="password" name="password" placeholder="Пароль">
                         </div>
-                    </form>
+
                 </div>
                 <div id="step2-block-right" class="col-4 border text-center">
-                    <button type="button" class="btn btn-secondary btn-lg rounded-pill mt-2 ms-2 col-12">Вход</button>
+                    <button class="button btn btn-secondary btn-lg rounded-pill mt-2 ms-2 col-12">Вход</button>
                 </div>
+
             </div>
+                </form>
         </div>
         <div class="col mt-3 border"><img src="../static/1cintegr/img/login/55.png" class="lm"></div>
         <div class="col mt-3 border"><img src="../static/1cintegr/img/login/68.png" class="lm"></div>

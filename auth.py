@@ -38,30 +38,30 @@ auth_func = Blueprint('auth_func', __name__)
 #     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
 #     return "response.text:\n{}\n\n".format(response.text)
 #
-# @auth_func.route('/get')
-# def get():
-#     url = "https://localhost/copy_1/hs/HTTP_SERVER/Auth20"
-#     # if key doesn't exist, returns None
-#     param_request = {'refresh_token': 'b9903a5a-208c-47db-98ce-705a221eb3ea'}
-#     # response = requests.get(url, verify=False)
-#     response = requests.get(url, param_request, verify=False)
-#     if response.status_code == 200:
-#         print('Success!')
-#     elif response.status_code == 401:
-#         print('Not auth.')
-#     data = response.json()
-#     # print("response:\n{}\n\n".format(response))
-#     # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
-#     # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
-#     # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
-#     # print("response.text:\n{}\n\n".format(response.text))  # Text Output
-#     # print("response.json:\n{}\n\n".format(response.json()))
-#     # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
-#     # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
-#     # print(response.json())
-#     context = {'data': data}
-#     print(context)
-#     return render_template('get.html', **context)
+@auth_func.route('/get')
+def get():
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/RulesNewObjects"
+    # if key doesn't exist, returns None
+    # param_request = {'refresh_token': 'b9903a5a-208c-47db-98ce-705a221eb3ea'}
+    # response = requests.get(url, verify=False)
+    response = requests.get(url,verify=False)
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()
+    # print("response:\n{}\n\n".format(response))
+    # print("response.url:\n{}\n\n".format(response.url))  # Посмотреть формат URL (с параметрами)
+    # print("response.headers:\n{}\n\n".format(response.headers))  # Header of the request
+    # print("response.status_code:\n{}\n\n".format(response.status_code))  # Получить код ответа
+    # print("response.text:\n{}\n\n".format(response.text))  # Text Output
+    # print("response.json:\n{}\n\n".format(response.json()))
+    # print("response.encoding:\n{}\n\n".format(response.encoding))  # Узнать, какую кодировку использует Requests
+    # print("response.content:\n{}\n\n".format(response.content))  # В бинарном виде
+    # print(response.json())
+    context = {'data': data}
+    print(context)
+    return render_template('get.html', **context)
 
 @auth_func.route('/signout')
 def signout():

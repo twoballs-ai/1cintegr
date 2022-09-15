@@ -118,45 +118,21 @@ $('.btn').click(function(){
 //     $('#save').hide();
 //
 // });
-//
-// Fancybox.bind('[data-fancybox="gallery"]', {
-//   dragToClose: false,
-//
-//   Toolbar: false,
-//   closeButton: "top",
-//
-//   Image: {
-//     zoom: false,
-//   },
-//
-//   on: {
-//     initCarousel: (fancybox) => {
-//       const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
-//
-//       fancybox.$container.style.setProperty(
-//         "--bg-image",
-//         `url("${slide.$thumb.src}")`
-//       );
-//     },
-//     "Carousel.change": (fancybox, carousel, to, from) => {
-//       const slide = carousel.slides[to];
-//
-//       fancybox.$container.style.setProperty(
-//         "--bg-image",
-//         `url("${slide.$thumb.src}")`
-//       );
-//     },
-//   },
-// });
 
-lightGallery(document.getElementById('customize-thumbnails-gallery'), {
-    // Add a custom class to apply style only for the particular gallery
-    addClass: 'lg-custom-thumbnails',
+Fancybox.bind('[data-fancybox="gallery"]', {
+  animated: false,
+  showClass: false,
+  hideClass: false,
 
-    // Remove the starting animations.
-    // This can be done by overriding CSS as well
-    appendThumbnailsTo: '.lg-outer',
+  click: false,
 
-    animateThumb: false,
-    allowMediaOverlap: true,
+  dragToClose: false,
+
+  Image: {
+    zoom: false,
+  },
+
+  Toolbar: {
+    display: [{ id: "counter", position: "center" }, "close"],
+  },
 });

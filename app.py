@@ -239,7 +239,7 @@ def cardhouse(id):
         if valid:
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_card"
             param_request = {'code': id}
-            # print(param_request)
+            print(param_request)
             response = requests.post(url, param_request, verify=False)
             if response.status_code == 200:
                 print('Success!')

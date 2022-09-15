@@ -13,14 +13,14 @@
                 <tbody>
                 <tr>
                     <td class="text-end">Официальное наименование:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.fullname }}</td>
                     <td class="text-end"></td>
                     <td></td>
 
                 </tr>
                 <tr>
                     <td class="text-end">Категория учреждения:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.category }}</td>
                     <td class="text-end"></td>
                     <td></td>
                 </tr>
@@ -34,25 +34,25 @@
                     <td class="text-end">ОГРН:</td>
                     <td>{{ data.podved_info.OGRN }}</td>
                     <td class="text-end">КОПУК:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.KOPUK }}</td>
                 </tr>
                 <tr>
                     <td class="text-end">Юридический адрес:</td>
-                    <td>{{ data.podved_info.full_adress }}</td>
+                    <td>{{ data.podved_info.legal_address }}</td>
                     <td class="text-end">Фактический адрес:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.fact_address }}</td>
                 </tr>
                 <tr>
                     <td class="text-end">Адрес сайта:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.sait }}</td>
                     <td class="text-end">Номер телефона:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.phone_number }}</td>
                 </tr>
                 <tr>
                     <td class="text-end">Электронная почта:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.email }}</td>
                     <td class="text-end">ФИО Руководителя:</td>
-                    <td>{{ data.podved_info.director }}</td>
+                    <td>{{ data.podved_info.boss }}</td>
                 </tr>
                 </tbody>
             </table>

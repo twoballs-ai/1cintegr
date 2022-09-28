@@ -72,6 +72,18 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def data_params_request():
+    url_params = "https://localhost/copy_1/hs/HTTP_SERVER/RulesNewObjects"
+    response_params = requests.get(url_params, verify=False)
+
+    if response_params.status_code == 200:
+        print('Success!')
+    elif response_params.status_code == 401:
+        print('Not auth.')
+    data_params = response_params.json()
+    print(data_params)
+    return data_params
+
 # @app.route('/downloads', methods=['GET', 'POST'])
 # def upload_file():
 #     if request.method == 'POST':
@@ -272,39 +284,180 @@ def cardhousedetail(id):
             url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
             param_request = {'code': id}
             response = requests.get(url, param_request, verify=False)
+
             if response.status_code == 200:
                 print('Success!')
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()
-            object_type_val = response.json()['DataTypes']['object_type']
+            print(data)
+            object_type_val = response.json()['object_type']
+            data_params = data_params_request()
+            # print(data_params)
             # print(object_type_val)
             context = {'data': data,
                        'object_type_val': object_type_val,
-                       'id': id}
+                       'id': id,
+                       'data_params': data_params}
             # print(data)
             if request.method == 'POST':
-                address_full = request.form.get('adress')
-                egrn_nomer = request.form.get('egrn')
-                kadastr = request.form.get('kadastr')
-                object_type = request.form.get('object')
-                object_area = request.form.get('area')
-                encumbrance = request.form.get('encumbr')
-                post_request = {'address_full': address_full, 'egrn_nomer': egrn_nomer,
-                                'kadastr': kadastr, 'object_type': object_type,
-                                'object_area': object_area, 'encumbrance': encumbrance,
+                # 1шаг
+                name = request.form.get('name')
+                description = request.form.get('description')
+                object_type = request.form.get('object_type')
+                PurposeObject = request.form.get('PurposeObject')
+                region = request.form.get('region')
+                address = request.form.get('address')
+                object_area = request.form.get('object_area')
+                LandCategory = request.form.get('LandCategory')
+                TypeOfPermittedUse = request.form.get('TypeOfPermittedUse')
+                print('название:', name)
+                print('description:', description)
+                print('object_type:', object_type)
+                print('PurposeObject:', PurposeObject)
+                print('region:', region)
+                print('address:', address)
+                print('object_area:', object_area)
+                print('LandCategory:', LandCategory)
+                print('TypeOfPermittedUse:', TypeOfPermittedUse)
+                # 2 шаг
+                print('2шаг')
+                RNFI = request.form.get('RNFI')
+                RNFI_date = request.form.get('RNFI_date')
+                owner_nomer = request.form.get('owner_nomer')
+                owner_date = request.form.get('owner_date')
+                RecordNumberVEGRP = request.form.get('RecordNumberVEGRP')
+                DateRecordsVEGRP = request.form.get('DateRecordsVEGRP')
+                TypeofRightOwner = request.form.get('TypeofRightOwner')
+                BalanceAccountNumber = request.form.get('BalanceAccountNumber')
+                date_of_registration_of_another_right = request.form.get('date_of_registration_of_another_right')
+                inventory_number = request.form.get('inventory_number')
+                balance_number = request.form.get('balance_number')
+                CadastralNumber = request.form.get('CadastralNumber')
+                Date_of_assignment_cadastral = request.form.get('Date_of_assignment_cadastral')
+                type_pravoobladatel = request.form.get('type_pravoobladatel')
+                Initial_cost = request.form.get('Initial_cost')
+                residual_value = request.form.get('residual_value')
+                print('RNFI:', RNFI)
+                print('RNFI_date:', RNFI_date)
+                print('owner_nomer:', owner_nomer)
+                print('owner_date:', owner_date)
+                print('RecordNumberVEGRP:', RecordNumberVEGRP)
+                print('DateRecordsVEGRP:', DateRecordsVEGRP)
+                print('TypeofRightOwner:', TypeofRightOwner)
+                print('BalanceAccountNumber:', BalanceAccountNumber)
+                print('date_of_registration_of_another_right:', date_of_registration_of_another_right)
+                print('inventory_number:', inventory_number)
+                print('balance_number:', balance_number)
+                print('CadastralNumber:', CadastralNumber)
+                print('Date_of_assignment_cadastral:', Date_of_assignment_cadastral)
+                print('type_pravoobladatel:', type_pravoobladatel)
+                print('Initial_cost:', Initial_cost)
+                print('residual_value:', residual_value)
+                # 3 шаг
+                print('3шаг')
+                historical_Category = request.form.get('historical_Category')
+                UGROKN_number = request.form.get('UGROKN_number')
+                print('historical_Category:', historical_Category)
+                print('UGROKN_number:', UGROKN_number)
+                # 4 шаг
+                print('4шаг')
+                KindEncumbrances = request.form.get('KindEncumbrances')
+                encumbrance_area = request.form.get('encumbrance_area')
+                encumbrance_cost = request.form.get('encumbrance_cost')
+                person_encumbrance = request.form.get('person_encumbrance')
+                Other_payments = request.form.get('Other_payments')
+                start_encumbrance = request.form.get('start_encumbrance')
+                end_encumbrance = request.form.get('end_encumbrance')
+                start_use = request.form.get('start_use')
+                end_use = request.form.get('end_use')
+                Payment_foruse = request.form.get('Payment_foruse')
+                print('KindEncumbrances:', KindEncumbrances)
+                print('encumbrance_area:', encumbrance_area)
+                print('encumbrance_cost:', encumbrance_cost)
+                print('person_encumbrance:', person_encumbrance)
+                print('Other_payments:', Other_payments)
+                print('start_encumbrance:', start_encumbrance)
+                print('end_encumbrance:', end_encumbrance)
+                print('start_use:', start_use)
+                print('end_use:', end_use)
+                print('Payment_foruse:', Payment_foruse)
+
+                # if 'file' not in request.files:
+                #     # После перенаправления на страницу загрузки
+                #     # покажем сообщение пользователю
+                #     flash('Не могу прочитать файл')
+                #     print('проблема')
+                #     print('проблема', request.url)
+                #     return redirect(request.url)
+                #
+                # file = request.files['file']
+                # print(file)
+                # # Если файл не выбран, то браузер может
+                # # отправить пустой файл без имени.
+                #
+                # if file.filename == '':
+                #     foto_main = ''
+                #
+                #     print('dfdf', foto_main)
+                # if file and allowed_file(file.filename):
+                #     # безопасно извлекаем оригинальное имя файла
+                #     filename = secure_filename(file.filename)
+                #     # сохраняем файл
+                #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                #     foto_main = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
+                #
+                # # # загрузка мультифото
+                # if 'files[]' not in request.files:
+                #     flash('No file part')
+                #     return redirect(request.url)
+                # files = request.files.getlist('files[]')
+                # foto_list = []
+                # for file in files:
+                #     if file and allowed_file(file.filename):
+                #         filename = secure_filename(file.filename)
+                #         file.save(os.path.join(app.config['UPLOAD_FOLDER_MULTI'], filename))
+                #         foto_list.append("%s/%s" % (app.config['UPLOAD_FOLDER_MULTI'], filename))
+                # foto_multi = foto_list
+                # print('foto_main',foto_main)
+                # print('foto_multi',foto_multi)
+                post_request = {'name': name, 'description': description, 'object_type': object_type,
+                                'PurposeObject': PurposeObject, 'region': region, 'address': address,
+                                'object_area': object_area, 'LandCategory': LandCategory,
+                                'TypeOfPermittedUse': TypeOfPermittedUse,
+                                'RNFI': RNFI, 'RNFI_date': RNFI_date, 'owner_nomer': owner_nomer,
+                                'owner_date': owner_date,
+                                'RecordNumberVEGRP': RecordNumberVEGRP, 'DateRecordsVEGRP': DateRecordsVEGRP,
+                                'TypeofRightOwner': TypeofRightOwner, 'BalanceAccountNumber': BalanceAccountNumber,
+                                'date_of_registration_of_another_right': date_of_registration_of_another_right,
+                                'inventory_number': inventory_number, 'balance_number': balance_number,
+                                'CadastralNumber': CadastralNumber,
+                                'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
+                                'type_pravoobladatel': type_pravoobladatel, 'Initial_cost': Initial_cost,
+                                'residual_value': residual_value,
+                                'historical_Category': historical_Category, 'UGROKN_number': UGROKN_number,
+                                'KindEncumbrances': KindEncumbrances,
+                                'encumbrance_area': encumbrance_area, 'encumbrance_cost': encumbrance_cost,
+                                'person_encumbrance': person_encumbrance, 'Other_payments': Other_payments,
+                                'start_encumbrance': start_encumbrance, 'end_encumbrance': end_encumbrance,
+                                'start_use': start_use, 'end_use': end_use, 'Payment_foruse': Payment_foruse,
                                 'code': id
                                 }
+                print(post_request)
                 responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
                                              verify=False)
-                # print("response.text:\n{}\n\n".format(responsePost.text))
+                # print("response.json:\n{}\n\n".format(responsePost.json()))
+                print("response.text:\n{}\n\n".format(responsePost.text))
                 return redirect(url_for('cardhousedetail', id=id))
             return render_template('cardhousedetail.html', **context)
 
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'cardhousedetail','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
 # @app.route('/addcardhousedetail', methods=['GET', 'POST'])
@@ -529,6 +682,7 @@ def cardhousedetail(id):
 
 @app.route('/customers/<id>/', methods=['GET', 'POST'])
 def customers(id):
+    global foto_main
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
         print(valid)
@@ -548,47 +702,97 @@ def customers(id):
             context = {'data': data,
                        'number2': number2}
             print(data)
+
             print(number2,param_request)
 
+            # парсинг валидации и тех даных
+            data_params = data_params_request()
+
+            context = {'data': data, 'data_params': data_params,
+                       'number2': number2}
             if request.method == 'POST':
-                # inputState = request.form.get('inputState')
+                            # 1шаг
                 name = request.form.get('name')
-                print(name)
-                address_full = request.form.get('address')
-                print('адрес начала')
-                print(address_full)
-                region = request.form.get('region')
-                print('регион:')
-                print(region)
-                print('адрес конца')
-                # region = request.form.get('region')
-                # print(region)
-                # area = request.form.get('area')
-                # print(area)
-                # city = request.form.get('city')
-                # print(city)
-                # settlement = request.form.get('settlement')
-                # print(settlement)
-                # street = request.form.get('street')
-                # print(street)
-                # house = request.form.get('house')
-                # print(house)
-                # flat = request.form.get('flat')
-                # print(flat)
-                # postal_code = request.form.get('postal_code')
-                # print(postal_code)
-                egrn_nomer = request.form.get('egrn')
-                print(egrn_nomer)
-                kadastr = request.form.get('kadastr')
-                print(kadastr)
-                object_type = request.form.get('object')
-                object_area = request.form.get('object_area')
-                print(object_area)
-                encumbrance = request.form.get('encumbr')
                 description = request.form.get('description')
-                print(description, encumbrance, object_type )
-                foto_main = ''
-                print('dfdf',foto_main)
+                object_type = request.form.get('object_type')
+                PurposeObject = request.form.get('PurposeObject')
+                region = request.form.get('region')
+                address = request.form.get('address')
+                object_area = request.form.get('object_area')
+                LandCategory = request.form.get('LandCategory')
+                TypeOfPermittedUse = request.form.get('TypeOfPermittedUse')
+                print('название:', name)
+                print('description:',description)
+                print('object_type:',object_type)
+                print('PurposeObject:',PurposeObject)
+                print('region:',region)
+                print('address:',address)
+                print('object_area:',object_area)
+                print('LandCategory:',LandCategory)
+                print('TypeOfPermittedUse:',TypeOfPermittedUse)
+                # 2 шаг
+                print('2шаг')
+                RNFI = request.form.get('RNFI')
+                RNFI_date = request.form.get('RNFI_date')
+                owner_nomer = request.form.get('owner_nomer')
+                owner_date = request.form.get('owner_date')
+                RecordNumberVEGRP = request.form.get('RecordNumberVEGRP')
+                DateRecordsVEGRP = request.form.get('DateRecordsVEGRP')
+                TypeofRightOwner = request.form.get('TypeofRightOwner')
+                BalanceAccountNumber = request.form.get('BalanceAccountNumber')
+                date_of_registration_of_another_right = request.form.get('date_of_registration_of_another_right')
+                inventory_number = request.form.get('inventory_number')
+                balance_number = request.form.get('balance_number')
+                CadastralNumber = request.form.get('CadastralNumber')
+                Date_of_assignment_cadastral = request.form.get('Date_of_assignment_cadastral')
+                type_pravoobladatel = request.form.get('type_pravoobladatel')
+                Initial_cost = request.form.get('Initial_cost')
+                residual_value = request.form.get('residual_value')
+                print('RNFI:', RNFI)
+                print('RNFI_date:', RNFI_date)
+                print('owner_nomer:', owner_nomer)
+                print('owner_date:', owner_date)
+                print('RecordNumberVEGRP:', RecordNumberVEGRP)
+                print('DateRecordsVEGRP:', DateRecordsVEGRP)
+                print('TypeofRightOwner:', TypeofRightOwner)
+                print('BalanceAccountNumber:', BalanceAccountNumber)
+                print('date_of_registration_of_another_right:', date_of_registration_of_another_right)
+                print('inventory_number:', inventory_number)
+                print('balance_number:', balance_number)
+                print('CadastralNumber:', CadastralNumber)
+                print('Date_of_assignment_cadastral:', Date_of_assignment_cadastral)
+                print('type_pravoobladatel:', type_pravoobladatel)
+                print('Initial_cost:', Initial_cost)
+                print('residual_value:', residual_value)
+                 # 3 шаг
+                print('3шаг')
+                historical_Category = request.form.get('historical_Category')
+                UGROKN_number = request.form.get('UGROKN_number')
+                print('historical_Category:', historical_Category)
+                print('UGROKN_number:', UGROKN_number)
+                # 4 шаг
+                print('4шаг')
+                KindEncumbrances = request.form.get('KindEncumbrances')
+                encumbrance_area = request.form.get('encumbrance_area')
+                encumbrance_cost = request.form.get('encumbrance_cost')
+                person_encumbrance = request.form.get('person_encumbrance')
+                Other_payments = request.form.get('Other_payments')
+                start_encumbrance = request.form.get('start_encumbrance')
+                end_encumbrance = request.form.get('end_encumbrance')
+                start_use = request.form.get('start_use')
+                end_use = request.form.get('end_use')
+                Payment_foruse = request.form.get('Payment_foruse')
+                print('KindEncumbrances:', KindEncumbrances)
+                print('encumbrance_area:', encumbrance_area)
+                print('encumbrance_cost:', encumbrance_cost)
+                print('person_encumbrance:', person_encumbrance)
+                print('Other_payments:', Other_payments)
+                print('start_encumbrance:', start_encumbrance)
+                print('end_encumbrance:', end_encumbrance)
+                print('start_use:', start_use)
+                print('end_use:', end_use)
+                print('Payment_foruse:', Payment_foruse)
+
                 if 'file' not in request.files:
                     # После перенаправления на страницу загрузки
                     # покажем сообщение пользователю
@@ -605,7 +809,7 @@ def customers(id):
                 if file.filename == '':
                     foto_main = ''
 
-                print('dfdf',foto_main)
+                    print('dfdf',foto_main)
                 if file and allowed_file(file.filename):
                     # безопасно извлекаем оригинальное имя файла
                     filename = secure_filename(file.filename)
@@ -625,10 +829,22 @@ def customers(id):
                         file.save(os.path.join(app.config['UPLOAD_FOLDER_MULTI'], filename))
                         foto_list.append("%s/%s" % (app.config['UPLOAD_FOLDER_MULTI'], filename))
                 foto_multi = foto_list
-                post_request = {'region': region, 'area': area, 'city': city, 'settlement': settlement, 'street': street,
-                                'house': house, 'flat': flat, 'postal_code': postal_code, 'name': name,
-                                'egrn_nomer': egrn_nomer, 'kadastr': kadastr, 'object_type': object_type,
-                                'object_area': object_area, 'encumbrance': encumbrance, 'description': description,
+                post_request = {'name': name, 'description':description,'object_type':object_type,
+                                'PurposeObject':PurposeObject,'region':region,'address':address,
+                                'object_area':object_area,'LandCategory':LandCategory,'TypeOfPermittedUse':TypeOfPermittedUse,
+                                'RNFI': RNFI,'RNFI_date': RNFI_date,'owner_nomer': owner_nomer,'owner_date': owner_date,
+                                'RecordNumberVEGRP': RecordNumberVEGRP,'DateRecordsVEGRP': DateRecordsVEGRP,
+                                'TypeofRightOwner': TypeofRightOwner,'BalanceAccountNumber': BalanceAccountNumber,
+                                'date_of_registration_of_another_right': date_of_registration_of_another_right,
+                                'inventory_number': inventory_number,'balance_number': balance_number,
+                                'CadastralNumber': CadastralNumber,'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
+                                'type_pravoobladatel': type_pravoobladatel,'Initial_cost': Initial_cost,'residual_value': residual_value,
+                                'historical_Category': historical_Category,'UGROKN_number': UGROKN_number,
+                                'KindEncumbrances':KindEncumbrances,
+                                'encumbrance_area': encumbrance_area,'encumbrance_cost': encumbrance_cost,
+                                'person_encumbrance': person_encumbrance,'Other_payments': Other_payments,
+                                'start_encumbrance': start_encumbrance,'end_encumbrance': end_encumbrance,
+                                'start_use': start_use,'end_use':end_use,'Payment_foruse':Payment_foruse,
                                 'foto_main': foto_main, 'foto_multi': foto_multi, 'code': 'new_object'
                                 }
                 print(post_request)
@@ -641,7 +857,7 @@ def customers(id):
                 print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
                 print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
                 print("response.json:\n{}\n\n".format(response.json()))
-                # print(responsePost.text)
+                print(responsePost.text)
                 # context = {'id': id}
                 # return render_template('cardhousedetail/id.html')
                 return redirect(url_for('cardhousedetail', id=id))

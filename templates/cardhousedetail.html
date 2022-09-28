@@ -13,151 +13,101 @@
                 </div>
 
 
-
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
-
-
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
 
 
                 <div class="modal-body">
-                                        <form method="POST" id="form-1">
+                    <form method="POST" id="form-1">
                         <div class="row">
-                            <div class="col-6 mb-3"><label for="name">Наименование *</label><input class="form-control"
-                                                                                               id="name" name="name"
-                                                                                               type="text"/></div>
-                            <div class="col-6 mb-3"><label for="description">Описание *</label><input class="form-control"
-                                                                                               id="description" name="description"
-                                                                                               type="text"/></div>
-                            <div class="col-6 mb-3"><label for="object_type">Вид объекта *</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option value="1">Здание</option>
-                                    <option value="2">Сооружение</option>
-                                    <option value="3">Помещение</option>
-                                    <option value="4">Земельный участок</option>
+                            <div class="col-6 mb-3"><label for="name">Наименование:</label><input class="form-control"
+                                                                                                   id="name" name="name"
+                                                                                                   type="text" value="{{ data.name }}"/></div>
+                            <div class="col-6 mb-3"><label for="description">Описание:</label><input
+                                    class="form-control"
+                                    id="description" name="description"
+                                    type="text" value="{{ data.description }}"/></div>
+                            <div class="col-6 mb-3"><label for="object_type">Вид объекта:</label>
+                                <select class="form-select" aria-label="Default select example" name="object_type">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][2]['id'] }}">{{ data_params[0]['values'][2]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][3]['id'] }}">{{ data_params[0]['values'][3]['value'] }}</option>
                                 </select>
                             </div>
-                            <div class="col-6 mb-3"><label for="object_type">Назначение объекта (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" disabled>
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option value="1">Жилое</option>
-                                    <option value="2">Нежилое</option>
+                            <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально):</label>
+                                <select class="form-select" aria-label="Default select example" name="{{ data.PurposeObject }}">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
                                 </select>
                             </div>
-                            <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control"
-                                                                                               id="region" name="region"
-                                                                                               type="text"/></div>
-                            <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control"
-                                                                                            id="area" name="area"
-                                                                                            type="text"/></div>
+                            <div class="col-6 mb-3">
+                                <label for="region">Регион:</label><input class="form-control" name="region"
+                                                                                type="text" id="region" value="{{ data.region }}">
+                            </div>
+                            <div class="col-6 mb-3"><label for="address">Адрес:</label>
+                                <input class="form-control" id="address" name="address" type="text" value="{{ data.address }}"/>
+                                <p id="address-full"></p>
+                            </div>
+                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта:</label><input
+                                    class="form-control"
+                                    id="object_area" name="object_area"
+                                    type="text" value="{{ data.object_area }}"/></div>
+                            <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
+                                <select class="form-select" aria-label="Default select example" name="LandCategory">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>
 
-                            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control"
-                                                                                             id="city" name="city"
-                                                                                             type="text"/></div>
-                            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input
-                                    class="form-control" id="settlement" name="settlement" type="text"/></div>
 
-                            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control"
-                                                                                              id="street" name="street"
-                                                                                              type="text"/></div>
 
-                            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control"
-                                                                                           id="house" name="house"
-                                                                                           type="text"/></div>
-
-                            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control"
-                                                                                                    id="flat"
-                                                                                                    name="flat"
-                                                                                                    type="text"/></div>
-                            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input
-                                    class="form-control" id="postal_code" name="postal_code" type="text"
-                                    placeholder="индекс"/></div>
-                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта *</label><input class="form-control"
-                                                                                               id="object_area" name="object_area"
-                                                                                               type="text"/></div>
-                            <div class="col-6 mb-3"><label for="object_type">Категория земель (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" disabled>
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option value="1">Земли водного фонда</option>
-                                    <option value="2">Земли запаса</option>
                                 </select>
                             </div>
-                            <div class="col-6 mb-3"><label for="vid_razresh_ispolzov">Вид разрешенного использования(опционально)</label><input class="form-control"
-                                                                                               id="vid_razresh_ispolzov" name="vid_razresh_ispolzov"
-                                                                                               type="text" disabled/></div>
+                            <div class="col-6 mb-3"><label for="TypeOfPermittedUse">Вид разрешенного
+                                использования(опционально):</label><input class="form-control"
+                                                                         id="TypeOfPermittedUse"
+                                                                         name="TypeOfPermittedUse"
+                                                                         type="text" value="{{ data.TypeOfPermittedUse }}"/></div>
                         </div>
                     </form>
-{#                    <form method="POST" id="form-1">#}
-{#                        <div class="row">#}
-{#                            <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control"#}
-{#                                                                                               id="region" name="region"#}
-{#                                                                                               type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control"#}
-{#                                                                                            id="area" name="area"#}
-{#                                                                                            type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control"#}
-{#                                                                                             id="city" name="city"#}
-{#                                                                                             type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input#}
-{#                                    class="form-control" id="settlement" name="settlement" type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control"#}
-{#                                                                                              id="street" name="street"#}
-{#                                                                                              type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control"#}
-{#                                                                                           id="house" name="house"#}
-{#                                                                                           type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control"#}
-{#                                                                                                    id="flat"#}
-{#                                                                                                    name="flat"#}
-{#                                                                                                    type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input#}
-{#                                    class="form-control" id="postal_code" name="postal_code" type="text"#}
-{#                                    placeholder="индекс"/></div>#}
-{#                        </div>#}
-{#                    </form>#}
                 </div>
-                <div class="col-12">
-                    <button type="button" class="btn btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+          <div class="col-12">
+                    <button type="button" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
                     Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
                 </div>
-
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>#}
                 {#      </div>#}
@@ -172,115 +122,136 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel2">Сведения о собственнике</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-2" enctype="multipart/form-data">
+                        <input class="form-control" id="name" name="name" type="hidden"/>
+                        <input class="form-control" id="description" name="description" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"
-                               placeholder="индекс"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
+                        <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
+                        <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
                         <div class="row">
                             <div class="col-6 mb-4">
-                                <label for="sobstvennik_on">Собственник ОН *</label>
-                                <input type="text" placeholder="РНФИ/дата регистрации" class="form-control" id="sobstvennik_on" name="sobstvennik_on" disabled>
-                                <input type="text" placeholder="Номер /дата регистрации права собственности РФ" class="form-control" id="sobstvennik_on" name="sobstvennik_on" disabled>
-                                <input type="text" placeholder="Реестровый №/ дата регистрации" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                                <input type="text" placeholder="Номер/ дата регистрации права собственности" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+
+                                <label for="Owner">Собственник ОН *</label>
+{#                                <p>{{ data.RNFI }}</p>#}
+                                <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI">
+{#                                <p>{{ data.RNFI_date }}</p>#}
+                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control" id="RNFI_date"
+                                       name="RNFI_date">
+{#                                <p>{{ data.owner_nomer }}</p>#}
+                                <input type="text" placeholder="Номер регистрации права собственности РФ"
+                                       class="form-control" id="owner_nomer" name="owner_nomer">
+{#                                <p>{{ data.owner_date }}</p>#}
+                                <input type="text" placeholder="Дата регистрации права собственности РФ"
+                                       class="form-control" id="owner_date" name="owner_date">
+{#                                <p>{{ data.RecordNumberVEGRP }}</p>#}
+                                <input type="text" placeholder="Реестровй №" class="form-control"
+                                       id="RecordNumberVEGRP" name="RecordNumberVEGRP">
+{#                                <p>{{ data.DateRecordsVEGRP }}</p>#}
+                                <input type="text" placeholder="Реестровая дата" class="form-control"
+                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP">
                             </div>
-                            <div class="col-6 mb-4">
-                                <label for="pravoobladatel">Правообладатель *</label>
-                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                                <input type="text" placeholder="Наименование документа" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                                <input type="text" placeholder="Электронный образ" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Вид права правообладателя *</label>
-                                <select class="form-select" multiple aria-label="multiple select example">
-                                  <option selected>Выберите нужный вариант</option>
-                                  <option value="1">Оперативное управление</option>
-                                  <option value="2">Хозяйственное ведение</option>
-                                  <option value="3">Постоянное(Бессрочное) пользование</option>
-                                    <option value="4">Безвозмездное пользование</option>
-                                  <option value="5">Аренда</option>
-                                  <option value="6">Аренда с множественностью лиц на стороне арендатора</option>
-                                </select>
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Номер/дата регистрации иного права *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Инвентарный номер *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Балансовый номер счета *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Кадастровый номер/дата присвоения *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Кадастровый номер/дата присвоения *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Кадастровая стоимость *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
+{#                            <div class="col-6 mb-4">#}
+{#                                <label for="pravoobladatel">Правообладатель *</label>#}
+{#                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on1"#}
+{#                                       name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Наименование документа" class="form-control"#}
+{#                                       id="sobstvennik_on2" name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control"#}
+{#                                       id="sobstvennik_on3" name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Электронный образ" class="form-control"#}
+{#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
+{#                            </div>#}
+                                               <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
+                                <select class="form-select" aria-label="Default select example" name="TypeofRightOwner">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                            <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>
+                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Первоначальная стоимость *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
+                                <label for="BalanceAccountNumber">Номер регистрации иного права:</label>
+                                <input type="text" class="form-control" id="BalanceAccountNumber"
+                                       name="BalanceAccountNumber" value="{{ data.BalanceAccountNumber }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Остаточная стоимость *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
+                                <label for="date_of_registration_of_another_right">Дата регистрации иного права:</label>
+                                <input type="text" class="form-control" id="date_of_registration_of_another_right"
+                                       name="date_of_registration_of_another_right" value="{{ data.date_of_registration_of_another_right }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="inventory_number">Инвентарный номер:</label>
+                                <input type="text" class="form-control" id="inventory_number" name="inventory_number" value="{{ data.inventory_number }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="balance_number">Балансовый номер счета:</label>
+                                <input type="text" class="form-control" id="balance_number" name="balance_number" value="{{ data.balance_number }}">
+                            </div>
+                               <div class="col-6 mb-3 ">
+                                <label for="CadastralNumber">Кадастровый номер:</label>
+                                <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber" value="{{ data.CadastralNumber }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="Date_of_assignment_cadastral">Дата присвоения:</label>
+                                <input type="text" class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" value="{{ data.Date_of_assignment_cadastral }}">
+                            </div>
+
+                            <div class="col-6 mb-3 ">
+                                <label for="type_pravoobladatel">Кадастровая стоимость:</label>
+                                <input type="text" class="form-control" id="type_pravoobladatel"
+                                       name="type_pravoobladatel" value="{{ data.type_pravoobladatel }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="Initial_cost">Первоначальная стоимость:</label>
+                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost" value="{{ data.Initial_cost }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="residual_value">Остаточная стоимость:</label>
+                                <input type="text" class="form-control" id="residual_value" name="residual_value" value="{{ data.residual_value }}">
                             </div>
                         </div>
 
                     </form>
                 </div>
-                <div class="col-12">
-                    <button type="button" class="btn btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                                <div class="col-12">
+                    <button type="button" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
                     Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
                     <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
@@ -295,6 +266,7 @@
         </div>
     </div>
     <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+
          tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -302,75 +274,90 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel3">ШАГ-3</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-3" enctype="multipart/form-data">
+                         <input class="form-control" id="name" name="name" type="hidden"/>
+                        <input class="form-control" id="description" name="description" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"
-                               placeholder="индекс"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
+                        <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
+                        <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
+                        {#                        2 форма#}
+                        <input class="form-control" id="RNFI" name="RNFI" type="hidden"/>
+                        <input class="form-control" id="RNFI_date" name="RNFI_date" type="hidden"/>
+                        <input class="form-control" id="owner_nomer" name="owner_nomer" type="hidden"/>
+                        <input class="form-control" id="owner_date" name="owner_date" type="hidden"/>
+                        <input class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP" type="hidden"/>
+                        <input class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP" type="hidden"/>
+                        <input class="form-control" id="TypeofRightOwner" name="TypeofRightOwner" type="hidden"/>
+                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber"
+                               type="hidden"/>
+                        <input class="form-control" id="date_of_registration_of_another_right"
+                               name="date_of_registration_of_another_right" type="hidden"/>
+                        <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
+                        <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
+                        <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
+                        <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
+                        <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
                         <div class="row">
-                            <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Категория объекта историко-культурного значения *</label>
-                                <select class="form-select" multiple aria-label="multiple select example">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                   <div class="col-6 mb-3"><label for="historical_Category">Категория объекта историко-культурного значения:</label>
+                                <select class="form-select" aria-label="historical_Category" name="historical_Category">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['value'] }}</option>
+
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Номер ЕГРОКН *</label>
-                                <input type="text" class="form-control mt-4" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="UGROKN_number">Номер ЕГРОКН: </label>
+                                <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number" value="{{ data.UGROKN_number }}">
                             </div>
                         </div>
+
                     </form>
                 </div>
-                <div class="col-12">
-                    <button type="button" class="btn btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
+                                <div class="col-12">
+                    <button type="button" class="btn btnTranslate3 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
                     Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
                     <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
                         <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 2 шаг
                 </button>
                 </div>
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -385,199 +372,137 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel4">ШАГ-4</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-4" enctype="multipart/form-data">
+ <input class="form-control" id="name" name="name" type="hidden"/>
+                        <input class="form-control" id="description" name="description" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"
-                               placeholder="индекс"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
+                        <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
+                        <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
+                        {#                        2 форма#}
+                        <input class="form-control" id="RNFI" name="RNFI" type="hidden"/>
+                        <input class="form-control" id="RNFI_date" name="RNFI_date" type="hidden"/>
+                        <input class="form-control" id="owner_nomer" name="owner_nomer" type="hidden"/>
+                        <input class="form-control" id="owner_date" name="owner_date" type="hidden"/>
+                        <input class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP" type="hidden"/>
+                        <input class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP" type="hidden"/>
+                        <input class="form-control" id="TypeofRightOwner" name="TypeofRightOwner" type="hidden"/>
+                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber"
+                               type="hidden"/>
+                        <input class="form-control" id="date_of_registration_of_another_right"
+                               name="date_of_registration_of_another_right" type="hidden"/>
+                        <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
+                        <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
+                        <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
+                        <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
+                        <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
+                        {#                        3форма#}
+                        <input class="form-control" id="historical_Category" name="historical_Category" type="hidden"/>
+                        <input class="form-control" id="UGROKN_number" name="UGROKN_number" type="hidden"/>
                         <div class="row">
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Вид обременения *</label>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Выберите нужный вам вариант</option>
-                                  <option value="1">Арест</option>
-                                  <option value="2">Сервитут</option>
-                                  <option value="3">Безвозмездное использование</option>
-                                    <option value="4">Иное</option>
-                                    <option value="5">Субаренда</option>
-                                </select>
+                                <label for="KindEncumbrances">Вид обременения:</label>
+                                <select class="form-select" aria-label="KindEncumbrances" name="KindEncumbrances">
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['values'] }}</option>
+                                  </select>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Площадь обременения *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="encumbrance_area">Площадь обременения:</label>
+                                <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area" value="{{ data.encumbrance_area }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Стоимость обременения *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="encumbrance_cost">Стоимость обременения:</label>
+                                <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost" value="{{ data.encumbrance_cost }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Лицо в пользу которого установлено обременение *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="person_encumbrance">Лицо в пользу которого установлено обременение:</label>
+                                <input type="text" class="form-control" id="person_encumbrance"
+                                       name="person_encumbrance" value="{{ data.person_encumbrance }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Прочие обременения *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="Other_payments">Прочие платежи:</label>
+                                <input type="text" class="form-control" id="Other_payments" name="Other_payments" value="{{ data.Other_payments }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Срок обременения (дата начала/окончания) *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="start_encumbrance">Срок обременения (дата начала):</label>
+                                <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance" value="{{ data.start_encumbrance }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on"></label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="end_encumbrance">Срок обременения (дата окончания):</label>
+                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance" value="{{ data.end_encumbrance }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Срок Пользования (дата начала/окончания) *</label>
-                                <input type="text" placeholder="Данное поле не доступно для редактирования" class="form-control" id="sobstvennik_on" name="sobstvennik_on" disabled>
+                                <label for="start_use">Срок Пользования (дата начала):</label>
+                                <input type="text"
+                                       class="form-control" id="start_use" name="start_use" value="{{ data.start_use }}">
+                            </div><div class="col-6 mb-3 ">
+                                <label for="end_use">Срок Пользования (дата конца):</label>
+                                <input type="text"
+                                       class="form-control" id="end_use" name="end_use" value="{{ data.end_use }}">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on"></label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Плата за пользование земельным участком *</label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on" disabled>
+                                <label for="Payment_foruse">Плата за пользование земельным участком:</label>
+                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse" value="{{ data.Payment_foruse }} ">
                             </div>
 
                         </div>
-                    </form>
-                </div>
-                <div class="col-12">
-                    <button type="button" class="btn btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">
-                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
-                </button>
-                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
-                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг
-                </button>
-                </div>
-                {#      <div class="modal-footer">#}
-                {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
-                {#      </div>#}
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle5" aria-hidden="true" aria-labelledby="exampleModalToggleLabel5"
-         tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalToggleLabel5">ШАГ-5</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done ">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
-                <div class="modal-body">
-                    <form method="POST" id="form-5" enctype="multipart/form-data">
-                        <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"
-                               placeholder="индекс"/>
-                        <div class="row">
-                            <div class="col-12 mb-3 ">
-                                <label for="formFile" class="form-label">Выберите обложку объекта недвижимости</label>
-                                <input class="form-control" type="file" id="formFile" name="file">
-
-                            </div>
-                            <div class="col-12 mb-3 ">
-                                <label for="formFileMultiple" class="form-label">Выберите несколько фотографий объекта
-                                    недвижимости</label>
-                                <input class="form-control" name="files[]" type="file" multiple="true"
-                                       id="formFileMultiple">
-                            </div>
-                        </div>
-                        <p class="text-warning">Проверьте всю информацию, преде чем нажать на кнопку сохранить.                        </p>
-{#                            <button id="save" type="submit" class="btn btn-primary float-end">Сохранить</button>#}
-                                            <div class="col-12">
+                                                                   <div class="col-12">
                     <button id="save" type="submit" class="btn btn-secondary btn-icon float-end me-4 mb-1">
                     сохранить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
-                                            <button type="button" class="btn btn-secondary btn-icon ms-4 mb-1" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
-                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 4 шаг
+                                            <button type="button" class="btn btn-secondary btn-icon ms-4 mb-1" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг
                 </button>
                 </div>
-
                     </form>
                 </div>
-{#                <div class="col-12">#}
-{#                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">#}
-{#                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 4 шаг#}
+{#                              <div class="col-12">#}
+{#                    <button type="button" class="btn btnTranslate4 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">#}
+{#                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>#}
+{#                </button>#}
+{#                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">#}
+{#                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг#}
 {#                </button>#}
 {#                </div>#}
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -600,6 +525,9 @@
 
                     <div class="row m-3 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-light rounded-4">
                         <div class="col-5">
+                            {% if file %}
+                            
+                            {% endif %} 
                             <img src="{{ url_for('site.static', filename = data.foto_main.fotoAdr ) }}" width="300"
                              height="300" class="border border-top-0 border-start-0 border-end-0 bg-body rounded-4">
                         </div>
@@ -624,26 +552,23 @@
             <div class="tab-content mb-2" id="nav-tabContent">
                 <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                      tabindex="0">
-<div class="row mx-0 ">
+<div class="row justify-content-md-center mx-0">
 
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Вид объекта:</p>тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Категория объекта историко-культурного значения: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Номер ЕГРОКН: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Категория объекта историко-культурного значения: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Регион: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Адрес: {{ data.address_full }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Площадь объекта: {{ data.object_area }}{{ data.unit }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Собственник ОН: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Правообладатель: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Вид права правообладателя: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Кадастровый номер/дата присвоения: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Вид обременения: {{ data.encumbrance }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Площадь обременения: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Лицо в пользу которого установлено обременение: {{ data.egrn_nomer }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Срок обременения: тест</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Срок пользования: {{ data.object_type }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Стоимость аренды: {{ data.object_type }}</div>
-                    <div class="col-5 mx-5 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">Прочие платежы: Тест</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Категория объекта историко-культурного значения:</p>{{ data.historical_Category }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Регион:</p>{{ data.region }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Адрес:</p> {{ data.address }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Кадастровый номер/дата присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Лицо в пользу которого установлено обременение:</p> {{ data.person_encumbrance }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>
+                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>
 
 </div>
 {#                    <li>#}
@@ -747,8 +672,17 @@
 
     </div>
 
+     <script src="/static/1cintegr/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+                crossorigin="anonymous"></script>
+        {#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
+              rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <script src="/static/1cintegr/js/script.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 {% endblock %}

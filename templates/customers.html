@@ -13,160 +13,106 @@
                 </div>
 
 
-
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
-
-
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>5</span></div>
+                        <div class="md-step-title">ШАГ-5</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
 
 
                 <div class="modal-body">
-                                        <form method="POST" id="form-1">
+                    <form method="POST" id="form-1">
                         <div class="row">
                             <div class="col-6 mb-3"><label for="name">Наименование *</label><input class="form-control"
-                                                                                               id="name" name="name"
-                                                                                               type="text"/></div>
-                            <div class="col-6 mb-3"><label for="description">Описание *</label><input class="form-control"
-                                                                                               id="description" name="description"
-                                                                                               type="text"/></div>
+                                                                                                   id="name" name="name"
+                                                                                                   type="text"/></div>
+                            <div class="col-6 mb-3"><label for="description">Описание *</label><input
+                                    class="form-control"
+                                    id="description" name="description"
+                                    type="text"/></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта *</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option name="object_type_1" value="1">Здание</option>
-                                    <option value="2">Сооружение</option>
-                                    <option value="3">Помещение</option>
-                                    <option value="4">Земельный участок</option>
+                                <select class="form-select" aria-label="Default select example" name="object_type">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][2]['id'] }}">{{ data_params[0]['values'][2]['value'] }}</option>
+                                    <option value="{{ data_params[0]['values'][3]['id'] }}">{{ data_params[0]['values'][3]['value'] }}</option>
+
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" disabled>
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option value="PurposeObject_1">Жилое</option>
-                                    <option value="2">Нежилое</option>
+                                <select class="form-select" aria-label="Default select example" name="PurposeObject">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
                                 </select>
                             </div>
-                            <div class="col-12 mb-3">
-                                <label for="address-full">Регион:</label><input class="form-control" type="text" id="region">
+                            <div class="col-6 mb-3">
+                                <label for="region">Регион:</label><input class="form-control" name="region"
+                                                                                type="text" id="region">
                             </div>
-                                                        <div class="col-12 mb-3"><label for="address">Адрес*</label>
-                                                            <input class="form-control" id="address" name="address" type="text"/>
-                                                            <p id="address-full"></p>
-                                                       </div>
-
-
-{#                            <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control"#}
-{#                                                                                               id="region" name="region"#}
-{#                                                                                               type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control"#}
-{#                                                                                            id="area" name="area"#}
-{#                                                                                            type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control"#}
-{#                                                                                             id="city" name="city"#}
-{#                                                                                             type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input#}
-{#                                    class="form-control" id="settlement" name="settlement" type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control"#}
-{#                                                                                              id="street" name="street"#}
-{#                                                                                              type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control"#}
-{#                                                                                           id="house" name="house"#}
-{#                                                                                           type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control"#}
-{#                                                                                                    id="flat"#}
-{#                                                                                                    name="flat"#}
-{#                                                                                                    type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input#}
-{#                                    class="form-control" id="postal_code" name="postal_code" type="text"#}
-{#                                    placeholder="индекс"/></div>#}
-                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта *</label><input class="form-control"
-                                                                                               id="object_area" name="object_area"
-                                                                                               type="text"/></div>
+                            <div class="col-6 mb-3"><label for="address">Адрес*</label>
+                                <input class="form-control" id="address" name="address" type="text"/>
+                                <p id="address-full"></p>
+                            </div>
+                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта *</label><input
+                                    class="form-control"
+                                    id="object_area" name="object_area"
+                                    type="text"/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" disabled>
-                                    <option selected>Выберите из выпадающего списка</option>
-                                    <option value="1">Земли водного фонда</option>
-                                    <option value="2">Земли запаса</option>
+                                <select class="form-select" aria-label="Default select example" name="LandCategory">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>
                                 </select>
                             </div>
-                            <div class="col-6 mb-3"><label for="TypeOfPermittedUse">Вид разрешенного использования(опционально)</label><input class="form-control"
-                                                                                               id="vid_razresh_ispolzov" name="vid_razresh_ispolzov"
-                                                                                               type="text" disabled/></div>
+                            <div class="col-6 mb-3"><label for="TypeOfPermittedUse">Вид разрешенного
+                                использования(опционально)</label><input class="form-control"
+                                                                         id="TypeOfPermittedUse"
+                                                                         name="TypeOfPermittedUse"
+                                                                         type="text"/></div>
                         </div>
-                                                                 <p class="text-warning">Проверьте всю информацию, преде чем нажать на кнопку сохранить.
-                            <button id="save" type="submit" class="btn btn-primary float-end">Сохранить</button>
-                        </p>
                     </form>
-{#                    <form method="POST" id="form-1">#}
-{#                        <div class="row">#}
-{#                            <div class="col-6 mb-3"><label for="region">Регион *</label><input class="form-control"#}
-{#                                                                                               id="region" name="region"#}
-{#                                                                                               type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="area">Район *</label><input class="form-control"#}
-{#                                                                                            id="area" name="area"#}
-{#                                                                                            type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3 "><label for="city">Город *</label><input class="form-control"#}
-{#                                                                                             id="city" name="city"#}
-{#                                                                                             type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="settlement">Населенный пункт *</label><input#}
-{#                                    class="form-control" id="settlement" name="settlement" type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="street">Улица *</label><input class="form-control"#}
-{#                                                                                              id="street" name="street"#}
-{#                                                                                              type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="house">Дом *</label><input class="form-control"#}
-{#                                                                                           id="house" name="house"#}
-{#                                                                                           type="text"/></div>#}
-{##}
-{#                            <div class="col-6 mb-3"><label for="flat">Квартира *</label><br/><input class="form-control"#}
-{#                                                                                                    id="flat"#}
-{#                                                                                                    name="flat"#}
-{#                                                                                                    type="text"/></div>#}
-{#                            <div class="col-6 mb-3"><label for="postal_code">Почтовый индекс *</label><br/><input#}
-{#                                    class="form-control" id="postal_code" name="postal_code" type="text"#}
-{#                                    placeholder="индекс"/></div>#}
-{#                        </div>#}
-{#                    </form>#}
                 </div>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
-                    Продолжить
+          <div class="col-12">
+
+                    <button type="button" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
+                </div>
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>#}
                 {#      </div>#}
@@ -181,127 +127,143 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel2">Сведения о собственнике</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>5</span></div>
+                        <div class="md-step-title">ШАГ-5</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-2" enctype="multipart/form-data">
-                        <input class="form-control" id="region" name="region" type="hidden"/>
                         <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
-                        <input class="form-control" id="object_type_1" name="object_type_1" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="region" name="region" type="hidden"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
                         <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
-                        <input class="form-control" id="PurposeObject_1" name="PurposeObject_1" type="hidden"/>
                         <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-                        <input class="form-control" id="postal_code" name="postal_code" type="hidden"/>
                         <div class="row">
                             <div class="col-6 mb-4">
+                                <div>{{ data_params.name }}</div>
                                 <label for="Owner">Собственник ОН *</label>
-                                <input type="text" placeholder="РНФИ" class="form-control" id="sobstvennik_on" name="RNFI" disabled>
-                                <input type="text" placeholder="дата регистрации" class="form-control" id="RNFI_date" name="RNFI_date" disabled>
-                                <input type="text" placeholder="Номер /дата регистрации права собственности РФ" class="form-control" id="owner_nomer" name="owner_nomer" disabled>
-                                <input type="text" placeholder="Номер /дата регистрации права собственности РФ" class="form-control" id="owner_date" name="owner_date" disabled>
-                                <input type="text" placeholder="Реестровй №/ дата регистрации" class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP">
-                                <input type="text" placeholder="Реестровй №/ дата регистрации" class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP">
-                                <input type="text" placeholder="Номер/ дата регистрации права собственности" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI">
+                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control" id="RNFI_date"
+                                       name="RNFI_date">
+                                <input type="text" placeholder="Номер регистрации права собственности РФ"
+                                       class="form-control" id="owner_nomer" name="owner_nomer">
+                                <input type="text" placeholder="Дата регистрации права собственности РФ"
+                                       class="form-control" id="owner_date" name="owner_date">
+                                <input type="text" placeholder="Реестровй №" class="form-control"
+                                       id="RecordNumberVEGRP" name="RecordNumberVEGRP">
+                                <input type="text" placeholder="Реестровая дата" class="form-control"
+                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP">
                             </div>
-                            <div class="col-6 mb-4">
-                                <label for="pravoobladatel">Правообладатель *</label>
-                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on1" name="sobstvennik_on">
-                                <input type="text" placeholder="Наименование документа" class="form-control" id="sobstvennik_on2" name="sobstvennik_on">
-                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control" id="sobstvennik_on3" name="sobstvennik_on">
-                                <input type="text" placeholder="Электронный образ" class="form-control" id="sobstvennik_on4" name="sobstvennik_on">
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Вид права правообладателя *</label>
-                                <select class="form-select" multiple aria-label="multiple select example">
-                                  <option selected>Выберите нужный вариант</option>
-                                  <option value="1">Оперативное управление</option>
-                                  <option value="2">Хозяйственное ведение</option>
-                                  <option value="3">Постоянное(Бессрочное) пользование</option>
-                                    <option value="4">Безвозмездное пользование</option>
-                                  <option value="5">Аренда</option>
-                                  <option value="6">Аренда с множественностью лиц на стороне арендатора</option>
+{#                            <div class="col-6 mb-4">#}
+{#                                <label for="pravoobladatel">Правообладатель *</label>#}
+{#                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on1"#}
+{#                                       name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Наименование документа" class="form-control"#}
+{#                                       id="sobstvennik_on2" name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control"#}
+{#                                       id="sobstvennik_on3" name="sobstvennik_on">#}
+{#                                <input type="text" placeholder="Электронный образ" class="form-control"#}
+{#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
+{#                            </div>#}
+                                               <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя *</label>
+                                <select class="form-select" aria-label="Default select example" name="TypeofRightOwner">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>
+                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Номер/дата регистрации иного права *</label>
-                                <input type="text" class="form-control" id="date_of_registration_of_another_right" name="date_of_registration_of_another_right">
+                                <label for="BalanceAccountNumber">Номер регистрации иного права *</label>
+                                <input type="text" class="form-control" id="BalanceAccountNumber"
+                                       name="BalanceAccountNumber">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Номер/дата регистрации иного права *</label>
-                                <input type="text" class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber">
+                                <label for="date_of_registration_of_another_right">Дата регистрации иного права *</label>
+                                <input type="text" class="form-control" id="date_of_registration_of_another_right"
+                                       name="date_of_registration_of_another_right">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Инвентарный номер *</label>
-                                <input type="text" class="form-control" id="inventory_number" name="inventory_number" disabled>
+                                <label for="inventory_number">Инвентарный номер *</label>
+                                <input type="text" class="form-control" id="inventory_number" name="inventory_number">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Балансовый номер счета *</label>
-                                <input type="text" class="form-control" id="balance_number" name="balance_number" disabled>
+                                <label for="balance_number">Балансовый номер счета *</label>
+                                <input type="text" class="form-control" id="balance_number" name="balance_number">
                             </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Кадастровый номер/дата присвоения *</label>
+                               <div class="col-6 mb-3 ">
+                                <label for="CadastralNumber">Кадастровый номер *</label>
                                 <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber">
                             </div>
                             <div class="col-6 mb-3 ">
+                                <label for="Date_of_assignment_cadastral">Дата присвоения *</label>
+                                <input type="text" class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral">
+                            </div>
+
+                            <div class="col-6 mb-3 ">
                                 <label for="type_pravoobladatel">Кадастровая стоимость *</label>
-                                <input type="text" class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" disabled>
+                                <input type="text" class="form-control" id="type_pravoobladatel"
+                                       name="type_pravoobladatel">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Первоначальная стоимость *</label>
-                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost" disabled>
+                                <label for="Initial_cost">Первоначальная стоимость *</label>
+                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="type_pravoobladatel">Остаточная стоимость *</label>
-                                <input type="text" class="form-control" id="residual_value" name="residual_value" disabled>
+                                <label for="residual_value">Остаточная стоимость *</label>
+                                <input type="text" class="form-control" id="residual_value" name="residual_value">
                             </div>
                         </div>
 
                     </form>
                 </div>
-                <button class="btn btnTranslate2 btnTranslate1 btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
-                    Продолжить
+                                <div class="col-12">
+                    <button type="button" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
-                <button class="btn btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на
-                    1 шаг
+                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 1 шаг
                 </button>
+                </div>
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -316,77 +278,77 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel3">ШАГ-3</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>5</span></div>
+                        <div class="md-step-title">ШАГ-5</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-3" enctype="multipart/form-data">
-                        <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="name" name="name" type="hidden"/>
+                         <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
-                        <input class="form-control" id="object_type_1" name="object_type_1" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="region" name="region" type="hidden"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
                         <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
-                        <input class="form-control" id="PurposeObject_1" name="PurposeObject_1" type="hidden"/>
                         <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-{#                        2 форма#}
+                        {#                        2 форма#}
                         <input class="form-control" id="RNFI" name="RNFI" type="hidden"/>
                         <input class="form-control" id="RNFI_date" name="RNFI_date" type="hidden"/>
+                        <input class="form-control" id="owner_nomer" name="owner_nomer" type="hidden"/>
                         <input class="form-control" id="owner_date" name="owner_date" type="hidden"/>
                         <input class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP" type="hidden"/>
                         <input class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP" type="hidden"/>
-                        <input class="form-control" id="sobstvennik_on" name="sobstvennik_on" type="hidden"/>
-                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
-                        <input class="form-control" id="date_of_registration_of_another_right" name="date_of_registration_of_another_right" type="hidden"/>
-                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber" type="hidden"/>
+                        <input class="form-control" id="TypeofRightOwner" name="TypeofRightOwner" type="hidden"/>
+                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber"
+                               type="hidden"/>
+                        <input class="form-control" id="date_of_registration_of_another_right"
+                               name="date_of_registration_of_another_right" type="hidden"/>
                         <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
                         <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
                         <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
                         <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
                         <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
                         <div class="row">
-                            <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Категория объекта историко-культурного значения *</label>
-                                <select class="form-select" multiple aria-label="multiple select example">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                   <div class="col-6 mb-3"><label for="historical_Category">Категория объекта историко-культурного значения *</label>
+                                <select class="form-select" aria-label="historical_Category" name="historical_Category">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['value'] }}</option>
+
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
@@ -394,14 +356,18 @@
                                 <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number">
                             </div>
                         </div>
+
                     </form>
                 </div>
-                <button class="btn btnTranslate3 btn-primary" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
-                    Продолжить
+                                <div class="col-12">
+                    <button type="button" class="btn btnTranslate3 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
+                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Вернуться на
-                    2 шаг
+                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 2 шаг
                 </button>
+                </div>
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -416,129 +382,138 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel4">ШАГ-4</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active">
+                        <div class="md-step-circle"><span>5</span></div>
+                        <div class="md-step-title">ШАГ-5</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-4" enctype="multipart/form-data">
-                        <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="name" name="name" type="hidden"/>
+ <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
-                        <input class="form-control" id="object_type_1" name="object_type_1" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="region" name="region" type="hidden"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
                         <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
-                        <input class="form-control" id="PurposeObject_1" name="PurposeObject_1" type="hidden"/>
                         <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-{#                        2 форма#}
+                        {#                        2 форма#}
                         <input class="form-control" id="RNFI" name="RNFI" type="hidden"/>
                         <input class="form-control" id="RNFI_date" name="RNFI_date" type="hidden"/>
+                        <input class="form-control" id="owner_nomer" name="owner_nomer" type="hidden"/>
                         <input class="form-control" id="owner_date" name="owner_date" type="hidden"/>
                         <input class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP" type="hidden"/>
                         <input class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP" type="hidden"/>
-                        <input class="form-control" id="sobstvennik_on" name="sobstvennik_on" type="hidden"/>
-                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
-                        <input class="form-control" id="date_of_registration_of_another_right" name="date_of_registration_of_another_right" type="hidden"/>
-                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber" type="hidden"/>
+                        <input class="form-control" id="TypeofRightOwner" name="TypeofRightOwner" type="hidden"/>
+                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber"
+                               type="hidden"/>
+                        <input class="form-control" id="date_of_registration_of_another_right"
+                               name="date_of_registration_of_another_right" type="hidden"/>
                         <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
                         <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
                         <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
                         <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
                         <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
-{#                        3форма#}
+                        {#                        3форма#}
+                        <input class="form-control" id="historical_Category" name="historical_Category" type="hidden"/>
                         <input class="form-control" id="UGROKN_number" name="UGROKN_number" type="hidden"/>
                         <div class="row">
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Вид обременения *</label>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Выберите нужный вам вариант</option>
-                                  <option value="1">Арест</option>
-                                  <option value="2">Сервитут</option>
-                                  <option value="3">Безвозмездное использование</option>
-                                    <option value="4">Иное</option>
-                                    <option value="5">Субаренда</option>
+                                <label for="KindEncumbrances">Вид обременения *</label>
+                                <select class="form-select" aria-label="KindEncumbrances" name="KindEncumbrances">
+                                    <option selected disabled>Выберите нужный вам вариант</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['values'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['values'] }}</option>
+
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Площадь обременения *</label>
+                                <label for="encumbrance_area">Площадь обременения *</label>
                                 <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="encumbrance_area">Стоимость обременения *</label>
+                                <label for="encumbrance_cost">Стоимость обременения *</label>
                                 <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on">Лицо в пользу которого установлено обременение *</label>
-                                <input type="text" class="form-control" id="person_encumbrance" name="person_encumbrance">
+                                <label for="person_encumbrance">Лицо в пользу которого установлено обременение *</label>
+                                <input type="text" class="form-control" id="person_encumbrance"
+                                       name="person_encumbrance">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="Other_payments">Прочие обременения *</label>
+                                <label for="Other_payments">Прочие платежи *</label>
                                 <input type="text" class="form-control" id="Other_payments" name="Other_payments">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="start_encumbrance">Срок обременения (дата начала/окончания) *</label>
+                                <label for="start_encumbrance">Срок обременения (дата начала) *</label>
                                 <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on"></label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="end_encumbrance">Срок обременения (дата окончания) *</label>
+                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance">
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="start_use">Срок Пользования (дата начала/окончания) *</label>
-                                <input type="text" placeholder="Данное поле не доступно для редактирования" class="form-control" id="start_use" name="start_use" disabled>
-                            </div>
-                            <div class="col-6 mb-3 ">
-                                <label for="sobstvennik_on"></label>
-                                <input type="text" class="form-control" id="sobstvennik_on" name="sobstvennik_on">
+                                <label for="start_use">Срок Пользования (дата начала) *</label>
+                                <input type="text"
+                                       class="form-control" id="start_use" name="start_use">
+                            </div><div class="col-6 mb-3 ">
+                                <label for="end_use">Срок Пользования (дата конца) *</label>
+                                <input type="text"
+                                       class="form-control" id="end_use" name="end_use">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком *</label>
-                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse" disabled>
+                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse">
                             </div>
 
                         </div>
+
                     </form>
                 </div>
-                <button class="btn btnTranslate4 btn-primary" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">
-                    Продолжить
+                              <div class="col-12">
+                    <button type="button" class="btn btnTranslate4 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">
+                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                 </button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Вернуться на
-                    3 шаг
+                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг
                 </button>
+                </div>
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -553,76 +528,82 @@
                     <h5 class="modal-title" id="exampleModalToggleLabel5">ШАГ-5</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-<div class="md-stepper-horizontal orange">
-    <div class="md-step active done ">
-      <div class="md-step-circle"><span>1</span></div>
-      <div class="md-step-title">ШАГ-1</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>2</span></div>
-      <div class="md-step-title">ШАГ-2</div>
-      <div class="md-step-optional">Optional</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>3</span></div>
-      <div class="md-step-title">ШАГ-3</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active done">
-      <div class="md-step-circle"><span>4</span></div>
-      <div class="md-step-title">ШАГ-4</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step active editable md-step-active-blok">
-      <div class="md-step-circle"><span>5</span></div>
-      <div class="md-step-title">ШАГ-5</div>
-      <div class="md-step-bar-left"></div>
-      <div class="md-step-bar-right"></div>
-    </div>
-  </div>
+                <div class="md-stepper-horizontal orange">
+                    <div class="md-step active done ">
+                        <div class="md-step-circle"><span>1</span></div>
+                        <div class="md-step-title">ШАГ-1</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">ШАГ-2</div>
+                        <div class="md-step-optional">Optional</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">ШАГ-3</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active done">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">ШАГ-4</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step active editable md-step-active-blok">
+                        <div class="md-step-circle"><span>5</span></div>
+                        <div class="md-step-title">ШАГ-5</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form method="POST" id="form-5" enctype="multipart/form-data">
-                        <input class="form-control" id="region" name="region" type="hidden"/>
-                        <input class="form-control" id="name" name="name" type="hidden"/>
+                 <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
-                        <input class="form-control" id="object_type_1" name="object_type_1" type="hidden"/>
+                        <input class="form-control" id="object_type" name="object_type" type="hidden"/>
+                        <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="region" name="region" type="hidden"/>
+                        <input class="form-control" id="address" name="address" type="hidden"/>
+                        <input class="form-control" id="object_area" name="object_area" type="hidden"/>
                         <input class="form-control" id="LandCategory" name="LandCategory" type="hidden"/>
-                        <input class="form-control" id="PurposeObject_1" name="PurposeObject_1" type="hidden"/>
                         <input class="form-control" id="TypeOfPermittedUse" name="TypeOfPermittedUse" type="hidden"/>
-                        <input class="form-control" id="area" name="area" type="hidden"/>
-                        <input class="form-control" id="city" name="city" type="hidden"/>
-                        <input class="form-control" id="settlement" name="settlement" type="hidden"/>
-                        <input class="form-control" id="street" name="street" type="hidden"/>
-                        <input class="form-control" id="house" name="house" type="hidden"/>
-                        <input class="form-control" id="flat" name="flat" type="hidden"/>
-{#                        2 форма#}
+                        {#                        2 форма#}
                         <input class="form-control" id="RNFI" name="RNFI" type="hidden"/>
                         <input class="form-control" id="RNFI_date" name="RNFI_date" type="hidden"/>
+                        <input class="form-control" id="owner_nomer" name="owner_nomer" type="hidden"/>
                         <input class="form-control" id="owner_date" name="owner_date" type="hidden"/>
                         <input class="form-control" id="RecordNumberVEGRP" name="RecordNumberVEGRP" type="hidden"/>
                         <input class="form-control" id="DateRecordsVEGRP" name="DateRecordsVEGRP" type="hidden"/>
-                        <input class="form-control" id="sobstvennik_on" name="sobstvennik_on" type="hidden"/>
-                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
-                        <input class="form-control" id="date_of_registration_of_another_right" name="date_of_registration_of_another_right" type="hidden"/>
-                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber" type="hidden"/>
+                        <input class="form-control" id="TypeofRightOwner" name="TypeofRightOwner" type="hidden"/>
+                        <input class="form-control" id="BalanceAccountNumber" name="BalanceAccountNumber"
+                               type="hidden"/>
+                        <input class="form-control" id="date_of_registration_of_another_right"
+                               name="date_of_registration_of_another_right" type="hidden"/>
                         <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
                         <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
                         <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
                         <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
                         <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
-{#                        3форма#}
+                        {#                        3форма#}
+                        <input class="form-control" id="historical_Category" name="historical_Category" type="hidden"/>
                         <input class="form-control" id="UGROKN_number" name="UGROKN_number" type="hidden"/>
-{#                        4 Форма#}
+                        {#                        4 Форма#}
+                        <input class="form-control" id="KindEncumbrances" name="KindEncumbrances" type="hidden"/>
                         <input class="form-control" id="encumbrance_area" name="encumbrance_area" type="hidden"/>
                         <input class="form-control" id="encumbrance_cost" name="encumbrance_cost" type="hidden"/>
+                        <input class="form-control" id="person_encumbrance" name="person_encumbrance" type="hidden"/>
                         <input class="form-control" id="Other_payments" name="Other_payments" type="hidden"/>
+                        <input class="form-control" id="start_encumbrance" name="start_encumbrance" type="hidden"/>
+                        <input class="form-control" id="end_encumbrance" name="end_encumbrance" type="hidden"/>
                         <input class="form-control" id="start_use" name="start_use" type="hidden"/>
+                        <input class="form-control" id="end_use" name="end_use" type="hidden"/>
                         <input class="form-control" id="Payment_foruse" name="Payment_foruse" type="hidden"/>
 
                         <div class="row">
@@ -638,14 +619,18 @@
                                        id="formFileMultiple">
                             </div>
                         </div>
-                        <p class="text-warning">Проверьте всю информацию, преде чем нажать на кнопку сохранить.
-                            <button id="save" type="submit" class="btn btn-primary float-end">Сохранить</button>
-                        </p>
+                                                                   <div class="col-12">
+                    <button id="save" type="submit" class="btn btn-secondary btn-icon float-end me-4 mb-1">
+                    сохранить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
+                </button>
+                                            <button type="button" class="btn btn-secondary btn-icon ms-4 mb-1" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
+                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 4 шаг
+                </button>
+                </div>
+
                     </form>
                 </div>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Вернуться на
-                    4 шаг
-                </button>
+
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
                 {#      </div>#}
@@ -799,7 +784,8 @@
                                              href="{{ url_for("customers", id=number2 + 1 ) }}">Next</a>
                     </li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="{{ url_for("customers",id=number2 - 1) }}">Prev </a>
+                    <li class="page-item"><a class="page-link"
+                                             href="{{ url_for("customers",id=number2 - 1) }}">Prev </a>
                     </li>
                     <li class="page-item"><a class="page-link"
                                              href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>
@@ -825,15 +811,16 @@
         </nav>
 
 
-
-
-  <script src="/static/1cintegr/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-{#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
+        <script src="/static/1cintegr/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+                crossorigin="anonymous"></script>
+        {#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
+              rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
     </div>
 
 {% endblock %}

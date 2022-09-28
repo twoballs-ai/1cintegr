@@ -5,7 +5,7 @@ $('tr[data-href]').on("click", function() {
 var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
 // Замените на свой API-ключ
 
-
+// раскладываем по полочкам https://codepen.io/dadata/pen/vYRwEa
 function join(arr /*, separator */) {
   var separator = arguments.length > 1 ? arguments[1] : ", ";
   return arr.filter(function(n){return n}).join(separator);
@@ -35,8 +35,9 @@ function showPostalCode(address) {
 
 function showRegion(address) {
   $("#region").val(join([
-    join([address.region_type, address.region], " "),
-    join([address.area_type, address.area], " ")
+    join([address.region_type, address.region], " ")
+    // ,
+    // join([address.area_type, address.area], " ")
   ]));
 }
 
@@ -94,33 +95,24 @@ $("#address").suggestions({
 $('.btnTranslate1').click(function(){
   $('#form-2 [name="name"]').val($('#form-1 [name="name"]').val());
   $('#form-2 [name="description"]').val($('#form-1 [name="description"]').val());
-  $('#form-2 [name="postal_code"]').val($('#form-1 [name="postal_code"]').val());
-  $('#form-2 [name="object_type_1"]').val($('#form-1 [name="object_type_1"]').val());
-  $('#form-2 [name="LandCategory"]').val($('#form-1 [name="LandCategory"]').val());
-  $('#form-2 [name="PurposeObject_1"]').val($('#form-1 [name="PurposeObject_1"]').val());
-  $('#form-2 [name="flat"]').val($('#form-1 [name="flat"]').val());
-  $('#form-2 [name="house"]').val($('#form-1 [name="house"]').val());
-  $('#form-2 [name="street"]').val($('#form-1 [name="street"]').val());
-  $('#form-2 [name="settlement"]').val($('#form-1 [name="settlement"]').val());
-  $('#form-2 [name="city"]').val($('#form-1 [name="city"]').val());
-  $('#form-2 [name="area"]').val($('#form-1 [name="area"]').val());
+  $('#form-2 [name="object_type"]').val($('#form-1 [name="object_type"]').val());
+  $('#form-2 [name="PurposeObject"]').val($('#form-1 [name="PurposeObject"]').val());
   $('#form-2 [name="region"]').val($('#form-1 [name="region"]').val());
+  $('#form-2 [name="address"]').val($('#form-1 [name="address"]').val());
+  $('#form-2 [name="object_area"]').val($('#form-1 [name="object_area"]').val());
+  $('#form-2 [name="LandCategory"]').val($('#form-1 [name="LandCategory"]').val());
   $('#form-2 [name="TypeOfPermittedUse"]').val($('#form-1 [name="TypeOfPermittedUse"]').val());
 });
 $('.btnTranslate2').click(function(){
-  $('#form-3 [name="name"]').val($('#form-1 [name="name"]').val());
+  $('#form-3 [name="name"]').val($('#form-2 [name="name"]').val());
   $('#form-3 [name="description"]').val($('#form-2 [name="description"]').val());
-  $('#form-3 [name="postal_code"]').val($('#form-2 [name="postal_code"]').val());
-  $('#form-3 [name="object_type_1"]').val($('#form-2 [name="object_type_1"]').val());
-  $('#form-3 [name="LandCategory"]').val($('#form-2 [name="LandCategory"]').val());
-  $('#form-3 [name="PurposeObject_1"]').val($('#form-2 [name="PurposeObject_1"]').val());
-  $('#form-3 [name="flat"]').val($('#form-2 [name="flat"]').val());
-  $('#form-3 [name="house"]').val($('#form-2 [name="house"]').val());
-  $('#form-3 [name="street"]').val($('#form-2 [name="street"]').val());
-  $('#form-3 [name="settlement"]').val($('#form-2 [name="settlement"]').val());
-  $('#form-3 [name="city"]').val($('#form-2 [name="city"]').val());
-  $('#form-3 [name="area"]').val($('#form-2 [name="area"]').val());
+  $('#form-3 [name="object_type"]').val($('#form-2 [name="object_type"]').val());
+  $('#form-3 [name="PurposeObject"]').val($('#form-2 [name="PurposeObject"]').val());
   $('#form-3 [name="region"]').val($('#form-2 [name="region"]').val());
+  $('#form-3 [name="address"]').val($('#form-2 [name="address"]').val());
+  $('#form-3 [name="object_area"]').val($('#form-2 [name="object_area"]').val());
+  $('#form-3 [name="LandCategory"]').val($('#form-2 [name="LandCategory"]').val());
+  $('#form-3 [name="TypeOfPermittedUse"]').val($('#form-2 [name="TypeOfPermittedUse"]').val());
   // форма2
   $('#form-3 [name="RNFI"]').val($('#form-2 [name="RNFI"]').val());
   $('#form-3 [name="RNFI_date"]').val($('#form-2 [name="RNFI_date"]').val());
@@ -128,30 +120,27 @@ $('.btnTranslate2').click(function(){
   $('#form-3 [name="owner_date"]').val($('#form-2 [name="owner_date"]').val());
   $('#form-3 [name="RecordNumberVEGRP"]').val($('#form-2 [name="RecordNumberVEGRP"]').val());
   $('#form-3 [name="DateRecordsVEGRP"]').val($('#form-2 [name="DateRecordsVEGRP"]').val());
-  $('#form-3 [name="sobstvennik_on"]').val($('#form-2 [name="sobstvennik_on"]').val());
-  $('#form-3 [name="type_pravoobladatel"]').val($('#form-2 [name="type_pravoobladatel"]').val());
-  $('#form-3 [name="date_of_registration_of_another_right"]').val($('#form-2 [name="date_of_registration_of_another_right"]').val());
+  $('#form-3 [name="TypeofRightOwner"]').val($('#form-2 [name="TypeofRightOwner"]').val());
   $('#form-3 [name="BalanceAccountNumber"]').val($('#form-2 [name="BalanceAccountNumber"]').val());
+  $('#form-3 [name="date_of_registration_of_another_right"]').val($('#form-2 [name="date_of_registration_of_another_right"]').val());
   $('#form-3 [name="inventory_number').val($('#form-2 [name="inventory_number"]').val());
   $('#form-3 [name="balance_number"]').val($('#form-2 [name="balance_number"]').val());
   $('#form-3 [name="CadastralNumber"]').val($('#form-2 [name="CadastralNumber"]').val());
+  $('#form-3 [name="Date_of_assignment_cadastral"]').val($('#form-2 [name="Date_of_assignment_cadastral"]').val());
+  $('#form-3 [name="type_pravoobladatel"]').val($('#form-2 [name="type_pravoobladatel"]').val());
   $('#form-3 [name="Initial_cost"]').val($('#form-2 [name="Initial_cost"]').val());
   $('#form-3 [name="residual_value"]').val($('#form-2 [name="residual_value"]').val());
 });
 $('.btnTranslate3').click(function(){
   $('#form-4 [name="name"]').val($('#form-3 [name="name"]').val());
   $('#form-4 [name="description"]').val($('#form-3 [name="description"]').val());
-  $('#form-4 [name="postal_code"]').val($('#form-3 [name="postal_code"]').val());
-  $('#form-4 [name="object_type_1"]').val($('#form-3 [name="object_type_1"]').val());
-  $('#form-4 [name="LandCategory"]').val($('#form-3 [name="LandCategory"]').val());
-  $('#form-4 [name="PurposeObject_1"]').val($('#form-3 [name="PurposeObject_1"]').val());
-  $('#form-4 [name="flat"]').val($('#form-3 [name="flat"]').val());
-  $('#form-4 [name="house"]').val($('#form-3 [name="house"]').val());
-  $('#form-4 [name="street"]').val($('#form-3 [name="street"]').val());
-  $('#form-4 [name="settlement"]').val($('#form-3 [name="settlement"]').val());
-  $('#form-4 [name="city"]').val($('#form-3 [name="city"]').val());
-  $('#form-4 [name="area"]').val($('#form-3 [name="area"]').val());
+  $('#form-4 [name="object_type"]').val($('#form-3 [name="object_type"]').val());
+  $('#form-4 [name="PurposeObject"]').val($('#form-3 [name="PurposeObject"]').val());
   $('#form-4 [name="region"]').val($('#form-3 [name="region"]').val());
+  $('#form-4 [name="address"]').val($('#form-3 [name="address"]').val());
+  $('#form-4 [name="object_area"]').val($('#form-3 [name="object_area"]').val());
+  $('#form-4 [name="LandCategory"]').val($('#form-3 [name="LandCategory"]').val());
+  $('#form-4 [name="TypeOfPermittedUse"]').val($('#form-3 [name="TypeOfPermittedUse"]').val());
   // форма2
   $('#form-4 [name="RNFI"]').val($('#form-3 [name="RNFI"]').val());
   $('#form-4 [name="RNFI_date"]').val($('#form-3 [name="RNFI_date"]').val());
@@ -159,33 +148,31 @@ $('.btnTranslate3').click(function(){
   $('#form-4 [name="owner_date"]').val($('#form-3 [name="owner_date"]').val());
   $('#form-4 [name="RecordNumberVEGRP"]').val($('#form-3 [name="RecordNumberVEGRP"]').val());
   $('#form-4 [name="DateRecordsVEGRP"]').val($('#form-3 [name="DateRecordsVEGRP"]').val());
-  $('#form-4 [name="sobstvennik_on"]').val($('#form-3 [name="sobstvennik_on"]').val());
-  $('#form-4 [name="type_pravoobladatel"]').val($('#form-3 [name="type_pravoobladatel"]').val());
-  $('#form-4 [name="date_of_registration_of_another_right"]').val($('#form-3 [name="date_of_registration_of_another_right"]').val());
+  $('#form-4 [name="TypeofRightOwner"]').val($('#form-3 [name="TypeofRightOwner"]').val());
   $('#form-4 [name="BalanceAccountNumber"]').val($('#form-3 [name="BalanceAccountNumber"]').val());
+  $('#form-4 [name="date_of_registration_of_another_right"]').val($('#form-3 [name="date_of_registration_of_another_right"]').val());
   $('#form-4 [name="inventory_number').val($('#form-3 [name="inventory_number"]').val());
   $('#form-4 [name="balance_number"]').val($('#form-3 [name="balance_number"]').val());
   $('#form-4 [name="CadastralNumber"]').val($('#form-3 [name="CadastralNumber"]').val());
+  $('#form-4 [name="Date_of_assignment_cadastral"]').val($('#form-3 [name="Date_of_assignment_cadastral"]').val());
+  $('#form-4 [name="type_pravoobladatel"]').val($('#form-3 [name="type_pravoobladatel"]').val());
   $('#form-4 [name="Initial_cost"]').val($('#form-3 [name="Initial_cost"]').val());
   $('#form-4 [name="residual_value"]').val($('#form-3 [name="residual_value"]').val());
   // 3форма
+  $('#form-4 [name="historical_Category"]').val($('#form-3 [name="historical_Category"]').val());
   $('#form-4 [name="UGROKN_number"]').val($('#form-3 [name="UGROKN_number"]').val());
 });
 
 $('.btnTranslate4').click(function(){
   $('#form-5 [name="name"]').val($('#form-4 [name="name"]').val());
   $('#form-5 [name="description"]').val($('#form-4 [name="description"]').val());
-  $('#form-5 [name="postal_code"]').val($('#form-4 [name="postal_code"]').val());
-  $('#form-5 [name="object_type_1"]').val($('#form-4 [name="object_type_1"]').val());
-  $('#form-5 [name="LandCategory"]').val($('#form-4 [name="LandCategory"]').val());
-  $('#form-5 [name="PurposeObject_1"]').val($('#form-4 [name="PurposeObject_1"]').val());
-  $('#form-5 [name="flat"]').val($('#form-4 [name="flat"]').val());
-  $('#form-5 [name="house"]').val($('#form-4 [name="house"]').val());
-  $('#form-5 [name="street"]').val($('#form-4 [name="street"]').val());
-  $('#form-5 [name="settlement"]').val($('#form-4 [name="settlement"]').val());
-  $('#form-5 [name="city"]').val($('#form-4 [name="city"]').val());
-  $('#form-5 [name="area"]').val($('#form-4 [name="area"]').val());
+  $('#form-5 [name="object_type"]').val($('#form-4 [name="object_type"]').val());
+  $('#form-5 [name="PurposeObject"]').val($('#form-4 [name="PurposeObject"]').val());
   $('#form-5 [name="region"]').val($('#form-4 [name="region"]').val());
+  $('#form-5 [name="address"]').val($('#form-4 [name="address"]').val());
+  $('#form-5 [name="object_area"]').val($('#form-4 [name="object_area"]').val());
+  $('#form-5 [name="LandCategory"]').val($('#form-4 [name="LandCategory"]').val());
+  $('#form-5 [name="TypeOfPermittedUse"]').val($('#form-4 [name="TypeOfPermittedUse"]').val());
   // форма2
   $('#form-5 [name="RNFI"]').val($('#form-4 [name="RNFI"]').val());
   $('#form-5 [name="RNFI_date"]').val($('#form-4 [name="RNFI_date"]').val());
@@ -193,22 +180,29 @@ $('.btnTranslate4').click(function(){
   $('#form-5 [name="owner_date"]').val($('#form-4 [name="owner_date"]').val());
   $('#form-5 [name="RecordNumberVEGRP"]').val($('#form-4 [name="RecordNumberVEGRP"]').val());
   $('#form-5 [name="DateRecordsVEGRP"]').val($('#form-4 [name="DateRecordsVEGRP"]').val());
-  $('#form-5 [name="sobstvennik_on"]').val($('#form-4 [name="sobstvennik_on"]').val());
-  $('#form-5 [name="type_pravoobladatel"]').val($('#form-4 [name="type_pravoobladatel"]').val());
-  $('#form-5 [name="date_of_registration_of_another_right"]').val($('#form-4 [name="date_of_registration_of_another_right"]').val());
+  $('#form-5 [name="TypeofRightOwner"]').val($('#form-4 [name="TypeofRightOwner"]').val());
   $('#form-5 [name="BalanceAccountNumber"]').val($('#form-4 [name="BalanceAccountNumber"]').val());
+  $('#form-5 [name="date_of_registration_of_another_right"]').val($('#form-4 [name="date_of_registration_of_another_right"]').val());
   $('#form-5 [name="inventory_number').val($('#form-4 [name="inventory_number"]').val());
   $('#form-5 [name="balance_number"]').val($('#form-4 [name="balance_number"]').val());
   $('#form-5 [name="CadastralNumber"]').val($('#form-4 [name="CadastralNumber"]').val());
+  $('#form-5 [name="Date_of_assignment_cadastral"]').val($('#form-4 [name="Date_of_assignment_cadastral"]').val());
+  $('#form-5 [name="type_pravoobladatel"]').val($('#form-4 [name="type_pravoobladatel"]').val());
   $('#form-5 [name="Initial_cost"]').val($('#form-4 [name="Initial_cost"]').val());
   $('#form-5 [name="residual_value"]').val($('#form-4 [name="residual_value"]').val());
   // 3форма
+  $('#form-5 [name="historical_Category"]').val($('#form-4 [name="historical_Category"]').val());
   $('#form-5 [name="UGROKN_number"]').val($('#form-4 [name="UGROKN_number"]').val());
   // 4 форма
+  $('#form-5 [name="KindEncumbrances"]').val($('#form-4 [name="KindEncumbrances"]').val());
   $('#form-5 [name="encumbrance_area"]').val($('#form-4 [name="encumbrance_area"]').val());
   $('#form-5 [name="encumbrance_cost"]').val($('#form-4 [name="encumbrance_cost"]').val());
+  $('#form-5 [name="person_encumbrance"]').val($('#form-4 [name="person_encumbrance"]').val());
   $('#form-5 [name="Other_payments"]').val($('#form-4 [name="Other_payments"]').val());
+  $('#form-5 [name="start_encumbrance"]').val($('#form-4 [name="start_encumbrance"]').val());
+  $('#form-5 [name="end_encumbrance"]').val($('#form-4 [name="end_encumbrance"]').val());
   $('#form-5 [name="start_use"]').val($('#form-4 [name="start_use"]').val());
+  $('#form-5 [name="end_use"]').val($('#form-4 [name="end_use"]').val());
   $('#form-5 [name="Payment_foruse"]').val($('#form-4 [name="Payment_foruse"]').val());
 
 

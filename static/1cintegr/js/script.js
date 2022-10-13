@@ -7,6 +7,7 @@ $('tr[data-href]').on("click", function() {
 //   console.log(select2)
 // }
 
+
 function onChangeClick(event) {
   const select2 = document.getElementById('select2')
   const objTypeSelect = document.getElementById('select1').value
@@ -125,6 +126,85 @@ function onChangeClick(event) {
 }
 
   }
+  }
+
+
+  //
+  // console.log(objTypeSelect)
+  // console.log(KindEncumbrances)
+  // console.log(select2)
+}
+
+function onChangeClick2(event) {
+  const TypeofRightOwner = document.getElementById('TypeofRightOwner').value
+  const inventory_number = document.getElementById('inventory_number')
+  const balance_number = document.getElementById('balance_number')
+  const type_pravoobladatel = document.getElementById('type_pravoobladatel')
+  const Initial_cost = document.getElementById('Initial_cost')
+  const residual_value = document.getElementById('residual_value')
+  // const TypeOfPermittedUse = document.getElementById('TypeOfPermittedUse')
+  // const residual_value = document.getElementById('residual_value')
+  // const RNFI = document.getElementById('RNFI')
+  // const RNFI_date = document.getElementById('RNFI_date')
+  const KindEncumbrances = document.getElementById('KindEncumbrances')
+  // const start_use = document.getElementById('start_use')
+  // const end_use = document.getElementById('end_use')
+  // const Payment_foruse = document.getElementById('Payment_foruse')
+  if (TypeofRightOwner === 'Аренда' || TypeofRightOwner === 'Безвозмездное пользование' ) {
+    inventory_number.disabled = true
+    balance_number.disabled = true
+    type_pravoobladatel.disabled = true
+    Initial_cost.disabled = true
+  for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000001'){
+        KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000002'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+    }else if (KindEncumbrances[i].value == '000000006'){
+           KindEncumbrances[i].disabled = false;
+           // console.log('svsdvsd')
+           // console.log(i)
+           console.log(KindEncumbrances[i].value)
+    }
+
+  }
+
+  }else{
+    inventory_number.disabled = false
+    balance_number.disabled = false
+    type_pravoobladatel.disabled = false
+    Initial_cost.disabled = false
+    residual_value.disabled = false
+  for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000001'){
+        KindEncumbrances[i].disabled = true;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000002'){
+       KindEncumbrances[i].disabled = true;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+    }else if (KindEncumbrances[i].value == '000000006'){
+           KindEncumbrances[i].disabled = true;
+           // console.log('svsdvsd')
+           // console.log(i)
+           console.log(KindEncumbrances[i].value)
+    }
+
+  }
+
   }
 
 

@@ -199,7 +199,7 @@
 {#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
 {#                            </div>#}
                                                <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя *</label>
-                                <select class="form-select" aria-label="Default select example" name="TypeofRightOwner">
+                                <select class="form-select" id="TypeofRightOwner" onchange="onChangeClick2(event)" aria-label="Default select example" name="TypeofRightOwner">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                              <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
                                              <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>

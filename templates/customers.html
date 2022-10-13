@@ -59,20 +59,20 @@
                                     id="description" name="description"
                                     type="text"/></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта *</label>
-                                <select class="form-select" aria-label="Default select example" name="object_type">
-                                    <option selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
+                                <select onchange="onChangeClick(event)" id="select1" class="form-select" aria-label="Default select example" name="object_type">
+                                    <option selected>Выберите из выпадающего списка</option>
+                                    <option id="option1value1" value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
+                                    <option id="option1value2" value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
                                     <option value="{{ data_params[0]['values'][2]['id'] }}">{{ data_params[0]['values'][2]['value'] }}</option>
                                     <option value="{{ data_params[0]['values'][3]['id'] }}">{{ data_params[0]['values'][3]['value'] }}</option>
 
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" name="PurposeObject">
+                                <select id="PurposeObject" class="form-select" aria-label="Default select example" name="PurposeObject">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
                                 </select>
                             </div>
                             <div class="col-6 mb-3">
@@ -88,10 +88,10 @@
                                     id="object_area" name="object_area"
                                     type="text"/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" name="LandCategory">
+                                <select id="select2" class="form-select" aria-label="Default select example" name="LandCategory">
                                     <option selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
+                                    <option id="option2value1" value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
+                                    <option id="option2value2" value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['value'] }}</option>
@@ -451,7 +451,7 @@
                         <div class="row">
                             <div class="col-6 mb-3 ">
                                 <label for="KindEncumbrances">Вид обременения *</label>
-                                <select class="form-select" aria-label="KindEncumbrances" name="KindEncumbrances">
+                                <select class="form-select" id="KindEncumbrances" aria-label="KindEncumbrances" name="KindEncumbrances">
                                     <option selected disabled>Выберите нужный вам вариант</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
@@ -670,7 +670,7 @@
             {#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
             {% for i in data %}
 
-                <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}">
+                <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}" role="button">
                     <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}" width="40"
                                            height="40" class="rounded-circle"><span
                             class="ms-1">{{ i.short_adress }}</span></td>
@@ -810,11 +810,10 @@
 
         </nav>
 
-
         <script src="/static/1cintegr/js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-                crossorigin="anonymous"></script>
+{#        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"#}
+{#                integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"#}
+{#                crossorigin="anonymous"></script>#}
         {#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

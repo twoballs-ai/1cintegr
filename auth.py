@@ -1,8 +1,19 @@
 from flask import Blueprint, render_template, request, redirect, url_for, Response
 import requests
 from flask import make_response
-
+import json  # подключили библиотеку для работы с json
+from pprint import pprint  # подключили Pprint для красоты выдачи текста
 auth_func = Blueprint('auth_func', __name__)
+
+
+
+
+def jsonPars():
+    with open('static/1cintegr/regions.json', 'r', encoding='utf-8') as f:
+        text = json.load(f)  # загнали все, что получилось в переменную
+        pprint(text)  # вывели результат на экран
+        return text
+
 
 # @auth_func.route('/post')
 # def post(*args, **kwargs):

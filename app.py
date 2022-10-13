@@ -12,8 +12,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 
-import auth
-from auth import auth_func, validateAccesToken, refreshAccesToken, deleteTokens
+from auth import auth_func, validateAccesToken, refreshAccesToken, deleteTokens, jsonPars
 
 
 datetime = datetime.datetime.now()
@@ -81,7 +80,7 @@ def data_params_request():
     elif response_params.status_code == 401:
         print('Not auth.')
     data_params = response_params.json()
-    print(data_params)
+    # print(data_params)
     return data_params
 
 # @app.route('/downloads', methods=['GET', 'POST'])
@@ -115,6 +114,41 @@ def data_params_request():
 # def download_file(name):
 #     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
+@app.route('/region')
+@app.route('/region/')
+def region():
+    if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        valid = validateAccesToken()
+        if valid:
+            # print('valid')
+            # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+            # # if key doesn't exist, returns None
+            # param_request = {'page': '1',
+            #                  'cat_code': id}
+            # # response = requests.get(url, verify=False)
+            # response = requests.post(url, param_request, verify=False)
+            # # page = request.args.get('page', 1 ,type=int)
+            # # response = requests.get(url, verify=False)
+            #
+            # if response.status_code == 200:
+            #     print('Success!')
+            # elif response.status_code == 401:
+            #     print('Not auth.')
+            # data = response.json()['list_PD']
+            # context = {'data': data}
+            # print(data)
+            # jsonPars()
+            return render_template('future_template.html')
+        elif not valid:
+            print('not_valid')
+            return deleteTokens()
+    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        link_send_to_refresh = {'link':'category_podved','id':id}
+        refresh = refreshAccesToken(link_send_to_refresh)
+        return refresh
+    elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+        return redirect(url_for('auth_func.login'))
+
 
 @app.route('/')
 @app.route('/index')
@@ -141,6 +175,7 @@ def podved(*args, **kwargs):
             data = response.json()['list_PD']
             context = {'data': data}
             print(data)
+            jsonPars()
             return render_template('podved.html', **context)
         elif not valid:
             print('not_valid')
@@ -153,7 +188,39 @@ def podved(*args, **kwargs):
         return redirect(url_for('auth_func.login'))
 
 
-
+@app.route('/department')
+@app.route('/department/')
+def department():
+    if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        valid = validateAccesToken()
+        if valid:
+            # print('valid')
+            # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+            # # if key doesn't exist, returns None
+            # param_request = {'page': '1',
+            #                  'cat_code': id}
+            # # response = requests.get(url, verify=False)
+            # response = requests.post(url, param_request, verify=False)
+            # # page = request.args.get('page', 1 ,type=int)
+            # # response = requests.get(url, verify=False)
+            #
+            # if response.status_code == 200:
+            #     print('Success!')
+            # elif response.status_code == 401:
+            #     print('Not auth.')
+            # data = response.json()['list_PD']
+            # context = {'data': data}
+            # print(data)
+            return render_template('future_template.html')
+        elif not valid:
+            print('not_valid')
+            return deleteTokens()
+    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        link_send_to_refresh = {'link':'category_podved','id':id}
+        refresh = refreshAccesToken(link_send_to_refresh)
+        return refresh
+    elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+        return redirect(url_for('auth_func.login'))
 
 @app.route('/category_podved/<id>')
 @app.route('/category_podved/<id>/')
@@ -893,7 +960,39 @@ def search():
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
 
-
+@app.route('/reports')
+@app.route('/reports/')
+def reports():
+    if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        valid = validateAccesToken()
+        if valid:
+            # print('valid')
+            # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+            # # if key doesn't exist, returns None
+            # param_request = {'page': '1',
+            #                  'cat_code': id}
+            # # response = requests.get(url, verify=False)
+            # response = requests.post(url, param_request, verify=False)
+            # # page = request.args.get('page', 1 ,type=int)
+            # # response = requests.get(url, verify=False)
+            #
+            # if response.status_code == 200:
+            #     print('Success!')
+            # elif response.status_code == 401:
+            #     print('Not auth.')
+            # data = response.json()['list_PD']
+            # context = {'data': data}
+            # print(data)
+            return render_template('future_template.html')
+        elif not valid:
+            print('not_valid')
+            return deleteTokens()
+    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+        link_send_to_refresh = {'link':'category_podved','id':id}
+        refresh = refreshAccesToken(link_send_to_refresh)
+        return refresh
+    elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
+        return redirect(url_for('auth_func.login'))
 
 @app.route('/about')
 @app.route('/about/')
@@ -969,4 +1068,5 @@ def pageNotFound(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='10.0.0.13')
+    # app.run(debug=True)

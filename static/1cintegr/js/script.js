@@ -2,6 +2,139 @@ $('tr[data-href]').on("click", function() {
     document.location = $(this).data('href');
 });
 
+// function onSecelectClick() {
+//   const select2 = document.getElementById('select2')
+//   console.log(select2)
+// }
+
+function onChangeClick(event) {
+  const select2 = document.getElementById('select2')
+  const objTypeSelect = document.getElementById('select1').value
+  const PurposeObject = document.getElementById('PurposeObject')
+  const TypeOfPermittedUse = document.getElementById('TypeOfPermittedUse')
+  const residual_value = document.getElementById('residual_value')
+  const RNFI = document.getElementById('RNFI')
+  const RNFI_date = document.getElementById('RNFI_date')
+  const KindEncumbrances = document.getElementById('KindEncumbrances')
+  const start_use = document.getElementById('start_use')
+  const end_use = document.getElementById('end_use')
+  const Payment_foruse = document.getElementById('Payment_foruse')
+
+
+  if (objTypeSelect == '000000001') {
+    select2.disabled = true
+    PurposeObject.disabled = false
+    TypeOfPermittedUse.disabled = true
+    residual_value.disabled = false
+    RNFI.disabled = false
+    RNFI_date.disabled = false
+    start_use.disabled = true
+    end_use.disabled = true
+    Payment_foruse.disabled = true
+    for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000003'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000004'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+}
+
+  }
+  }else if (objTypeSelect == '000000004') {
+    select2.disabled = true
+    PurposeObject.disabled = false
+    TypeOfPermittedUse.disabled = true
+    residual_value.disabled = false
+    RNFI.disabled = false
+    RNFI_date.disabled = false
+    start_use.disabled = true
+    end_use.disabled = true
+    Payment_foruse.disabled = true
+    for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000003'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000004'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+}
+
+  }
+  }else if (objTypeSelect == '000000003') {
+    select2.disabled = true
+    PurposeObject.disabled = false
+    TypeOfPermittedUse.disabled = true
+    residual_value.disabled = false
+    RNFI.disabled = false
+    RNFI_date.disabled = false
+    start_use.disabled = true
+    end_use.disabled = true
+    Payment_foruse.disabled = true
+        for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000003'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000004'){
+       KindEncumbrances[i].disabled = false;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+}
+
+  }
+  }else{
+    select2.disabled = false
+    PurposeObject.disabled = true
+    TypeOfPermittedUse.disabled = false
+    residual_value.disabled = true
+    RNFI.disabled = true
+    RNFI_date.disabled = true
+    start_use.disabled = false
+    end_use.disabled = false
+    Payment_foruse.disabled = false
+    for (var i = 0; i < KindEncumbrances.length; i++) {
+     console.log(KindEncumbrances[i].value)
+    if (KindEncumbrances[i].value == '000000003'){
+       KindEncumbrances[i].disabled = true;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+
+    }else if (KindEncumbrances[i].value == '000000004'){
+       KindEncumbrances[i].disabled = true;
+       // console.log('svsdvsd')
+       // console.log(i)
+       console.log(KindEncumbrances[i].value)
+}
+
+  }
+  }
+
+
+  //
+  // console.log(objTypeSelect)
+  // console.log(KindEncumbrances)
+  // console.log(select2)
+}
+
+// дадата интерфейс
 var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
 // Замените на свой API-ключ
 
@@ -250,3 +383,4 @@ Fancybox.bind('[data-fancybox="gallery"]', {
     display: [{ id: "counter", position: "center" }, "close"],
   },
 });
+

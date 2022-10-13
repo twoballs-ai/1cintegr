@@ -46,8 +46,10 @@
                     <form method="POST" id="form-1">
                         <div class="row">
                             <div class="col-6 mb-3"><label for="name">Наименование:</label><input class="form-control"
-                                                                                                   id="name" name="name"
-                                                                                                   type="text" value="{{ data.name }}"/></div>
+                                                                                                  id="name" name="name"
+                                                                                                  type="text"
+                                                                                                  value="{{ data.name }}"/>
+                            </div>
                             <div class="col-6 mb-3"><label for="description">Описание:</label><input
                                     class="form-control"
                                     id="description" name="description"
@@ -62,18 +64,21 @@
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально):</label>
-                                <select class="form-select" aria-label="Default select example" name="{{ data.PurposeObject }}">
+                                <select class="form-select" aria-label="Default select example"
+                                        name="{{ data.PurposeObject }}">
                                     <option selected disabled>Выберите из выпадающего списка</option>
-                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
                                 </select>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="region">Регион:</label><input class="form-control" name="region"
-                                                                                type="text" id="region" value="{{ data.region }}">
+                                                                          type="text" id="region"
+                                                                          value="{{ data.region }}">
                             </div>
                             <div class="col-6 mb-3"><label for="address">Адрес:</label>
-                                <input class="form-control" id="address" name="address" type="text" value="{{ data.address }}"/>
+                                <input class="form-control" id="address" name="address" type="text"
+                                       value="{{ data.address }}"/>
                                 <p id="address-full"></p>
                             </div>
                             <div class="col-6 mb-3"><label for="object_area">Площадь объекта:</label><input
@@ -92,21 +97,22 @@
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>
 
 
-
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="TypeOfPermittedUse">Вид разрешенного
                                 использования(опционально):</label><input class="form-control"
-                                                                         id="TypeOfPermittedUse"
-                                                                         name="TypeOfPermittedUse"
-                                                                         type="text" value="{{ data.TypeOfPermittedUse }}"/></div>
+                                                                          id="TypeOfPermittedUse"
+                                                                          name="TypeOfPermittedUse"
+                                                                          type="text"
+                                                                          value="{{ data.TypeOfPermittedUse }}"/></div>
                         </div>
                     </form>
                 </div>
-          <div class="col-12">
-                    <button type="button" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
-                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
-                </button>
+                <div class="col-12">
+                    <button type="button" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2"
+                            data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                        Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
+                    </button>
                 </div>
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Продолжить</button>#}
@@ -164,47 +170,48 @@
                             <div class="col-6 mb-4">
 
                                 <label for="Owner">Собственник ОН *</label>
-{#                                <p>{{ data.RNFI }}</p>#}
+                                {#                                <p>{{ data.RNFI }}</p>#}
                                 <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI">
-{#                                <p>{{ data.RNFI_date }}</p>#}
-                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control" id="RNFI_date"
+                                {#                                <p>{{ data.RNFI_date }}</p>#}
+                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control"
+                                       id="RNFI_date"
                                        name="RNFI_date">
-{#                                <p>{{ data.owner_nomer }}</p>#}
+                                {#                                <p>{{ data.owner_nomer }}</p>#}
                                 <input type="text" placeholder="Номер регистрации права собственности РФ"
                                        class="form-control" id="owner_nomer" name="owner_nomer">
-{#                                <p>{{ data.owner_date }}</p>#}
+                                {#                                <p>{{ data.owner_date }}</p>#}
                                 <input type="text" placeholder="Дата регистрации права собственности РФ"
                                        class="form-control" id="owner_date" name="owner_date">
-{#                                <p>{{ data.RecordNumberVEGRP }}</p>#}
+                                {#                                <p>{{ data.RecordNumberVEGRP }}</p>#}
                                 <input type="text" placeholder="Реестровй №" class="form-control"
                                        id="RecordNumberVEGRP" name="RecordNumberVEGRP">
-{#                                <p>{{ data.DateRecordsVEGRP }}</p>#}
+                                {#                                <p>{{ data.DateRecordsVEGRP }}</p>#}
                                 <input type="text" placeholder="Реестровая дата" class="form-control"
                                        id="DateRecordsVEGRP" name="DateRecordsVEGRP">
                             </div>
-{#                            <div class="col-6 mb-4">#}
-{#                                <label for="pravoobladatel">Правообладатель *</label>#}
-{#                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on1"#}
-{#                                       name="sobstvennik_on">#}
-{#                                <input type="text" placeholder="Наименование документа" class="form-control"#}
-{#                                       id="sobstvennik_on2" name="sobstvennik_on">#}
-{#                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control"#}
-{#                                       id="sobstvennik_on3" name="sobstvennik_on">#}
-{#                                <input type="text" placeholder="Электронный образ" class="form-control"#}
-{#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
-{#                            </div>#}
-                                               <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
+                            {#                            <div class="col-6 mb-4">#}
+                            {#                                <label for="pravoobladatel">Правообладатель *</label>#}
+                            {#                                <input type="text" placeholder="Вид документа" class="form-control" id="sobstvennik_on1"#}
+                            {#                                       name="sobstvennik_on">#}
+                            {#                                <input type="text" placeholder="Наименование документа" class="form-control"#}
+                            {#                                       id="sobstvennik_on2" name="sobstvennik_on">#}
+                            {#                                <input type="text" placeholder="Серия/номер/дата/кем выдан" class="form-control"#}
+                            {#                                       id="sobstvennik_on3" name="sobstvennik_on">#}
+                            {#                                <input type="text" placeholder="Электронный образ" class="form-control"#}
+                            {#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
+                            {#                            </div>#}
+                            <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
                                 <select class="form-select" aria-label="Default select example" name="TypeofRightOwner">
                                     <option selected disabled>Выберите из выпадающего списка</option>
-                                            <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>
-                                             <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>
-                                 </select>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>
+                                </select>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="BalanceAccountNumber">Номер регистрации иного права:</label>
@@ -214,23 +221,29 @@
                             <div class="col-6 mb-3 ">
                                 <label for="date_of_registration_of_another_right">Дата регистрации иного права:</label>
                                 <input type="text" class="form-control" id="date_of_registration_of_another_right"
-                                       name="date_of_registration_of_another_right" value="{{ data.date_of_registration_of_another_right }}">
+                                       name="date_of_registration_of_another_right"
+                                       value="{{ data.date_of_registration_of_another_right }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="inventory_number">Инвентарный номер:</label>
-                                <input type="text" class="form-control" id="inventory_number" name="inventory_number" value="{{ data.inventory_number }}">
+                                <input type="text" class="form-control" id="inventory_number" name="inventory_number"
+                                       value="{{ data.inventory_number }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="balance_number">Балансовый номер счета:</label>
-                                <input type="text" class="form-control" id="balance_number" name="balance_number" value="{{ data.balance_number }}">
+                                <input type="text" class="form-control" id="balance_number" name="balance_number"
+                                       value="{{ data.balance_number }}">
                             </div>
-                               <div class="col-6 mb-3 ">
+                            <div class="col-6 mb-3 ">
                                 <label for="CadastralNumber">Кадастровый номер:</label>
-                                <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber" value="{{ data.CadastralNumber }}">
+                                <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber"
+                                       value="{{ data.CadastralNumber }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Date_of_assignment_cadastral">Дата присвоения:</label>
-                                <input type="text" class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" value="{{ data.Date_of_assignment_cadastral }}">
+                                <input type="text" class="form-control" id="Date_of_assignment_cadastral"
+                                       name="Date_of_assignment_cadastral"
+                                       value="{{ data.Date_of_assignment_cadastral }}">
                             </div>
 
                             <div class="col-6 mb-3 ">
@@ -240,23 +253,27 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Initial_cost">Первоначальная стоимость:</label>
-                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost" value="{{ data.Initial_cost }}">
+                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost"
+                                       value="{{ data.Initial_cost }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="residual_value">Остаточная стоимость:</label>
-                                <input type="text" class="form-control" id="residual_value" name="residual_value" value="{{ data.residual_value }}">
+                                <input type="text" class="form-control" id="residual_value" name="residual_value"
+                                       value="{{ data.residual_value }}">
                             </div>
                         </div>
 
                     </form>
                 </div>
-                                <div class="col-12">
-                    <button type="button" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
-                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
-                </button>
-                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                <div class="col-12">
+                    <button type="button" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2"
+                            data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                        Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2"
+                            data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                         <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 1 шаг
-                </button>
+                    </button>
                 </div>
 
                 {#      <div class="modal-footer">#}
@@ -303,7 +320,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="form-3" enctype="multipart/form-data">
-                         <input class="form-control" id="name" name="name" type="hidden"/>
+                        <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
                         <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
@@ -327,12 +344,14 @@
                         <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
                         <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
                         <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
-                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral"
+                               name="Date_of_assignment_cadastral" type="hidden"/>
                         <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
                         <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
                         <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
                         <div class="row">
-                                   <div class="col-6 mb-3"><label for="historical_Category">Категория объекта историко-культурного значения:</label>
+                            <div class="col-6 mb-3"><label for="historical_Category">Категория объекта
+                                историко-культурного значения:</label>
                                 <select class="form-select" aria-label="historical_Category" name="historical_Category">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>
@@ -343,19 +362,22 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="UGROKN_number">Номер ЕГРОКН: </label>
-                                <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number" value="{{ data.UGROKN_number }}">
+                                <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number"
+                                       value="{{ data.UGROKN_number }}">
                             </div>
                         </div>
 
                     </form>
                 </div>
-                                <div class="col-12">
-                    <button type="button" class="btn btnTranslate3 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
-                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
-                </button>
-                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                <div class="col-12">
+                    <button type="button" class="btn btnTranslate3 btn-secondary btn-icon float-end me-4 mb-2"
+                            data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">
+                        Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2"
+                            data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
                         <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 2 шаг
-                </button>
+                    </button>
                 </div>
 
                 {#      <div class="modal-footer">#}
@@ -401,7 +423,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="form-4" enctype="multipart/form-data">
- <input class="form-control" id="name" name="name" type="hidden"/>
+                        <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
                         <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
@@ -425,7 +447,8 @@
                         <input class="form-control" id="inventory_number" name="inventory_number" type="hidden"/>
                         <input class="form-control" id="balance_number" name="balance_number" type="hidden"/>
                         <input class="form-control" id="CadastralNumber" name="CadastralNumber" type="hidden"/>
-                        <input class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" type="hidden"/>
+                        <input class="form-control" id="Date_of_assignment_cadastral"
+                               name="Date_of_assignment_cadastral" type="hidden"/>
                         <input class="form-control" id="type_pravoobladatel" name="type_pravoobladatel" type="hidden"/>
                         <input class="form-control" id="Initial_cost" name="Initial_cost" type="hidden"/>
                         <input class="form-control" id="residual_value" name="residual_value" type="hidden"/>
@@ -442,15 +465,17 @@
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['values'] }}</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_area">Площадь обременения:</label>
-                                <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area" value="{{ data.encumbrance_area }}">
+                                <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area"
+                                       value="{{ data.encumbrance_area }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_cost">Стоимость обременения:</label>
-                                <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost" value="{{ data.encumbrance_cost }}">
+                                <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost"
+                                       value="{{ data.encumbrance_cost }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="person_encumbrance">Лицо в пользу которого установлено обременение:</label>
@@ -459,49 +484,56 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Other_payments">Прочие платежи:</label>
-                                <input type="text" class="form-control" id="Other_payments" name="Other_payments" value="{{ data.Other_payments }}">
+                                <input type="text" class="form-control" id="Other_payments" name="Other_payments"
+                                       value="{{ data.Other_payments }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_encumbrance">Срок обременения (дата начала):</label>
-                                <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance" value="{{ data.start_encumbrance }}">
+                                <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance"
+                                       value="{{ data.start_encumbrance }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_encumbrance">Срок обременения (дата окончания):</label>
-                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance" value="{{ data.end_encumbrance }}">
+                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance"
+                                       value="{{ data.end_encumbrance }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_use">Срок Пользования (дата начала):</label>
                                 <input type="text"
-                                       class="form-control" id="start_use" name="start_use" value="{{ data.start_use }}">
-                            </div><div class="col-6 mb-3 ">
+                                       class="form-control" id="start_use" name="start_use"
+                                       value="{{ data.start_use }}">
+                            </div>
+                            <div class="col-6 mb-3 ">
                                 <label for="end_use">Срок Пользования (дата конца):</label>
                                 <input type="text"
                                        class="form-control" id="end_use" name="end_use" value="{{ data.end_use }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком:</label>
-                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse" value="{{ data.Payment_foruse }} ">
+                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse"
+                                       value="{{ data.Payment_foruse }} ">
                             </div>
 
                         </div>
-                                                                   <div class="col-12">
-                    <button id="save" type="submit" class="btn btn-secondary btn-icon float-end me-4 mb-1">
-                    сохранить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
-                </button>
-                                            <button type="button" class="btn btn-secondary btn-icon ms-4 mb-1" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
-                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг
-                </button>
-                </div>
+                        <div class="col-12">
+                            <button id="save" type="submit" class="btn btn-secondary btn-icon float-end me-4 mb-1">
+                                сохранить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-icon ms-4 mb-1"
+                                    data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                                <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг
+                            </button>
+                        </div>
                     </form>
                 </div>
-{#                              <div class="col-12">#}
-{#                    <button type="button" class="btn btnTranslate4 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">#}
-{#                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>#}
-{#                </button>#}
-{#                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">#}
-{#                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг#}
-{#                </button>#}
-{#                </div>#}
+                {#                              <div class="col-12">#}
+                {#                    <button type="button" class="btn btnTranslate4 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle5" data-bs-toggle="modal">#}
+                {#                    Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>#}
+                {#                </button>#}
+                {#                    <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">#}
+                {#                        <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 3 шаг#}
+                {#                </button>#}
+                {#                </div>#}
 
                 {#      <div class="modal-footer">#}
                 {#        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться на 1 шаг</button>#}
@@ -523,63 +555,82 @@
             </li>
             <li class="list-group-item border-0 ">
 
-                    <div class="row m-3 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-light rounded-4">
-                        <div class="col-5">
-                            {% if file %}
-                            
-                            {% endif %} 
-                            <img src="{{ url_for('site.static', filename = data.foto_main.fotoAdr ) }}" width="300"
+                <div class="row m-3 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-light rounded-4">
+                    <div class="col-5">
+                        {% if file %}
+
+                        {% endif %}
+                        <img src="{{ url_for('site.static', filename = data.foto_main.fotoAdr ) }}" width="300"
                              height="300" class="border border-top-0 border-start-0 border-end-0 bg-body rounded-4">
-                        </div>
-                        <div class="col-5"><h5>Описание:</h5> {{ data.description }}</div>
                     </div>
+                    <div class="col-5"><h5>Описание:</h5> {{ data.description }}</div>
+                </div>
 
             </li>
-{#            <nav>#}
-{#                <div class="nav nav-tabs" id="nav-tab" role="tablist">#}
-{#                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"#}
-{#                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения#}
-{#                    </button>#}
-{#                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"#}
-{#                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Документы#}
-{#                    </button>#}
-{#                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"#}
-{#                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Дополнительные#}
-{#                        сведения#}
-{#                    </button>#}
-{#                </div>#}
-{#            </nav>#}
+            {#            <nav>#}
+            {#                <div class="nav nav-tabs" id="nav-tab" role="tablist">#}
+            {#                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"#}
+            {#                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения#}
+            {#                    </button>#}
+            {#                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"#}
+            {#                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Документы#}
+            {#                    </button>#}
+            {#                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"#}
+            {#                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Дополнительные#}
+            {#                        сведения#}
+            {#                    </button>#}
+            {#                </div>#}
+            {#            </nav>#}
             <div class="tab-content mb-2" id="nav-tabContent">
                 <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                      tabindex="0">
-<div class="row justify-content-md-center mx-0">
+                    <div class="row justify-content-md-center mx-0">
 
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Категория объекта историко-культурного значения:</p>{{ data.historical_Category }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Регион:</p>{{ data.region }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Адрес:</p> {{ data.address }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Кадастровый номер/дата присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Лицо в пользу которого установлено обременение:</p> {{ data.person_encumbrance }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>
-                    <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4"><p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Категория объекта историко-культурного
+                                значения:</p>{{ data.historical_Category }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Регион:</p>{{ data.region }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Адрес:</p> {{ data.address }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Кадастровый номер/дата
+                                присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Лицо в пользу которого установлено
+                                обременение:</p> {{ data.person_encumbrance }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}
+                        </div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>
+                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
+                            <p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>
 
-</div>
-{#                    <li>#}
-                        {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
-{#                        <div class="col-4 m-2">#}
-{#                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"#}
-{#                                    data-bs-target="#staticBackdrop">Редактировать#}
-{#                            </button>#}
-{#                        </div>#}
-{##}
-{#                    </li>#}
+                    </div>
+                    {#                    <li>#}
+                    {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
+                    {#                        <div class="col-4 m-2">#}
+                    {#                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"#}
+                    {#                                    data-bs-target="#staticBackdrop">Редактировать#}
+                    {#                            </button>#}
+                    {#                        </div>#}
+                    {##}
+                    {#                    </li>#}
                     {#          <input type="submit" value="Submit">#}
 
                 </div>
@@ -634,48 +685,42 @@
             </div>
 
 
-
-
-
-{#            <div class="row row-cols-1 row-cols-md-3 g-3">#}
-{#                {% for i in data.foto_list %}#}
-{##}
-{#                    <div class="col">#}
-{#                        <div class="card">#}
-{#                            <img src="{{ url_for('site.static', filename = i.fotoAdr ) }}" class="card-img-top">#}
-{#                            <div class="card-body">#}
-{#                                <h5 class="card-title">{{ data.name }}</h5>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{##}
-{#                {% endfor %}#}
-{#            </div>#}
+            {#            <div class="row row-cols-1 row-cols-md-3 g-3">#}
+            {#                {% for i in data.foto_list %}#}
+            {##}
+            {#                    <div class="col">#}
+            {#                        <div class="card">#}
+            {#                            <img src="{{ url_for('site.static', filename = i.fotoAdr ) }}" class="card-img-top">#}
+            {#                            <div class="card-body">#}
+            {#                                <h5 class="card-title">{{ data.name }}</h5>#}
+            {#                            </div>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {##}
+            {##}
+            {#                {% endfor %}#}
+            {#            </div>#}
 
 
         </ul>
 
-<h1 class="mt-12 mb-8 px-6 text-center text-lg md:text-2xl font-semibold">
-  Галерея
-</h1>
+        <h1 class="mt-12 mb-8 px-6 text-center text-lg md:text-2xl font-semibold">
+            Галерея
+        </h1>
 
-<div class="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
-                {% for i in data.foto_list %}
+        <div class="flex flex-wrap gap-5 justify-center max-w-5xl mx-auto px-6">
+            {% for i in data.foto_list %}
 
-  <a data-fancybox="gallery" href="{{ url_for('site.static', filename = i.fotoAdr ) }}">
-    <img width="250" src="{{ url_for('site.static', filename = i.fotoAdr ) }}" />
-  </a>
-                {% endfor %}
-</div>
+                <a data-fancybox="gallery" href="{{ url_for('site.static', filename = i.fotoAdr ) }}">
+                    <img width="250" src="{{ url_for('site.static', filename = i.fotoAdr ) }}"/>
+                </a>
+            {% endfor %}
+        </div>
 
 
     </div>
 
-     <script src="/static/1cintegr/js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-                crossorigin="anonymous"></script>
+      <script src="/static/1cintegr/js/script.js"></script>
         {#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -685,4 +730,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+
+
 {% endblock %}

@@ -55,7 +55,7 @@
                                     id="description" name="description"
                                     type="text" value="{{ data.description }}"/></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта:</label>
-                                <select class="form-select" aria-label="Default select example" name="object_type">
+                                <select onchange="onChangeClick(event)" id="select1" class="form-select" aria-label="Default select example" name="object_type">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
@@ -64,7 +64,7 @@
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально):</label>
-                                <select class="form-select" aria-label="Default select example"
+                                <select class="form-select" id="PurposeObject" aria-label="Default select example"
                                         name="{{ data.PurposeObject }}">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
@@ -86,7 +86,7 @@
                                     id="object_area" name="object_area"
                                     type="text" value="{{ data.object_area }}"/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
-                                <select class="form-select" aria-label="Default select example" name="LandCategory">
+                                <select class="form-select"  id="select2" aria-label="Default select example" name="LandCategory">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
@@ -201,7 +201,7 @@
                             {#                                       id="sobstvennik_on4" name="sobstvennik_on">#}
                             {#                            </div>#}
                             <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
-                                <select class="form-select" aria-label="Default select example" name="TypeofRightOwner">
+                                <select class="form-select" id="TypeofRightOwner" onchange="onChangeClick2(event)" aria-label="Default select example" name="TypeofRightOwner">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
@@ -458,7 +458,7 @@
                         <div class="row">
                             <div class="col-6 mb-3 ">
                                 <label for="KindEncumbrances">Вид обременения:</label>
-                                <select class="form-select" aria-label="KindEncumbrances" name="KindEncumbrances">
+                                <select class="form-select" id="KindEncumbrances" aria-label="KindEncumbrances" name="KindEncumbrances">
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['values'] }}</option>

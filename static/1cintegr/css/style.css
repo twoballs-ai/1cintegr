@@ -406,3 +406,17 @@ a[data-fancybox] img {
   background-repeat: no-repeat;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24.38"><path d="M35.46 3.81A4.58 4.36 0 0032.24.75C29.37 0 17.93 0 17.93 0S6.48 0 3.63.72c-1.54.4-2.8 1.6-3.23 3.1-.75 2.72-.75 8.37-.75 8.37s0 5.68.75 8.37a4.58 4.36 0 003.22 3.07c2.9.75 14.3.75 14.3.75s11.45 0 14.32-.72a4.58 4.36 0 003.22-3.07c.75-2.72.75-8.37.75-8.37s.03-5.68-.75-8.4zm0 0" fill="white"/><path d="M14.29 17.4l9.51-5.21-9.51-5.22zm0 0" fill="black"/></svg>');
 }
+
+.dropdown-menu li {
+    position: relative;
+}
+.dropdown-menu .submenu {
+    display: none;
+    position: absolute;
+    /*left: 100%;*/
+    /*top: -7px;*/
+}
+
+.dropdown-menu>li:hover>.submenu{
+    display: block;
+}

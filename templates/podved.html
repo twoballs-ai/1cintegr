@@ -16,7 +16,7 @@
                 {% for i in data %}
 
                     {#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
-                    <tr data-href="{{ url_for("cardhouse", id=i.code) }}">
+                    <tr data-href="{{ url_for("cardhouse", id=i.code) }}" role="button">
                         <td class="noselect">{{ i.name }}</td>
                         <td class="text-secondary">>>></td>
                         {#          <img src="{{url_for('site.static', filename = data)}}">#}

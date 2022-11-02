@@ -560,13 +560,69 @@
                         {% if file %}
 
                         {% endif %}
+                    <div class="container_button">
+                        <style>
+.container_button {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.container_button img {
+    width: 100%;
+    height: auto;
+}
+
+.container_button #btn {
+    position: absolute;
+    top: 85%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(85, 85, 85, 0.6);
+    color: white;
+    font-size: 14px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.container_button #btn:hover {
+    background-color: black;
+}.container_button #btn1 {
+    position: absolute;
+    top: 85%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(85, 85, 85, 0.6);
+    color: white;
+    font-size: 14px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.container_button #btn1:hover {
+    background-color: black;
+}
+</style>
                         <img src="{{ url_for('site.static', filename = data.foto_main.fotoAdr ) }}" width="300"
                              height="300" class="border border-top-0 border-start-0 border-end-0 bg-body rounded-4">
+                        <button type="button" id="btn" class="btn btn-primary">Изменить фотографию</button>
+                        <button type="button" id="btn1" class="btn btn-primary">Удалить</button>
+                    </div>
                     </div>
                     <div class="col-5"><h5>Описание:</h5> {{ data.description }}</div>
+
                 </div>
 
             </li>
+
             {#            <nav>#}
             {#                <div class="nav nav-tabs" id="nav-tab" role="tablist">#}
             {#                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"#}
@@ -581,9 +637,9 @@
             {#                    </button>#}
             {#                </div>#}
             {#            </nav>#}
-            <div class="tab-content mb-2" id="nav-tabContent">
-                <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
-                     tabindex="0">
+{#            <div class="tab-content mb-2" id="nav-tabContent">#}
+{#                <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"#}
+{#                     tabindex="0">#}
                     <div class="row justify-content-md-center mx-0">
 
                         <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
@@ -632,57 +688,57 @@
                     {##}
                     {#                    </li>#}
                     {#          <input type="submit" value="Submit">#}
-
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                     tabindex="0">
-                    <div class="row">
-                        <li class="col-7 m-2 py-2 border-bottom border-1">План БТИ *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт технического состояния *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт осмотра *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на земельный участок *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на здание *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">Охранное обязательство *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт приема передачи *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-                        <li class="col-7 m-2 py-2 border-bottom border-1">Договор *</li>
-                        <div class="col-4">
-                            <button type="button" class="btn btn-primary">Загрузить</button>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
-                     tabindex="0">
-                    <li>
+{##}
+{#                </div>#}
+{#                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"#}
+{#                     tabindex="0">#}
+{#                    <div class="row">#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">План БТИ *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт технического состояния *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт осмотра *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на земельный участок *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на здание *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">Охранное обязательство *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт приема передачи *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{#                        <li class="col-7 m-2 py-2 border-bottom border-1">Договор *</li>#}
+{#                        <div class="col-4">#}
+{#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"#}
+{#                     tabindex="0">#}
+{#                    <li>#}
                         {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
-                        <div class="col-4 m-2">
-                        </div>
-
-                    </li>
-                </div>
-            </div>
+{#                        <div class="col-4 m-2">#}
+{#                        </div>#}
+{##}
+{#                    </li>#}
+{#                </div>#}
+{#            </div>#}
 
 
             {#            <div class="row row-cols-1 row-cols-md-3 g-3">#}

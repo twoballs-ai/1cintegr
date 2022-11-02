@@ -75,6 +75,44 @@
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
                                 </select>
                             </div>
+                                                        <div class="col-6 mb-3"><label for="PurposeObject">Состояние объекта (опционально) </label>
+                                <select id="PurposeObject" class="form-select" aria-label="Default select example" name="PurposeObject">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Аварийное</option>
+                                    <option value="2">Неудовлетворительное</option>
+                                    <option value="2">Удовлетворительное/option>
+                                    <option value="2">Хорошее</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mb-3"><label for="PurposeObject">Технический этаж</label>
+                                <select id="PurposeObject" class="form-select" aria-label="Default select example" name="PurposeObject">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Подвал</option>
+                                    <option value="2">Подземный этаж</option>
+
+                                </select>
+                            </div>
+                            <div class="col-3 mb-3"><label for="PurposeObject">Лифт</label>
+                                <select id="PurposeObject" class="form-select" aria-label="Default select example" name="PurposeObject">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Да</option>
+                                    <option value="2">Нет</option>
+
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="PurposeObject">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции</label>
+                                <input class="form-control" id="name" name="name" type="text"/>
+                            </div>
+                                                        <div class="col-6 mb-3">
+                                <label for="PurposeObject">Охранное обязательство</label>
+                                <input class="form-control" id="name" name="name" type="text"/>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="formFile" >Скан документа:</label>
+                                <input class="form-control" type="file" id="formFile">
+
+                            </div>
                             <div class="col-6 mb-3">
                                 <label for="region">Регион:</label><input class="form-control" name="region"
                                                                                 type="text" id="region">

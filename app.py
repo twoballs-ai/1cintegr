@@ -142,12 +142,17 @@ def region():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 
 @app.route('/')
@@ -180,13 +185,17 @@ def podved(*args, **kwargs):
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'podved'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
-
+    else:
+        return deleteTokens()
 
 @app.route('/department')
 @app.route('/department/')
@@ -215,12 +224,17 @@ def department():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 @app.route('/category_podved/<id>')
 @app.route('/category_podved/<id>/')
@@ -249,12 +263,17 @@ def category_podved(id):
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 
 @app.route('/category')
@@ -279,12 +298,17 @@ def category():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 
 # @app.route('/category_objects/<id>')
@@ -333,12 +357,17 @@ def cardhouse(id):
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'cardhouse','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 
 
@@ -527,6 +556,8 @@ def cardhousedetail(id):
         return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 # @app.route('/addcardhousedetail', methods=['GET', 'POST'])
 # @app.route('/addcardhousedetail/', methods=['GET', 'POST'])
 # def addcardhousedetail():
@@ -941,6 +972,9 @@ def customers(id):
         return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
+
 
 @app.route('/search')
 @app.route('/search/')
@@ -953,12 +987,17 @@ def search():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'search'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 @app.route('/reports')
 @app.route('/reports/')
@@ -983,16 +1022,21 @@ def reports():
             # data = response.json()['list_PD']
             # context = {'data': data}
             # print(data)
-            return render_template('future_template.html')
+            return render_template('reports.html')
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 @app.route('/about')
 @app.route('/about/')
@@ -1005,7 +1049,7 @@ def about():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'about'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
@@ -1025,12 +1069,17 @@ def contacts():
         elif not valid:
             print('not_valid')
             return deleteTokens()
-    elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'contacts'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
+    elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
+        print('шляпа2')
+        return deleteTokens()
     elif not request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return redirect(url_for('auth_func.login'))
+    else:
+        return deleteTokens()
 
 
 
@@ -1059,7 +1108,7 @@ def pageNotFound(error):
         # elif not valid:
         #     print('not_valid')
         #     return deleteTokens()
-    # elif not request.cookies.get('access_token') and request.cookies.get('refresh_token'):
+    # elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
     #     link_send_to_refresh = {'link':'pageNotFound'}
     #     refresh = refreshAccesToken(link_send_to_refresh)
     #     return refresh

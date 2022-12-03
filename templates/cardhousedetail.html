@@ -71,8 +71,46 @@
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
                                 </select>
                             </div>
+                                               <div class="col-6 mb-3"><label for="Condition">Состояние объекта (опционально) </label>
+                                <select id="Condition" class="form-select" aria-label="Default select example" name="Condition">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Аварийное</option>
+                                    <option value="2">Неудовлетворительное</option>
+                                    <option value="2">Удовлетворительное/option>
+                                    <option value="2">Хорошее</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mb-3"><label for="technicalFloor">Технический этаж</label>
+                                <select id="technicalFloor" class="form-select" aria-label="Default select example" name="technicalFloor">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Подвал</option>
+                                    <option value="2">Подземный этаж</option>
+
+                                </select>
+                            </div>
+                            <div class="col-3 mb-3"><label for="Lift">Лифт</label>
+                                <select id="Lift" class="form-select" aria-label="Default select example" name="Lift">
+                                    <option selected disabled>Выберите из выпадающего списка</option>
+                                    <option value="1">Да</option>
+                                    <option value="2">Нет</option>
+
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции</label>
+                                <input class="form-control" id="remontDate" name="remontDate" type="text"/>
+                            </div>
+                                                        <div class="col-6 mb-3">
+                                <label for="PurposeObject">Охранное обязательство</label>
+                                <input class="form-control" id="name" name="" type="text"/>
+                            </div>
                             <div class="col-6 mb-3">
-                                <label for="region">Регион:</label><input class="form-control" name="region"
+                                <label for="formFile" >Скан документа:</label>
+                                <input class="form-control" type="file" id="">
+
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="region">Регион:</label><input class="form-control" name=""
                                                                           type="text" id="region"
                                                                           value="{{ data.region }}">
                             </div>
@@ -161,6 +199,12 @@
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
                         <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="Condition" name="Condition" type="hidden"/>
+                        <input class="form-control" id="technicalFloor" name="technicalFloor" type="hidden"/>
+                        <input class="form-control" id="Lift" name="Lift" type="hidden"/>
+                        <input class="form-control" id="remontDate" name="remontDate" type="hidden"/>
+                        <input class="form-control" id="SecurityObligation" name="SecurityObligation" type="hidden"/>
+                        <input class="form-control" id="foto_scan" name="foto_scan" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
                         <input class="form-control" id="address" name="address" type="hidden"/>
                         <input class="form-control" id="object_area" name="object_area" type="hidden"/>
@@ -320,10 +364,16 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="form-3" enctype="multipart/form-data">
-                        <input class="form-control" id="name" name="name" type="hidden"/>
+                         <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
                         <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="Condition" name="Condition" type="hidden"/>
+                        <input class="form-control" id="technicalFloor" name="technicalFloor" type="hidden"/>
+                        <input class="form-control" id="Lift" name="Lift" type="hidden"/>
+                        <input class="form-control" id="remontDate" name="remontDate" type="hidden"/>
+                        <input class="form-control" id="SecurityObligation" name="SecurityObligation" type="hidden"/>
+                        <input class="form-control" id="foto_scan" name="foto_scan" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
                         <input class="form-control" id="address" name="address" type="hidden"/>
                         <input class="form-control" id="object_area" name="object_area" type="hidden"/>
@@ -423,10 +473,16 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="form-4" enctype="multipart/form-data">
-                        <input class="form-control" id="name" name="name" type="hidden"/>
+                 <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
                         <input class="form-control" id="PurposeObject" name="PurposeObject" type="hidden"/>
+                        <input class="form-control" id="Condition" name="Condition" type="hidden"/>
+                        <input class="form-control" id="technicalFloor" name="technicalFloor" type="hidden"/>
+                        <input class="form-control" id="Lift" name="Lift" type="hidden"/>
+                        <input class="form-control" id="remontDate" name="remontDate" type="hidden"/>
+                        <input class="form-control" id="SecurityObligation" name="SecurityObligation" type="hidden"/>
+                        <input class="form-control" id="foto_scan" name="foto_scan" type="hidden"/>
                         <input class="form-control" id="region" name="region" type="hidden"/>
                         <input class="form-control" id="address" name="address" type="hidden"/>
                         <input class="form-control" id="object_area" name="object_area" type="hidden"/>
@@ -618,7 +674,106 @@
                     </div>
                     </div>
                     <div class="col-5"><h5>Описание:</h5> {{ data.description }}</div>
-
+<table class="table table-striped table-hover mt-4">
+{#  <thead>#}
+{#    <tr>#}
+{#      <th scope="col">#</th>#}
+{#      <th scope="col">First</th>#}
+{#      <th scope="col">Last</th>#}
+{#      <th scope="col">Handle</th>#}
+{#    </tr>#}
+{#  </thead>#}
+  <tbody>
+    <tr>
+      <th scope="row">Вид объекта:</th>
+      <td>{{ data.object_type }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Категория объекта историко-культурного значения:</th>
+      <td>{{ data.historical_Category }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Номер ЕГРОКН:</th>
+      <td colspan="2">{{ data.UGROKN_number }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Регион:</th>
+      <td colspan="2">{{ data.region }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Адрес:</th>
+      <td colspan="2">{{ data.address }}</td>
+    </tr>
+     <tr>
+      <th scope="row">Площадь объекта:</th>
+      <td colspan="2">{{ data.object_area }}{{ data.unit }}</td>
+    </tr>
+     <tr>
+      <th scope="row">Состояние объекта:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Технический этаж:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Лифт:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Охранное обязательство:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Скан документа:</th>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <th scope="row">Правообладатель:</th>
+      <td colspan="2">{{ data.TypeofRightOwner }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Кадастровый номер/дата</th>
+      <td colspan="2">{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Вид обременения:</th>
+      <td colspan="2">{{ data.KindEncumbrances }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Площадь обременения:</th>
+      <td colspan="2">{{ data.encumbrance_area }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Лицо в пользу которого установлено обременение:</th>
+      <td colspan="2">{{ data.person_encumbrance }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Площадь обременения:</th>
+      <td colspan="2">{{ data.encumbrance_area }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Срок обременения:</th>
+      <td colspan="2">{{ data.start_encumbrance }}-{{ data.end_encumbrance }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Срок пользования:</th>
+      <td colspan="2">{{ data.start_use }}-{{ data.end_use }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Стоимость аренды:</th>
+      <td colspan="2">{{ data.encumbrance_cost }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Прочие платежы:</th>
+      <td colspan="2">{{ data.Other_payments }}</td>
+    </tr>
+  </tbody>
+</table>
                 </div>
 
             </li>
@@ -640,48 +795,57 @@
 {#            <div class="tab-content mb-2" id="nav-tabContent">#}
 {#                <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"#}
 {#                     tabindex="0">#}
-                    <div class="row justify-content-md-center mx-0">
-
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Категория объекта историко-культурного
-                                значения:</p>{{ data.historical_Category }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Регион:</p>{{ data.region }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Адрес:</p> {{ data.address }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>
-
-
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Кадастровый номер/дата
-                                присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Лицо в пользу которого установлено
-                                обременение:</p> {{ data.person_encumbrance }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}
-                        </div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>
-                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">
-                            <p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>
-
-                    </div>
+{#                    <div class="row justify-content-md-center mx-0">#}
+{##}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Категория объекта историко-культурного#}
+{#                                значения:</p>{{ data.historical_Category }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Регион:</p>{{ data.region }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Адрес:</p> {{ data.address }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Состояние объекта:</p> </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Технический этаж:</p> </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Лифт:</p> </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции:</p> </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Охранное обязательство:</p> </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Скан документа:</p> </div>#}
+{##}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Кадастровый номер/дата#}
+{#                                присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Лицо в пользу которого установлено#}
+{#                                обременение:</p> {{ data.person_encumbrance }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}#}
+{#                        </div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>#}
+{#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
+{#                            <p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>#}
+{##}
+{#                    </div>#}
                     {#                    <li>#}
                     {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
                     {#                        <div class="col-4 m-2">#}

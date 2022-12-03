@@ -22,7 +22,7 @@
                     <td class="text-end">Категория учреждения:</td>
                     <td>{{ data.podved_info.category }}</td>
                     <td class="text-end">Департамент:</td>
-                    <td></td>
+                    <td>{{ data.podved_info.department }}</td>
                 </tr>
                 <tr>
                     <td class="text-end">ИНН:</td>
@@ -35,6 +35,12 @@
                     <td>{{ data.podved_info.OGRN }}</td>
                     <td class="text-end">КОПУК:</td>
                     <td>{{ data.podved_info.KOPUK }}</td>
+                </tr>
+                                <tr>
+                    <td class="text-end">Регион:</td>
+                    <td></td>
+                    <td class="text-end"></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="text-end">Юридический адрес:</td>
@@ -62,7 +68,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">Регион</th>
+                    <th scope="col">Наименование ОН</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Вид объекта</th>
                     <th scope="col">Вид собственности</th>

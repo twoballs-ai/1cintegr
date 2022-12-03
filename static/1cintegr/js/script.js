@@ -7,10 +7,10 @@ $('tr[data-href]').on("click", function() {
 //   console.log(select2)
 // }
 
-
+// функция сокрытия полей при выборе типа недвижимости.
 function onChangeClick(event) {
-  const select2 = document.getElementById('select2')
-  const objTypeSelect = document.getElementById('select1').value
+  const select2 = document.getElementById('LandCategory')
+  const objTypeSelect = document.getElementById('object_type').value
   const PurposeObject = document.getElementById('PurposeObject')
   const TypeOfPermittedUse = document.getElementById('TypeOfPermittedUse')
   const residual_value = document.getElementById('residual_value')
@@ -20,11 +20,20 @@ function onChangeClick(event) {
   const start_use = document.getElementById('start_use')
   const end_use = document.getElementById('end_use')
   const Payment_foruse = document.getElementById('Payment_foruse')
+  const Condition = document.getElementById('Condition')
+  const technicalFloor = document.getElementById('technicalFloor')
+  const Lift = document.getElementById('Lift')
+  const remontDate = document.getElementById('remontDate')
+
 
 
   if (objTypeSelect == '000000001') {
     select2.disabled = true
     PurposeObject.disabled = false
+    Condition.disabled = false
+    technicalFloor.disabled = false
+    remontDate.disabled = false
+    Lift.disabled = false
     TypeOfPermittedUse.disabled = true
     residual_value.disabled = false
     RNFI.disabled = false
@@ -51,6 +60,10 @@ function onChangeClick(event) {
   }else if (objTypeSelect == '000000004') {
     select2.disabled = true
     PurposeObject.disabled = false
+    Condition.disabled = false
+    technicalFloor.disabled = false
+    Lift.disabled = false
+    remontDate.disabled = false
     TypeOfPermittedUse.disabled = true
     residual_value.disabled = false
     RNFI.disabled = false
@@ -77,6 +90,10 @@ function onChangeClick(event) {
   }else if (objTypeSelect == '000000003') {
     select2.disabled = true
     PurposeObject.disabled = false
+    Condition.disabled = false
+    technicalFloor.disabled = false
+    Lift.disabled = false
+    remontDate.disabled = false
     TypeOfPermittedUse.disabled = true
     residual_value.disabled = false
     RNFI.disabled = false
@@ -100,9 +117,13 @@ function onChangeClick(event) {
 }
 
   }
-  }else{
+  }else{  //земельный участок
     select2.disabled = false
     PurposeObject.disabled = true
+    Condition.disabled = true
+    technicalFloor.disabled = true
+    Lift.disabled = true
+    remontDate.disabled = true
     TypeOfPermittedUse.disabled = false
     residual_value.disabled = true
     RNFI.disabled = true
@@ -305,11 +326,20 @@ $("#address").suggestions({
 });
 
 
+
+
 $('.btnTranslate1').click(function(){
+  console.log('fvbdf');
   $('#form-2 [name="name"]').val($('#form-1 [name="name"]').val());
   $('#form-2 [name="description"]').val($('#form-1 [name="description"]').val());
   $('#form-2 [name="object_type"]').val($('#form-1 [name="object_type"]').val());
   $('#form-2 [name="PurposeObject"]').val($('#form-1 [name="PurposeObject"]').val());
+  $('#form-2 [name="Condition"]').val($('#form-1 [name="Condition"]').val());
+  $('#form-2 [name="technicalFloor"]').val($('#form-1 [name="technicalFloor"]').val());
+  $('#form-2 [name="Lift"]').val($('#form-1 [name="Lift"]').val());
+  $('#form-2 [name="remontDate"]').val($('#form-1 [name="remontDate"]').val());
+  $('#form-2 [name="SecurityObligation"]').val($('#form-1 [name="SecurityObligation"]').val());
+  // $('#form-2 [name="foto_scan"]').val($('#form-1 [name="foto_scan"]').val());
   $('#form-2 [name="region"]').val($('#form-1 [name="region"]').val());
   $('#form-2 [name="address"]').val($('#form-1 [name="address"]').val());
   $('#form-2 [name="object_area"]').val($('#form-1 [name="object_area"]').val());
@@ -317,10 +347,17 @@ $('.btnTranslate1').click(function(){
   $('#form-2 [name="TypeOfPermittedUse"]').val($('#form-1 [name="TypeOfPermittedUse"]').val());
 });
 $('.btnTranslate2').click(function(){
+  console.log('fvbdf2');
   $('#form-3 [name="name"]').val($('#form-2 [name="name"]').val());
   $('#form-3 [name="description"]').val($('#form-2 [name="description"]').val());
   $('#form-3 [name="object_type"]').val($('#form-2 [name="object_type"]').val());
   $('#form-3 [name="PurposeObject"]').val($('#form-2 [name="PurposeObject"]').val());
+  $('#form-3 [name="technicalFloor"]').val($('#form-2 [name="technicalFloor"]').val());
+  $('#form-3 [name="Condition"]').val($('#form-2 [name="Condition"]').val());
+  $('#form-3 [name="Lift"]').val($('#form-2 [name="Lift"]').val());
+  $('#form-3 [name="remontDate"]').val($('#form-2 [name="remontDate"]').val());
+  $('#form-3 [name="SecurityObligation"]').val($('#form-2 [name="SecurityObligation"]').val());
+  // $('#form-3 [name="foto_scan"]').val($('#form-2 [name="foto_scan"]').val());
   $('#form-3 [name="region"]').val($('#form-2 [name="region"]').val());
   $('#form-3 [name="address"]').val($('#form-2 [name="address"]').val());
   $('#form-3 [name="object_area"]').val($('#form-2 [name="object_area"]').val());
@@ -345,10 +382,17 @@ $('.btnTranslate2').click(function(){
   $('#form-3 [name="residual_value"]').val($('#form-2 [name="residual_value"]').val());
 });
 $('.btnTranslate3').click(function(){
+  console.log('fvbdf3');
   $('#form-4 [name="name"]').val($('#form-3 [name="name"]').val());
   $('#form-4 [name="description"]').val($('#form-3 [name="description"]').val());
   $('#form-4 [name="object_type"]').val($('#form-3 [name="object_type"]').val());
   $('#form-4 [name="PurposeObject"]').val($('#form-3 [name="PurposeObject"]').val());
+  $('#form-4 [name="Condition"]').val($('#form-3 [name="Condition"]').val());
+  $('#form-4 [name="technicalFloor"]').val($('#form-3 [name="technicalFloor"]').val());
+  $('#form-4 [name="Lift"]').val($('#form-3 [name="Lift"]').val());
+  $('#form-4 [name="remontDate"]').val($('#form-3 [name="remontDate"]').val());
+  $('#form-4 [name="SecurityObligation"]').val($('#form-3 [name="SecurityObligation"]').val());
+  // $('#form-4 [name="foto_scan"]').val($('#form-3 [name="foto_scan"]').val());
   $('#form-4 [name="region"]').val($('#form-3 [name="region"]').val());
   $('#form-4 [name="address"]').val($('#form-3 [name="address"]').val());
   $('#form-4 [name="object_area"]').val($('#form-3 [name="object_area"]').val());
@@ -377,10 +421,17 @@ $('.btnTranslate3').click(function(){
 });
 
 $('.btnTranslate4').click(function(){
+  console.log('fvbdf4');
   $('#form-5 [name="name"]').val($('#form-4 [name="name"]').val());
   $('#form-5 [name="description"]').val($('#form-4 [name="description"]').val());
   $('#form-5 [name="object_type"]').val($('#form-4 [name="object_type"]').val());
   $('#form-5 [name="PurposeObject"]').val($('#form-4 [name="PurposeObject"]').val());
+  $('#form-5 [name="Condition"]').val($('#form-4 [name="Condition"]').val());
+  $('#form-5 [name="technicalFloor"]').val($('#form-4 [name="technicalFloor"]').val());
+  $('#form-5 [name="Lift"]').val($('#form-4 [name="Lift"]').val());
+  $('#form-5 [name="remontDate"]').val($('#form-4 [name="remontDate"]').val());
+  $('#form-5 [name="SecurityObligation"]').val($('#form-4 [name="SecurityObligation"]').val());
+  // $('#form-5 [name="foto_scan"]').val($('#form-4 [name="foto_scan"]').val());
   $('#form-5 [name="region"]').val($('#form-4 [name="region"]').val());
   $('#form-5 [name="address"]').val($('#form-4 [name="address"]').val());
   $('#form-5 [name="object_area"]').val($('#form-4 [name="object_area"]').val());
@@ -464,3 +515,23 @@ Fancybox.bind('[data-fancybox="gallery"]', {
   },
 });
 
+// const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+//
+// const alert = (message, type) => {
+//   const wrapper = document.createElement('div')
+//   wrapper.innerHTML = [
+//     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+//     `   <div>${message}</div>`,
+//     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+//     '</div>'
+//   ].join('')
+//
+//   alertPlaceholder.append(wrapper)
+// }
+//
+// const alertTrigger = document.getElementById('liveAlertBtn')
+// if (alertTrigger) {
+//   alertTrigger.addEventListener('click', () => {
+//     alert('Nice, you triggered this alert message!', 'success')
+//   })
+// }

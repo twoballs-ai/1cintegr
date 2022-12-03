@@ -3,17 +3,19 @@ from flask import Flask, flash, render_template, url_for, request, \
     session, redirect, Blueprint
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
-import requests
-from requests.structures import CaseInsensitiveDict
 import json
+import requests
 import datetime
 from dadata import Dadata
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import SubmitField
 
-from auth import auth_func, validateAccesToken, refreshAccesToken, deleteTokens, jsonPars
-
+import auth
+from forms import ObjectListForm
+from requests_obj import request_func, listDepartsments, post, get, getUserName
+from auth import auth_func, validateAccesToken, refreshAccesToken, deleteTokens, getAccessToken
+from wtforms import Form, BooleanField, StringField, validators
 
 datetime = datetime.datetime.now()
 print(datetime)
@@ -24,8 +26,6 @@ UPLOAD_FOLDER_MULTI = '/mnt/disk_d/upload/multi'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"
 secret = "6a40c77de8faddcc68c6f90d4de5cae8608767e3"
-
-
 
 
 
@@ -49,6 +49,7 @@ app.config['UPLOAD_FOLDER_MULTI'] = UPLOAD_FOLDER_MULTI
 blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
 app.register_blueprint(blueprint)
 app.register_blueprint(auth_func)
+app.register_blueprint(request_func)
 
 
 
@@ -72,8 +73,10 @@ def allowed_file(filename):
 
 
 def data_params_request():
+    headers_get = getAccessToken()
+    headers = {'AccessToken': headers_get}
     url_params = "https://localhost/copy_1/hs/HTTP_SERVER/RulesNewObjects"
-    response_params = requests.get(url_params, verify=False)
+    response_params = requests.get(url_params, verify=False, headers=headers)
 
     if response_params.status_code == 200:
         print('Success!')
@@ -82,6 +85,10 @@ def data_params_request():
     data_params = response_params.json()
     # print(data_params)
     return data_params
+
+
+class CForm(Form):
+    name = StringField('name', [validators.Length(min=4, max=25)])
 
 # @app.route('/downloads', methods=['GET', 'POST'])
 # def upload_file():
@@ -119,7 +126,7 @@ def data_params_request():
 def region():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             # print('valid')
             # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
             # # if key doesn't exist, returns None
@@ -139,8 +146,7 @@ def region():
             # print(data)
             # jsonPars()
             return render_template('future_template.html')
-        elif not valid:
-            print('not_valid')
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
@@ -162,14 +168,16 @@ def region():
 def podved(*args, **kwargs):
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        data_params_request()
+        if valid == 'True':
             print('valid')
-
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
             # if key doesn't exist, returns None
             param_request = {'page': '1'}
             # response = requests.get(url, verify=False)
-            response = requests.post(url, param_request, verify=False)
+            response = requests.post(url, param_request, verify=False, headers=headers)
             # page = request.args.get('page', 1 ,type=int)
             # response = requests.get(url, verify=False)
 
@@ -178,12 +186,15 @@ def podved(*args, **kwargs):
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()['list_PD']
-            context = {'data': data}
-            print(data)
-            jsonPars()
+            print(response.json())
+            departments = listDepartsments()
+            print(departments)
+            getusername = getUserName()
+            context = {'data': data, 'departments': departments, 'getusername':getusername}
+            print(response.headers)
+
             return render_template('podved.html', **context)
-        elif not valid:
-            print('not_valid')
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'podved'}
@@ -197,35 +208,39 @@ def podved(*args, **kwargs):
     else:
         return deleteTokens()
 
-@app.route('/department')
-@app.route('/department/')
-def department():
+@app.route('/department/<id>')
+@app.route('/department/<id>/')
+def department(id):
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
-            # print('valid')
-            # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
-            # # if key doesn't exist, returns None
-            # param_request = {'page': '1',
-            #                  'cat_code': id}
-            # # response = requests.get(url, verify=False)
-            # response = requests.post(url, param_request, verify=False)
-            # # page = request.args.get('page', 1 ,type=int)
-            # # response = requests.get(url, verify=False)
-            #
-            # if response.status_code == 200:
-            #     print('Success!')
-            # elif response.status_code == 401:
-            #     print('Not auth.')
-            # data = response.json()['list_PD']
-            # context = {'data': data}
-            # print(data)
-            return render_template('future_template.html')
-        elif not valid:
-            print('not_valid')
+        if valid == 'True':
+            print('valid')
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
+            url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
+            # if key doesn't exist, returns None
+            param_request = {'page': '1', 'department':id}
+            # response = requests.get(url, verify=False)
+            response = requests.post(url, param_request, verify=False, headers=headers)
+            # page = request.args.get('page', 1 ,type=int)
+            # response = requests.get(url, verify=False)
+
+            if response.status_code == 200:
+                print('Success!')
+            elif response.status_code == 401:
+                print('Not auth.')
+            data = response.json()['list_PD']
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'data': data, 'departments': departments, 'getusername':getusername}
+            # print(response.headers)
+            print(data)
+            # print(context)
+            return render_template('podved.html', **context)
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
-        link_send_to_refresh = {'link':'category_podved','id':id}
+        link_send_to_refresh = {'link': 'podved'}
         refresh = refreshAccesToken(link_send_to_refresh)
         return refresh
     elif not request.cookies.get('refresh_token') and request.cookies.get('access_token'):
@@ -241,14 +256,16 @@ def department():
 def category_podved(id):
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             print('valid')
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
             # if key doesn't exist, returns None
             param_request = {'page': '1',
                              'cat_code': id}
             # response = requests.get(url, verify=False)
-            response = requests.post(url, param_request, verify=False)
+            response = requests.post(url, param_request, verify=False, headers=headers)
             # page = request.args.get('page', 1 ,type=int)
             # response = requests.get(url, verify=False)
 
@@ -257,11 +274,12 @@ def category_podved(id):
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()['list_PD']
-            context = {'data': data}
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'data': data, 'departments': departments, 'getusername':getusername}
             print(data)
             return render_template('podved.html', **context)
-        elif not valid:
-            print('not_valid')
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
@@ -281,22 +299,26 @@ def category_podved(id):
 def category():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             url = "https://localhost/copy_1/hs/HTTP_SERVER/category_objects_list"
             param_request = {'page': '1'}
             # print(param_request)
-            response = requests.post(url, param_request, verify=False)
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
+            response = requests.post(url, param_request, verify=False, headers=headers)
             if response.status_code == 200:
                 print('Success!')
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()['list_cat']
             data1 = response.json()
-            context = {'data': data}
+            print(data1)
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'data': data, 'departments': departments, 'getusername':getusername}
             print(data)
             return render_template('category.html', **context)
-        elif not valid:
-            print('not_valid')
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category'}
@@ -339,23 +361,28 @@ def category():
 def cardhouse(id):
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_card"
             param_request = {'code': id}
             print(param_request)
-            response = requests.post(url, param_request, verify=False)
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
+            response = requests.post(url, param_request, verify=False, headers=headers)
             if response.status_code == 200:
                 print('Success!')
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()
-            # print(data)
+            print(data)
+            departments = listDepartsments()
+            getusername = getUserName()
             context = {'data': data,
-                       'id': id}
-            print(context)
+                       'id': id,
+                       'departments': departments,
+                       'getusername':getusername}
+            print(data)
             return render_template('cardhouse.html', **context)
-        elif not valid:
-            print('not_valid')
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'cardhouse','id':id}
@@ -374,13 +401,15 @@ def cardhouse(id):
 @app.route('/cardhousedetail/<id>', methods=['GET', 'POST'])
 @app.route('/cardhousedetail/<id>/', methods=['GET', 'POST'])
 def cardhousedetail(id):
+    # global foto_scan
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
+            headers_get = getAccessToken()
+            headers = {'AccessToken': headers_get}
             url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
             param_request = {'code': id}
-            response = requests.get(url, param_request, verify=False)
-
+            response = requests.get(url, param_request, verify=False,headers=headers)
             if response.status_code == 200:
                 print('Success!')
             elif response.status_code == 401:
@@ -391,10 +420,14 @@ def cardhousedetail(id):
             data_params = data_params_request()
             # print(data_params)
             # print(object_type_val)
+            departments = listDepartsments()
+            getusername = getUserName()
             context = {'data': data,
                        'object_type_val': object_type_val,
                        'id': id,
-                       'data_params': data_params}
+                       'data_params': data_params,
+                       'departments': departments,
+                       'getusername':getusername}
             # print(data)
             if request.method == 'POST':
                 # 1шаг
@@ -402,6 +435,34 @@ def cardhousedetail(id):
                 description = request.form.get('description')
                 object_type = request.form.get('object_type')
                 PurposeObject = request.form.get('PurposeObject')
+                Condition = request.form.get('Condition')
+                technicalFloor = request.form.get('technicalFloor')
+                Lift = request.form.get('Lift')
+                remontDate = request.form.get('remontDate')
+                SecurityObligation = request.form.get('SecurityObligation')
+                # if 'file' not in request.files:
+                #     # После перенаправления на страницу загрузки
+                #     # покажем сообщение пользователю
+                #     flash('Не могу прочитать файл')
+                #     print('проблема')
+                #     print('проблема', request.url)
+                #     return redirect(request.url)
+                #
+                # file = request.files['file']
+                # print(file)
+                # # Если файл не выбран, то браузер может
+                # # отправить пустой файл без имени.
+                #
+                # if file.filename == '':
+                #     foto_scan = ''
+                #
+                #     print('dfdf', foto_scan)
+                # if file and allowed_file(file.filename):
+                #     # безопасно извлекаем оригинальное имя файла
+                #     filename = secure_filename(file.filename)
+                #     # сохраняем файл
+                #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                #     foto_scan = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
                 region = request.form.get('region')
                 address = request.form.get('address')
                 object_area = request.form.get('object_area')
@@ -518,7 +579,10 @@ def cardhousedetail(id):
                 # print('foto_main',foto_main)
                 # print('foto_multi',foto_multi)
                 post_request = {'name': name, 'description': description, 'object_type': object_type,
-                                'PurposeObject': PurposeObject, 'region': region, 'address': address,
+                                'PurposeObject': PurposeObject,'Condition':Condition,'technicalFloor':technicalFloor,
+                                'Lift': Lift,'remontDate': remontDate,'SecurityObligation': SecurityObligation,
+                                'region':region,'address':address,
+                                # 'foto_scan':foto_scan,
                                 'object_area': object_area, 'LandCategory': LandCategory,
                                 'TypeOfPermittedUse': TypeOfPermittedUse,
                                 'RNFI': RNFI, 'RNFI_date': RNFI_date, 'owner_nomer': owner_nomer,
@@ -546,7 +610,8 @@ def cardhousedetail(id):
                 print("response.text:\n{}\n\n".format(responsePost.text))
                 return redirect(url_for('cardhousedetail', id=id))
             return render_template('cardhousedetail.html', **context)
-
+        else:
+            return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'cardhousedetail','id':id}
         refresh = refreshAccesToken(link_send_to_refresh)
@@ -785,11 +850,13 @@ def customers(id):
         valid = validateAccesToken()
         print(valid)
         if valid == 'True':
-            url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
+            headers_get = getAccessToken()
+            headers = {'AccessToken':headers_get}
+            url = ("https://localhost/copy_1/hs/HTTP_SERVER/objects_list")
             id = int(id)
             param_request = {'page': id}
             number2 = param_request["page"]
-            response = requests.get(url, param_request, verify=False)
+            response = requests.get(url, param_request, verify=False, headers=headers)
 
             if response.status_code == 200:
                 print('Success!')
@@ -800,20 +867,53 @@ def customers(id):
             context = {'data': data,
                        'number2': number2}
             print(data)
-
+            form = ObjectListForm()
             print(number2,param_request)
-
             # парсинг валидации и тех даных
             data_params = data_params_request()
-
+            departments = listDepartsments()
+            getusername = getUserName()
             context = {'data': data, 'data_params': data_params,
-                       'number2': number2}
+                       'number2': number2,
+                       'departments': departments,
+                       'getusername':getusername}
             if request.method == 'POST':
+            # if form.validate_on_submit():
+
                             # 1шаг
                 name = request.form.get('name')
+                # name = form.name.data
                 description = request.form.get('description')
                 object_type = request.form.get('object_type')
                 PurposeObject = request.form.get('PurposeObject')
+                Condition = request.form.get('Condition')
+                technicalFloor = request.form.get('technicalFloor')
+                Lift = request.form.get('Lift')
+                remontDate = request.form.get('remontDate')
+                SecurityObligation = request.form.get('SecurityObligation')
+                # if 'file' not in request.files:
+                #     # После перенаправления на страницу загрузки
+                #     # покажем сообщение пользователю
+                #     flash('Не могу прочитать файл')
+                #     print('проблема')
+                #     print('проблема', request.url)
+                #     return redirect(request.url)
+                #
+                # file = request.files['file']
+                # print(file)
+                # # Если файл не выбран, то браузер может
+                # # отправить пустой файл без имени.
+                #
+                # if file.filename == '':
+                #     foto_scan = ''
+                #
+                #     print('dfdf', foto_scan)
+                # if file and allowed_file(file.filename):
+                #     # безопасно извлекаем оригинальное имя файла
+                #     filename = secure_filename(file.filename)
+                #     # сохраняем файл
+                #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                #     foto_scan = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
                 region = request.form.get('region')
                 address = request.form.get('address')
                 object_area = request.form.get('object_area')
@@ -928,15 +1028,21 @@ def customers(id):
                         foto_list.append("%s/%s" % (app.config['UPLOAD_FOLDER_MULTI'], filename))
                 foto_multi = foto_list
                 post_request = {'name': name, 'description':description,'object_type':object_type,
-                                'PurposeObject':PurposeObject,'region':region,'address':address,
-                                'object_area':object_area,'LandCategory':LandCategory,'TypeOfPermittedUse':TypeOfPermittedUse,
+                                'PurposeObject':PurposeObject,'Condition':Condition,'technicalFloor':technicalFloor,
+                                'Lift': Lift,'remontDate': remontDate,'SecurityObligation': SecurityObligation,
+                                'region':region,'address':address,
+                                # 'foto_scan':foto_scan,
+                                'object_area':object_area,'LandCategory':LandCategory,
+                                'TypeOfPermittedUse':TypeOfPermittedUse,
                                 'RNFI': RNFI,'RNFI_date': RNFI_date,'owner_nomer': owner_nomer,'owner_date': owner_date,
                                 'RecordNumberVEGRP': RecordNumberVEGRP,'DateRecordsVEGRP': DateRecordsVEGRP,
                                 'TypeofRightOwner': TypeofRightOwner,'BalanceAccountNumber': BalanceAccountNumber,
                                 'date_of_registration_of_another_right': date_of_registration_of_another_right,
                                 'inventory_number': inventory_number,'balance_number': balance_number,
-                                'CadastralNumber': CadastralNumber,'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
-                                'type_pravoobladatel': type_pravoobladatel,'Initial_cost': Initial_cost,'residual_value': residual_value,
+                                'CadastralNumber': CadastralNumber,
+                                'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
+                                'type_pravoobladatel': type_pravoobladatel,'Initial_cost': Initial_cost,
+                                'residual_value': residual_value,
                                 'historical_Category': historical_Category,'UGROKN_number': UGROKN_number,
                                 'KindEncumbrances':KindEncumbrances,
                                 'encumbrance_area': encumbrance_area,'encumbrance_cost': encumbrance_cost,
@@ -958,9 +1064,10 @@ def customers(id):
                 print(responsePost.text)
                 # context = {'id': id}
                 # return render_template('cardhousedetail/id.html')
-                return redirect(url_for('cardhousedetail', id=id))
 
-            return render_template('customers.html', **context)
+                return redirect(url_for('cardhousedetail', id=id, headers=headers))
+
+            return render_template('customers.html', **context, form=form)
         else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -981,11 +1088,15 @@ def customers(id):
 def search():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
+            # headers_get = getAccessToken()
+            # headers = {'AccessToken':headers_get}
             print(url_for('search'))
-            return render_template('search.html', title='minkult-CRM')
-        elif not valid:
-            print('not_valid')
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'departments': departments, 'getusername': getusername}
+            return render_template('search.html', **context)
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'search'}
@@ -1004,7 +1115,9 @@ def search():
 def reports():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
+        #     headers_get = getAccessToken()
+        #     headers = {'AccessToken':headers_get}
             # print('valid')
             # url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
             # # if key doesn't exist, returns None
@@ -1022,9 +1135,11 @@ def reports():
             # data = response.json()['list_PD']
             # context = {'data': data}
             # print(data)
-            return render_template('reports.html')
-        elif not valid:
-            print('not_valid')
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'departments': departments, 'getusername': getusername}
+            return render_template('reports.html', **context)
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'category_podved','id':id}
@@ -1043,11 +1158,13 @@ def reports():
 def about():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             print(url_for('about'))
-            return render_template('about.html', title='minkult-CRM')
-        elif not valid:
-            print('not_valid')
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'departments': departments, 'getusername': getusername}
+            return render_template('about.html', **context)
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'about'}
@@ -1063,11 +1180,13 @@ def about():
 def contacts():
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             print(url_for('contacts'))
-            return render_template('contacts.html', title='minkult-CRM')
-        elif not valid:
-            print('not_valid')
+            departments = listDepartsments()
+            getusername = getUserName()
+            context = {'departments': departments, 'getusername': getusername}
+            return render_template('contacts.html', **context)
+        else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         link_send_to_refresh = {'link':'contacts'}

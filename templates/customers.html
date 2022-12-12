@@ -138,7 +138,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции</label>
-                                <input class="form-control field" id="remontDate" name="remontDate" type="text" required/>
+                                <input class="form-control field" id="remontDate" name="remontDate" type="date" required/>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="SecurityObligation">Охранное обязательство</label>
@@ -181,6 +181,7 @@
                                                                          name="TypeOfPermittedUse"
                                                                          type="text" required/></div>
                         </div>
+
                             <button type="submit" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2" id="form-2openbutton" value='Validate'>
                             Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                         </button>
@@ -346,10 +347,6 @@
                         <button type="submit" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" id="form-3openbutton" value='Validate'>
                             Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>
                         </button>
-
-{#                    <button type="button" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">#}
-{#                        Продолжить<span class="icon ms-2"><i class="fas fa-arrow-right"></i></span>#}
-{#                    </button>#}
                     <button type="button" class="btn btn-secondary btn-icon ms-4 mb-2" id="form-1backopenbutton" data-bs-dismiss="modal">
                         <span class="icon me-2"><i class="fas fa-arrow-left"></i></span>Вернуться на 1 шаг
                     </button>
@@ -676,7 +673,7 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" id="form-5" enctype="multipart/form-data">
+                    <form method="post" id="form-5" class="needs-validation5" enctype="multipart/form-data" novalidate>
                         <input class="form-control" id="name" name="name" type="hidden"/>
                         <input class="form-control" id="description" name="description" type="hidden"/>
                         <input class="form-control" id="object_type" name="object_type" type="hidden"/>
@@ -729,14 +726,14 @@
                         <div class="row">
                             <div class="col-12 mb-3 ">
                                 <label for="formFile" class="form-label">Выберите обложку объекта недвижимости</label>
-                                <input class="form-control" type="file" id="formFile" name="file">
+                                <input class="form-control" type="file" id="formFile" name="file" required>
 
                             </div>
                             <div class="col-12 mb-3 ">
                                 <label for="formFileMultiple" class="form-label">Выберите несколько фотографий объекта
                                     недвижимости</label>
                                 <input class="form-control" name="files[]" type="file" multiple="true"
-                                       id="formFileMultiple">
+                                       id="formFileMultiple" required>
                             </div>
                         </div>
                         <div class="col-12">
@@ -759,7 +756,7 @@
     </div>
     <div class="d-grid gap-2  justify-content-md-end bg-transparent">
 
-        <button type="button" id="modalactivation" class="btn btn-primary m-2" >Добавить объект неeдвижимости
+        <button type="button" id="modalactivation" class="btn btn-primary m-2" >Добавить объект недвижимости
         </button>
 {#        <button type="buttonexampleModalToggle" class="btn btn-primary m-2" data-bs-toggle="modal"#}
 {#                data-bs-target="#exampleModalToggle">Добавить объект неeдвижимости#}
@@ -932,12 +929,12 @@
         <script src="/static/1cintegr/js/script.js"></script>
         <script src="/static/1cintegr/js/validate.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>#}
 {#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>#}
 
 
-          jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm
-{#                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>#}
+{#          jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
               rel="stylesheet"/>

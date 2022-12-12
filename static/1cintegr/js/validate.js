@@ -39,6 +39,8 @@ const backbtnform1open = document.getElementById("form-1backopenbutton");
     var forms2 = document.querySelectorAll('.needs-validation2')
     var forms3 = document.querySelectorAll('.needs-validation3')
     var forms4 = document.querySelectorAll('.needs-validation4')
+    var forms4redact = document.querySelectorAll('.needs-validation4redact')
+    var forms5 = document.querySelectorAll('.needs-validation5')
 
 
     // Loop over them and prevent submission
@@ -138,6 +140,42 @@ const backbtnform1open = document.getElementById("form-1backopenbutton");
                 }
 
                 form4.classList.add('was-validated')
+            }, false)
+        })
+    Array.prototype.slice.call(forms4redact)
+        .forEach(function (form4r) {
+            form4r.addEventListener('submit', function (event) {
+                if (!form4r.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    console.log('не валидно')
+                } else if (form4r.checkValidity()) {
+
+                    console.log('валидно')
+
+
+
+                }
+
+                form4r.classList.add('was-validated')
+            }, false)
+        })
+        Array.prototype.slice.call(forms5)
+        .forEach(function (form5) {
+            form5.addEventListener('submit', function (event) {
+                if (!form5.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    console.log('не валидно')
+                } else if (form5.checkValidity()) {
+
+                    console.log('валидно')
+
+
+
+                }
+
+                form5.classList.add('was-validated')
             }, false)
         })
 

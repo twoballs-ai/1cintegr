@@ -71,6 +71,7 @@ app.register_blueprint(request_func)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+global foto_main
 
 def data_params_request():
     headers_get = getAccessToken()
@@ -251,6 +252,7 @@ def department(id):
     else:
         return deleteTokens()
 
+
 @app.route('/category_podved/<id>')
 @app.route('/category_podved/<id>/')
 def category_podved(id):
@@ -395,7 +397,6 @@ def cardhouse(id):
         return redirect(url_for('auth_func.login'))
     else:
         return deleteTokens()
-
 
 
 @app.route('/cardhousedetail/<id>', methods=['GET', 'POST'])
@@ -844,12 +845,14 @@ def cardhousedetail(id):
 #     return render_template('customers.html', **context)
 
 @app.route('/customers/<id>/', methods=['GET', 'POST'])
+@app.route('/customers/<id>', methods=['GET', 'POST'])
 def customers(id):
-    global foto_main
+
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
         print(valid)
         if valid == 'True':
+
             headers_get = getAccessToken()
             headers = {'AccessToken':headers_get}
             url = ("https://localhost/copy_1/hs/HTTP_SERVER/objects_list")
@@ -879,6 +882,7 @@ def customers(id):
                        'getusername':getusername}
             if request.method == 'POST':
             # if form.validate_on_submit():
+
 
                             # 1шаг
                 name = request.form.get('name')
@@ -925,6 +929,7 @@ def customers(id):
                 print('PurposeObject:',PurposeObject)
                 print('region:',region)
                 print('address:',address)
+                print('remontDate:',remontDate)
                 print('object_area:',object_area)
                 print('LandCategory:',LandCategory)
                 print('TypeOfPermittedUse:',TypeOfPermittedUse)
@@ -1054,13 +1059,13 @@ def customers(id):
                 print(post_request)
                 responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
                                              verify=False)
-                responsePost.encoding = "ANSI"
+                # responsePost.encoding = "ANSI"
                 id = responsePost.json()['code']
-                # print(id)
+                print(id)
                 print("response:\n{}\n\n".format(responsePost))
                 print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
                 print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
-                print("response.json:\n{}\n\n".format(response.json()))
+                print("response.json:\n{}\n\n".format(responsePost.json()))
                 print(responsePost.text)
                 # context = {'id': id}
                 # return render_template('cardhousedetail/id.html')

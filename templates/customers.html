@@ -80,10 +80,10 @@
 
                     <form  id="form-1" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
                         <div class="row">
-                            <div class="col-6 mb-3"><label for="name">Наименование *</label>
+                            <div class="col-6 mb-3"><label for="name" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">Наименование *</label>
                                 <input class="form-control name field"
                                        id="name" name="name"
-                                       type="text" required>
+                                       type="text" maxlength="1000" required>
                                </div>
 
                             {#                            <div>{{ form.name.label }}: {{ form.name }}</div>#}
@@ -108,13 +108,13 @@
                                 <select id="PurposeObject" class="form-select field" aria-label="Default select example" name="PurposeObject" required>
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
+                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">Нежилое</option>
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="Condition">Состояние объекта (опционально) </label>
                                 <select id="Condition" class="form-select field"  aria-label="Default select example" name="Condition" required>
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="1">Аварийное</option>
+                                    <option value="Аварийное">Аварийное</option>
                                     <option value="2">Неудовлетворительное</option>
                                     <option value="2">Удовлетворительное</option>
                                     <option value="2">Хорошее</option>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции</label>
-                                <input class="form-control field" id="remontDate" name="remontDate" type="date" required/>
+                                <input class="form-control field" id="remontDate" name="remontDate" type="date"/>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="SecurityObligation">Охранное обязательство</label>
@@ -156,10 +156,10 @@
                                 <input class="form-control field" id="address" name="address"  type="text" required/>
                                 <p id="address-full"></p>
                             </div>
-                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта *</label><input
+                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта кв.м:</label><input
                                     class="form-control field"
                                     id="object_area" name="object_area"
-                                    type="text" required/></div>
+                                    type="number" max="1000000000" required/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
                                 <select id="LandCategory" class="form-select field" aria-label="Default select example" name="LandCategory" required>
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
@@ -171,9 +171,9 @@
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>
                                 </select>
-                                    <div class="invalid-feedback">
-                                    Please select a valid state.
-                                        </div>
+{#                                    <div class="invalid-feedback">#}
+{#                                    Please select a valid state.#}
+{#                                        </div>#}
                             </div>
                             <div class="col-6 mb-3"><label for="TypeOfPermittedUse">Вид разрешенного
                                 использования(опционально)</label><input class="form-control field"
@@ -268,15 +268,18 @@
                                 <div>{{ data_params.name }}</div>
                                 <label for="Owner">Собственник ОН *</label>
                                 <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI" required>
-                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control" id="RNFI_date"
+                                <label for="RNFI_date">дата регистрации РНФИ:</label>
+                                <input type="date" placeholder="дата регистрации РНФИ" class="form-control" id="RNFI_date"
                                        name="RNFI_date"required>
                                 <input type="text" placeholder="Номер регистрации права собственности РФ"
                                        class="form-control" id="owner_nomer" name="owner_nomer"required>
-                                <input type="text" placeholder="Дата регистрации права собственности РФ"
+                                <label for="owner_date">Дата регистрации права собственности РФ:</label>
+                                <input type="date" placeholder="Дата регистрации права собственности РФ"
                                        class="form-control" id="owner_date" name="owner_date"required>
                                 <input type="text" placeholder="Реестровй №" class="form-control"
                                        id="RecordNumberVEGRP" name="RecordNumberVEGRP"required>
-                                <input type="text" placeholder="Реестровая дата" class="form-control"
+                                <label for="DateRecordsVEGRP">Реестровая дата:</label>
+                                <input type="date" placeholder="Реестровая дата" class="form-control"
                                        id="DateRecordsVEGRP" name="DateRecordsVEGRP"required>
                             </div>
                             {#                            <div class="col-6 mb-4">#}
@@ -310,7 +313,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="date_of_registration_of_another_right">Дата регистрации иного права *</label>
-                                <input type="text" class="form-control" id="date_of_registration_of_another_right"
+                                <input type="date" class="form-control" id="date_of_registration_of_another_right"
                                        name="date_of_registration_of_another_right" required>
                             </div>
                             <div class="col-6 mb-3 ">
@@ -327,7 +330,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Date_of_assignment_cadastral">Дата присвоения *</label>
-                                <input type="text" class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" required>
+                                <input type="date" class="form-control" id="Date_of_assignment_cadastral" name="Date_of_assignment_cadastral" required>
                             </div>
 
                             <div class="col-6 mb-3 ">
@@ -341,7 +344,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="residual_value">Остаточная стоимость *</label>
-                                <input type="text" class="form-control" id="residual_value" name="residual_value" required>
+                                <input type="number" class="form-control" id="residual_value" name="residual_value" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2" id="form-3openbutton" value='Validate'>
@@ -574,11 +577,11 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_area">Площадь обременения *</label>
-                                <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area" required>
+                                <input type="number" class="form-control" id="encumbrance_area" name="encumbrance_area" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_cost">Стоимость обременения *</label>
-                                <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost" required>
+                                <input type="number" class="form-control" id="encumbrance_cost" name="encumbrance_cost" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="person_encumbrance">Лицо в пользу которого установлено обременение *</label>
@@ -587,28 +590,28 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Other_payments">Прочие платежи *</label>
-                                <input type="text" class="form-control" id="Other_payments" name="Other_payments" required>
+                                <input type="number" class="form-control" id="Other_payments" name="Other_payments" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_encumbrance">Срок обременения (дата начала) *</label>
-                                <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance" required>
+                                <input type="date" class="form-control" id="start_encumbrance" name="start_encumbrance" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_encumbrance">Срок обременения (дата окончания) *</label>
-                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance" required>
+                                <input type="date" class="form-control" id="end_encumbrance" name="end_encumbrance" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_use">Срок Пользования (дата начала) *</label>
-                                <input type="text"
+                                <input type="date"
                                        class="form-control" id="start_use" name="start_use" required>
                             </div><div class="col-6 mb-3 ">
-                            <label for="end_use">Срок Пользования (дата конца) *</label>
-                            <input type="text"
+                            <label for="end_use">Срок Пользования (дата окончания) *</label>
+                            <input type="date"
                                    class="form-control" id="end_use" name="end_use" required>
                         </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком *</label>
-                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse" required>
+                                <input type="number" class="form-control" id="Payment_foruse" name="Payment_foruse" required>
                             </div>
 
                         </div>

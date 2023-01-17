@@ -5,6 +5,8 @@ import json  # подключили библиотеку для работы с 
 from pprint import pprint  # подключили Pprint для красоты выдачи текста
 
 auth_func = Blueprint('auth_func', __name__)
+# global Permission_SeeAllObjects
+# global podved_code
 
 
 @auth_func.route('/signout')
@@ -27,7 +29,7 @@ def login(refresh_token=None):
     #     return makeAccesToken()
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
-        if valid:
+        if valid == 'True':
             flash('Вы уже авторизованы')
             return redirect(url_for('podved'))
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -38,7 +40,6 @@ def login(refresh_token=None):
         if request.method == 'POST':
             login = request.form.get('username')
             password = request.form.get('password')
-            print(login, password)
             param_request = {'login': login, 'password': password}
             response_cookie = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
                                             verify=False)
@@ -49,13 +50,20 @@ def login(refresh_token=None):
             success = response_cookie.json()['success']
             blockuser = response_cookie.json()['blockuser']
             refresh_token = response_cookie.json()['RefreshToken']
-            print(success, blockuser)
+            # print(success, blockuser)
             if success == True and blockuser == False:
                 return makeRefreshToken(refresh_token)
             else:
                 return 'вы не имеете права'
 
     return render_template('login.html', title='Авторизация')
+
+def getPodved():
+    podved = podved_code
+    permission_see = Permission_SeeAllObjects
+    print(podved, permission_see)
+    return (podved, permission_see)
+
 
 
 #
@@ -92,18 +100,19 @@ def refreshAccesToken(link_send_to_refresh):
     print(link_send_to_refresh)
     print('судьба вас примвела в refreshAccesToken')
     refresh_token = request.cookies.get('refresh_token')
-    print(refresh_token)
+    # print(refresh_token)
     param_request = {'RefreshToken': refresh_token}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
                              verify=False)
     access_token = response.json()['AccessToken']
     username_token = response.json()['UserName']
-    print(access_token)
+    # print(access_token)
     success = response.json()['success']
     blockuser = response.json()['blockuser']
-    print("response.text:\n{}\n\n".format(response.text))
+    # print("response.text:\n{}\n\n".format(response.text))
     link = link_send_to_refresh.get('link')
     id = link_send_to_refresh.get('id')
+    print("response.text:\n{}\n\n".format(response.text))
     print(id)
     if success == True and blockuser == False:
         if id == None:
@@ -125,6 +134,8 @@ def refreshAccesToken(link_send_to_refresh):
 
 
 def validateAccesToken():
+    global podved_code
+    global Permission_SeeAllObjects
     access_token = request.cookies.get('access_token')
     param_request = {'AccessToken': access_token}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
@@ -132,11 +143,21 @@ def validateAccesToken():
     success = response.json()['success']
     blockuser = response.json()['blockuser']
     token_expired = response.json()['AccessTokenTokenExpired']
-    # user_name = response.json()['UserName']
-    print(response.json())
-    print('test validateAccesToken', success, blockuser, token_expired, access_token)
+    try:
+        Permission_SeeAllObjects = response.json()['Permission_SeeAllObjects']
+        podved_code = response.json()['podved_code']
+    except:
+        print('podved_code and permission false')
+        return 'False'
+    print(podved_code, Permission_SeeAllObjects)
+    print('test validateAccesToken:', success, blockuser, token_expired, access_token)
+    print("response.text:\n{}\n\n".format(response.text))
     if success == True and blockuser == False and token_expired == False:
+        # if podved_code == '' and Permission_SeeAllObjects =='':
+        #     return 'False'
+        # else:
         return 'True'
+
     elif success == True and blockuser == False and token_expired == True:
         return refreshAccesToken()
     elif success == False and blockuser == False and token_expired == False:

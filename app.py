@@ -88,8 +88,6 @@ def data_params_request():
     return data_params
 
 
-class CForm(Form):
-    name = StringField('name', [validators.Length(min=4, max=25)])
 
 # @app.route('/downloads', methods=['GET', 'POST'])
 # def upload_file():
@@ -171,7 +169,6 @@ def podved(*args, **kwargs):
         valid = validateAccesToken()
         data_params_request()
         if valid == 'True':
-            print('valid')
             headers_get = getAccessToken()
             headers = {'AccessToken':headers_get}
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
@@ -189,12 +186,19 @@ def podved(*args, **kwargs):
             data = response.json()['list_PD']
             print(response.json())
             departments = listDepartsments()
-            print(departments)
+            # print(departments)
             getusername = getUserName()
             context = {'data': data, 'departments': departments, 'getusername':getusername}
             print(response.headers)
-
-            return render_template('podved.html', **context)
+            # функция вызова подведов и создания страницы для пользователей.
+            c= auth.getPodved()
+            podved = c[0]
+            permission_see = c[1]
+            # print(type(podved), type(permission_see))
+            if permission_see == True:
+                return render_template('podved.html', **context)
+            else:
+                return redirect(url_for('cardhouse',id = podved))
         else:
             return deleteTokens()
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -429,7 +433,7 @@ def cardhousedetail(id):
                        'data_params': data_params,
                        'departments': departments,
                        'getusername':getusername}
-            # print(data)
+            print(data)
             if request.method == 'POST':
                 # 1шаг
                 name = request.form.get('name')
@@ -927,6 +931,11 @@ def customers(id):
                 print('description:',description)
                 print('object_type:',object_type)
                 print('PurposeObject:',PurposeObject)
+                print('Condition',Condition)
+                print('technicalFloor',technicalFloor)
+                print('Lift',Lift)
+                print('remontDate',remontDate)
+                print('SecurityObligation',SecurityObligation)
                 print('region:',region)
                 print('address:',address)
                 print('remontDate:',remontDate)

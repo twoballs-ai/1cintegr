@@ -4,7 +4,7 @@
     {{ super() }}
     <!-- Modal -->
     <div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1"
-         tabindex="-1">
+         tabindex="-1" >
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -48,36 +48,58 @@
                             <div class="col-6 mb-3"><label for="name">Наименование:</label><input class="form-control"
                                                                                                   id="name" name="name"
                                                                                                   type="text"
-                                                                                                  value="{{ data.name }}" required>
+                                                                                                  value="{{ data.name }}" maxlength="1000" required>
                             </div>
                             <div class="col-6 mb-3"><label for="description">Описание:</label><input
                                     class="form-control"
                                     id="description" name="description"
                                     type="text" value="{{ data.description }}" required></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта:</label>
-                                <select onchange="onChangeClick(event)" id="select1" class="form-select" aria-label="Default select example" name="object_type" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>
-                                    <option value="{{ data_params[0]['values'][2]['id'] }}">{{ data_params[0]['values'][2]['value'] }}</option>
-                                    <option value="{{ data_params[0]['values'][3]['id'] }}">{{ data_params[0]['values'][3]['value'] }}</option>
+                                <select onchange="onChangeClick()" id="object_type" class="form-select" aria-label="Default select example" name="object_type" required>
+                                    <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['values'] %}
+                                        {% if row['value']  == data.object_type %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['values'][1]['id'] }}">{{ data_params[0]['values'][1]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['values'][2]['id'] }}">{{ data_params[0]['values'][2]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['values'][3]['id'] }}">{{ data_params[0]['values'][3]['value'] }}</option>#}
                                 </select>
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально):</label>
                                 <select class="form-select" id="PurposeObject" aria-label="Default select example"
-                                        name="{{ data.PurposeObject }}" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
+                                        name="PurposeObject" required>
+                                    <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][3]['values'] %}
+                                        {% if row['value']  == data.PurposeObject %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">Нежилое</option>#}
                                 </select>
                             </div>
                                                <div class="col-6 mb-3"><label for="Condition">Состояние объекта (опционально) </label>
                                 <select id="Condition" class="form-select" aria-label="Default select example" name="Condition" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="1">Аварийное</option>
-                                    <option value="2">Неудовлетворительное</option>
-                                    <option value="2">Удовлетворительное/option>
-                                    <option value="2">Хорошее</option>
+                                    <option disabled>Выберите из выпадающего списка</option>
+{#                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][3]['values'] %}#}
+{#                                        {% if row['value']  == data.PurposeObject %}#}
+{#                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>#}
+{#                                        {% else %}#}
+{#                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>#}
+{#                                        {% endif %}#}
+{#                                    {% endfor %}#}
+                                    <option value="Аварийное"{% if value ==  data.Condition%}selected{% endif %}>Аварийное</option>
+                                    <option value="Неудовлетворительное"{% if value ==  data.Condition%}selected{% endif %}>Неудовлетворительное</option>
+                                    <option value="Удовлетворительное"{% if value ==  data.Condition%}selected{% endif %}>Удовлетворительное</option>
+                                    <option value="Хорошее"{% if value ==  data.Condition%}selected{% endif %}>Хорошее</option>
                                 </select>
                             </div>
                             <div class="col-3 mb-3"><label for="technicalFloor">Технический этаж</label>
@@ -98,11 +120,11 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции</label>
-                                <input class="form-control" id="remontDate" name="remontDate" type="date" required/>
+                                <input class="form-control" id="remontDate" name="remontDate" value="{{ data.remontDate }}" type="date"/>
                             </div>
                                                         <div class="col-6 mb-3">
                                 <label for="PurposeObject">Охранное обязательство</label>
-                                <input class="form-control" id="name" name="" type="text" required/>
+                                <input class="form-control" id="name" name="" type="date" required/>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="formFile" >Скан документа:</label>
@@ -119,21 +141,30 @@
                                        value="{{ data.address }}" required/>
                                 <p id="address-full"></p>
                             </div>
-                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта:</label><input
+                            <div class="col-6 mb-3"><label for="object_area">Площадь объекта кв.м:</label><input
                                     class="form-control"
                                     id="object_area" name="object_area"
-                                    type="text" value="{{ data.object_area }}" required/></div>
+                                    type="number" value="{{ data.object_area }}" required/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
-                                <select class="form-select"  id="select2" aria-label="Default select example" name="LandCategory" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>
-
+                                <select class="form-select"  id="LandCategory" aria-label="Default select example" name="LandCategory" required>
+                                                <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][5]['values'] %}
+                                        {% if row['value']  == data.LandCategory %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="" selected disabled>Выберите из выпадающего списка</option>#}
+{#                                    #}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][1]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][2]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][3]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][4]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][5]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][6]['value'] }}</option>#}
+{##}
 
                                 </select>
                             </div>
@@ -221,21 +252,24 @@
                                 {#                                <p>{{ data.RNFI }}</p>#}
                                 <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI" required>
                                 {#                                <p>{{ data.RNFI_date }}</p>#}
-                                <input type="text" placeholder="дата регистрации РНФИ" class="form-control"
+                                <label for="RNFI_date">Дата регистрации РНФИ:</label>
+                                <input type="date" placeholder="дата регистрации РНФИ" class="form-control"
                                        id="RNFI_date"
-                                       name="RNFI_date" required>
+                                       name="RNFI_date" value="{{ data.RNFI_date }}" required>
                                 {#                                <p>{{ data.owner_nomer }}</p>#}
                                 <input type="text" placeholder="Номер регистрации права собственности РФ"
                                        class="form-control" id="owner_nomer" name="owner_nomer" required>
                                 {#                                <p>{{ data.owner_date }}</p>#}
-                                <input type="text" placeholder="Дата регистрации права собственности РФ"
-                                       class="form-control" id="owner_date" name="owner_date" required>
+                                <label for="owner_date">Дата регистрации права собственности РФ:</label>
+                                <input type="date" placeholder="Дата регистрации права собственности РФ"
+                                       class="form-control" id="owner_date" name="owner_date" value="{{ data.owner_date }}"  required>
                                 {#                                <p>{{ data.RecordNumberVEGRP }}</p>#}
                                 <input type="text" placeholder="Реестровй №" class="form-control"
                                        id="RecordNumberVEGRP" name="RecordNumberVEGRP" required>
                                 {#                                <p>{{ data.DateRecordsVEGRP }}</p>#}
-                                <input type="text" placeholder="Реестровая дата" class="form-control"
-                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP" required>
+                                <label for="DateRecordsVEGRP">Реестровая дата:</label>
+                                <input type="date" placeholder="Реестровая дата" class="form-control"
+                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP" value="{{ data.DateNumberVEGRP }}" required>
                             </div>
                             {#                            <div class="col-6 mb-4">#}
                             {#                                <label for="pravoobladatel">Правообладатель *</label>#}
@@ -250,15 +284,23 @@
                             {#                            </div>#}
                             <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
                                 <select class="form-select" id="TypeofRightOwner" onchange="onChangeClick2(event)" aria-label="Default select example" name="TypeofRightOwner" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>
+                                                                                  <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][14]['values'] %}
+                                        {% if row['value']  == data.TypeofRightOwner %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="" selected disabled>Выберите из выпадающего списка</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][2]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][3]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][4]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][5]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][6]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][7]['value'] }}</option>#}
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
@@ -268,7 +310,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="date_of_registration_of_another_right">Дата регистрации иного права:</label>
-                                <input type="text" class="form-control" id="date_of_registration_of_another_right"
+                                <input type="date" class="form-control" id="date_of_registration_of_another_right"
                                        name="date_of_registration_of_another_right"
                                        value="{{ data.date_of_registration_of_another_right }}" required>
                             </div>
@@ -289,7 +331,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Date_of_assignment_cadastral">Дата присвоения:</label>
-                                <input type="text" class="form-control" id="Date_of_assignment_cadastral"
+                                <input type="date" class="form-control" id="Date_of_assignment_cadastral"
                                        name="Date_of_assignment_cadastral"
                                        value="{{ data.Date_of_assignment_cadastral }}" required>
                             </div>
@@ -306,7 +348,7 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="residual_value">Остаточная стоимость:</label>
-                                <input type="text" class="form-control" id="residual_value" name="residual_value"
+                                <input type="number" class="form-control" id="residual_value" name="residual_value"
                                        value="{{ data.residual_value }}" required>
                             </div>
                         </div>
@@ -404,10 +446,18 @@
                             <div class="col-6 mb-3"><label for="historical_Category">Категория объекта
                                 историко-культурного значения:</label>
                                 <select class="form-select" aria-label="historical_Category" name="historical_Category" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['value'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['value'] }}</option>
+                                    <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'] %}
+                                        {% if row['value']  == data.historical_Category %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['value'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['value'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="" selected disabled>Выберите из выпадающего списка</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['value'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][2]['value'] }}</option>#}
 
                                 </select>
                             </div>
@@ -514,23 +564,31 @@
                             <div class="col-6 mb-3 ">
                                 <label for="KindEncumbrances">Вид обременения:</label>
                                 <select class="form-select" id="KindEncumbrances" aria-label="KindEncumbrances" name="KindEncumbrances" required>
-                                    <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['values'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['values'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['values'] }}</option>
-                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['values'] }}</option>
+                                                              <option disabled>Выберите из выпадающего списка</option>
+                                    {% for row in data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'] %}
+                                        {% if row['values']  == data.KindEncumbrances %}
+                                            <option value="{{ row['id'] }}" selected>{{ row['values'] }}</option>
+                                        {% else %}
+                                            <option value="{{ row['id'] }}">{{ row['values'] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    <option value="" disabled>Выберите из выпадающего списка</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][2]['values'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][3]['values'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][4]['values'] }}</option>#}
+{#                                    <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][5]['values'] }}</option>#}
                                 </select>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_area">Площадь обременения:</label>
-                                <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area"
+                                <input type="number" class="form-control" id="encumbrance_area" name="encumbrance_area"
                                        value="{{ data.encumbrance_area }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_cost">Стоимость обременения:</label>
-                                <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost"
+                                <input type="number" class="form-control" id="encumbrance_cost" name="encumbrance_cost"
                                        value="{{ data.encumbrance_cost }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
@@ -540,33 +598,33 @@
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Other_payments">Прочие платежи:</label>
-                                <input type="text" class="form-control" id="Other_payments" name="Other_payments"
+                                <input type="number" class="form-control" id="Other_payments" name="Other_payments"
                                        value="{{ data.Other_payments }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_encumbrance">Срок обременения (дата начала):</label>
-                                <input type="text" class="form-control" id="start_encumbrance" name="start_encumbrance"
+                                <input type="date" class="form-control" id="start_encumbrance" name="start_encumbrance"
                                        value="{{ data.start_encumbrance }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_encumbrance">Срок обременения (дата окончания):</label>
-                                <input type="text" class="form-control" id="end_encumbrance" name="end_encumbrance"
+                                <input type="date" class="form-control" id="end_encumbrance" name="end_encumbrance"
                                        value="{{ data.end_encumbrance }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_use">Срок Пользования (дата начала):</label>
-                                <input type="text"
+                                <input type="date"
                                        class="form-control" id="start_use" name="start_use"
                                        value="{{ data.start_use }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
-                                <label for="end_use">Срок Пользования (дата конца):</label>
-                                <input type="text"
+                                <label for="end_use">Срок Пользования (дата окончания):</label>
+                                <input type="date"
                                        class="form-control" id="end_use" name="end_use" value="{{ data.end_use }}" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком:</label>
-                                <input type="text" class="form-control" id="Payment_foruse" name="Payment_foruse"
+                                <input type="number" class="form-control" id="Payment_foruse" name="Payment_foruse"
                                        value="{{ data.Payment_foruse }} " required>
                             </div>
 
@@ -602,11 +660,11 @@
 {#        <button type="button" class="btn-secondary btn  m-2" data-bs-toggle="modal"#}
 {#                data-bs-target="#exampleModalToggle">Редактировать объект недвижимости#}
 {#        </button>#}
-    <button type="button" id="modalactivation" class="btn btn-primary m-2" >Редактировать объект недвижимости
+    <button type="button" onclick="onChangeClick()" id="modalactivation" class="btn btn-primary m-2" >Редактировать объект недвижимости
         </button>
     </div>
 
-    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey" >
         <ul class="list-group list-group-flush box overflow-auto my-1">
             <li class="list-group-item">
                 <h1 class="display-6 text-center">{{ data.name }}</h1>
@@ -712,23 +770,23 @@
     </tr>
      <tr>
       <th scope="row">Состояние объекта:</th>
-      <td colspan="2"></td>
+      <td colspan="2">{{ data.Condition }}</td>
     </tr>
     <tr>
       <th scope="row">Технический этаж:</th>
-      <td colspan="2"></td>
+      <td colspan="2">{{ data.technicalFloor }}</td>
     </tr>
     <tr>
       <th scope="row">Лифт:</th>
-      <td colspan="2"></td>
+      <td colspan="2">{{ data.Lift }}</td>
     </tr>
     <tr>
       <th scope="row">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции:</th>
-      <td colspan="2"></td>
+      <td colspan="2">{{ data.remontDate }}</td>
     </tr>
     <tr>
       <th scope="row">Охранное обязательство:</th>
-      <td colspan="2"></td>
+      <td colspan="2">{{ data.SecurityObligation }}</td>
     </tr>
     <tr>
       <th scope="row">Скан документа:</th>

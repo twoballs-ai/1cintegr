@@ -27,7 +27,7 @@ function onChangeClick(event) {
 
 
 
-  if (objTypeSelect == '000000001') {
+  if (objTypeSelect === '000000001') {
     select2.disabled = true
     PurposeObject.disabled = false
     Condition.disabled = false
@@ -43,13 +43,13 @@ function onChangeClick(event) {
     Payment_foruse.disabled = true
     for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000003'){
+    if (KindEncumbrances[i].value === '000000003'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000004'){
+    }else if (KindEncumbrances[i].value === '000000004'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
@@ -57,7 +57,7 @@ function onChangeClick(event) {
 }
 
   }
-  }else if (objTypeSelect == '000000004') {
+  }else if (objTypeSelect === '000000004') {
     select2.disabled = true
     PurposeObject.disabled = false
     Condition.disabled = false
@@ -73,13 +73,13 @@ function onChangeClick(event) {
     Payment_foruse.disabled = true
     for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000003'){
+    if (KindEncumbrances[i].value === '000000003'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000004'){
+    }else if (KindEncumbrances[i].value === '000000004'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
@@ -87,7 +87,7 @@ function onChangeClick(event) {
 }
 
   }
-  }else if (objTypeSelect == '000000003') {
+  }else if (objTypeSelect === '000000003') {
     select2.disabled = true
     PurposeObject.disabled = false
     Condition.disabled = false
@@ -103,13 +103,13 @@ function onChangeClick(event) {
     Payment_foruse.disabled = true
         for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000003'){
+    if (KindEncumbrances[i].value === '000000003'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000004'){
+    }else if (KindEncumbrances[i].value === '000000004'){
        KindEncumbrances[i].disabled = false;
        // console.log('svsdvsd')
        // console.log(i)
@@ -133,13 +133,13 @@ function onChangeClick(event) {
     Payment_foruse.disabled = false
     for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000003'){
+    if (KindEncumbrances[i].value === '000000003'){
        KindEncumbrances[i].disabled = true;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000004'){
+    }else if (KindEncumbrances[i].value === '000000004'){
        KindEncumbrances[i].disabled = true;
        // console.log('svsdvsd')
        // console.log(i)
@@ -160,7 +160,7 @@ function onChangeClick2(event) {
   const TypeofRightOwner = document.getElementById('TypeofRightOwner').value
   const inventory_number = document.getElementById('inventory_number')
   const balance_number = document.getElementById('balance_number')
-  const type_pravoobladatel = document.getElementById('type_pravoobladatel')
+  const cadastralcost = document.getElementById('cadastralcost')
   const Initial_cost = document.getElementById('Initial_cost')
   const residual_value = document.getElementById('residual_value')
   // const TypeOfPermittedUse = document.getElementById('TypeOfPermittedUse')
@@ -171,28 +171,29 @@ function onChangeClick2(event) {
   // const start_use = document.getElementById('start_use')
   // const end_use = document.getElementById('end_use')
   // const Payment_foruse = document.getElementById('Payment_foruse')
+
   if (TypeofRightOwner === 'Аренда' || TypeofRightOwner === 'Безвозмездное пользование' ) {
     inventory_number.disabled = true
     balance_number.disabled = true
-    type_pravoobladatel.disabled = true
+    cadastralcost.disabled = true
     Initial_cost.disabled = true
   for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000001'){
+    if (KindEncumbrances[i].value === '000000001'){
         KindEncumbrances[i].disabled = false;
-       // console.log('svsdvsd')
-       // console.log(i)
+       console.log('svsdvsd')
+       console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000002'){
+    }else if (KindEncumbrances[i].value === '000000002'){
        KindEncumbrances[i].disabled = false;
-       // console.log('svsdvsd')
-       // console.log(i)
+       console.log('svssss333dvsd')
+       console.log(i)
        console.log(KindEncumbrances[i].value)
-    }else if (KindEncumbrances[i].value == '000000006'){
+    }else if (KindEncumbrances[i].value === '000000006'){
            KindEncumbrances[i].disabled = false;
-           // console.log('svsdvsd')
-           // console.log(i)
+           console.log('svsdvs111d')
+           console.log(i)
            console.log(KindEncumbrances[i].value)
     }
 
@@ -201,24 +202,27 @@ function onChangeClick2(event) {
   }else{
     inventory_number.disabled = false
     balance_number.disabled = false
-    type_pravoobladatel.disabled = false
+    cadastralcost.disabled = false
     Initial_cost.disabled = false
     residual_value.disabled = false
   for (var i = 0; i < KindEncumbrances.length; i++) {
      console.log(KindEncumbrances[i].value)
-    if (KindEncumbrances[i].value == '000000001'){
+    if (KindEncumbrances[i].value === '000000001'){
         KindEncumbrances[i].disabled = true;
+        KindEncumbrances.selectedIndex = 0;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
 
-    }else if (KindEncumbrances[i].value == '000000002'){
+    }else if (KindEncumbrances[i].value === '000000002'){
        KindEncumbrances[i].disabled = true;
+       KindEncumbrances.selectedIndex = 0;
        // console.log('svsdvsd')
        // console.log(i)
        console.log(KindEncumbrances[i].value)
-    }else if (KindEncumbrances[i].value == '000000006'){
+    }else if (KindEncumbrances[i].value === '000000006'){
            KindEncumbrances[i].disabled = true;
+           KindEncumbrances.selectedIndex = 0;
            // console.log('svsdvsd')
            // console.log(i)
            console.log(KindEncumbrances[i].value)
@@ -234,6 +238,8 @@ function onChangeClick2(event) {
   // console.log(KindEncumbrances)
   // console.log(select2)
 }
+
+
 
 // дадата интерфейс
 var token = "d9d839eea6af5bf1c146189a65c734a35651b6f2";
@@ -377,7 +383,7 @@ $('.btnTranslate2').click(function(){
   $('#form-3 [name="balance_number"]').val($('#form-2 [name="balance_number"]').val());
   $('#form-3 [name="CadastralNumber"]').val($('#form-2 [name="CadastralNumber"]').val());
   $('#form-3 [name="Date_of_assignment_cadastral"]').val($('#form-2 [name="Date_of_assignment_cadastral"]').val());
-  $('#form-3 [name="type_pravoobladatel"]').val($('#form-2 [name="type_pravoobladatel"]').val());
+  $('#form-3 [name="cadastralcost"]').val($('#form-2 [name="cadastralcost"]').val());
   $('#form-3 [name="Initial_cost"]').val($('#form-2 [name="Initial_cost"]').val());
   $('#form-3 [name="residual_value"]').val($('#form-2 [name="residual_value"]').val());
 });
@@ -412,7 +418,7 @@ $('.btnTranslate3').click(function(){
   $('#form-4 [name="balance_number"]').val($('#form-3 [name="balance_number"]').val());
   $('#form-4 [name="CadastralNumber"]').val($('#form-3 [name="CadastralNumber"]').val());
   $('#form-4 [name="Date_of_assignment_cadastral"]').val($('#form-3 [name="Date_of_assignment_cadastral"]').val());
-  $('#form-4 [name="type_pravoobladatel"]').val($('#form-3 [name="type_pravoobladatel"]').val());
+  $('#form-4 [name="cadastralcost"]').val($('#form-3 [name="cadastralcost"]').val());
   $('#form-4 [name="Initial_cost"]').val($('#form-3 [name="Initial_cost"]').val());
   $('#form-4 [name="residual_value"]').val($('#form-3 [name="residual_value"]').val());
   // 3форма
@@ -451,7 +457,7 @@ $('.btnTranslate4').click(function(){
   $('#form-5 [name="balance_number"]').val($('#form-4 [name="balance_number"]').val());
   $('#form-5 [name="CadastralNumber"]').val($('#form-4 [name="CadastralNumber"]').val());
   $('#form-5 [name="Date_of_assignment_cadastral"]').val($('#form-4 [name="Date_of_assignment_cadastral"]').val());
-  $('#form-5 [name="type_pravoobladatel"]').val($('#form-4 [name="type_pravoobladatel"]').val());
+  $('#form-5 [name="cadastralcost"]').val($('#form-4 [name="cadastralcost"]').val());
   $('#form-5 [name="Initial_cost"]').val($('#form-4 [name="Initial_cost"]').val());
   $('#form-5 [name="residual_value"]').val($('#form-4 [name="residual_value"]').val());
   // 3форма

@@ -23,6 +23,7 @@ def listDepartsments():
     headers = {'AccessToken': headers_get}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/listdepartments/", verify=False, headers=headers)
     data = response.json()['list_DP']
+    print('обрати внимание ')
     print(response.json())
     return data
 

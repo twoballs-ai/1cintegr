@@ -2,6 +2,14 @@
 
 {% block content %}
     {{ super() }}
+            <nav aria-label="breadcrumb" class="mx-3">
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbs }}</li>
+
+
+        </ol>
+    </nav>
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
 
         <ul class="list-group list-group-flush box overflow-auto my-1">

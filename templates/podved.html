@@ -2,20 +2,36 @@
 
 {% block content %}
     {{ super() }}
-    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="liveAlertPlaceholder">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
+    <nav aria-label="breadcrumb" class="mx-3">
+        <ol class="breadcrumb">
+            {%  if id_podved %}
+                <li class="breadcrumb-item"><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ namebreadcrumbsbycat }}</li>
+            {% elif name_depart %}
+                <li class="breadcrumb-item active" aria-current="page">Департамент: {{ name_depart }}</li>
+            {% else  %}
+                <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbs }}</li>
             {% endif %}
-        {% endwith %}
+        </ol>
+    </nav>
+    <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
+
+
+        {#        {% with messages = get_flashed_messages() %}#}
+        {#            {% if messages %}#}
+        {#                {% for message in messages %}#}
+        {#                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="liveAlertPlaceholder">#}
+        {#                        {{ message }}#}
+        {#                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        {#                    </div>#}
+        {#                {% endfor %}#}
+        {#            {% endif %}#}
+        {#        {% endwith %}#}
         <ul class="list-group list-group-flush box overflow-auto my-1">
+
             {#           <li class="list-group-item">Наименование подведомственной организации</li>#}
             <table class="table table-hover">
+
                 <thead>
                 <tr>
                     <th scope="col-12">Наименование подведомственной организации</th>
@@ -26,11 +42,24 @@
                 {% for i in data %}
 
                     {#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
-                    <tr data-href="{{ url_for("cardhouse", id=i.code) }}" role="button">
-                        <td class="noselect">{{ i.name }}</td>
-                        <td class="text-secondary">>>></td>
-                        {#          <img src="{{url_for('site.static', filename = data)}}">#}
-                    </tr>
+                    {% if id_podved %}
+                        <tr data-href="{{ url_for("cardhouse", id=i.code, id_podv = id_podved, namebreadcrumbsbycat =namebreadcrumbsbycat) }}" role="button">
+                            <td class="noselect">{{ i.name }}</td>
+                            <td class="text-secondary">>>></td>
+                            {#          <img src="{{url_for('site.static', filename = data)}}">#}
+                        </tr>
+                    {% elif departid %}
+                        <tr data-href="{{ url_for("cardhouse", id=i.code, departments = departid, departmentsname= name_depart) }}" role="button">
+                            <td class="noselect">{{ i.name }}</td>
+                            <td class="text-secondary">>>></td>
+                            {#          <img src="{{url_for('site.static', filename = data)}}">#}
+                        </tr>
+                    {% else %}
+                        <tr data-href="{{ url_for("cardhouse", id=i.code) }}" role="button">
+                            <td class="noselect">{{ i.name }}</td>
+                            <td class="text-secondary">>>></td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>

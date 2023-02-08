@@ -31,6 +31,12 @@ const backbtnform1open = document.getElementById("form-1backopenbutton");
 // const fields = form.querySelectorAll('.field')
 //
 //
+
+//attaching "change" event to the file upload button
+
+
+
+
 (function () {
     'use strict'
 
@@ -160,7 +166,7 @@ const backbtnform1open = document.getElementById("form-1backopenbutton");
                 form4r.classList.add('was-validated')
             }, false)
         })
-        Array.prototype.slice.call(forms5)
+    Array.prototype.slice.call(forms5)
         .forEach(function (form5) {
             form5.addEventListener('submit', function (event) {
                 if (!form5.checkValidity()) {
@@ -187,221 +193,7 @@ btn.addEventListener("click", function () {
     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle1"));
     myModal.show();
 });
-// (() => {
-//   'use strict'
-//
-//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//   const forms = document.querySelectorAll('.needs-validation')
-//
-//   // Loop over them and prevent submission
-//   Array.from(forms).forEach(form => {
-//     form.addEventListener('submit', event => {
-//       if (!form.checkValidity()) {
-//         event.preventDefault()
-//         event.stopPropagation()
-//       }
-//
-//       form.classList.add('was-validated')
-//     }, false)
-//   })
-// })()
-//
-// let generateError = function (text) {
-//   let error = document.createElement('div')
-//   error.className = 'error'
-//   error.style.color = 'red'
-//   error.innerHTML = text
-//   return error
-// }
-//
-// let removeValidation = function () {
-//   let errors = form.querySelectorAll('.error')
-//
-//   for (let i = 0; i < errors.length; i++) {
-//     errors[i].remove()
-//   }
-// }
-// //
-// // let counterForm1 = function () {
-// //     let counter = 100
-// //     counter++
-// //     console.log(counter)
-// //
-// //
-// // }
-//
-// let checkFieldsPresence = function () {
-//
-//   for (let i = 0; i < fields.length; i++) {
-//     if (!fields[i].value) {
-//       console.log('field is blank', fields[i])
-//       let error = generateError('Cant be blank')
-//       form[i].parentElement.insertBefore(error, fields[i])
-//
-//     }
-//   }
-// }
-//
-// form.addEventListener('submit', function (event) {
-//     event.preventDefault()
-//
-//     removeValidation()
-//
-//     checkFieldsPresence()
-//
-//
-//
-// })
 
-
-// form.addEventListener('submit', function (event) {
-//     event.preventDefault()
-//     console.log('clicked on validate')
-//     console.log('name: ', name.value)
-//     console.log('description: ', description.value)
-//     console.log('object_type: ', object_type.value)
-//     console.log('PurposeObject: ', PurposeObject.value)
-//     console.log('Condition: ', Condition.value)
-//     console.log('technicalFloor: ', technicalFloor.value)
-//     console.log('Lift: ', Lift.value)
-//     console.log('remontDate: ', remontDate.value)
-//     console.log('SecurityObligation: ', SecurityObligation.value)
-//     console.log('region: ', region.value)
-//     console.log('address: ', address.value)
-//     console.log('object_area: ', object_area.value)
-//     console.log('LandCategory: ', LandCategory.value)
-//     console.log('TypeOfPermittedUse: ', TypeOfPermittedUse.value)
-// })
-
-
-// btnform2open.addEventListener("click", function() {
-//     const myModalEl = document.getElementById('exampleModalToggle1');
-//     const modal = bootstrap.Modal.getInstance(myModalEl)
-//     modal.hide();
-//
-//     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle2"));
-//     myModal.show();
-//
-// });
-
-// btnform3open.addEventListener("click", function() {
-//     const myModalEl = document.getElementById('exampleModalToggle2');
-//     const modal = bootstrap.Modal.getInstance(myModalEl)
-//     modal.hide();
-//
-//     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle3"));
-//     myModal.show();
-//
-// });
-//
-//     btnform4open.addEventListener("click", function() {
-//     const myModalEl = document.getElementById('exampleModalToggle3');
-//     const modal = bootstrap.Modal.getInstance(myModalEl)
-//     modal.hide();
-//
-//     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle4"));
-//     myModal.show();
-//
-// });
-//
-//     btnform5open.addEventListener("click", function() {
-//     const myModalEl = document.getElementById('exampleModalToggle4');
-//     const modal = bootstrap.Modal.getInstance(myModalEl)
-//     modal.hide();
-//
-//     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle5"));
-//     myModal.show();
-//
-// });
-// var modalToggle = document.getElementById('toggleMyModal') // relatedTarget
-// myModal.show(modalToggle)
-
-
-//
-// const form  = document.getElementById('form-1');
-//
-// const name = document.getElementById('name');
-// const nameError = document.querySelector('#name + span.error');
-//
-// name.addEventListener('input', function (event) {
-//   // Каждый раз, когда пользователь что-то вводит,
-//   // мы проверяем, являются ли поля формы валидными
-//
-//   if (name.validity.valid) {
-//     // Если на момент валидации какое-то сообщение об ошибке уже отображается,
-//     // если поле валидно, удаляем сообщение
-//     nameError.textContent = ''; // Сбросить содержимое сообщения
-//     nameError.className = 'error'; // Сбросить визуальное состояние сообщения
-//   } else {
-//     // Если поле не валидно, показываем правильную ошибку
-//     showError();
-//   }
-// });
-//
-// btnform2open.addEventListener("click", function(event) {
-//   // Если поле email валдно, позволяем форме отправляться
-//     if (name.validity.valid ===true ) {
-//                 console.log('svdsvd1')
-//     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle2"));
-//     myModal.show();
-//     modal1.hide();
-//     myModal.hide();
-//     console.log('leftform2');
-//
-//
-//
-//     } else if(name.validity.valid ===false ){
-//       console.log('svdsvd2')
-//
-//
-//     // Если поле email не валидно, отображаем соответствующее сообщение об ошибке
-//     showError();
-//     // Затем предотвращаем стандартное событие отправки формы
-//     event.preventDefault();
-//     // alert('sdv');
-//   }
-// });
-//
-// function showError() {
-//   if(name.validity.valueMissing) {
-//     // Если поле пустое,
-//     // отображаем следующее сообщение об ошибке
-//     nameError.textContent = 'You need to enter an e-mail address.';
-//   } else if(name.validity.typeMismatch) {
-//     // Если поле содержит не email-адрес,
-//     // отображаем следующее сообщение об ошибке
-//     nameError.textContent = 'Entered value needs to be an e-mail address.';
-//   } else if(name.validity.tooShort) {
-//     // Если содержимое слишком короткое,
-//     // отображаем следующее сообщение об ошибке
-//     nameError.textContent = `Email should be at least ${ name.minLength } characters; you entered ${ name.value.length }.`;
-//   }
-//
-//   // Задаём соответствующую стилизацию
-//   nameError.className = 'error active';
-// }
-//
-//     // btnform2open.addEventListener("click", function() {
-//     //     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle2"));
-//     //     console.log('leftform2');
-//     //     myModal.show();
-//     // });
-//
-//     btnform3open.addEventListener("click", function() {
-//         const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle3"));
-//         myModal.show();
-//     });
-//
-//     btnform4open.addEventListener("click", function() {
-//         const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle4"));
-//         myModal.show();
-//     });
-//
-//     btnform5open.addEventListener("click", function() {
-//         const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle5"));
-//         myModal.show();
-//     });
-//
 backbtnform1open.addEventListener("click", function () {
     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle1"));
     console.log('назад на первую');
@@ -422,58 +214,69 @@ backbtnform4open.addEventListener("click", function () {
     const myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle4"));
     myModal.show();
 });
-//
-//
-// });
 
-// // Существуют разные способы получить DOM-узел; здесь мы определяем саму форму и
-// // поле ввода email и элемент span, в который поместим сообщение об ошибке
-// const form  = document.getElementsByTagName('form')[0];
-//
-// const email = document.getElementById('name');
-// const emailError = document.querySelector('#mail + span.error');
-//
-// email.addEventListener('input', function (event) {
-//   // Каждый раз, когда пользователь что-то вводит,
-//   // мы проверяем, являются ли поля формы валидными
-//
-//   if (email.validity.valid) {
-//     // Если на момент валидации какое-то сообщение об ошибке уже отображается,
-//     // если поле валидно, удаляем сообщение
-//     emailError.textContent = ''; // Сбросить содержимое сообщения
-//     emailError.className = 'error'; // Сбросить визуальное состояние сообщения
-//   } else {
-//     // Если поле не валидно, показываем правильную ошибку
-//     showError();
-//   }
-// });
-//
-// form.addEventListener('submit', function (event) {
-//   // Если поле email валдно, позволяем форме отправляться
-//
-//   if(!email.validity.valid) {
-//     // Если поле email не валидно, отображаем соответствующее сообщение об ошибке
-//     showError();
-//     // Затем предотвращаем стандартное событие отправки формы
-//     event.preventDefault();
-//   }
-// });
-//
-// function showError() {
-//   if(email.validity.valueMissing) {
-//     // Если поле пустое,
-//     // отображаем следующее сообщение об ошибке
-//     emailError.textContent = 'You need to enter an e-mail address.';
-//   } else if(email.validity.typeMismatch) {
-//     // Если поле содержит не email-адрес,
-//     // отображаем следующее сообщение об ошибке
-//     emailError.textContent = 'Entered value needs to be an e-mail address.';
-//   } else if(email.validity.tooShort) {
-//     // Если содержимое слишком короткое,
-//     // отображаем следующее сообщение об ошибке
-//     emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
-//   }
-//
-//   // Задаём соответствующую стилизацию
-//   emailError.className = 'error active';
-// }
+document.getElementById("formFile").addEventListener("change", validateFile)
+function validateFile(){
+    const allowedExtensions =  ['jpg','jpeg','png','gif'],
+        sizeLimit = 10000000; // 1 megabyte
+
+    // destructuring file name and size from file object
+    const { name:fileName, size:fileSize } = this.files[0];
+
+    /*
+    * if the filename is apple.png, we split the string to get ["apple","png"]
+    * then apply the pop() method to return the file extension (png)
+    *
+    */
+    const fileExtension = fileName.split(".").pop();
+
+    /*
+      check if the extension of the uploaded file is included
+      in our array of allowed file extensions
+    */
+    if(!allowedExtensions.includes(fileExtension)){
+        alert("Пожалуйста загружайте только jpg, jpeg and png файлы");
+        this.value = null;
+    }else if(fileSize > sizeLimit){
+        alert("Максимальный размер картинки 10 мб.")
+        this.value = null;
+    }
+}
+
+/* javascript function to validate file type */
+document.getElementById("files[]").addEventListener("change", validateFilesType)
+
+function validateFilesType() {
+    let inputElement = document.getElementById('files[]');
+    let files = inputElement.files;
+    const allowedExtensions =  ['jpg','jpeg','png','gif']
+    const sizeLimit = 10000000;
+    if(files.length===0){
+        alert("Сначала выберите файл");
+        return false;
+    }else{
+
+        /* iterating over the files array */
+        for(let i=0;i<files.length;i++){
+            // let filename = files[i].name;
+            const { name:fileName, size:fileSize } = this.files[i];
+            /* getting file extenstion eg- .jpg,.png, etc */
+            // let extension = filename.substring(filename.lastIndexOf("."));
+            const fileExtension = fileName.split(".").pop();
+
+            /* define allowed file types */
+            // let allowedExtensionsRegx = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            /* testing extension with regular expression */
+            // let isAllowed = allowedExtensionsRegx.test(extension);
+
+    if(!allowedExtensions.includes(fileExtension)){
+        alert("Пожалуйста загружайте только jpg, jpeg and png файлы");
+        this.value = null;
+    }else if(fileSize > sizeLimit){
+        alert("Максимальный размер картинки 10 мб.")
+        this.value = null;
+    }
+        }
+    }
+}

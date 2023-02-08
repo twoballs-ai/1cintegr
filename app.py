@@ -1,9 +1,10 @@
 import os
 from flask import Flask, flash, render_template, url_for, request, \
-    session, redirect, Blueprint
+    session, redirect, Blueprint, jsonify
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
 import json
+import urllib.request
 import requests
 import datetime
 from dadata import Dadata
@@ -18,7 +19,7 @@ from auth import auth_func, validateAccesToken, refreshAccesToken, deleteTokens,
 from wtforms import Form, BooleanField, StringField, validators
 
 datetime = datetime.datetime.now()
-print(datetime)
+
 
 UPLOAD_FOLDER = '/mnt/disk_d/upload'
 UPLOAD_FOLDER_MULTI = '/mnt/disk_d/upload/multi'
@@ -71,7 +72,6 @@ app.register_blueprint(request_func)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-global foto_main
 
 def data_params_request():
     headers_get = getAccessToken()
@@ -84,7 +84,7 @@ def data_params_request():
     elif response_params.status_code == 401:
         print('Not auth.')
     data_params = response_params.json()
-    # print(data_params)
+    # print(f"большой список значений {data_params}")
     return data_params
 
 
@@ -173,6 +173,7 @@ def podved(*args, **kwargs):
             headers = {'AccessToken':headers_get}
             url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
             # if key doesn't exist, returns None
+            breadcrumbs = "Подведомственные организации"
             param_request = {'page': '1'}
             # response = requests.get(url, verify=False)
             response = requests.post(url, param_request, verify=False, headers=headers)
@@ -188,7 +189,7 @@ def podved(*args, **kwargs):
             departments = listDepartsments()
             # print(departments)
             getusername = getUserName()
-            context = {'data': data, 'departments': departments, 'getusername':getusername}
+            context = {'data': data, 'departments': departments, 'getusername':getusername, 'breadcrumbs':breadcrumbs}
             print(response.headers)
             # функция вызова подведов и создания страницы для пользователей.
             c= auth.getPodved()
@@ -237,9 +238,16 @@ def department(id):
             data = response.json()['list_PD']
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'data': data, 'departments': departments, 'getusername':getusername}
+            departid = id
+            name_depart = request.args.get('value')
+            breadcrumbs = "Категория подведомственной организации"
+            context = {'data': data,
+                       'departments': departments,
+                       'getusername':getusername,
+                       'name_depart':name_depart,
+                       'departid':departid}
             # print(response.headers)
-            print(data)
+            print(context)
             # print(context)
             return render_template('podved.html', **context)
         else:
@@ -257,9 +265,9 @@ def department(id):
         return deleteTokens()
 
 
-@app.route('/category_podved/<id>')
-@app.route('/category_podved/<id>/')
-def category_podved(id):
+@app.route('/category_podved/<id>', methods=['GET', 'POST'])
+@app.route('/category_podved/<id>/', methods=['GET', 'POST'])
+def category_podved(id, *args, **kwargs):
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
         if valid == 'True':
@@ -282,8 +290,18 @@ def category_podved(id):
             data = response.json()['list_PD']
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'data': data, 'departments': departments, 'getusername':getusername}
-            print(data)
+            id_podved = id
+            name_category_breadcrumbs = request.args.get('name')
+
+            breadcrumbs = "Категория подведомственной организации"
+            context = {'data': data,
+                       'departments': departments,
+                       'getusername':getusername,
+                       'namebreadcrumbsbycat':name_category_breadcrumbs,
+                       'breadcrumbs': breadcrumbs,
+                       'id_podved':id_podved
+                       }
+            print(context)
             return render_template('podved.html', **context)
         else:
             return deleteTokens()
@@ -321,7 +339,8 @@ def category():
             print(data1)
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'data': data, 'departments': departments, 'getusername':getusername}
+            breadcrumbs = "Категория подведомственной организации"
+            context = {'data': data, 'departments': departments, 'getusername':getusername, 'breadcrumbs': breadcrumbs}
             print(data)
             return render_template('category.html', **context)
         else:
@@ -382,11 +401,20 @@ def cardhouse(id):
             print(data)
             departments = listDepartsments()
             getusername = getUserName()
+            id_podved = request.args.get('id_podv')
+            id_podved_name = request.args.get('namebreadcrumbsbycat')
+            departId = request.args.get('departments')
+            departName = request.args.get('departmentsname')
             context = {'data': data,
                        'id': id,
                        'departments': departments,
-                       'getusername':getusername}
-            print(data)
+                       'getusername': getusername,
+                       'id_podved': id_podved,
+                       'id_podved_name': id_podved_name,
+                       'departId':departId,
+                       'departName':departName
+                       }
+            print(departName)
             return render_template('cardhouse.html', **context)
         else:
             return deleteTokens()
@@ -427,13 +455,33 @@ def cardhousedetail(id):
             # print(object_type_val)
             departments = listDepartsments()
             getusername = getUserName()
+            idpodv = request.args.get('idpodv')
+            namepodv = request.args.get('namepodved')
+            idcat_podved = request.args.get('idcat_podved')
+            idcat_podvedname = request.args.get('idcat_podvedname')
+            namepodved = request.args.get('namepodved')
+            breadcrumbs_customers = "Объекты недвижимости"
+            departId = request.args.get('departId')
+            departname = request.args.get('departname')
+            iddepartpodved = request.args.get('iddepartpodved')
+            namedepartpodved =request.args.get('namedepartpodved')
             context = {'data': data,
                        'object_type_val': object_type_val,
                        'id': id,
                        'data_params': data_params,
                        'departments': departments,
-                       'getusername':getusername}
-            print(data)
+                       'getusername':getusername,
+                       'breadcrumbs_customers':breadcrumbs_customers,
+                       'idpodv':idpodv,
+                       'namepodv':namepodv,
+                       'idcat_podved':idcat_podved,
+                       'idcat_podvedname':idcat_podvedname,
+                       'namepodved':namepodved,
+                       'departId':departId,
+                       'departname':departname,
+                       'iddepartpodved':iddepartpodved,
+                       'namedepartpodved':namedepartpodved}
+            print(iddepartpodved)
             if request.method == 'POST':
                 # 1шаг
                 name = request.form.get('name')
@@ -497,7 +545,7 @@ def cardhousedetail(id):
                 balance_number = request.form.get('balance_number')
                 CadastralNumber = request.form.get('CadastralNumber')
                 Date_of_assignment_cadastral = request.form.get('Date_of_assignment_cadastral')
-                type_pravoobladatel = request.form.get('type_pravoobladatel')
+                cadastralcost = request.form.get('cadastralcost')
                 Initial_cost = request.form.get('Initial_cost')
                 residual_value = request.form.get('residual_value')
                 print('RNFI:', RNFI)
@@ -513,7 +561,7 @@ def cardhousedetail(id):
                 print('balance_number:', balance_number)
                 print('CadastralNumber:', CadastralNumber)
                 print('Date_of_assignment_cadastral:', Date_of_assignment_cadastral)
-                print('type_pravoobladatel:', type_pravoobladatel)
+                print('cadastralcost:', cadastralcost)
                 print('Initial_cost:', Initial_cost)
                 print('residual_value:', residual_value)
                 # 3 шаг
@@ -598,7 +646,7 @@ def cardhousedetail(id):
                                 'inventory_number': inventory_number, 'balance_number': balance_number,
                                 'CadastralNumber': CadastralNumber,
                                 'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
-                                'type_pravoobladatel': type_pravoobladatel, 'Initial_cost': Initial_cost,
+                                'cadastralcost': cadastralcost, 'Initial_cost': Initial_cost,
                                 'residual_value': residual_value,
                                 'historical_Category': historical_Category, 'UGROKN_number': UGROKN_number,
                                 'KindEncumbrances': KindEncumbrances,
@@ -609,7 +657,7 @@ def cardhousedetail(id):
                                 'code': id
                                 }
                 print(post_request)
-                responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
+                responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,headers=headers,
                                              verify=False)
                 # print("response.json:\n{}\n\n".format(responsePost.json()))
                 print("response.text:\n{}\n\n".format(responsePost.text))
@@ -852,6 +900,7 @@ def cardhousedetail(id):
 @app.route('/customers/<id>', methods=['GET', 'POST'])
 def customers(id):
 
+
     if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
         valid = validateAccesToken()
         print(valid)
@@ -861,29 +910,33 @@ def customers(id):
             headers = {'AccessToken':headers_get}
             url = ("https://localhost/copy_1/hs/HTTP_SERVER/objects_list")
             id = int(id)
-            param_request = {'page': id}
+            filter = request.args.get('filter')
+            sort = request.args.get('sort')
+            param_request = {'page': id, 'filter': filter, 'sort': sort}
             number2 = param_request["page"]
             response = requests.get(url, param_request, verify=False, headers=headers)
-
+            print(filter)
             if response.status_code == 200:
                 print('Success!')
             elif response.status_code == 401:
                 print('Not auth.')
             data = response.json()['list_OC']
             data1 = response.json()
-            context = {'data': data,
-                       'number2': number2}
-            print(data)
+            print(param_request)
             form = ObjectListForm()
             print(number2,param_request)
             # парсинг валидации и тех даных
             data_params = data_params_request()
             departments = listDepartsments()
             getusername = getUserName()
+            breadcrumbs = "Объекты недвижимости"
             context = {'data': data, 'data_params': data_params,
                        'number2': number2,
                        'departments': departments,
-                       'getusername':getusername}
+                       'getusername':getusername,
+                       'breadcrumbs': breadcrumbs,
+                       'filter':filter}
+            # print(context)
             if request.method == 'POST':
             # if form.validate_on_submit():
 
@@ -957,7 +1010,7 @@ def customers(id):
                 balance_number = request.form.get('balance_number')
                 CadastralNumber = request.form.get('CadastralNumber')
                 Date_of_assignment_cadastral = request.form.get('Date_of_assignment_cadastral')
-                type_pravoobladatel = request.form.get('type_pravoobladatel')
+                cadastralcost = request.form.get('cadastralcost')
                 Initial_cost = request.form.get('Initial_cost')
                 residual_value = request.form.get('residual_value')
                 print('RNFI:', RNFI)
@@ -973,7 +1026,7 @@ def customers(id):
                 print('balance_number:', balance_number)
                 print('CadastralNumber:', CadastralNumber)
                 print('Date_of_assignment_cadastral:', Date_of_assignment_cadastral)
-                print('type_pravoobladatel:', type_pravoobladatel)
+                print('cadastralcost:', cadastralcost)
                 print('Initial_cost:', Initial_cost)
                 print('residual_value:', residual_value)
                  # 3 шаг
@@ -1004,35 +1057,35 @@ def customers(id):
                 print('start_use:', start_use)
                 print('end_use:', end_use)
                 print('Payment_foruse:', Payment_foruse)
-
-                if 'file' not in request.files:
-                    # После перенаправления на страницу загрузки
-                    # покажем сообщение пользователю
-                    flash('Не могу прочитать файл')
-                    print('проблема')
-                    print('проблема',request.url)
-                    return redirect(request.url)
-
-                file = request.files['file']
-                print(file)
+                # if 'file' not in request.files:
+                #     # После перенаправления на страницу загрузки
+                #     # покажем сообщение пользователю
+                #     flash('Не могу прочитать файл')
+                #     print('проблема')
+                #     print('проблема',request.url)
+                #     return redirect(request.url)
+                foto_main = request.files['formFile']
+                print(foto_main)
                 # Если файл не выбран, то браузер может
                 # отправить пустой файл без имени.
 
-                if file.filename == '':
-                    foto_main = ''
+                if foto_main.filename == '':
+                    print('название фото не может быть пустым',foto_main)
 
-                    print('dfdf',foto_main)
-                if file and allowed_file(file.filename):
+                if foto_main and allowed_file(foto_main.filename):
                     # безопасно извлекаем оригинальное имя файла
-                    filename = secure_filename(file.filename)
+                    filename = secure_filename(foto_main.filename)
+                    print(filename)
                     # сохраняем файл
-                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    foto_main.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     foto_main = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
 
+
+
                 # # загрузка мультифото
-                if 'files[]' not in request.files:
-                    flash('No file part')
-                    return redirect(request.url)
+                # if 'files[]' not in request.files:
+                #     flash('No file part')
+                #     return redirect(request.url)
                 files = request.files.getlist('files[]')
                 foto_list = []
                 for file in files:
@@ -1055,7 +1108,7 @@ def customers(id):
                                 'inventory_number': inventory_number,'balance_number': balance_number,
                                 'CadastralNumber': CadastralNumber,
                                 'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
-                                'type_pravoobladatel': type_pravoobladatel,'Initial_cost': Initial_cost,
+                                'cadastralcost': cadastralcost,'Initial_cost': Initial_cost,
                                 'residual_value': residual_value,
                                 'historical_Category': historical_Category,'UGROKN_number': UGROKN_number,
                                 'KindEncumbrances':KindEncumbrances,
@@ -1066,7 +1119,7 @@ def customers(id):
                                 'foto_main': foto_main, 'foto_multi': foto_multi, 'code': 'new_object'
                                 }
                 print(post_request)
-                responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,
+                responsePost = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/object_card", data=post_request,headers=headers,
                                              verify=False)
                 # responsePost.encoding = "ANSI"
                 id = responsePost.json()['code']
@@ -1079,7 +1132,7 @@ def customers(id):
                 # context = {'id': id}
                 # return render_template('cardhousedetail/id.html')
 
-                return redirect(url_for('cardhousedetail', id=id, headers=headers))
+                return redirect(url_for('cardhousedetail', id=id))
 
             return render_template('customers.html', **context, form=form)
         else:
@@ -1108,7 +1161,8 @@ def search():
             print(url_for('search'))
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'departments': departments, 'getusername': getusername}
+            breadcrumbs = "Поиск"
+            context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs}
             return render_template('search.html', **context)
         else:
             return deleteTokens()
@@ -1151,7 +1205,8 @@ def reports():
             # print(data)
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'departments': departments, 'getusername': getusername}
+            breadcrumbs = "Отчеты"
+            context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs }
             return render_template('reports.html', **context)
         else:
             return deleteTokens()
@@ -1176,7 +1231,8 @@ def about():
             print(url_for('about'))
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'departments': departments, 'getusername': getusername}
+            breadcrumbs = "О проекте"
+            context = {'departments': departments, 'getusername': getusername, 'breadcrumbs':breadcrumbs}
             return render_template('about.html', **context)
         else:
             return deleteTokens()
@@ -1198,7 +1254,8 @@ def contacts():
             print(url_for('contacts'))
             departments = listDepartsments()
             getusername = getUserName()
-            context = {'departments': departments, 'getusername': getusername}
+            breadcrumbs = "Контакты"
+            context = {'departments': departments, 'getusername': getusername, 'breadcrumbs':breadcrumbs}
             return render_template('contacts.html', **context)
         else:
             return deleteTokens()

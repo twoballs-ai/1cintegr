@@ -2,6 +2,23 @@
 
 {% block content %}
     {{ super() }}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {#    <li class="breadcrumb-item"><a href="{{ url_for('podved') }}">Подведомственные организации</a></li>#}
+            {#    <li class="breadcrumb-item active" aria-current="page">Карточка подведомственной организации</li>#}
+            {%  if id_podved %}
+                <li class="breadcrumb-item"><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('category_podved', id= id_podved, name = id_podved_name)  }}">{{ id_podved_name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
+                {% elif departId %}
+                <li class="breadcrumb-item"><a href="{{ url_for('department', id = departId, value = departName)  }}">{{ departName }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
+            {% else %}
+                <li class="breadcrumb-item"><a href="{{ url_for('podved') }}">Подведомственные организации</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
+            {% endif %}
+        </ol>
+    </nav>
     <div id="container" class="container-fluid rounded px-2 bg-white border border-grey">
         <h3 class="mx-2 text-center">{{ data.podved_info.name }}</h3>
         <div class="container-fluid rounded px-0 mx-0 bg-white border border-grey">
@@ -36,7 +53,7 @@
                     <td class="text-end">КОПУК:</td>
                     <td>{{ data.podved_info.KOPUK }}</td>
                 </tr>
-                                <tr>
+                <tr>
                     <td class="text-end">Регион:</td>
                     <td></td>
                     <td class="text-end"></td>
@@ -81,8 +98,8 @@
                 {#  <img src="{{url_for('site.static', filename = data)}}">#}
                 {#  <img src="{{ url_for('site.static', filename='{{г. Екатеринбург, ул. Чапаева, д. 5, литер К/1.jpg}}') }}">#}
                 {% for i in data.list_OC %}
-
-                    <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}" role="button">
+                    {% if id_podved_name %}
+                    <tr data-href="{{ url_for("cardhousedetail", id=i.code, idpodv = id, idcat_podved= id_podved, idcat_podvedname= id_podved_name, namepodved=data.podved_info.name) }}" role="button">
                         <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}"
                                                width="40" height="40" class="rounded-circle"><span
                                 class="ms-1">{{ i.short_adress }}</span></td>
@@ -95,6 +112,35 @@
                         {#          <img src="{{url_for('site.static', filename = data)}}">#}
 
                     </tr>
+                        {% elif departId%}
+                    <tr data-href="{{ url_for("cardhousedetail", id=i.code, departId = departId, departname = departName, iddepartpodved = id, namedepartpodved = data.podved_info.name) }}" role="button">
+                        <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}"
+                                               width="40" height="40" class="rounded-circle"><span
+                                class="ms-1">{{ i.short_adress }}</span></td>
+                        <td>{{ i.full_adress }}</td>
+                        <td>{{ i.type_object }}</td>
+                        <td>{{ i.owner }}</td>
+                        <td>{{ i.encumbrance }}</td>
+                        <td>{{ i.okn }}</td>
+
+                        {#          <img src="{{url_for('site.static', filename = data)}}">#}
+
+                    </tr>
+                        {% else %}
+                        <tr data-href="{{ url_for("cardhousedetail", id=i.code, idpodv = id, namepodved=data.podved_info.name) }}" role="button">
+                        <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}"
+                                               width="40" height="40" class="rounded-circle"><span
+                                class="ms-1">{{ i.short_adress }}</span></td>
+                        <td>{{ i.full_adress }}</td>
+                        <td>{{ i.type_object }}</td>
+                        <td>{{ i.owner }}</td>
+                        <td>{{ i.encumbrance }}</td>
+                        <td>{{ i.okn }}</td>
+
+                        {#          <img src="{{url_for('site.static', filename = data)}}">#}
+
+                    </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -119,7 +165,7 @@
             {#  </tbody>#}
             {#</table>#}
         </div>
-  <script src="/static/1cintegr/js/script.js"></script>
+        <script src="/static/1cintegr/js/script.js"></script>
 
         {#  jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

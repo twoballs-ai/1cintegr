@@ -16,6 +16,20 @@ def jsonPars():
         # pprint(text)  # вывели результат на экран
         return text
 
+def data_params_request():
+    headers_get = getAccessToken()
+    headers = {'AccessToken': headers_get}
+    url_params = "https://localhost/copy_1/hs/HTTP_SERVER/RulesNewObjects"
+    response_params = requests.get(url_params, verify=False, headers=headers)
+
+    if response_params.status_code == 200:
+        print('Success!')
+    elif response_params.status_code == 401:
+        print('Not auth.')
+    data_params = response_params.json()
+    # print(f"большой список значений {data_params}")
+    return data_params
+
 
 def listDepartsments():
     # param_request = {'AccessToken':'e7244dd9-d983-403b-86e0-ff3d5cf2f600'}
@@ -71,11 +85,14 @@ def post(*args, **kwargs):
 
 @request_func.route('/get')
 def get():
-    url = "https://localhost/copy_1/hs/HTTP_SERVER/list_departments"
+    url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
     # if key doesn't exist, returns None
     # param_request = {'refresh_token': 'b9903a5a-208c-47db-98ce-705a221eb3ea'}
     # response = requests.get(url, verify=False)
-    response = requests.get(url,verify=False)
+    param_request = {'code': '000000103'}
+    headers_get = getAccessToken()
+    headers = {'AccessToken': headers_get}
+    response = requests.get(url,param_request, verify=False, headers=headers )
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
@@ -92,4 +109,4 @@ def get():
     # print(response.json())
     context = {'data': data}
     print(context)
-    return render_template('get.html', **context)
+    return "response.text:\n{}\n\n".format(response.text)

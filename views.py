@@ -3,7 +3,7 @@ import requests
 import auth
 from flask import render_template, url_for, request, \
     redirect
-from flask.views import View
+from flask.views import View, MethodView
 from werkzeug.utils import secure_filename
 
 import config
@@ -87,6 +87,8 @@ class Category(View):
             return deleteTokens()
 
 class CategoryPodved(View):
+    methods = ["GET", "POST"]
+
     def dispatch_request(self, id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
@@ -126,6 +128,8 @@ class CategoryPodved(View):
 
 
 class Departament(View):
+    methods = ["GET", "POST"]
+
     def dispatch_request(self, id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
@@ -164,6 +168,8 @@ class Departament(View):
 
 
 class Cardhouse(View):
+    methods=["GET"]
+
     def dispatch_request(self, id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
@@ -186,7 +192,7 @@ class Cardhouse(View):
                            'departId': departId,
                            'departName': departName
                            }
-                print(departName)
+                print(data)
                 return render_template('cardhouse.html', **context)
             else:
                 return deleteTokens()
@@ -204,6 +210,8 @@ class Cardhouse(View):
 
 
 class Cardhousedetail(View):
+    methods = ["GET", "POST"]
+
     def dispatch_request(self, id):
         # global foto_scan
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
@@ -443,7 +451,9 @@ class Cardhousedetail(View):
             return deleteTokens()
 
 
-class Customers(View):
+class Customers(MethodView):
+    methods = ["GET", "POST"]
+
     def dispatch_request(self, id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
@@ -471,9 +481,6 @@ class Customers(View):
                            'filter': filter}
                 # print(context)
                 if request.method == 'POST':
-                    # if form.validate_on_submit():
-
-                    # 1шаг
                     name = request.form.get('name')
                     # name = form.name.data
                     description = request.form.get('description')

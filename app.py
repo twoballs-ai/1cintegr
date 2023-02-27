@@ -1,5 +1,9 @@
 import os
+
 from flask import Flask, render_template, Blueprint
+
+
+from api.api import api_func, UserAPI
 from models import models_func
 from requests_obj import request_func
 from auth import auth_func
@@ -17,6 +21,7 @@ app.register_blueprint(blueprint)
 app.register_blueprint(auth_func)
 app.register_blueprint(request_func)
 app.register_blueprint(models_func)
+app.register_blueprint(api_func)
 
 
 @app.errorhandler(404)
@@ -55,24 +60,19 @@ app.add_url_rule("/about/",
                  view_func=About.as_view("about")
                  ),
 app.add_url_rule("/cardhouse/<id>/",
-                 view_func=Cardhouse.as_view("cardhouse"),
-                 methods=["GET"]
+                 view_func=Cardhouse.as_view("cardhouse")
                  ),
 app.add_url_rule("/cardhousedetail/<id>/",
-                 view_func=Cardhousedetail.as_view("cardhousedetail"),
-                 methods=["GET", "POST"]
+                 view_func=Cardhousedetail.as_view("cardhousedetail")
                  ),
 app.add_url_rule("/customers/<id>/",
-                 view_func=Customers.as_view("customers"),
-                 methods=["GET", "POST"]
+                 view_func=Customers.as_view("customers")
                  ),
 app.add_url_rule("/department/<id>/",
-                 view_func=Departament.as_view("department"),
-                 methods=["GET", "POST"]
+                 view_func=Departament.as_view("department")
                  ),
 app.add_url_rule("/category_podved/<id>/",
-                 view_func=CategoryPodved.as_view("category_podved"),
-                 methods=["GET", "POST"]
+                 view_func=CategoryPodved.as_view("category_podved")
                  ),
 app.add_url_rule("/search/",
                  view_func=Search.as_view("search")
@@ -83,6 +83,14 @@ app.add_url_rule("/reports/",
 app.add_url_rule("/contacts/",
                  view_func=Contacts.as_view("contacts")
                  )
+
+user_view = UserAPI.as_view('user_api')
+app.add_url_rule('/api/v1.0/customers/<id>/', defaults={'id': 1},
+                 view_func=user_view, methods=['GET',])
+app.add_url_rule('/users/', view_func=user_view, methods=['POST',])
+app.add_url_rule('/users/<int:user_id>', view_func=user_view,
+                 methods=['GET', 'PUT', 'DELETE'])
+
 
 if __name__ == '__main__':
     app.run(host='10.0.0.13')

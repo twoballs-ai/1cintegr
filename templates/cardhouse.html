@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td class="text-end">Адрес сайта:</td>
-                    <td>{{ data.podved_info.sait }}</td>
+                    <td><a href="{{ url_for('redirect_to', link=data.podved_info.sait)}}" class="link-primary">{{ data.podved_info.sait }}</a></td>
                     <td class="text-end">Номер телефона:</td>
                     <td>{{ data.podved_info.phone_number }}</td>
                 </tr>
@@ -76,6 +76,18 @@
                     <td>{{ data.podved_info.email }}</td>
                     <td class="text-end">ФИО Руководителя:</td>
                     <td>{{ data.podved_info.boss }}</td>
+                </tr>
+                <tr>
+                    <td class="text-end">Ответственное лицо:</td>
+                    <td>{{ data.podved_info.contact_name }}</td>
+                    <td class="text-end">Контакт ответственного лица:</td>
+                    <td>{{ data.podved_info.contact_phone }}</td>
+                </tr>
+                <tr>
+                    <td class="text-end">Руководитель ответственного лица:</td>
+                    <td>{{ data.podved_info.supervisor_name }}</td>
+                    <td class="text-end">Телефон руководителя ответственного лица:</td>
+                    <td>{{ data.podved_info.supervisor_phone }}</td>
                 </tr>
                 </tbody>
             </table>

@@ -1,216 +1,382 @@
 <!doctype html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}
-    {% if title %}
-    <title>Министерство культуры - {{ title }}</title>
-    {% else %}
-    <title>Министерство культуры</title>
-    {% endif %}
+        {% if title %}
+            <title>Министерство культуры - {{ title }}</title>
+        {% else %}
+            <title>Министерство культуры</title>
+        {% endif %}
     {% endblock %}
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
-/>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+    />
     <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/tailwind.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-{#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    {#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
 
-  <body>
-    <div class="wrapper">
+<body>
+<div class="wrapper">
 
     <nav class="header navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <a href="{{ url_for('podved') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult_resurs.svg"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <div class="d-flex justify-content-end col-7">Пользователь: {{ getusername }}</div>
+        <div class="container-fluid">
+            <a href="{{ url_for('podved') }}"><img class="logo justify-content-start" alt="Logo"
+                                                   src="/static/1cintegr/img/min_kult_resurs.svg"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex justify-content-end col-7">Пользователь: {{ getusername }}</div>
 
-      <div class="text-center"><a href="{{ url_for('auth_func.signout') }}" class="btn btn-link border-0 col-12 text-start shadow-none fw-semibold text-secondary" role="button"><svg class="MuiSvgIcon-root" fill="white" width="20" height="20"  focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z"></path></svg></a></div>
-  </div>
-</nav>
+            <div class="text-center"><a href="{{ url_for('auth_func.signout') }}"
+                                        class="btn btn-link border-0 col-12 text-start shadow-none fw-semibold text-secondary"
+                                        role="button">
+                <svg class="MuiSvgIcon-root" fill="white" width="20" height="20" focusable="false" viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z"></path>
+                </svg>
+            </a></div>
+        </div>
+    </nav>
 
 
-{#    <div class="header">#}
-{#        <a href="{{ url_for('index') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>#}
-{#    </div>#}
-
+    {#    <div class="header">#}
+    {#        <a href="{{ url_for('index') }}"><img class="logo justify-content-start" alt="Logo" src="/static/1cintegr/img/min_kult.svg"></a>#}
+    {#    </div>#}
 
 
     <div class="sidebar border navbar-light bg-white">
 
-            <ul class="list-group list-group-flush mt-4">
-{#         <li class="list-group-item border-0 "><div class="btn-group dropend ">#}
-{##}
-{# <button type="button" class="btn dropdown-toggle border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary " data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> Регионы</button>#}
-{##}
-{#  <ul class="dropdown-menu" style="width: 400px; height: 80vh; overflow: auto">#}
-{#      <li>&nbsp;</li>#}
-{#      <li><a class="dropdown-item" href="#">01 Республика Адыгея </a></li>#}
-{#      <li><a class="dropdown-item" href="#">02 Республика Башкортостан</a></li>#}
-{#      <li><a class="dropdown-item" href="#">03 Республика Бурятия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">04 Республика Алтай</a></li>#}
-{#      <li><a class="dropdown-item" href="#">05 Республика Дагестан</a></li>#}
-{#      <li><a class="dropdown-item" href="#">06 Республика Ингушетия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">07 Кабардино-Балкарская Республика</a></li>#}
-{#      <li><a class="dropdown-item" href="#">08 Республика Калмыкия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">09 Карачаево-Черкесская Республика</a></li>#}
-{#      <li><a class="dropdown-item" href="#">10 Республика Карелия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">11 Республика Коми</a></li>#}
-{#      <li><a class="dropdown-item" href="#">12 Республика Марий Эл</a></li>#}
-{#      <li><a class="dropdown-item" href="#">13 Республика Мордовия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">14 Республика Саха (Якутия)</a></li>#}
-{#      <li><a class="dropdown-item" href="#">15 Республика Северная Осетия-Алания</a></li>#}
-{#      <li><a class="dropdown-item" href="#">16 Республика Татарстан</a></li>#}
-{#      <li><a class="dropdown-item" href="#">17 Республика Тыва</a></li>#}
-{#      <li><a class="dropdown-item" href="#">18 Удмуртская Республика</a></li>#}
-{#      <li><a class="dropdown-item" href="#">19 Республика Хакасия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">20 Чеченская Республика</a></li>#}
-{#      <li><a class="dropdown-item" href="#">21 Чувашская Республика</a></li>#}
-{#      <li><a class="dropdown-item" href="#">22 Алтайский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">23 Краснодарский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">24 Красноярский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">25 Приморский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">26 Ставропольский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">27 Хабаровский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">28 Амурская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">29 Архангельская область и Ненецкий ао</a></li>#}
-{#      <li><a class="dropdown-item" href="#">30 Астраханская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">31 Белгородская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">32 Брянская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">33 Владимирская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">34 Волгоградская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">35 Вологодская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">36 Воронежская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">37 Ивановская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">38 Иркутская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">39 Калининградская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">40 Калужская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">41 Камчатский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">42 Кемеровская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">43 Кировская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">44 Костромская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">45 Курганская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">46 Курская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">47 Ленинградская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">48 Липецкая область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">49 Магаданская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">50 Московская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">51 Мурманская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">52 Нижегородская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">53 Новгородская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">54 Новосибирская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">55 Омская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">56 Оренбургская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">57 Орловская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">58 Пензенская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">59 Пермский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">60 Псковская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">61 Ростовская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">62 Рязанская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">63 Самарская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">64 Саратовская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">65 Сахалинская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">66 Свердловская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">67 Смоленская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">68 Тамбовская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">69 Тверская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">70 Томская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">71 Тульская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">72 Тюменская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">73 Ульяновская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">74 Челябинская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">75 Забайкальский край</a></li>#}
-{#      <li><a class="dropdown-item" href="#">76 Ярославская область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">77 город Москва</a></li>#}
-{#      <li><a class="dropdown-item" href="#">78 Санкт-Петербург</a></li>#}
-{#      <li><a class="dropdown-item" href="#">79 Еврейская автономная область</a></li>#}
-{#      <li><a class="dropdown-item" href="#">86 Ханты-Мансийский автономный округ-Югра</a></li>#}
-{#      <li><a class="dropdown-item" href="#">87 Чукотский АО</a></li>#}
-{#      <li><a class="dropdown-item" href="#">89 Ямало-Ненецкий автономный округ</a></li>#}
-{#      <li><a class="dropdown-item" href="#">91 Республика Крым</a></li>#}
-{#      <li><a class="dropdown-item" href="#">92 город Севастополь</a></li>#}
-{##}
-{##}
-{#  </ul>#}
-{#</div></li>#}
-{#                <li class="list-group-item border-0"><a href="{{ url_for('region') }}"><button id="home" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> Регионы</button></a></li>#}
-                <li class="list-group-item border-0"><a href="{{ url_for('podved') }}"><button id="home" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Подведомственные организации</button></a></li>
+        <ul class="list-group list-group-flush mt-4">
+            {#         <li class="list-group-item border-0 "><div class="btn-group dropend ">#}
+            {##}
+            {# <button type="button" class="btn dropdown-toggle border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary " data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> Регионы</button>#}
+            {##}
+            {#  <ul class="dropdown-menu" style="width: 400px; height: 80vh; overflow: auto">#}
+            {#      <li>&nbsp;</li>#}
+            {#      <li><a class="dropdown-item" href="#">01 Республика Адыгея </a></li>#}
+            {#      <li><a class="dropdown-item" href="#">02 Республика Башкортостан</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">03 Республика Бурятия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">04 Республика Алтай</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">05 Республика Дагестан</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">06 Республика Ингушетия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">07 Кабардино-Балкарская Республика</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">08 Республика Калмыкия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">09 Карачаево-Черкесская Республика</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">10 Республика Карелия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">11 Республика Коми</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">12 Республика Марий Эл</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">13 Республика Мордовия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">14 Республика Саха (Якутия)</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">15 Республика Северная Осетия-Алания</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">16 Республика Татарстан</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">17 Республика Тыва</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">18 Удмуртская Республика</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">19 Республика Хакасия</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">20 Чеченская Республика</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">21 Чувашская Республика</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">22 Алтайский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">23 Краснодарский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">24 Красноярский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">25 Приморский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">26 Ставропольский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">27 Хабаровский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">28 Амурская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">29 Архангельская область и Ненецкий ао</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">30 Астраханская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">31 Белгородская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">32 Брянская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">33 Владимирская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">34 Волгоградская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">35 Вологодская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">36 Воронежская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">37 Ивановская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">38 Иркутская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">39 Калининградская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">40 Калужская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">41 Камчатский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">42 Кемеровская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">43 Кировская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">44 Костромская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">45 Курганская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">46 Курская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">47 Ленинградская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">48 Липецкая область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">49 Магаданская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">50 Московская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">51 Мурманская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">52 Нижегородская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">53 Новгородская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">54 Новосибирская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">55 Омская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">56 Оренбургская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">57 Орловская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">58 Пензенская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">59 Пермский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">60 Псковская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">61 Ростовская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">62 Рязанская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">63 Самарская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">64 Саратовская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">65 Сахалинская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">66 Свердловская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">67 Смоленская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">68 Тамбовская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">69 Тверская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">70 Томская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">71 Тульская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">72 Тюменская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">73 Ульяновская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">74 Челябинская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">75 Забайкальский край</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">76 Ярославская область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">77 город Москва</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">78 Санкт-Петербург</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">79 Еврейская автономная область</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">86 Ханты-Мансийский автономный округ-Югра</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">87 Чукотский АО</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">89 Ямало-Ненецкий автономный округ</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">91 Республика Крым</a></li>#}
+            {#      <li><a class="dropdown-item" href="#">92 город Севастополь</a></li>#}
+            {##}
+            {##}
+            {#  </ul>#}
+            {#</div></li>#}
+            {#                <li class="list-group-item border-0"><a href="{{ url_for('region') }}"><button id="home" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> Регионы</button></a></li>#}
+            <li class="list-group-item border-0"><a href="{{ url_for('podved') }}">
+                <button id="home" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-1640">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Подведомственные организации
+                </button>
+            </a></li>
 
+    {% if Permission_SeeDepartments == True %}
+            <li class="list-group-item border-0 ">
+                <div class="btn-group dropend ">
 
+                    <button type="button"
+                            class="btn dropdown-toggle border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary "
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                            <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                            <path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z"/>
+                        </svg>
+                        Департамент
+                    </button>
 
-                <li class="list-group-item border-0 "><div class="btn-group dropend ">
+                    <ul class="dropdown-menu" style="width: 620px; height: 40vh; overflow: auto">
+                        <li>&nbsp;</li>
+                        {% for i in departments %}
+                            <li><a class="dropdown-item"
+                                   href="{{ url_for("department", id=i.id, value= i.value) }}">{{ i.value }}</a></li>
+                        {% endfor %}
 
- <button type="button" class="btn dropdown-toggle border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary " data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-receipt-cutoff" viewBox="0 0 16 16"><path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/><path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z"/></svg> Департамент</button>
+                        {#      <li><a class="dropdown-item" href="#">Департамент международного сотрудничества</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Департамент кинематографии</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Департамент контроля и кадров</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Департамент культурного наследия</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Департамент науки и образования</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Департамент управления имуществом и информационной политики</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Неопределенно</a></li>#}
+                        {#      <li><a class="dropdown-item" href="#">Первый заместитель Министра культуры</a></li>#}
+                    </ul>
+                </div>
+            </li>
+                {% else %}
 
-  <ul class="dropdown-menu" style="width: 620px; height: 40vh; overflow: auto">
-      <li>&nbsp;</li>
-      {% for i in departments %}
-          <li><a class="dropdown-item" href="{{ url_for("department", id=i.id, value= i.value) }}">{{ i.value }}</a></li>
-      {% endfor %}
+            {% endif %}
+        {% if Permission_SeeCategoryPodved == True %}
+            <li class="list-group-item border-0"><a href="{{ url_for('category') }}">
+                <button id="category" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-1610">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Категория подведомственной организации
+                </button>
+            </a></li>
+        {% else %}
 
-{#      <li><a class="dropdown-item" href="#">Департамент международного сотрудничества</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Департамент кинематографии</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Департамент контроля и кадров</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Департамент культурного наследия</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Департамент науки и образования</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Департамент управления имуществом и информационной политики</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Неопределенно</a></li>#}
-{#      <li><a class="dropdown-item" href="#">Первый заместитель Министра культуры</a></li>#}
-  </ul>
-</div></li>
-                <li class="list-group-item border-0"><a href="{{ url_for('category') }}"><button id="category" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1610"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Категория подведомственной организации</button></a></li>
-                <li class="list-group-item border-0"><a href="{{ url_for("customers", id='1') }}"><button id="objects" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg> Объекты недвижимости</button></a></li>
-            </ul>
+        {% endif %}
+            <li class="list-group-item border-0"><a href="{{ url_for("customers", id='1') }}">
+                <button id="objects" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-1640">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    Объекты недвижимости
+                </button>
+            </a></li>
+        </ul>
         <div class="border-top border-1 mt-5"></div>
         <ul class="list-group list-group-flush mt-4">
-                            <li class="list-group-item border-0"><a href="{{ url_for('search') }}"><button id="search" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Поиск</button></a></li>
-                <li class="list-group-item border-0"><a href="{{ url_for('reports') }}"><button id="home" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filetype-xlsx" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM7.86 14.841a1.13 1.13 0 0 0 .401.823c.13.108.29.192.479.252.19.061.411.091.665.091.338 0 .624-.053.858-.158.237-.105.416-.252.54-.44a1.17 1.17 0 0 0 .187-.656c0-.224-.045-.41-.135-.56a1.002 1.002 0 0 0-.375-.357 2.028 2.028 0 0 0-.565-.21l-.621-.144a.97.97 0 0 1-.405-.176.37.37 0 0 1-.143-.299c0-.156.061-.284.184-.384.125-.101.296-.152.513-.152.143 0 .266.023.37.068a.624.624 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.093 1.093 0 0 0-.199-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.552.05-.777.15-.224.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.123.524.082.149.199.27.351.367.153.095.332.167.54.213l.618.144c.207.049.36.113.462.193a.387.387 0 0 1 .153.326.512.512 0 0 1-.085.29.558.558 0 0 1-.255.193c-.111.047-.25.07-.413.07-.117 0-.224-.013-.32-.04a.837.837 0 0 1-.249-.115.578.578 0 0 1-.255-.384h-.764Zm-3.726-2.909h.893l-1.274 2.007 1.254 1.992h-.908l-.85-1.415h-.035l-.853 1.415H1.5l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Zm1.923 3.325h1.697v.674H5.266v-3.999h.791v3.325Zm7.636-3.325h.893l-1.274 2.007 1.254 1.992h-.908l-.85-1.415h-.035l-.853 1.415h-.861l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Z"/></svg> Отчеты</button></a></li>
-            </ul>
+            <li class="list-group-item border-0"><a href="{{ url_for('search') }}">
+                <button id="search" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-1640">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Поиск
+                </button>
+            </a></li>
+            <li class="list-group-item border-0"><a href="{{ url_for('reports') }}">
+                <button id="home" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-filetype-xlsx" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM7.86 14.841a1.13 1.13 0 0 0 .401.823c.13.108.29.192.479.252.19.061.411.091.665.091.338 0 .624-.053.858-.158.237-.105.416-.252.54-.44a1.17 1.17 0 0 0 .187-.656c0-.224-.045-.41-.135-.56a1.002 1.002 0 0 0-.375-.357 2.028 2.028 0 0 0-.565-.21l-.621-.144a.97.97 0 0 1-.405-.176.37.37 0 0 1-.143-.299c0-.156.061-.284.184-.384.125-.101.296-.152.513-.152.143 0 .266.023.37.068a.624.624 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.093 1.093 0 0 0-.199-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.552.05-.777.15-.224.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.123.524.082.149.199.27.351.367.153.095.332.167.54.213l.618.144c.207.049.36.113.462.193a.387.387 0 0 1 .153.326.512.512 0 0 1-.085.29.558.558 0 0 1-.255.193c-.111.047-.25.07-.413.07-.117 0-.224-.013-.32-.04a.837.837 0 0 1-.249-.115.578.578 0 0 1-.255-.384h-.764Zm-3.726-2.909h.893l-1.274 2.007 1.254 1.992h-.908l-.85-1.415h-.035l-.853 1.415H1.5l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Zm1.923 3.325h1.697v.674H5.266v-3.999h.791v3.325Zm7.636-3.325h.893l-1.274 2.007 1.254 1.992h-.908l-.85-1.415h-.035l-.853 1.415h-.861l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Z"/>
+                    </svg>
+                    Отчеты
+                </button>
+            </a></li>
+        </ul>
         <div class="border-top border-1 mt-5"></div>
         <ul class="list-group list-group-flush mt-5">
-                <li class="list-group-item border-0"><a href="{{ url_for('about') }}"><button id="home" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-396"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> О проекте</button></a></li>
-                <li class="list-group-item border-0"><a href="{{ url_for('contacts') }}"><button id="category" type="button" class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-396"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Контакты</button></a></li>
-            </ul>
+            <li class="list-group-item border-0"><a href="{{ url_for('about') }}">
+                <button id="home" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-396">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    О проекте
+                </button>
+            </a></li>
+            <li class="list-group-item border-0"><a href="{{ url_for('contacts') }}">
+                <button id="category" type="button"
+                        class="btn border-0 btn-outline-light col-12 text-start shadow-none fw-semibold text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="makeStyles-icon-396">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Контакты
+                </button>
+            </a></li>
+        </ul>
     </div>
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
-      </div>
-      <div class="offcanvas-body">
-                    <ul class="list-group list-group-flush paddingtop-3">
-                <li class="list-group-item border-0 d-grid gap-2 "><a href="{{ url_for('podved') }}"><button id="home" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="boxmin2">Подведомственные организации</div></button></a></li>
-                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('category') }}"><button id="category" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1610"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div><div class="boxmin2">Категория подведомственной организации</div></button></a></li>
-                <li class="list-group-item border-0 d-grid gap-2"><a href=""><button id="objects" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><div class="boxmin2"> Объекты недвижимости</div></button></a></li>
-                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('search') }}"><button id="search" type="button" class="btn border-0 btn-light col-12 text-start shadow-none"><div class="boxmin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="makeStyles-icon-1640"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div><div class="boxmin2"> Поиск</div></button></a></li>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="list-group list-group-flush paddingtop-3">
+                <li class="list-group-item border-0 d-grid gap-2 "><a href="{{ url_for('podved') }}">
+                    <button id="home" type="button" class="btn border-0 btn-light col-12 text-start shadow-none">
+                        <div class="boxmin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="makeStyles-icon-1640">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <div class="boxmin2">Подведомственные организации</div>
+                    </button>
+                </a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('category') }}">
+                    <button id="category" type="button" class="btn border-0 btn-light col-12 text-start shadow-none">
+                        <div class="boxmin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="makeStyles-icon-1610">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
+                        <div class="boxmin2">Категория подведомственной организации</div>
+                    </button>
+                </a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="">
+                    <button id="objects" type="button" class="btn border-0 btn-light col-12 text-start shadow-none">
+                        <div class="boxmin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="makeStyles-icon-1640">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            </svg>
+                        </div>
+                        <div class="boxmin2"> Объекты недвижимости</div>
+                    </button>
+                </a></li>
+                <li class="list-group-item border-0 d-grid gap-2"><a href="{{ url_for('search') }}">
+                    <button id="search" type="button" class="btn border-0 btn-light col-12 text-start shadow-none">
+                        <div class="boxmin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="makeStyles-icon-1640">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <div class="boxmin2"> Поиск</div>
+                    </button>
+                </a></li>
             </ul>
-      </div>
+        </div>
     </div>
     <div class="content overflow-auto ms-3 pe-3">
 
 
+        {% block content %}
 
-            {% block content %}
+            {#        #}
 
-                {#        #}
-
-            {% endblock %}
+        {% endblock %}
 
 
     </div>
-    </div>
-    <script src="/static/1cintegr/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.6.0/lightgallery.min.js" integrity="sha512-2Vd6dnkrqkfNnWC9qlNhcy3IaWYwggi4xW/98lt76TfBOvzhWLCCrxELko/qFiwgsZRn1jd5MbtcF8cgBmkuDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</div>
+<script src="/static/1cintegr/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.6.0/lightgallery.min.js"
+        integrity="sha512-2Vd6dnkrqkfNnWC9qlNhcy3IaWYwggi4xW/98lt76TfBOvzhWLCCrxELko/qFiwgsZRn1jd5MbtcF8cgBmkuDg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>    <script src="/static/1cintegr/js/script.js"></script>#}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
 </html>

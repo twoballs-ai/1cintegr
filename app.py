@@ -1,9 +1,9 @@
 import os
 
-from flask import Flask, render_template, Blueprint
+from flask import Flask, render_template, Blueprint, redirect, request
+from flask_cors import CORS
 
-
-from api.api import api_func, UserAPI
+from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI
 from models import models_func
 from requests_obj import request_func
 from auth import auth_func
@@ -15,6 +15,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 app.debug = True
+CORS(app)
 
 blueprint = Blueprint('site', __name__, static_url_path='/static/site', static_folder='/mnt/disk_d/1c_media/')
 app.register_blueprint(blueprint)
@@ -22,6 +23,13 @@ app.register_blueprint(auth_func)
 app.register_blueprint(request_func)
 app.register_blueprint(models_func)
 app.register_blueprint(api_func)
+
+
+@app.route('/redirect_to')
+def redirect_to():
+    link = request.args.get('link', '/')
+    new_link = 'http://' + link
+    return redirect(new_link), 301
 
 
 @app.errorhandler(404)
@@ -84,13 +92,25 @@ app.add_url_rule("/contacts/",
                  view_func=Contacts.as_view("contacts")
                  )
 
-user_view = UserAPI.as_view('user_api')
-app.add_url_rule('/api/v1.0/customers/<id>/', defaults={'id': 1},
-                 view_func=user_view, methods=['GET',])
-app.add_url_rule('/users/', view_func=user_view, methods=['POST',])
-app.add_url_rule('/users/<int:user_id>', view_func=user_view,
-                 methods=['GET', 'PUT', 'DELETE'])
-
+customers_view = CustomersAPI.as_view('customers_api')
+app.add_url_rule('/api/v1.0/customers/<int:id>/',
+                 # defaults={'id': '1'},
+                 view_func=customers_view, methods=['GET',])
+# app.add_url_rule('/users/', view_func=user_view, methods=['POST',])
+# app.add_url_rule('/users/<int:user_id>', view_func=user_view,
+#                  methods=['GET', 'PUT', 'DELETE'])
+podved_view = PodvedAPI.as_view('podved_api')
+app.add_url_rule('/api/v1.0/podved/',
+                 # defaults={'id': '1'},
+                 view_func=podved_view, methods=['GET',])
+category_view = CategoryAPI.as_view('category_api')
+app.add_url_rule('/api/v1.0/category/',
+                 # defaults={'id': '1'},
+                 view_func=category_view, methods=['GET',])
+cardhouse_detail_view = CardhouseDetailAPI.as_view('cardhouse_detail_api')
+app.add_url_rule('/api/v1.0/cardhousedetail/<id>/',
+                 # defaults={'id': '1'},
+                 view_func=cardhouse_detail_view, methods=['GET',])
 
 if __name__ == '__main__':
     app.run(host='10.0.0.13')

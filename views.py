@@ -31,9 +31,14 @@ class Index(View):
                 departments = listDepartsments()
                 # print(departments)
                 getusername = getUserName()
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'departments': departments, 'getusername': getusername,
-                           'breadcrumbs': breadcrumbs}
+                           'breadcrumbs': breadcrumbs, 'Permission_SeeCategoryPodved':Permission_SeeCategoryPodved,'Permission_SeeDepartments':Permission_SeeDepartments}
                 # функция вызова подведов и создания страницы для пользователей.
+                print('отладка')
                 c = auth.getPodved()
                 podved = c[0]
                 permission_see = c[1]
@@ -67,9 +72,15 @@ class Category(View):
                 data = category_objects_list(param_request)
                 departments = listDepartsments()
                 getusername = getUserName()
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 breadcrumbs = "Категория подведомственной организации"
                 context = {'data': data, 'departments': departments, 'getusername': getusername,
-                           'breadcrumbs': breadcrumbs}
+                           'breadcrumbs': breadcrumbs,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 print(data)
                 return render_template('category.html', **context)
             else:
@@ -101,14 +112,19 @@ class CategoryPodved(View):
                 getusername = getUserName()
                 id_podved = id
                 name_category_breadcrumbs = request.args.get('name')
-
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 breadcrumbs = "Категория подведомственной организации"
                 context = {'data': data,
                            'departments': departments,
                            'getusername': getusername,
                            'namebreadcrumbsbycat': name_category_breadcrumbs,
                            'breadcrumbs': breadcrumbs,
-                           'id_podved': id_podved
+                           'id_podved': id_podved,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments
                            }
                 print(context)
                 return render_template('podved.html', **context)
@@ -143,11 +159,17 @@ class Departament(View):
                 departid = id
                 name_depart = request.args.get('value')
                 breadcrumbs = "Категория подведомственной организации"
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data,
                            'departments': departments,
                            'getusername': getusername,
                            'name_depart': name_depart,
-                           'departid': departid}
+                           'departid': departid,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 # print(response.headers)
                 print(context)
                 # print(context)
@@ -183,6 +205,10 @@ class Cardhouse(View):
                 id_podved_name = request.args.get('namebreadcrumbsbycat')
                 departId = request.args.get('departments')
                 departName = request.args.get('departmentsname')
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data,
                            'id': id,
                            'departments': departments,
@@ -190,7 +216,9 @@ class Cardhouse(View):
                            'id_podved': id_podved,
                            'id_podved_name': id_podved_name,
                            'departId': departId,
-                           'departName': departName
+                           'departName': departName,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments
                            }
                 print(data)
                 return render_template('cardhouse.html', **context)
@@ -234,6 +262,10 @@ class Cardhousedetail(View):
                 departname = request.args.get('departname')
                 iddepartpodved = request.args.get('iddepartpodved')
                 namedepartpodved = request.args.get('namedepartpodved')
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data,
                            'object_type_val': object_type_val,
                            'id': id,
@@ -249,7 +281,9 @@ class Cardhousedetail(View):
                            'departId': departId,
                            'departname': departname,
                            'iddepartpodved': iddepartpodved,
-                           'namedepartpodved': namedepartpodved}
+                           'namedepartpodved': namedepartpodved,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 print(iddepartpodved)
                 if request.method == 'POST':
                     # 1шаг
@@ -473,12 +507,18 @@ class Customers(MethodView):
                 departments = listDepartsments()
                 getusername = getUserName()
                 breadcrumbs = "Объекты недвижимости"
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'data_params': data_params,
                            'number2': number2,
                            'departments': departments,
                            'getusername': getusername,
                            'breadcrumbs': breadcrumbs,
-                           'filter': filter}
+                           'filter': filter,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 # print(context)
                 if request.method == 'POST':
                     name = request.form.get('name')
@@ -702,7 +742,13 @@ class Search(View):
                 departments = listDepartsments()
                 getusername = getUserName()
                 breadcrumbs = "Поиск"
-                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs}
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
+                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 return render_template('search.html', **context)
             else:
                 return deleteTokens()
@@ -746,7 +792,13 @@ class Reports(View):
                 departments = listDepartsments()
                 getusername = getUserName()
                 breadcrumbs = "Отчеты"
-                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs}
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
+                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 return render_template('reports.html', **context)
             else:
                 return deleteTokens()
@@ -772,7 +824,13 @@ class About(View):
                 departments = listDepartsments()
                 getusername = getUserName()
                 breadcrumbs = "О проекте"
-                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs}
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
+                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 return render_template('about.html', **context)
             else:
                 return deleteTokens()
@@ -793,7 +851,13 @@ class Contacts(View):
                 departments = listDepartsments()
                 getusername = getUserName()
                 breadcrumbs = "Контакты"
-                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs}
+                permission_menu = auth.getPermissions()
+                Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
+                Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
+                # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
+                context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
+                           'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 return render_template('contacts.html', **context)
             else:
                 return deleteTokens()

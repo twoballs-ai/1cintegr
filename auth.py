@@ -51,6 +51,7 @@ def login(refresh_token=None):
             blockuser = response_cookie.json()['blockuser']
             refresh_token = response_cookie.json()['RefreshToken']
             # print(success, blockuser)
+            print(response_cookie.json())
             if success == True and blockuser == False:
                 return makeRefreshToken(refresh_token)
             else:
@@ -64,7 +65,12 @@ def getPodved():
     print(podved, permission_see)
     return (podved, permission_see)
 
-
+def getPermissions():
+    allpermissionmenu = allpermissions
+    Permission_SeeDepartments = allpermissionmenu['Permission_SeeDepartments']
+    Permission_SeeCategoryPodved = allpermissionmenu['Permission_SeeCategoryPodved']
+    context = {'Permission_SeeCategoryPodved':Permission_SeeCategoryPodved, 'Permission_SeeDepartments':Permission_SeeDepartments}
+    return (context)
 
 #
 def makeRefreshToken(refresh_token):
@@ -136,12 +142,14 @@ def refreshAccesToken(link_send_to_refresh):
 def validateAccesToken():
     global podved_code
     global Permission_SeeAllObjects
+    global allpermissions
     access_token = request.cookies.get('access_token')
     param_request = {'AccessToken': access_token}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
                              verify=False)
     success = response.json()['success']
     blockuser = response.json()['blockuser']
+    allpermissions = response.json()
     token_expired = response.json()['AccessTokenTokenExpired']
     try:
         Permission_SeeAllObjects = response.json()['Permission_SeeAllObjects']

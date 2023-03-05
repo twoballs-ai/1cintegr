@@ -24,6 +24,7 @@ class Index(View):
             valid = validateAccesToken()
             data_params_request()
             if valid == 'True':
+                auth.updatePodvedInfo()
                 breadcrumbs = "Подведомственные организации"
                 param_request = {'page': '1'}
                 # берем данные из файла модели

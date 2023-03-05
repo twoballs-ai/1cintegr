@@ -72,6 +72,13 @@ def getPermissions():
     context = {'Permission_SeeCategoryPodved':Permission_SeeCategoryPodved, 'Permission_SeeDepartments':Permission_SeeDepartments}
     return (context)
 
+def updatePodvedInfo():
+    allpermissionmenu = allpermissions
+    need_confirm_contacts = allpermissionmenu['need_confirm_contacts']
+    print('updatePodvedInfo проверка')
+    print(need_confirm_contacts)
+
+
 #
 def makeRefreshToken(refresh_token):
     print('судьба вас примвела в makeRefreshToken')

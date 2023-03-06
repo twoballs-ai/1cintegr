@@ -7,6 +7,7 @@ from flask.views import View, MethodView
 from werkzeug.utils import secure_filename
 
 import config
+
 from config import ALLOWED_EXTENSIONS
 
 from models import podved_list, category_objects_list, podved_card, object_card, objects_list
@@ -24,7 +25,6 @@ class Index(View):
             valid = validateAccesToken()
             data_params_request()
             if valid == 'True':
-                auth.updatePodvedInfo()
                 breadcrumbs = "Подведомственные организации"
                 param_request = {'page': '1'}
                 # берем данные из файла модели
@@ -37,16 +37,21 @@ class Index(View):
                 Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
                 # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'departments': departments, 'getusername': getusername,
-                           'breadcrumbs': breadcrumbs, 'Permission_SeeCategoryPodved':Permission_SeeCategoryPodved,'Permission_SeeDepartments':Permission_SeeDepartments}
+                           'breadcrumbs': breadcrumbs, 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
+                           'Permission_SeeDepartments': Permission_SeeDepartments}
                 # функция вызова подведов и создания страницы для пользователей.
                 print('отладка')
                 c = auth.getPodved()
                 podved = c[0]
                 permission_see = c[1]
-                # print(type(podved), type(permission_see))
+                print(type(podved), type(permission_see))
                 if permission_see == True:
                     return render_template('podved.html', **context)
                 else:
+                    need_confirm_contacts = auth.updatePodvedInfo()
+                    if need_confirm_contacts == True:
+                        return redirect(url_for('need_confirm_contacts'))
+
                     return redirect(url_for('cardhouse', id=podved))
             else:
                 return deleteTokens()
@@ -83,7 +88,19 @@ class Category(View):
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
                 print(data)
-                return render_template('category.html', **context)
+
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('category.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('category.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -97,6 +114,7 @@ class Category(View):
             return redirect(url_for('auth_func.login'))
         else:
             return deleteTokens()
+
 
 class CategoryPodved(View):
     methods = ["GET", "POST"]
@@ -128,7 +146,19 @@ class CategoryPodved(View):
                            'Permission_SeeDepartments': Permission_SeeDepartments
                            }
                 print(context)
-                return render_template('podved.html', **context)
+
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('podved.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('podved.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -173,8 +203,19 @@ class Departament(View):
                            'Permission_SeeDepartments': Permission_SeeDepartments}
                 # print(response.headers)
                 print(context)
-                # print(context)
-                return render_template('podved.html', **context)
+
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('podved.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('podved.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -198,6 +239,7 @@ class Cardhouse(View):
             valid = validateAccesToken()
             if valid == 'True':
                 param_request = {'code': id}
+                print(id)
                 # берем данные из файла модели
                 data = podved_card(param_request)
                 departments = listDepartsments()
@@ -222,7 +264,19 @@ class Cardhouse(View):
                            'Permission_SeeDepartments': Permission_SeeDepartments
                            }
                 print(data)
-                return render_template('cardhouse.html', **context)
+
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('cardhouse.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('cardhouse.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -470,7 +524,18 @@ class Cardhousedetail(View):
                     # print("response.json:\n{}\n\n".format(responsePost.json()))
                     print("response.text:\n{}\n\n".format(responsePost.text))
                     return redirect(url_for('cardhousedetail', id=id))
-                return render_template('cardhousedetail.html', **context)
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('cardhousedetail.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('cardhousedetail.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -715,8 +780,19 @@ class Customers(MethodView):
                     print(responsePost.text)
                     # context = {'id': id}
                     # return render_template('cardhousedetail/id.html')
-                    return redirect(url_for('cardhousedetail', id=id))
-                return render_template('customers.html', **context)
+                    return redirect(url_for('cardhousedetail', id=id))\
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('customers.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('customers.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -750,7 +826,18 @@ class Search(View):
                 context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
-                return render_template('search.html', **context)
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('search.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('search.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -800,7 +887,18 @@ class Reports(View):
                 context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
-                return render_template('reports.html', **context)
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('reports.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('reports.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -832,7 +930,18 @@ class About(View):
                 context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
-                return render_template('about.html', **context)
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('about.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('about.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -859,7 +968,18 @@ class Contacts(View):
                 context = {'departments': departments, 'getusername': getusername, 'breadcrumbs': breadcrumbs,
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
-                return render_template('contacts.html', **context)
+
+                c = auth.getPodved()
+                podved = c[0]
+                permission_see = c[1]
+                print(type(podved), type(permission_see))
+                need_confirm_contacts = auth.updatePodvedInfo()
+                if permission_see == True:
+                    return render_template('contacts.html', **context)
+                elif permission_see == False and need_confirm_contacts == True:
+                    return redirect(url_for('need_confirm_contacts'))
+                else:
+                    return render_template('contacts.html', **context)
             else:
                 return deleteTokens()
         elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
@@ -913,3 +1033,47 @@ class Contacts(View):
 #         return redirect(url_for('auth_func.login'))
 #     else:
 #         return deleteTokens()
+# -------------------------------------------------------------------
+# Обработчики, потом их кинуть в отдельный файл.
+class CheckContacts(View):
+    methods = ["GET", "POST"]
+
+    def dispatch_request(self):
+        c = auth.getPodved()
+        id = c[0]
+        param_request = {'code': id}
+        data = podved_card(param_request)
+        print(f'параметры подведа{data}')
+        contact_name = data['podved_info']['contact_name']
+        contact_phone = data['podved_info']['contact_phone']
+        supervisor_name = data['podved_info']['supervisor_name']
+        supervisor_phone = data['podved_info']['supervisor_phone']
+        context = {
+            'contact_name': contact_name, 'contact_phone': contact_phone,
+            'supervisor_name': supervisor_name, 'supervisor_phone': supervisor_phone
+        }
+        if request.method == 'POST':
+            contact_name = request.form.get('contact_name')
+            contact_phone = request.form.get('contact_phone')
+            supervisor_name = request.form.get('supervisor_name')
+            supervisor_phone = request.form.get('supervisor_phone')
+            post_request = {'contact_name':contact_name,'contact_phone':contact_phone,
+                            'supervisor_name':supervisor_name,'supervisor_phone':supervisor_phone}
+            print(post_request)
+            headers_get = getAccessToken()
+            headers = {'AccessToken': headers_get}
+            responsePost = requests.patch("https://localhost/copy_1/hs/HTTP_SERVER/podved_card",
+                                         data=post_request, headers=headers,
+                                         verify=False)
+            # print("response.json:\n{}\n\n".format(responsePost.json()))
+            print("response.text:\n{}\n\n".format(responsePost.text))
+            # print("response:\n{}\n\n".format(responsePost))
+            # print("response.url:\n{}\n\n".format(responsePost.url))  # Посмотреть формат URL (с параметрами)
+            print("response.headers:\n{}\n\n".format(responsePost.headers))  # Header of the request
+            print("response.status_code:\n{}\n\n".format(responsePost.status_code))  # Получить код ответа
+            # print("response.text:\n{}\n\n".format(responsePost.text))  # Text Output
+            # print("response.json:\n{}\n\n".format(responsePost.json()))
+            # print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
+            # print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
+            return redirect(url_for('podved'))
+        return render_template('basic/redirectpodved.html')

@@ -8,7 +8,7 @@ from models import models_func
 from requests_obj import request_func
 from auth import auth_func
 from views import Category, Index, About, Cardhouse, Cardhousedetail, Customers, Departament, CategoryPodved, Search, \
-    Reports, Contacts
+    Reports, Contacts, CheckContacts
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -90,6 +90,9 @@ app.add_url_rule("/reports/",
                  ),
 app.add_url_rule("/contacts/",
                  view_func=Contacts.as_view("contacts")
+                 )
+app.add_url_rule("/need_confirm_contacts/",
+                 view_func=CheckContacts.as_view("need_confirm_contacts")
                  )
 
 customers_view = CustomersAPI.as_view('customers_api')

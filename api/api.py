@@ -10,7 +10,7 @@ from auth import validateAccesToken, getPodved, deleteTokens, refreshAccesToken
 from models import podved_list, objects_list, objects_list_api, podved_list_api, category_objects_list_api, \
     object_card_api
 from requests_obj import data_params_request, listDepartsments, getUserName
-from views import Customers
+
 
 api_func = Blueprint('api_func', __name__)
 

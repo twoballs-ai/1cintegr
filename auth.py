@@ -55,7 +55,7 @@ def login(refresh_token=None):
             if success == True and blockuser == False:
                 return makeRefreshToken(refresh_token)
             else:
-                return 'вы не имеете права'
+                return 'Не правильное имя пользователя или пароль'
 
     return render_template('login.html', title='Авторизация')
 
@@ -77,7 +77,7 @@ def updatePodvedInfo():
     need_confirm_contacts = allpermissionmenu['need_confirm_contacts']
     print('updatePodvedInfo проверка')
     print(need_confirm_contacts)
-
+    return need_confirm_contacts
 
 #
 def makeRefreshToken(refresh_token):

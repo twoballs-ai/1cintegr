@@ -129,7 +129,7 @@ def refreshAccesToken(link_send_to_refresh):
     print(id)
     if success == True and blockuser == False:
         if id == None:
-            response = make_response(redirect(url_for(link)))
+            response = make_response(redirect(url_for(link, id='1')))
             print('response')
             response.set_cookie('access_token', access_token, samesite='Lax', max_age=86400)
             response.set_cookie('username_token', username_token, samesite='Lax', max_age=86400)

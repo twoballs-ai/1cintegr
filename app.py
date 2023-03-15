@@ -52,6 +52,7 @@ def pageNotFound(error):
     #     return redirect(url_for('auth_func.login'))
 
 
+
 app.add_url_rule("/podved/<id>/",
                  view_func=Index.as_view("podved")
                  ),

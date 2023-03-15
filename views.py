@@ -27,7 +27,8 @@ class Index(View):
             if valid == 'True':
                 breadcrumbs = "Подведомственные организации"
                 id = int(id)
-                param_request = {'page': id}
+                filter = request.args.get('filter')
+                param_request = {'page': id, 'filter':filter}
                 page = param_request["page"]
                 # берем данные из файла модели
                 data = podved_list(param_request)['list_PD']
@@ -44,7 +45,7 @@ class Index(View):
                 Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
                 # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'departments': departments, 'getusername': getusername,
-                           'page': page, 'max_page': max_page, 'pageNumber1C': pageNumber1C,
+                           'page': page,'filter':filter, 'max_page': max_page, 'pageNumber1C': pageNumber1C,
                            'breadcrumbs': breadcrumbs, 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
                 # функция вызова подведов и создания страницы для пользователей.

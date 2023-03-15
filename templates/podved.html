@@ -14,6 +14,19 @@
             {% endif %}
         </ol>
     </nav>
+        <form method="GET" class="d-flex">
+        {% if not filter %}
+            <input class="form-control me-2" name="filter" type="search"
+
+                   placeholder="Поиск недвижимости" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
+        {% else %}
+            <input class="form-control me-2" name="filter" type="search"
+                   placeholder="{{ filter }}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
+            <button class="btn btn-outline-danger" type="submit">Очистить</button>
+        {% endif %}
+    </form>
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
 
 

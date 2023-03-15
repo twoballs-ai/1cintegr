@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, Blueprint, redirect, request
+from flask import Flask, render_template, Blueprint, redirect, request, url_for
 from flask_cors import CORS
 
 from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI
@@ -30,6 +30,11 @@ def redirect_to():
     link = request.args.get('link', '/')
     new_link = 'http://' + link
     return redirect(new_link), 301
+
+
+@app.route('/')
+def hello():
+    return redirect(url_for('podved', id = '1'))
 
 
 @app.errorhandler(404)

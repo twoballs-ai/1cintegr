@@ -91,7 +91,8 @@ class CardhouseDetailAPI(MethodView):
         param_request = {'code': id}
         # берем данные из файла модели
         data = object_card_api(param_request)
-        context = {'data': data}
+        url = 'http://10.0.0.13:5000/static/site/'
+        context = {'data': data,'url':url}
         return jsonify(context)
 
     def post(self):

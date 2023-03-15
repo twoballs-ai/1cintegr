@@ -14,7 +14,7 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('department', id = departId, value = departName)  }}">{{ departName }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
             {% else %}
-                <li class="breadcrumb-item"><a href="{{ url_for('podved') }}">Подведомственные организации</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('podved', id ='1') }}">Подведомственные организации</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
             {% endif %}
         </ol>

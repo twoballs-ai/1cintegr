@@ -31,7 +31,7 @@ def login(refresh_token=None):
         valid = validateAccesToken()
         if valid == 'True':
             flash('Вы уже авторизованы')
-            return redirect(url_for('podved'))
+            return redirect(url_for('podved', id = '1'))
     elif request.cookies.get('refresh_token') and not request.cookies.get('access_token'):
         return makeAccesToken()
 
@@ -100,8 +100,8 @@ def makeAccesToken():
     blockuser = response.json()['blockuser']
     print("response.text:\n{}\n\n".format(response.text))
     if success == True and blockuser == False:
-        print('dsvdsvd')
-        response = make_response(redirect('podved'))
+        print('dsvdsvd1')
+        response = make_response(redirect(url_for('podved', id='1')))
         response.set_cookie('access_token', access_token, samesite='Lax', max_age=86400)
         response.set_cookie('username_token', username_token, samesite='Lax', max_age=86400)
         return response

@@ -15,11 +15,12 @@ def podved_list(param_request):
     headers = {'AccessToken': headers_get}
     url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
     response = requests.post(url, param_request, verify=False, headers=headers)
+    print("response.json:\n{}\n\n".format(response.json()))
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    data = response.json()['list_PD']
+    data = response.json()
     print(response.json())
     return data
 
@@ -85,12 +86,13 @@ def objects_list(param_request):
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    data = response.json()['list_OC']
+    data = response.json()
     return data
 
+headers_api = {'AccessToken': '1e29400c-aaa6-4723-ab6a-108b9d7e819f'}
 
 def objects_list_api(param_request):
-    # headers = {'AccessToken': '482645fc-b8f6-4c8c-a2cd-5684eff4fd5e'}
+    headers = headers_api
     url = "https://localhost/copy_1/hs/HTTP_SERVER/objects_list"
     response = requests.get(url, param_request, verify=False, headers=headers)
     if response.status_code == 200:
@@ -101,8 +103,9 @@ def objects_list_api(param_request):
     return data
 
 
+
 def podved_list_api(param_request):
-    # headers = {'AccessToken': '482645fc-b8f6-4c8c-a2cd-5684eff4fd5e'}
+    headers = headers_api
     url = "https://localhost/copy_1/hs/HTTP_SERVER/podved_list"
     response = requests.post(url, param_request, verify=False, headers=headers)
     if response.status_code == 200:
@@ -115,7 +118,7 @@ def podved_list_api(param_request):
 
 
 def category_objects_list_api(param_request):
-    # headers = {'AccessToken': '482645fc-b8f6-4c8c-a2cd-5684eff4fd5e'}
+    headers = headers_api
     url = "https://localhost/copy_1/hs/HTTP_SERVER/category_objects_list"
     response = requests.post(url, param_request, verify=False, headers=headers)
     if response.status_code == 200:
@@ -127,7 +130,7 @@ def category_objects_list_api(param_request):
 
 
 def object_card_api(param_request):
-    # headers = {'AccessToken': '482645fc-b8f6-4c8c-a2cd-5684eff4fd5e'}
+    headers = headers_api
     url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
     response = requests.get(url, param_request, verify=False, headers=headers)
     if response.status_code == 200:

@@ -20,15 +20,22 @@ def allowed_file(filename):
 
 
 class Index(View):
-    def dispatch_request(self):
+    def dispatch_request(self, id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
             data_params_request()
             if valid == 'True':
                 breadcrumbs = "Подведомственные организации"
-                param_request = {'page': '1'}
+                id = int(id)
+                param_request = {'page': id}
+                page = param_request["page"]
                 # берем данные из файла модели
-                data = podved_list(param_request)
+                data = podved_list(param_request)['list_PD']
+                page_info = podved_list(param_request)['Page_info']
+                print(page_info)
+                max_page = int(page_info['NumberOfPages'])
+                pageNumber1C = int(page_info['PageNumber'])
+                print(param_request)
                 departments = listDepartsments()
                 # print(departments)
                 getusername = getUserName()
@@ -37,6 +44,7 @@ class Index(View):
                 Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
                 # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'departments': departments, 'getusername': getusername,
+                           'page': page, 'max_page': max_page, 'pageNumber1C': pageNumber1C,
                            'breadcrumbs': breadcrumbs, 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
                 # функция вызова подведов и создания страницы для пользователей.
@@ -123,13 +131,19 @@ class CategoryPodved(View):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
             if valid == 'True':
-                param_request = {'page': '1',
-                                 'cat_code': id}
+                cat_code = request.args.get('cat_code')
+                id = int(id)
+                param_request = {'page': id,
+                                 'cat_code': cat_code}
+                page = param_request["page"]
                 # берем данные из файла модели
-                data = podved_list(param_request)
+                data = podved_list(param_request)['list_PD']
+                page_info = podved_list(param_request)['Page_info']
+                max_page = int(page_info['NumberOfPages'])
+                pageNumber1C = int(page_info['PageNumber'])
                 departments = listDepartsments()
                 getusername = getUserName()
-                id_podved = id
+                id_podved = cat_code
                 name_category_breadcrumbs = request.args.get('name')
                 permission_menu = auth.getPermissions()
                 Permission_SeeCategoryPodved = permission_menu['Permission_SeeCategoryPodved']
@@ -139,6 +153,7 @@ class CategoryPodved(View):
                 context = {'data': data,
                            'departments': departments,
                            'getusername': getusername,
+                           'page': page, 'max_page': max_page, 'pageNumber1C': pageNumber1C,
                            'namebreadcrumbsbycat': name_category_breadcrumbs,
                            'breadcrumbs': breadcrumbs,
                            'id_podved': id_podved,
@@ -184,7 +199,7 @@ class Departament(View):
                 print('valid')
                 param_request = {'page': '1', 'department': id}
                 # берем данные из файла модели
-                data = podved_list(param_request)
+                data = podved_list(param_request)['list_PD']
                 departments = listDepartsments()
                 getusername = getUserName()
                 departid = id
@@ -554,7 +569,7 @@ class Cardhousedetail(View):
 class Customers(MethodView):
     methods = ["GET", "POST"]
 
-    def dispatch_request(self, id):
+    def dispatch_request(self,id):
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
             print(valid)
@@ -563,11 +578,17 @@ class Customers(MethodView):
                 filter = request.args.get('filter')
                 sort = request.args.get('sort')
                 param_request = {'page': id, 'filter': filter, 'sort': sort}
-                number2 = param_request["page"]
+                page = param_request["page"]
                 # берем данные из файла модели
-                data = objects_list(param_request)
+                data = objects_list(param_request)['list_OC']
+                page_info = objects_list(param_request)['Page_info']
+                print(page_info)
+                max_page= int(page_info['NumberOfPages'])
+                pageNumber1C= int(page_info['PageNumber'])
+
                 # form = ObjectListForm()
-                print(number2, param_request)
+                print(page, param_request)
+                print(data)
                 # парсинг валидации и тех даных
                 data_params = data_params_request()
                 departments = listDepartsments()
@@ -578,7 +599,7 @@ class Customers(MethodView):
                 Permission_SeeDepartments = permission_menu['Permission_SeeDepartments']
                 # 'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved, 'Permission_SeeDepartments': Permission_SeeDepartments
                 context = {'data': data, 'data_params': data_params,
-                           'number2': number2,
+                           'page': page, 'max_page':max_page,'pageNumber1C':pageNumber1C,
                            'departments': departments,
                            'getusername': getusername,
                            'breadcrumbs': breadcrumbs,
@@ -1039,6 +1060,7 @@ class CheckContacts(View):
     methods = ["GET", "POST"]
 
     def dispatch_request(self):
+        getusername = getUserName()
         c = auth.getPodved()
         id = c[0]
         param_request = {'code': id}
@@ -1050,7 +1072,8 @@ class CheckContacts(View):
         supervisor_phone = data['podved_info']['supervisor_phone']
         context = {
             'contact_name': contact_name, 'contact_phone': contact_phone,
-            'supervisor_name': supervisor_name, 'supervisor_phone': supervisor_phone
+            'supervisor_name': supervisor_name, 'supervisor_phone': supervisor_phone,
+            'getusername': getusername,
         }
         if request.method == 'POST':
             contact_name = request.form.get('contact_name')
@@ -1075,5 +1098,5 @@ class CheckContacts(View):
             # print("response.json:\n{}\n\n".format(responsePost.json()))
             # print("response.encoding:\n{}\n\n".format(responsePost.encoding))  # Узнать, какую кодировку использует Requests
             # print("response.content:\n{}\n\n".format(responsePost.content))  # В бинарном виде
-            return redirect(url_for('podved'))
-        return render_template('basic/redirectpodved.html')
+            return redirect(url_for('podved', id = '1'))
+        return render_template('basic/redirectpodved.html', **context)

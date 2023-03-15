@@ -503,23 +503,34 @@ $('.btnTranslate4').click(function(){
 //
 // });
 
+// Fancybox.bind('[data-fancybox="gallery"]', {
+//   animated: false,
+//   showClass: false,
+//   hideClass: false,
+//
+//   click: false,
+//
+//   dragToClose: false,
+//
+//   Image: {
+//     zoom: false,
+//   },
+//
+//   Toolbar: {
+//     display: [{ id: "counter", position: "center" }, "close"],
+//   },
+// });
+
 Fancybox.bind('[data-fancybox="gallery"]', {
-  animated: false,
-  showClass: false,
-  hideClass: false,
+  caption: (fancybox, slide) => {
+    const caption = slide.caption || "";
 
-  click: false,
-
-  dragToClose: false,
-
-  Image: {
-    zoom: false,
-  },
-
-  Toolbar: {
-    display: [{ id: "counter", position: "center" }, "close"],
+    return `${slide.index + 1} / ${
+      fancybox.carousel?.slides.length
+    } <br /> ${caption}`;
   },
 });
+
 
 // const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 //

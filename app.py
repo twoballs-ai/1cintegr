@@ -52,13 +52,7 @@ def pageNotFound(error):
     #     return redirect(url_for('auth_func.login'))
 
 
-app.add_url_rule("/index/",
-                 view_func=Index.as_view("index")
-                 ),
-app.add_url_rule("/",
-                 view_func=Index.as_view("/")
-                 ),
-app.add_url_rule("/podved/",
+app.add_url_rule("/podved/<id>/",
                  view_func=Index.as_view("podved")
                  ),
 app.add_url_rule("/category/",

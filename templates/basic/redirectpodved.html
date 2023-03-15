@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Добавление информации.</title>
+    <link type="text/css" href="{{ url_for('static', filename='1cintegr/css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
           integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -15,6 +16,26 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="header navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a href=""><img class="logo justify-content-start" alt="Logo"
+                                                   src="/static/1cintegr/img/min_kult_resurs.svg"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex justify-content-end col-7">Пользователь: {{ getusername }}</div>
+
+            <div class="text-center"><a href="{{ url_for('auth_func.signout') }}"
+                                        class="btn btn-link border-0 col-12 text-start shadow-none fw-semibold text-secondary"
+                                        role="button">
+                <svg class="MuiSvgIcon-root" fill="white" width="20" height="20" focusable="false" viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z"></path>
+                </svg>
+            </a></div>
+        </div>
+    </nav>
   <div class="row justify-content-center">
     <div class="col-4">
       <form method="POST" enctype="multipart/form-data">

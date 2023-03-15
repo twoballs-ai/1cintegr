@@ -2,7 +2,7 @@
 
 {% block content %}
     {{ super() }}
-                <nav aria-label="breadcrumb" class="mx-3">
+    <nav aria-label="breadcrumb" class="mx-3">
         <ol class="breadcrumb">
 
             <li class="breadcrumb-item active" aria-current="page">{{ breadcrumbs }}</li>
@@ -10,7 +10,7 @@
 
         </ol>
     </nav>
-        <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1"
          tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -61,7 +61,7 @@
                                                            data-bs-title="Tooltip on top">Наименование *</label>
                                 <input class="form-control name field"
                                        id="name" name="name"
-                                       type="text" maxlength="1000" >
+                                       type="text" maxlength="1000">
                             </div>
 
                             {#                            <div>{{ form.name.label }}: {{ form.name }}</div>#}
@@ -71,10 +71,10 @@
                             <div class="col-6 mb-3"><label for="description">Описание *</label><input
                                     class="form-control field"
                                     id="description" name="description"
-                                    type="text" /></div>
+                                    type="text"/></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта *</label>
                                 <select onchange="onChangeClick(event)" id="object_type" class="form-select field"
-                                        aria-label="Default select example" name="object_type" >
+                                        aria-label="Default select example" name="object_type">
                                     <option value="" selected disabled value="">Выберите из выпадающего списка</option>
                                     <option id="option1value1"
                                             value="{{ data_params[0]['values'][0]['id'] }}">{{ data_params[0]['values'][0]['value'] }}</option>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально) </label>
                                 <select id="PurposeObject" class="form-select field" aria-label="Default select example"
-                                        name="PurposeObject" >
+                                        name="PurposeObject">
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][3]['values'][1]['value'] }}</option>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-6 mb-3"><label for="Condition">Состояние объекта (опционально) </label>
                                 <select id="Condition" class="form-select field" aria-label="Default select example"
-                                        name="Condition" >
+                                        name="Condition">
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][15]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][15]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][15]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][15]['values'][1]['value'] }}</option>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-3 mb-3"><label for="technicalFloor">Технический этаж</label>
                                 <select id="technicalfloor" class="form-select field"
-                                        aria-label="Default select example" name="technicalFloor" >
+                                        aria-label="Default select example" name="technicalFloor">
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][17]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][17]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][17]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][17]['values'][1]['value'] }}</option>
@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-3 mb-3"><label for="Lift">Лифт</label>
                                 <select id="Lift" class="form-select field" aria-label="Default select example"
-                                        name="Lift" >
+                                        name="Lift">
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="Да">Да</option>
                                     <option value="Нет">Нет</option>
@@ -122,12 +122,13 @@
                             <div class="col-12 mb-3">
                                 <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных
                                     работ, реконструкции</label>
-                                <input class="form-control field" id="remontDate" name="remontDate" type="date"/>
+                                <input class="form-control field" id="remontDate" name="remontDate" type="date"
+                                       max="2850-01-01" min="850-01-01" required/>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="SecurityObligation">Охранное обязательство</label>
                                 <input class="form-control field" id="SecurityObligation" name="SecurityObligation"
-                                       type="text" />
+                                       type="text"/>
                             </div>
                             {#                            <div class="col-6 mb-3">#}
                             {#                                <label for="foto_scan" >Скан документа:</label>#}
@@ -136,19 +137,19 @@
                             {#                            </div>#}
                             <div class="col-6 mb-3">
                                 <label for="region">Регион:</label><input class="form-control field" name="region"
-                                                                          type="text" id="region" >
+                                                                          type="text" id="region">
                             </div>
                             <div class="col-6 mb-3"><label for="address">Адрес*</label>
-                                <input class="form-control field" id="address" name="address" type="text" />
+                                <input class="form-control field" id="address" name="address" type="text"/>
                                 <p id="address-full"></p>
                             </div>
                             <div class="col-6 mb-3"><label for="object_area">Площадь объекта кв.м:</label><input
                                     class="form-control field"
                                     id="object_area" name="object_area"
-                                    type="text" max="1000000000" /></div>
+                                    type="text" max="1000000000"/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
                                 <select id="LandCategory" class="form-select field" aria-label="Default select example"
-                                        name="LandCategory" >
+                                        name="LandCategory">
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option id="option2value1"
                                             value="{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][5]['values'][0]['value'] }}</option>
@@ -168,7 +169,7 @@
                                 использования(опционально)</label><input class="form-control field"
                                                                          id="TypeOfPermittedUse"
                                                                          name="TypeOfPermittedUse"
-                                                                         type="text" /></div>
+                                                                         type="text"/></div>
                         </div>
 
                         <button type="submit" class="btn btnTranslate1 btn-secondary btn-icon float-end me-4 mb-2"
@@ -257,21 +258,24 @@
                                 <div>{{ data_params.name }}</div>
                                 <label for="Owner">Собственник ОН *</label>
                                 <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI"
-                                       >
+                                >
                                 <label for="RNFI_date">дата регистрации РНФИ:</label>
                                 <input type="date" placeholder="дата регистрации РНФИ" class="form-control"
                                        id="RNFI_date"
-                                       name="RNFI_date" >
+                                       name="RNFI_date"
+                                       max="2850-01-01" min="850-01-01" required>
                                 <input type="text" placeholder="Номер регистрации права собственности РФ"
-                                       class="form-control" id="owner_nomer" name="owner_nomer" >
+                                       class="form-control" id="owner_nomer" name="owner_nomer">
                                 <label for="owner_date">Дата регистрации права собственности РФ:</label>
                                 <input type="date" placeholder="Дата регистрации права собственности РФ"
-                                       class="form-control" id="owner_date" name="owner_date" >
+                                       class="form-control" id="owner_date" name="owner_date"
+                                       max="2850-01-01" min="850-01-01" required>
                                 <input type="text" placeholder="Реестровый №" class="form-control"
-                                       id="RecordNumberVEGRP" name="RecordNumberVEGRP" >
+                                       id="RecordNumberVEGRP" name="RecordNumberVEGRP">
                                 <label for="DateRecordsVEGRP">Реестровая дата:</label>
                                 <input type="date" placeholder="Реестровая дата" class="form-control"
-                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP" >
+                                       id="DateRecordsVEGRP" name="DateRecordsVEGRP"
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             {#                            <div class="col-6 mb-4">#}
                             {#                                <label for="pravoobladatel">Правообладатель *</label>#}
@@ -286,7 +290,7 @@
                             {#                            </div>#}
                             <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя *</label>
                                 <select class="form-select" id="TypeofRightOwner" onchange="onChangeClick2(event)"
-                                        aria-label="Default select example" name="TypeofRightOwner" >
+                                        aria-label="Default select example" name="TypeofRightOwner">
                                     <option selected value="" disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['values'][1]['value'] }}</option>
@@ -301,48 +305,49 @@
                             <div class="col-6 mb-3 ">
                                 <label for="BalanceAccountNumber">Номер регистрации иного права *</label>
                                 <input type="text" class="form-control" id="BalanceAccountNumber"
-                                       name="BalanceAccountNumber" >
+                                       name="BalanceAccountNumber">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="date_of_registration_of_another_right">Дата регистрации иного права
                                     *</label>
                                 <input type="date" class="form-control" id="date_of_registration_of_another_right"
-                                       name="date_of_registration_of_another_right" >
+                                       name="date_of_registration_of_another_right" max="2850-01-01" min="850-01-01"
+                                       required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="inventory_number">Инвентарный номер *</label>
                                 <input type="text" class="form-control" id="inventory_number" name="inventory_number"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="balance_number">Балансовый номер счета *</label>
                                 <input type="text" class="form-control" id="balance_number" name="balance_number"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="CadastralNumber">Кадастровый номер *</label>
                                 <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Date_of_assignment_cadastral">Дата присвоения *</label>
                                 <input type="date" class="form-control" id="Date_of_assignment_cadastral"
-                                       name="Date_of_assignment_cadastral" >
+                                       name="Date_of_assignment_cadastral" max="2850-01-01" min="850-01-01" required>
                             </div>
 
                             <div class="col-6 mb-3 ">
                                 <label for="cadastralcost">Кадастровая стоимость *</label>
                                 <input type="text" class="form-control" id="cadastralcost"
-                                       name="cadastralcost" >
+                                       name="cadastralcost">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Initial_cost">Первоначальная стоимость *</label>
-                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost" >
+                                <input type="text" class="form-control" id="Initial_cost" name="Initial_cost">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="residual_value">Остаточная стоимость *</label>
                                 <input type="text" class="form-control" id="residual_value" name="residual_value"
-                                       >
+                                >
                             </div>
                         </div>
                         <button type="submit" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2"
@@ -448,7 +453,7 @@
                             <div class="col-6 mb-3"><label for="historical_Category">Категория объекта
                                 историко-культурного значения *</label>
                                 <select class="form-select" aria-label="historical_Category" name="historical_Category"
-                                        >
+                                >
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][0]['value'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][0]['fields_rules'][8]['values'][1]['value'] }}</option>
@@ -459,7 +464,7 @@
                             <div class="col-6 mb-3 ">
                                 <label for="UGROKN_number">Номер ЕГРОКН *</label>
                                 <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number"
-                                       >
+                                >
                             </div>
                         </div>
 
@@ -570,7 +575,7 @@
                             <div class="col-6 mb-3 ">
                                 <label for="KindEncumbrances">Вид обременения *</label>
                                 <select class="form-select" id="KindEncumbrances" aria-label="KindEncumbrances"
-                                        name="KindEncumbrances" >
+                                        name="KindEncumbrances">
                                     <option value="" selected disabled>Выберите нужный вам вариант</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][0]['values'] }}</option>
                                     <option value="{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['id'] }}">{{ data_params[0]['fields_rules'][0]['fields_rules'][14]['fields_rules'][5]['fields_rules'][10]['values'][1]['values'] }}</option>
@@ -584,42 +589,44 @@
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_area">Площадь обременения *</label>
                                 <input type="text" class="form-control" id="encumbrance_area" name="encumbrance_area"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="encumbrance_cost">Стоимость обременения *</label>
                                 <input type="text" class="form-control" id="encumbrance_cost" name="encumbrance_cost"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="person_encumbrance">Лицо в пользу которого установлено обременение *</label>
                                 <input type="text" class="form-control" id="person_encumbrance"
-                                       name="person_encumbrance" >
+                                       name="person_encumbrance">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Other_payments">Прочие платежи *</label>
                                 <input type="text" class="form-control" id="Other_payments" name="Other_payments"
-                                       >
+                                >
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_encumbrance">Срок обременения (дата начала) *</label>
                                 <input type="date" class="form-control" id="start_encumbrance" name="start_encumbrance"
-                                       >
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_encumbrance">Срок обременения (дата окончания) *</label>
                                 <input type="date" class="form-control" id="end_encumbrance" name="end_encumbrance"
-                                       >
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_use">Срок Пользования (дата начала) *</label>
                                 <input type="date"
-                                       class="form-control" id="start_use" name="start_use" >
+                                       class="form-control" id="start_use" name="start_use"
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_use">Срок Пользования (дата окончания) *</label>
                                 <input type="date"
-                                       class="form-control" id="end_use" name="end_use" >
+                                       class="form-control" id="end_use" name="end_use" max="2850-01-01" min="850-01-01"
+                                       required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком *</label>
@@ -742,15 +749,17 @@
 
                         <div class="row">
                             <div class="col-12 mb-3 ">
-                                <label for="formFile" class="form-label">Выберите обложку объекта недвижимости (используйте картинки только с раширением 'jpg','jpeg','png','gif')</label>
-                                <input class="form-control" type="file" accept="image/*" id="formFile" name="formFile" >
+                                <label for="formFile" class="form-label">Выберите обложку объекта недвижимости
+                                    (используйте картинки только с раширением 'jpg','jpeg','png','gif')</label>
+                                <input class="form-control" type="file" accept="image/*" id="formFile" name="formFile">
 
                             </div>
                             <div class="col-12 mb-3 ">
-                                <label for="files[]" class="form-label">Выберите несколько фотографий объекта (используйте картинки только с раширением 'jpg','jpeg','png','gif')
+                                <label for="files[]" class="form-label">Выберите несколько фотографий объекта
+                                    (используйте картинки только с раширением 'jpg','jpeg','png','gif')
                                     недвижимости</label>
                                 <input class="form-control" name="files[]" type="file" accept="image/*" multiple="true"
-                                       id="files[]" >
+                                       id="files[]">
                             </div>
                         </div>
                         <div class="col-12">
@@ -775,16 +784,19 @@
     </div>
 
     <div class="dropdown float-start m-2 shadow-sm">
-  <a class="btn btn-light dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Сортировка по наименованию ОН
-  </a>
+        <a class="btn btn-light dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+            Сортировка по наименованию ОН
+        </a>
 
-<ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="{{ url_for("customers", id=1, sort= "sort_a-z") }}">Сортировка А-Я</a></li>
-    <li><a class="dropdown-item" href="{{ url_for("customers", id=1, sort= "sort_z-a") }}">Сортировка Я-А</a></li>
-  </ul>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for("customers", id=1, sort= "sort_a-z") }}">Сортировка А-Я</a>
+            </li>
+            <li><a class="dropdown-item" href="{{ url_for("customers", id=1, sort= "sort_z-a") }}">Сортировка Я-А</a>
+            </li>
+        </ul>
 
-</div>
+    </div>
     <div class="d-grid gap-2  justify-content-md-end bg-transparent">
 
 
@@ -793,17 +805,17 @@
 
     </div>
     <form method="GET" class="d-flex">
-    {% if not filter %}
-        <input class="form-control me-2" name="filter" type="search"
+        {% if not filter %}
+            <input class="form-control me-2" name="filter" type="search"
 
-               placeholder="Поиск недвижимости" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                   placeholder="Поиск недвижимости" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
         {% else %}
-        <input class="form-control me-2" name="filter" type="search"
-               placeholder="{{ filter }}" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
-        <button class="btn btn-outline-danger" type="submit">Очистить</button>
-    {% endif %}
+            <input class="form-control me-2" name="filter" type="search"
+                   placeholder="{{ filter }}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
+            <button class="btn btn-outline-danger" type="submit">Очистить</button>
+        {% endif %}
     </form>
 
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">
@@ -844,127 +856,316 @@
 
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                {#{% for x in range(1,100) %}#}
-                {#            {% if x == number2 and x<4 %}#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
-                {#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
-                {#    {% elif x == number2 %}#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">Предидущая</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 3) }}">{{ x - 3 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 2) }}">{{ x - 2 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x - 1) }}">{{ x - 1 }}</a></li>#}
-                {#    <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x) }}">{{ x }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">{{ x + 1 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 2) }}">{{ x + 2 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 3) }}">{{ x + 3 }}</a></li>#}
-                {#        <li class="page-item"><a class="page-link" href="{{ url_for("customers", number=x + 1) }}">Следующая</a></li>#}
+                {#                {% if page == max_page %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=page) }}">{{ page }}</a>#}
                 {##}
-                {#    {% endif %}#}
+                {#                    </li>#}
+                {#                {% else %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=page) }}">{{ page }}</a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=page + 1) }}">{{ page + 1 }}</a>#}
+                {#                    </li>#}
+                {#                {% endif %}#}
+                {% if page >= 1 and page <= max_page %}
+                {% for item in range (1,max_page + 1) %}
+                    {% if page == max_page and item == max_page %}
+                        {% if page == 2 and item == max_page %}
 
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                            </li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link"
+                                                            href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link"
+                                                              href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                            </li>
+                        {% elif page == 1 and item == max_page and max_page == 1 %}
+                            <li class="page-item disabled"><a class="page-link"
+                                                              href="{{ url_for("customers",id=page - 1) }}">Пред. </a>
+                            </li>
 
-                {#{% endfor %}#}
-                {% if number2 == 2 %}
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link"
-                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>
-                    </li>
-                {% elif number2 ==1 %}
-                    <li class="page-item disabled"><a class="page-link"
-                                                      href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link"
-                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След. </a>
-                    </li>
-                {% elif number2 ==37 %}
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link"
-                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>
-                    </li>
-                    <li class="page-item disabled"><a class="page-link"
-                                                      href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>
-                    </li>
-                {% elif number2 ==36 %}
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link active"
-                                             href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a></li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1) }}">{{ number2 + 1 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>
-                    </li>
-                {% else %}
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers",id=number2 - 1) }}">Пред. </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link"
-                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1) }}">{{ number2 + 1 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 2) }}">{{ number2 + 2 }} </a>
-                    </li>
-                    <li class="page-item"><a class="page-link"
-                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>
-                    </li>
-                {% endif %}
+                            <li class="page-item active"><a class="page-link"
+                                                            href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                            </li>
+
+                            <li class="page-item disabled"><a class="page-link"
+                                                              href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                            </li>
+                        {% else %}
+
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                            </li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for("customers", id=page - 2) }}">{{ page - 2 }} </a>
+                            </li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link"
+                                                            href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link"
+                                                              href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                            </li>
+                        {% endif %}
+
+                    {% elif item == 2 and page ==2 %}
+
+                        {% if item == 2 and max_page == 3 %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 2 ) }}">{{ page + 2 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                        </li>
+                    {% endif %}
+                    {% elif item == 1 and page ==1 %}
+                        {% if item == 1 and max_page == 2 %}
+                         <li class="page-item disabled"><a class="page-link"
+                                                          href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След. </a>
+                        </li>
+                            {% else %}
+                                                    <li class="page-item disabled"><a class="page-link"
+                                                          href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 2 ) }}">{{ page + 2 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След. </a>
+                        </li>
+                            {% endif %}
+                    {% elif page == max_page -1 and item == max_page -1 %}
+
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 2) }}">{{ page - 2 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link active"
+                                                 href="{{ url_for("customers", id=page) }}">{{ page }} </a></li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                        </li>
+                    {% elif item == page %}
+
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers",id=page - 1) }}">Пред. </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 2) }}">{{ page - 2 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page - 1) }}">{{ page - 1 }} </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id=page) }}">{{ page }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1) }}">{{ page + 1 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 2) }}">{{ page + 2 }} </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+             {% else %}
+
+                                                <li class="page-item disabled"><a class="page-link"
+                                                 href="{{ url_for("customers",id=page - 1) }}">Пред. </a>
+                        </li>
+
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("customers", id= 1) }}">{{ page }} </a>
+                        </li>
+
+                        <li class="page-item disabled"><a class="page-link"
+                                                 href="{{ url_for("customers", id=page + 1 ) }}">След.</a>
+                        </li>
+            {% endif %}
+
+                {#                {% for x in range(1,100) %}#}
+                {#                            {% if x == number2 and x<4 %}#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 1) }}">Предидущая</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 2) }}">{{ x - 2 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 1) }}">{{ x - 1 }}</a></li>#}
+                {#                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x) }}">{{ x }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 1) }}">{{ x + 1 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 2) }}">{{ x + 2 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 3) }}">{{ x + 3 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 1) }}">Следующая</a></li>#}
+                {#                    {% elif x == number2 %}#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 1) }}">Предидущая</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 3) }}">{{ x - 3 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 2) }}">{{ x - 2 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x - 1) }}">{{ x - 1 }}</a></li>#}
+                {#                    <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x) }}">{{ x }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 1) }}">{{ x + 1 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 2) }}">{{ x + 2 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 3) }}">{{ x + 3 }}</a></li>#}
+                {#                        <li class="page-item"><a class="page-link" href="{{ url_for("customers", id=x + 1) }}">Следующая</a></li>#}
+                {##}
+                {#                    {% endif %}#}
+                {##}
+                {##}
+                {#                {% endfor %}#}
+                {#                {% if number2 == 2 %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item active"><a class="page-link"#}
+                {#                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>#}
+                {#                    </li>#}
+                {#                {% elif number2 ==1 %}#}
+                {#                    <li class="page-item disabled"><a class="page-link"#}
+                {#                                                      href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item active"><a class="page-link"#}
+                {#                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След. </a>#}
+                {#                    </li>#}
+                {#                {% elif number2 ==37 %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item active"><a class="page-link"#}
+                {#                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item disabled"><a class="page-link"#}
+                {#                                                      href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>#}
+                {#                    </li>#}
+                {#                {% elif number2 ==36 %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">Пред. </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link active"#}
+                {#                                             href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a></li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1) }}">{{ number2 + 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>#}
+                {#                    </li>#}
+                {#                {% else %}#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers",id=number2 - 1) }}">Пред. </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item active"><a class="page-link"#}
+                {#                                                    href="{{ url_for("customers", id=number2) }}">{{ number2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1) }}">{{ number2 + 1 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 2) }}">{{ number2 + 2 }} </a>#}
+                {#                    </li>#}
+                {#                    <li class="page-item"><a class="page-link"#}
+                {#                                             href="{{ url_for("customers", id=number2 + 1 ) }}">След.</a>#}
+                {#                    </li>#}
+                {#                {% endif %}#}
             </ul>
 
         </nav>
-
 
 
         <script src="/static/1cintegr/js/script.js"></script>

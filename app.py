@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, Blueprint, redirect, request, url_for
+from flask import Flask, render_template, Blueprint, redirect, request, url_for, make_response
 from flask_cors import CORS
 
 from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI
@@ -31,6 +31,12 @@ def redirect_to():
     new_link = 'http://' + link
     return redirect(new_link), 301
 
+
+# @app.route('/coockie')
+# def podvedfiltercookie():
+#     resp = make_response(redirect(url_for('podved', id='1')))
+#     resp.set_cookie('filter', filter)
+#     return resp
 
 @app.route('/')
 def hello():

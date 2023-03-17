@@ -20,6 +20,8 @@
 
                    placeholder="Поиск недвижимости" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Поиск</button>
+
+
         {% else %}
             <input class="form-control me-2" name="filter" type="search"
                    placeholder="{{ filter }}" aria-label="Search">
@@ -52,16 +54,15 @@
                 </thead>
                 <tbody>
                 {% for i in data %}
-
                     {#          <a href="{{ url_for('cardhouse') }}" class="text-decoration-none" ><li class="list-group-item list-group-item-action border-top">Государственный академический Большой театр России</li></a>#}
                     {% if id_podved %}
-                        <tr data-href="{{ url_for("cardhouse", id=i.code, id_podv = id_podved, namebreadcrumbsbycat =namebreadcrumbsbycat) }}" role="button">
+                        <tr data-href="{{ url_for("cardhouse", id=i.code, id_podv = id_podved, namebreadcrumbsbycat = namebreadcrumbsbycat) }}" role="button">
                             <td class="noselect">{{ i.name }}</td>
                             <td class="text-secondary">>>></td>
                             {#          <img src="{{url_for('site.static', filename = data)}}">#}
                         </tr>
                     {% elif departid %}
-                        <tr data-href="{{ url_for("cardhouse", id=i.code, departments = departid, departmentsname= name_depart) }}" role="button">
+                        <tr data-href="{{ url_for("cardhouse", id=i.code, departments = departid, departmentsname = name_depart) }}" role="button">
                             <td class="noselect">{{ i.name }}</td>
                             <td class="text-secondary">>>></td>
                             {#          <img src="{{url_for('site.static', filename = data)}}">#}

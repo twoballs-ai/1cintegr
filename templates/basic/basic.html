@@ -186,7 +186,7 @@
                         <li>&nbsp;</li>
                         {% for i in departments %}
                             <li><a class="dropdown-item"
-                                   href="{{ url_for("department", id=i.id, value= i.value) }}">{{ i.value }}</a></li>
+                                   href="{{ url_for("department", id = "1", department =i.id, value= i.value) }}">{{ i.value }}</a></li>
                         {% endfor %}
 
                         {#      <li><a class="dropdown-item" href="#">Департамент международного сотрудничества</a></li>#}

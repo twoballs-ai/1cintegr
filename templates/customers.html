@@ -822,13 +822,23 @@
 
         <table class="table table-hover">
             <thead>
-            <tr>
-                <th scope="col">Наименование ОН</th>
-                <th scope="col">Адрес</th>
+            <tr class="align-middle" >
                 <th scope="col">Вид объекта</th>
-                <th scope="col">Вид собственности</th>
-                <th scope="col">Обременение</th>
-                <th scope="col">ОКН</th>
+                <th scope="col">Наименование объекта недвижимого имущества</th>
+                <th scope="col">Кадастровый номер</th>
+                <th scope="col">Адрес местонахождения объекта недвижимого имущества</th>
+{#                <th scope="col">Вид собственности</th>#}
+{#                <th scope="col">Обременение</th>#}
+{#                <th scope="col">ОКН</th>#}
+                <th scope="col">Протяженность (м), глубина (м),
+глубина залегания (м), площадь (кв. м),
+объем (куб. м),
+высота (м),
+площадь застройки (кв. м) объекта недвижимого имущества</th>
+                <th scope="col">Номер регистрации права Российской Федерации</th>
+                <th scope="col">Номер регистрации иного права</th>
+                <th scope="col">Текущее положение учета объекта недвижимого имущества</th>
+
             </tr>
             </thead>
             <tbody>
@@ -838,14 +848,19 @@
             {% for i in data %}
 
                 <tr data-href="{{ url_for("cardhousedetail", id=i.code) }}" role="button">
-                    <td class="col-4"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}" width="40"
+                    <td>{{ i.type_object }}</td>
+                    <td class="col-3"><img src="{{ url_for('site.static', filename = i.dikpic.fotoAdr ) }}" width="40"
                                            height="40" class="rounded-circle"><span
                             class="ms-1">{{ i.name }}</span></td>
+                    <td></td>
                     <td>{{ i.full_adress }}</td>
-                    <td>{{ i.type_object }}</td>
-                    <td>{{ i.owner }}</td>
-                    <td>{{ i.encumbrance }}</td>
-                    <td class="col-1">{{ i.okn }}</td>
+{#                    <td>{{ i.owner }}</td>#}
+{#                    <td>{{ i.encumbrance }}</td>#}
+{#                    <td class="col-1">{{ i.okn }}</td>#}
+                    <td class="col-3"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
                     {#          <img src="{{url_for('site.static', filename = data)}}">#}
 

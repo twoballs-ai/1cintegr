@@ -2,7 +2,7 @@ import os
 import requests
 import auth
 from flask import render_template, url_for, request, \
-    redirect
+    redirect, make_response
 from flask.views import View, MethodView
 from werkzeug.utils import secure_filename
 
@@ -198,12 +198,18 @@ class Departament(View):
             valid = validateAccesToken()
             if valid == 'True':
                 print('valid')
-                param_request = {'page': '1', 'department': id}
+                id = int(id)
+                department = request.args.get('department')
+                param_request = {'page': id, 'department': department}
+                page = param_request["page"]
                 # берем данные из файла модели
                 data = podved_list(param_request)['list_PD']
+                page_info = podved_list(param_request)['Page_info']
+                max_page = int(page_info['NumberOfPages'])
+                pageNumber1C = int(page_info['PageNumber'])
                 departments = listDepartsments()
                 getusername = getUserName()
-                departid = id
+                departid = department
                 name_depart = request.args.get('value')
                 breadcrumbs = "Категория подведомственной организации"
                 permission_menu = auth.getPermissions()
@@ -215,6 +221,7 @@ class Departament(View):
                            'getusername': getusername,
                            'name_depart': name_depart,
                            'departid': departid,
+                           'page': page, 'max_page': max_page, 'pageNumber1C': pageNumber1C,
                            'Permission_SeeCategoryPodved': Permission_SeeCategoryPodved,
                            'Permission_SeeDepartments': Permission_SeeDepartments}
                 # print(response.headers)

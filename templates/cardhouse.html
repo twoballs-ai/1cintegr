@@ -8,10 +8,10 @@
             {#    <li class="breadcrumb-item active" aria-current="page">Карточка подведомственной организации</li>#}
             {%  if id_podved %}
                 <li class="breadcrumb-item"><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
-                <li class="breadcrumb-item"><a href="{{ url_for('category_podved', id= id_podved, name = id_podved_name)  }}">{{ id_podved_name }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('category_podved', id = '1',cat_code= id_podved, name = id_podved_name)  }}">{{ id_podved_name }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
                 {% elif departId %}
-                <li class="breadcrumb-item"><a href="{{ url_for('department', id = departId, value = departName)  }}">{{ departName }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('department',id = '1', department = departId, value = departName)  }}">{{ departName }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.podved_info.name }}</li>
             {% else %}
                 <li class="breadcrumb-item"><a href="{{ url_for('podved', id ='1') }}">Подведомственные организации</a></li>

@@ -14,19 +14,14 @@
             {% endif %}
         </ol>
     </nav>
-        <form method="GET" class="d-flex">
+        <form action="{{ url_for("podvedfiltercookie") }}"  class="d-flex" method="post">
         {% if not filter %}
-            <input class="form-control me-2" name="filter" type="search"
-
-                   placeholder="Поиск недвижимости" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Поиск</button>
-
-
+            <input class="form-control me-2" type="text" name="filter" placeholder="Введите сюда ваш запрос">
+            <input class="btn btn-outline-success" type="submit">
         {% else %}
-            <input class="form-control me-2" name="filter" type="search"
-                   placeholder="{{ filter }}" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Поиск</button>
-            <button class="btn btn-outline-danger" type="submit">Очистить</button>
+            <input class="form-control me-2" type="text" name="filter" placeholder="Ваш предыдущий запрос: {{ filter }}">
+            <input class="btn btn-outline-success" type="submit">
+            <input class="btn btn-outline-danger" value="Очистить"  name="delete" type="submit">
         {% endif %}
     </form>
     <div id="container" class="container-fluid rounded px-0 bg-white border border-grey">

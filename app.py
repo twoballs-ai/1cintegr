@@ -32,11 +32,43 @@ def redirect_to():
     return redirect(new_link), 301
 
 
-# @app.route('/coockie')
-# def podvedfiltercookie():
-#     resp = make_response(redirect(url_for('podved', id='1')))
-#     resp.set_cookie('filter', filter)
-#     return resp
+@app.route('/coockie', methods=['GET', 'POST'])
+def podvedfiltercookie():
+    # filter = request.args.get('filter')
+    # print(filter)
+    if request.method == 'POST':
+        filter = request.form.get('filter')
+        print(filter)
+        if filter != '':
+            resp = make_response(redirect(url_for('podved', id='1')))
+            resp.set_cookie('filter', filter, max_age=60*60*24*365*2)
+            return resp
+        elif request.form.get('delete') == 'Очистить':
+            resp = make_response(redirect(url_for('podved', id='1')))
+            resp.set_cookie('filter', filter, max_age=0)
+            return resp
+        else:
+            return redirect(url_for('podved', id='1'))
+
+    #     print(filter)
+    #     if filter != '':
+    #         resp = make_response(redirect(url_for('podved', id='1')))
+    #         resp.set_cookie('filter', filter)
+    #         return resp
+
+
+
+
+
+        # elif:
+        #     return redirect(url_for('podved', id='1'))
+        # elif request.form['action'] == 'Download':
+        #     return 'sdsd'
+
+
+
+
+
 
 @app.route('/')
 def hello():

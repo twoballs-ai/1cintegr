@@ -55,7 +55,8 @@ def login(refresh_token=None):
             if success == True and blockuser == False:
                 return makeRefreshToken(refresh_token)
             else:
-                return 'Не правильное имя пользователя или пароль'
+                flash('Пожалуйста проверьте правильность логина и пароля')
+                return render_template('login.html', title='Авторизация')
 
     return render_template('login.html', title='Авторизация')
 

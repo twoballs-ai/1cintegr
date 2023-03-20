@@ -1,3 +1,5 @@
+
+
 from flask import Blueprint, render_template, request, redirect, url_for, Response, flash, jsonify
 import requests
 from flask import make_response
@@ -15,7 +17,12 @@ from requests_obj import data_params_request, listDepartsments, getUserName
 api_func = Blueprint('api_func', __name__)
 
 
+
+
+
+
 class CustomersAPI(MethodView):
+
 
     def get(self, id):
         id = id

@@ -27,7 +27,7 @@ class Index(View):
             if valid == 'True':
                 breadcrumbs = "Подведомственные организации"
                 id = int(id)
-                filter = request.args.get('filter')
+                filter = request.cookies.get('filter')
                 param_request = {'page': id, 'filter':filter}
                 page = param_request["page"]
                 # берем данные из файла модели

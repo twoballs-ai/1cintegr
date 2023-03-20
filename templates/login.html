@@ -17,9 +17,24 @@
 </head>
 
 <body>
+<div class="px-2">{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show mx-5" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}</div>
+
 <div class="wrapper ps-5">
 
+
     <div class="rows1 mt-4">
+
         <div class="col mt-3 mb-5 shadow rounded-2"><img src="../static/1cintegr/img/gerb.png" class="gerb ms-1 mt-1 rounded-2" width="70"
                                           height="60"></div>
         <div class="col mt-3 mb-5 shadow rounded-2"><img src="../static/1cintegr/img/login/13.png" class="lm rounded-2"></div>
@@ -62,8 +77,11 @@
         <div class="col mt-3 mb-5 shadow rounded-2"><img src="../static/1cintegr/img/login/53.png" class="lm rounded-2"></div>
         <div class="col mt-3 mb-5 shadow rounded-2"><img src="../static/1cintegr/img/login/36.png" class="lm rounded-2"></div>
         <div class="d-step2 mt-3 mb-5">
+
             <form method="POST" action="/login">
+
             <div class="row m-0">
+
 
                 <div id="step2-block-left" class="col-8 px-0 rounded-2 shadow-lg">
 

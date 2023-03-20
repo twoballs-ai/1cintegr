@@ -60,11 +60,41 @@ def login(refresh_token=None):
 
     return render_template('login.html', title='Авторизация')
 
+
+def login_api(getlogin,password):
+    getlogin = getlogin
+    password = password
+    param_request = {'login': getlogin, 'password': password}
+    response_cookie = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
+                                    verify=False)
+    if response_cookie.status_code == 200:
+        print('Success!')
+    elif response_cookie.status_code == 401:
+        print('Not auth.')
+    # success = response_cookie.json()['success']
+    # blockuser = response_cookie.json()['blockuser']
+    # refresh_token = response_cookie.json()['RefreshToken']
+    # # print(success, blockuser)
+    # print(response_cookie.json())
+    return response_cookie.json()
+
+
+def accessTokenApi(refresh_token):
+    print('судьба вас примвела в AccesToken')
+    refresh = refresh_token
+    print(refresh)
+    param_request = {'RefreshToken': refresh}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
+                             verify=False)
+    return response.json()
+
+
 def getPodved():
     podved = podved_code
     permission_see = Permission_SeeAllObjects
     print(podved, permission_see)
     return (podved, permission_see)
+
 
 def getPermissions():
     allpermissionmenu = allpermissions

@@ -8,7 +8,7 @@ from pprint import pprint  # подключили Pprint для красоты �
 
 from flask.views import MethodView
 
-from auth import validateAccesToken, getPodved, deleteTokens, refreshAccesToken
+from auth import validateAccesToken, getPodved, deleteTokens, refreshAccesToken, login_api, accessTokenApi
 from models import podved_list, objects_list, objects_list_api, podved_list_api, category_objects_list_api, \
     object_card_api
 from requests_obj import data_params_request, listDepartsments, getUserName
@@ -17,8 +17,37 @@ from requests_obj import data_params_request, listDepartsments, getUserName
 api_func = Blueprint('api_func', __name__)
 
 
+class LoginApi(MethodView):
 
+    def get(self):
+        return jsonify('pisulka')
 
+    def post(self):
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.get_json()
+            getlogin = json.get('login')
+            password = json.get('password')
+            # login_api(login, password)
+            # print(login_api(login, password))
+            return login_api(getlogin, password)
+        else:
+            return 'Content-Type not supported!'
+
+class GetAccessApi(MethodView):
+
+    def get(self):
+        return jsonify('pisulka')
+
+    def post(self):
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.get_json()
+            refresh_token = json.get('RefreshToken')
+            print(refresh_token)
+            return accessTokenApi(refresh_token)
+        else:
+            return 'Content-Type not supported!'
 
 
 class CustomersAPI(MethodView):

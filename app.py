@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, Blueprint, redirect, request, url_for, make_response
 from flask_cors import CORS
 
-from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI
+from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI, LoginApi, GetAccessApi
 from models import models_func
 from requests_obj import request_func
 from auth import auth_func
@@ -132,6 +132,18 @@ app.add_url_rule("/contacts/",
 app.add_url_rule("/need_confirm_contacts/",
                  view_func=CheckContacts.as_view("need_confirm_contacts")
                  )
+
+login_view = LoginApi.as_view('login_view')
+app.add_url_rule('/api/v1.0/login/',
+                 # defaults={'id': '1'},
+                 view_func=login_view, methods=['GET',])
+app.add_url_rule('/api/v1.0/login/', view_func=login_view, methods=['POST',])
+
+acces_token = GetAccessApi.as_view('acces_token')
+app.add_url_rule('/api/v1.0/access/',
+                 # defaults={'id': '1'},
+                 view_func=acces_token, methods=['GET',])
+app.add_url_rule('/api/v1.0/access/', view_func=acces_token, methods=['POST',])
 
 customers_view = CustomersAPI.as_view('customers_api')
 app.add_url_rule('/api/v1.0/customers/<int:id>/',

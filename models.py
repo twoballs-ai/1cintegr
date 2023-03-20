@@ -130,9 +130,9 @@ def category_objects_list_api(param_request):
 
 
 def object_card_api(param_request):
-    headers = headers_api
+
     url = "https://localhost/copy_1/hs/HTTP_SERVER/object_card"
-    response = requests.get(url, param_request, verify=False, headers=headers)
+    response = requests.get(url, param_request, verify=False)
     if response.status_code == 200:
         print('Success!')
     elif response.status_code == 401:

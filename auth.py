@@ -82,7 +82,6 @@ def login_api(getlogin,password):
 def accessTokenApi(refresh_token):
     print('судьба вас примвела в AccesToken')
     refresh = refresh_token
-    print(refresh)
     param_request = {'RefreshToken': refresh}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
                              verify=False)

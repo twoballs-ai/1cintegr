@@ -34,8 +34,8 @@ class LoginApi(MethodView):
         else:
             return 'Content-Type not supported!'
 
-class GetAccessApi(MethodView):
 
+class GetAccessApi(MethodView):
     def get(self):
         return jsonify('pisulka')
 
@@ -44,7 +44,6 @@ class GetAccessApi(MethodView):
         if (content_type == 'application/json'):
             json = request.get_json()
             refresh_token = json.get('RefreshToken')
-            print(refresh_token)
             return accessTokenApi(refresh_token)
         else:
             return 'Content-Type not supported!'

@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 import config
 
 from config import ALLOWED_EXTENSIONS
-
+from transliterate import translit, get_available_language_codes
 from models import podved_list, category_objects_list, podved_card, object_card, objects_list
 from requests_obj import listDepartsments, getUserName, data_params_request
 from auth import validateAccesToken, refreshAccesToken, deleteTokens, getAccessToken
@@ -766,6 +766,7 @@ class Customers(MethodView):
                             file.save(os.path.join(config.UPLOAD_FOLDER_MULTI, filename))
                             foto_list.append("%s/%s" % (config.UPLOAD_FOLDER_MULTI, filename))
                     foto_multi = foto_list
+                    print(foto_multi)
                     post_request = {'name': name, 'description': description, 'object_type': object_type,
                                     'PurposeObject': PurposeObject, 'Condition': Condition,
                                     'technicalFloor': technicalFloor,
@@ -809,7 +810,7 @@ class Customers(MethodView):
                     print(responsePost.text)
                     # context = {'id': id}
                     # return render_template('cardhousedetail/id.html')
-                    return redirect(url_for('cardhousedetail', id=id))\
+                    return redirect(url_for('cardhousedetail', id=id))
 
                 c = auth.getPodved()
                 podved = c[0]

@@ -3,7 +3,8 @@ import os
 from flask import Flask, render_template, Blueprint, redirect, request, url_for, make_response
 from flask_cors import CORS
 
-from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI, LoginApi, GetAccessApi
+from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI, LoginApi, GetAccessApi, \
+    ValidateAccessApi, CardhouseAPI
 from models import models_func
 from requests_obj import request_func
 from auth import auth_func
@@ -145,11 +146,17 @@ app.add_url_rule('/api/v1.0/access/',
                  view_func=acces_token, methods=['GET',])
 app.add_url_rule('/api/v1.0/access/', view_func=acces_token, methods=['POST',])
 
+valid_acces_token = ValidateAccessApi.as_view('valid_acces_token')
+app.add_url_rule('/api/v1.0/valid/',
+                 # defaults={'id': '1'},
+                 view_func=valid_acces_token, methods=['GET',])
+app.add_url_rule('/api/v1.0/valid/', view_func=valid_acces_token, methods=['POST',])
+
 customers_view = CustomersAPI.as_view('customers_api')
 app.add_url_rule('/api/v1.0/customers/<int:id>/',
                  # defaults={'id': '1'},
                  view_func=customers_view, methods=['GET',])
-# app.add_url_rule('/users/', view_func=user_view, methods=['POST',])
+app.add_url_rule('/api/v1.0/customers/post/', view_func=customers_view, methods=['POST',])
 # app.add_url_rule('/users/<int:user_id>', view_func=user_view,
 #                  methods=['GET', 'PUT', 'DELETE'])
 podved_view = PodvedAPI.as_view('podved_api')
@@ -160,10 +167,16 @@ category_view = CategoryAPI.as_view('category_api')
 app.add_url_rule('/api/v1.0/category/',
                  # defaults={'id': '1'},
                  view_func=category_view, methods=['GET',])
+
 cardhouse_detail_view = CardhouseDetailAPI.as_view('cardhouse_detail_api')
 app.add_url_rule('/api/v1.0/cardhousedetail/<id>/',
                  # defaults={'id': '1'},
                  view_func=cardhouse_detail_view, methods=['GET',])
+
+cardhouse_view = CardhouseAPI.as_view('cardhouse_api')
+app.add_url_rule('/api/v1.0/cardhouse/<id>/',
+                 # defaults={'id': '1'},
+                 view_func=cardhouse_view, methods=['GET',])
 
 if __name__ == '__main__':
     app.run(host='10.0.0.13')

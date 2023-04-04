@@ -1,5 +1,7 @@
 UPLOAD_FOLDER = '/mnt/disk_d/upload'
+UPLOAD_FOLDER_THUMBNAIL = '/mnt/disk_d/upload/thumbnail'
 UPLOAD_FOLDER_MULTI = '/mnt/disk_d/upload/multi'
+UPLOAD_FOLDER_MULTI_THUMBNAIL = '/mnt/disk_d/upload/multi/thumbnail'
 # ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 token = "d9d839eea6af5bf1c146189a65c734a35651b6f2"

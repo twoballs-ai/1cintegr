@@ -5,9 +5,9 @@ from flask import render_template, url_for, request, \
     redirect, make_response
 from flask.views import View, MethodView
 from werkzeug.utils import secure_filename
-
+from PIL import Image
 import config
-
+import os.path
 from config import ALLOWED_EXTENSIONS
 from transliterate import translit, get_available_language_codes
 from models import podved_list, category_objects_list, podved_card, object_card, objects_list
@@ -578,6 +578,7 @@ class Customers(MethodView):
     methods = ["GET", "POST"]
 
     def dispatch_request(self,id):
+        global foto_main_thumbnail
         if request.cookies.get('access_token') and request.cookies.get('refresh_token'):
             valid = validateAccesToken()
             print(valid)
@@ -739,7 +740,9 @@ class Customers(MethodView):
                     #     print('проблема',request.url)
                     #     return redirect(request.url)
                     foto_main = request.files['formFile']
-                    print(foto_main)
+                    name, __ = os.path.splitext(foto_main.filename)
+                    text = translit(name, language_code='ru', reversed=True)
+                    foto_main.filename = text+__
                     # Если файл не выбран, то браузер может
                     # отправить пустой файл без имени.
 
@@ -747,12 +750,19 @@ class Customers(MethodView):
                         print('название фото не может быть пустым', foto_main)
 
                     if foto_main and allowed_file(foto_main.filename):
+
                         # безопасно извлекаем оригинальное имя файла
                         filename = secure_filename(foto_main.filename)
-                        print(filename)
+
                         # сохраняем файл
                         foto_main.save(os.path.join(config.UPLOAD_FOLDER, filename))
                         foto_main = "%s/%s" % (config.UPLOAD_FOLDER, filename)
+                        image = Image.open(foto_main)
+                        image.thumbnail((400, 400))
+                        image.save(os.path.join(config.UPLOAD_FOLDER_THUMBNAIL, filename))
+                        foto_main_thumbnail = "%s/%s" % (config.UPLOAD_FOLDER_THUMBNAIL, filename)
+                        print(foto_main_thumbnail)
+                        print(foto_main)
 
                     # # загрузка мультифото
                     # if 'files[]' not in request.files:
@@ -760,12 +770,21 @@ class Customers(MethodView):
                     #     return redirect(request.url)
                     files = request.files.getlist('files[]')
                     foto_list = []
+                    foto_thumbnails_list = []
                     for file in files:
+                        name, __ = os.path.splitext(file.filename)
+                        text = translit(name, language_code='ru', reversed=True)
+                        file.filename = text + __
                         if file and allowed_file(file.filename):
                             filename = secure_filename(file.filename)
                             file.save(os.path.join(config.UPLOAD_FOLDER_MULTI, filename))
+                            image = Image.open(os.path.join(config.UPLOAD_FOLDER_MULTI, filename))
+                            image.thumbnail((400, 400))
+                            image.save(os.path.join(config.UPLOAD_FOLDER_MULTI_THUMBNAIL, filename))
                             foto_list.append("%s/%s" % (config.UPLOAD_FOLDER_MULTI, filename))
+                            foto_thumbnails_list.append("%s/%s" % (config.UPLOAD_FOLDER_MULTI_THUMBNAIL, filename))
                     foto_multi = foto_list
+                    foto_multi_thumbnails = foto_thumbnails_list
                     print(foto_multi)
                     post_request = {'name': name, 'description': description, 'object_type': object_type,
                                     'PurposeObject': PurposeObject, 'Condition': Condition,
@@ -791,7 +810,9 @@ class Customers(MethodView):
                                     'person_encumbrance': person_encumbrance, 'Other_payments': Other_payments,
                                     'start_encumbrance': start_encumbrance, 'end_encumbrance': end_encumbrance,
                                     'start_use': start_use, 'end_use': end_use, 'Payment_foruse': Payment_foruse,
-                                    'foto_main': foto_main, 'foto_multi': foto_multi, 'code': 'new_object'
+                                    'foto_main': foto_main, 'foto_main_thumbnail': foto_main_thumbnail,
+                                    'foto_multi': foto_multi, 'foto_multi_thumbnails': foto_multi_thumbnails,
+                                    'code': 'new_object'
                                     }
                     print(post_request)
                     headers_get = getAccessToken()

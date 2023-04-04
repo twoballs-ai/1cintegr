@@ -8,17 +8,26 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('customers', id = 1) }}">Объекты недвижимости</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.name }}</li>
             {% elif departId and not idpodv %}
-                <li class="breadcrumb-item"><a href="{{ url_for('department', id = departId, value = departname)  }}">{{ departname }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ url_for('cardhouse', id= iddepartpodved, departments = departId, departmentsname = departname) }}">{{ namedepartpodved }}</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ url_for('department', id = departId, value = departname) }}">{{ departname }}</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ url_for('cardhouse', id= iddepartpodved, departments = departId, departmentsname = departname) }}">{{ namedepartpodved }}</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.name }}</li>
             {% elif idpodv and not idcat_podved %}
-                <li class="breadcrumb-item"><a href="{{ url_for('podved', id = '1') }}">Подведомственные организации</a></li>
-                <li class="breadcrumb-item"><a href="{{ url_for('cardhouse', id= idpodv) }}">{{namepodv}}</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('podved', id = '1') }}">Подведомственные организации</a>
+                </li>
+                <li class="breadcrumb-item"><a href="{{ url_for('cardhouse', id= idpodv) }}">{{ namepodv }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.name }}</li>
             {% elif idpodv and idcat_podved %}
-                <li class="breadcrumb-item"><a href="{{ url_for('category') }}">Категория подведомственной организации</a></li>
-                <li class="breadcrumb-item"><a href="{{ url_for('category_podved', id= idcat_podved, name = idcat_podvedname)  }}">{{ idcat_podvedname }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ url_for('cardhouse', id= idpodv,id_podv= idcat_podved, namebreadcrumbsbycat = idcat_podvedname)  }}">{{namepodved}}</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('category') }}">Категория подведомственной
+                    организации</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ url_for('category_podved', id= idcat_podved, name = idcat_podvedname) }}">{{ idcat_podvedname }}</a>
+                </li>
+                <li class="breadcrumb-item"><a
+                        href="{{ url_for('cardhouse', id= idpodv,id_podv= idcat_podved, namebreadcrumbsbycat = idcat_podvedname) }}">{{ namepodved }}</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ data.name }}</li>
             {% endif %}
         </ol>
@@ -72,10 +81,10 @@
                             <div class="col-6 mb-3"><label for="description">Описание:</label><input
                                     class="form-control"
                                     id="description" name="description"
-                                    type="text" value="{{ data.description }}" ></div>
+                                    type="text" value="{{ data.description }}"></div>
                             <div class="col-6 mb-3"><label for="object_type">Вид объекта:</label>
                                 <select onchange="onChangeClick()" id="object_type" class="form-select"
-                                        aria-label="Default select example" name="object_type" >
+                                        aria-label="Default select example" name="object_type">
                                     <option disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['values'] %}
                                         {% if row['value']  == data.object_type %}
@@ -92,7 +101,7 @@
                             </div>
                             <div class="col-6 mb-3"><label for="PurposeObject">Назначение объекта (опционально):</label>
                                 <select class="form-select" id="PurposeObject" aria-label="Default select example"
-                                        name="PurposeObject" >
+                                        name="PurposeObject">
                                     <option disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['fields_rules'][0]['fields_rules'][3]['values'] %}
                                         {% if row['value']  == data.PurposeObject %}
@@ -108,7 +117,7 @@
                             </div>
                             <div class="col-6 mb-3"><label for="Condition">Состояние объекта (опционально) </label>
                                 <select id="Condition" class="form-select" aria-label="Default select example"
-                                        name="Condition" >
+                                        name="Condition">
                                     <option disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['fields_rules'][0]['fields_rules'][15]['values'] %}
                                         {% if row['value']  == data.Condition %}
@@ -130,7 +139,7 @@
                             </div>
                             <div class="col-3 mb-3"><label for="technicalFloor">Технический этаж</label>
                                 <select id="technicalFloor" class="form-select" aria-label="Default select example"
-                                        name="technicalFloor" >
+                                        name="technicalFloor">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['fields_rules'][0]['fields_rules'][17]['values'] %}
                                         {% if row['value']  == data.technicalFloor %}
@@ -150,8 +159,8 @@
                                 <select id="Lift" class="form-select" aria-label="Default select example" name="Lift"
                                 >
                                     <option value="" selected disabled>Выберите из выпадающего списка</option>
-                                    <option value="Да"{{'selected' if data.Lift=='Да'}}>Да</option>
-                                    <option value="Нет"{{'selected' if data.Lift=='Нет'}}>Нет</option>
+                                    <option value="Да"{{ 'selected' if data.Lift=='Да' }}>Да</option>
+                                    <option value="Нет"{{ 'selected' if data.Lift=='Нет' }}>Нет</option>
 
 
                                 </select>
@@ -160,11 +169,13 @@
                                 <label for="remontDate">Дата проведения последнего капитального ремонта, реставрационных
                                     работ, реконструкции</label>
                                 <input class="form-control" id="remontDate" name="remontDate"
-                                       value="{{ data.remontDate }}" type="date" max="2850-01-01" min="850-01-01" required/>
+                                       value="{{ data.remontDate }}" type="date" max="2850-01-01" min="850-01-01"
+                                       required/>
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="SecurityObligation">Охранное обязательство</label>
-                                <input class="form-control" id="SecurityObligation" name="SecurityObligation" type="text"  value="{{ data.SecurityObligation }}" />
+                                <input class="form-control" id="SecurityObligation" name="SecurityObligation"
+                                       type="text" value="{{ data.SecurityObligation }}"/>
                             </div>
                             {#                            <div class="col-6 mb-3">#}
                             {#                                <label for="formFile">Скан документа:</label>#}
@@ -174,20 +185,20 @@
                             <div class="col-6 mb-3">
                                 <label for="region">Регион:</label><input class="form-control" name="region"
                                                                           type="text" id="region"
-                                                                          value="{{ data.region }}" >
+                                                                          value="{{ data.region }}">
                             </div>
                             <div class="col-6 mb-3"><label for="address">Адрес:</label>
                                 <input class="form-control" id="address" name="address" type="text"
-                                       value="{{ data.address }}" />
+                                       value="{{ data.address }}"/>
                                 <p id="address-full"></p>
                             </div>
                             <div class="col-6 mb-3"><label for="object_area">Площадь объекта кв.м:</label><input
                                     class="form-control"
                                     id="object_area" name="object_area"
-                                    type="text" value="{{ data.object_area }}" /></div>
+                                    type="text" value="{{ data.object_area }}"/></div>
                             <div class="col-6 mb-3"><label for="LandCategory">Категория земель (опционально) </label>
                                 <select class="form-select" id="LandCategory" aria-label="Default select example"
-                                        name="LandCategory" >
+                                        name="LandCategory">
                                     <option selected disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['fields_rules'][0]['fields_rules'][5]['values'] %}
                                         {% if row['value']  == data.LandCategory %}
@@ -294,22 +305,23 @@
                                 {#                                <p>{{ data.RNFI }}</p>#}
                                 <label for="РНФИ">РНФИ:</label>
                                 <input type="text" placeholder="РНФИ" class="form-control" id="RNFI" name="RNFI"
-                                       value="{{ data.RNFI }}" >
+                                       value="{{ data.RNFI }}">
                                 {#                                <p>{{ data.RNFI_date }}</p>#}
                                 <label for="RNFI_date">Дата регистрации РНФИ:</label>
                                 <input type="date" placeholder="дата регистрации РНФИ" class="form-control"
                                        id="RNFI_date"
-                                       name="RNFI_date" value="{{ data.RNFI_date }}" max="2850-01-01" min="850-01-01" required>
+                                       name="RNFI_date" value="{{ data.RNFI_date }}" max="2850-01-01" min="850-01-01"
+                                       required>
                                 {#                                <p>{{ data.owner_nomer }}</p>#}
                                 <label for="owner_nomer">Номер регистрации права собственности РФ:</label>
                                 <input type="text" placeholder="Номер регистрации права собственности РФ"
                                        class="form-control" id="owner_nomer" name="owner_nomer"
-                                       value="{{ data.owner_nomer }}" >
+                                       value="{{ data.owner_nomer }}">
                                 {#                                <p>{{ data.owner_date }}</p>#}
                                 <label for="owner_date">Дата регистрации права собственности РФ:</label>
                                 <input type="date" placeholder="Дата регистрации права собственности РФ"
                                        class="form-control" id="owner_date" name="owner_date"
-                                       value="{{ data.owner_date }}"  max="2850-01-01" min="850-01-01" required>
+                                       value="{{ data.owner_date }}" max="2850-01-01" min="850-01-01" required>
                                 {#                                <p>{{ data.RecordNumberVEGRP }}</p>#}
                                 <label for="owner_date">Реестровый №:</label>
                                 <input type="text" placeholder="Реестровый №" class="form-control"
@@ -325,7 +337,7 @@
                             </div>
                             <div class="col-6 mb-3"><label for="TypeofRightOwner">Вид права правообладателя:</label>
                                 <select class="form-select" id="TypeofRightOwner" onchange="onChangeClick2(event)"
-                                        aria-label="Default select example" name="TypeofRightOwner" >
+                                        aria-label="Default select example" name="TypeofRightOwner">
                                     <option disabled>Выберите из выпадающего списка</option>
                                     {% for row in data_params[0]['fields_rules'][0]['fields_rules'][14]['values'] %}
                                         {% if row['value']  == data.TypeofRightOwner %}
@@ -348,7 +360,7 @@
                             <div class="col-6 mb-3 ">
                                 <label for="BalanceAccountNumber">Номер регистрации иного права:</label>
                                 <input type="text" class="form-control" id="BalanceAccountNumber"
-                                       name="BalanceAccountNumber" value="{{ data.BalanceAccountNumber }}" >
+                                       name="BalanceAccountNumber" value="{{ data.BalanceAccountNumber }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="date_of_registration_of_another_right">Дата регистрации иного права:</label>
@@ -361,17 +373,17 @@
                             <div class="col-6 mb-3 ">
                                 <label for="inventory_number">Инвентарный номер:</label>
                                 <input type="text" class="form-control" id="inventory_number" name="inventory_number"
-                                       value="{{ data.inventory_number }}" >
+                                       value="{{ data.inventory_number }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="balance_number">Балансовый номер счета:</label>
                                 <input type="text" class="form-control" id="balance_number" name="balance_number"
-                                       value="{{ data.balance_number }}" >
+                                       value="{{ data.balance_number }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="CadastralNumber">Кадастровый номер:</label>
                                 <input type="text" class="form-control" id="CadastralNumber" name="CadastralNumber"
-                                       value="{{ data.CadastralNumber }}" >
+                                       value="{{ data.CadastralNumber }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Date_of_assignment_cadastral">Дата присвоения:</label>
@@ -386,17 +398,17 @@
                                 <label for="cadastralcost">Кадастровая стоимость:</label>
                                 <input type="text" class="form-control"
                                        id="cadastralcost"
-                                       name="cadastralcost" value="{{ data.cadastralcost }}" >
+                                       name="cadastralcost" value="{{ data.cadastralcost }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Initial_cost">Первоначальная стоимость:</label>
                                 <input type="text" class="form-control" id="Initial_cost" name="Initial_cost"
-                                       value="{{ data.Initial_cost }}" >
+                                       value="{{ data.Initial_cost }}">
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="residual_value">Остаточная стоимость:</label>
                                 <input type="text" class="form-control" id="residual_value" name="residual_value"
-                                       value="{{ data.residual_value }}" >
+                                       value="{{ data.residual_value }}">
                             </div>
                         </div>
                         <button type="submit" class="btn btnTranslate2 btn-secondary btn-icon float-end me-4 mb-2"
@@ -513,7 +525,7 @@
                             <div class="col-6 mb-3 ">
                                 <label for="UGROKN_number">Номер ЕГРОКН: </label>
                                 <input type="text" class="form-control mt-4" id="UGROKN_number" name="UGROKN_number"
-                                       value="{{ data.UGROKN_number }}" >
+                                       value="{{ data.UGROKN_number }}">
                             </div>
                         </div>
                         <button type="submit" class="btn btnTranslate3 btn-secondary btn-icon float-end me-4 mb-2"
@@ -657,26 +669,26 @@
                                 <label for="start_encumbrance">Срок обременения (дата начала):</label>
                                 <input type="date" class="form-control" id="start_encumbrance" name="start_encumbrance"
                                        value="{{ data.start_encumbrance }}"
-                                max="2850-01-01" min="850-01-01" required>
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_encumbrance">Срок обременения (дата окончания):</label>
                                 <input type="date" class="form-control" id="end_encumbrance" name="end_encumbrance"
                                        value="{{ data.end_encumbrance }}"
-                                max="2850-01-01" min="850-01-01" required>
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="start_use">Срок Пользования (дата начала):</label>
                                 <input type="date"
                                        class="form-control" id="start_use" name="start_use"
                                        value="{{ data.start_use }}"
-                                max="2850-01-01" min="850-01-01" required>
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="end_use">Срок Пользования (дата окончания):</label>
                                 <input type="date"
                                        class="form-control" id="end_use" name="end_use" value="{{ data.end_use }}"
-                                max="2850-01-01" min="850-01-01" required>
+                                       max="2850-01-01" min="850-01-01" required>
                             </div>
                             <div class="col-6 mb-3 ">
                                 <label for="Payment_foruse">Плата за пользование земельным участком:</label>
@@ -713,7 +725,8 @@
         <ul class="list-group list-group-flush box overflow-auto my-1">
             <li class="list-group-item">
                 <h1 class="display-6 text-center">{{ data.name }}</h1>
-                <a class="btn btn-light col-2 ml-5 shadow" href="https://yandex.ru/maps/?z=16&text={{ data.address }}" role="button" target="_blank"><i class="bi bi-geo-alt"></i>Найти на яндекс картах</a>
+                <a class="btn btn-light col-2 ml-5 shadow" href="https://yandex.ru/maps/?z=16&text={{ data.address }}"
+                   role="button" target="_blank"><i class="bi bi-geo-alt"></i>Найти на яндекс картах</a>
             </li>
 
 
@@ -784,254 +797,456 @@
                         </div>
                     </div>
                     <div class="col-5"><h5>Описание:</h5> {{ data.description }}</div>
-                    <table class="table table-striped table-hover mt-4">
-                        {#  <thead>#}
-                        {#    <tr>#}
-                        {#      <th scope="col">#</th>#}
-                        {#      <th scope="col">First</th>#}
-                        {#      <th scope="col">Last</th>#}
-                        {#      <th scope="col">Handle</th>#}
-                        {#    </tr>#}
-                        {#  </thead>#}
-                        <tbody>
-                        <tr>
-                            <th scope="row">Вид объекта:</th>
-                            <td>{{ data.object_type }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Категория объекта историко-культурного значения:</th>
-                            <td>{{ data.historical_Category }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Номер ЕГРОКН:</th>
-                            <td colspan="2">{{ data.UGROKN_number }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Регион:</th>
-                            <td colspan="2">{{ data.region }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Адрес:</th>
-                            <td colspan="2">{{ data.address }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Площадь объекта:</th>
-                            <td colspan="2">{{ data.object_area }}{{ data.unit }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Состояние объекта:</th>
-                            <td colspan="2">{{ data.Condition }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Технический этаж:</th>
-                            <td colspan="2">{{ data.technicalFloor }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Лифт:</th>
-                            <td colspan="2">{{ data.Lift }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Дата проведения последнего капитального ремонта, реставрационных работ,
-                                реконструкции:
-                            </th>
-                            <td colspan="2">{{ data.remontDate }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Охранное обязательство:</th>
-                            <td colspan="2">{{ data.SecurityObligation }}</td>
-                        </tr>
-                        {#                        <tr>#}
-                        {#                            <th scope="row">Скан документа:</th>#}
-                        {#                            <td colspan="2"></td>#}
-                        {#                        </tr>#}
-                        <tr>
-                            <th scope="row">Правообладатель:</th>
-                            <td colspan="2">{{ data.TypeofRightOwner }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Кадастровый номер/дата</th>
-                            <td colspan="2">{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Вид обременения:</th>
-                            <td colspan="2">{{ data.KindEncumbrances }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Площадь обременения:</th>
-                            <td colspan="2">{{ data.encumbrance_area }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Лицо в пользу которого установлено обременение:</th>
-                            <td colspan="2">{{ data.person_encumbrance }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Срок обременения:</th>
-                            <td colspan="2">{{ data.start_encumbrance }}/{{ data.end_encumbrance }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Срок пользования:</th>
-                            <td colspan="2">{{ data.start_use }}/{{ data.end_use }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Стоимость аренды:</th>
-                            <td colspan="2">{{ data.encumbrance_cost }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Прочие платежы:</th>
-                            <td colspan="2">{{ data.Other_payments }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    {#                    <table class="table table-striped table-hover mt-4">#}
+                    {#  <thead>#}
+                    {#    <tr>#}
+                    {#      <th scope="col">#</th>#}
+                    {#      <th scope="col">First</th>#}
+                    {#      <th scope="col">Last</th>#}
+                    {#      <th scope="col">Handle</th>#}
+                    {#    </tr>#}
+                    {#  </thead>#}
+                    {#                        <tbody>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Вид объекта:</th>#}
+                    {#                            <td>{{ data.object_type }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Категория объекта историко-культурного значения:</th>#}
+                    {#                            <td>{{ data.historical_Category }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Номер ЕГРОКН:</th>#}
+                    {#                            <td colspan="2">{{ data.UGROKN_number }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Регион:</th>#}
+                    {#                            <td colspan="2">{{ data.region }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Адрес:</th>#}
+                    {#                            <td colspan="2">{{ data.address }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Площадь объекта:</th>#}
+                    {#                            <td colspan="2">{{ data.object_area }}{{ data.unit }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Состояние объекта:</th>#}
+                    {#                            <td colspan="2">{{ data.Condition }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Технический этаж:</th>#}
+                    {#                            <td colspan="2">{{ data.technicalFloor }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Лифт:</th>#}
+                    {#                            <td colspan="2">{{ data.Lift }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Дата проведения последнего капитального ремонта, реставрационных работ,#}
+                    {#                                реконструкции:#}
+                    {#                            </th>#}
+                    {#                            <td colspan="2">{{ data.remontDate }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Охранное обязательство:</th>#}
+                    {#                            <td colspan="2">{{ data.SecurityObligation }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Скан документа:</th>#}
+                    {#                            <td colspan="2"></td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Правообладатель:</th>#}
+                    {#                            <td colspan="2">{{ data.TypeofRightOwner }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Кадастровый номер/дата</th>#}
+                    {#                            <td colspan="2">{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Вид обременения:</th>#}
+                    {#                            <td colspan="2">{{ data.KindEncumbrances }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Площадь обременения:</th>#}
+                    {#                            <td colspan="2">{{ data.encumbrance_area }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Лицо в пользу которого установлено обременение:</th>#}
+                    {#                            <td colspan="2">{{ data.person_encumbrance }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Срок обременения:</th>#}
+                    {#                            <td colspan="2">{{ data.start_encumbrance }}/{{ data.end_encumbrance }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Срок пользования:</th>#}
+                    {#                            <td colspan="2">{{ data.start_use }}/{{ data.end_use }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Стоимость аренды:</th>#}
+                    {#                            <td colspan="2">{{ data.encumbrance_cost }}</td>#}
+                    {#                        </tr>#}
+                    {#                        <tr>#}
+                    {#                            <th scope="row">Прочие платежы:</th>#}
+                    {#                            <td colspan="2">{{ data.Other_payments }}</td>#}
+                    {#                        </tr>#}
+                    {#                        </tbody>#}
+                    {#                    </table>#}
                 </div>
 
             </li>
 
-            {#            <nav>#}
-            {#                <div class="nav nav-tabs" id="nav-tab" role="tablist">#}
-            {#                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"#}
-            {#                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Основные сведения#}
-            {#                    </button>#}
-            {#                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"#}
-            {#                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Документы#}
-            {#                    </button>#}
-            {#                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"#}
-            {#                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Дополнительные#}
-            {#                        сведения#}
-            {#                    </button>#}
-            {#                </div>#}
-            {#            </nav>#}
-            {#            <div class="tab-content mb-2" id="nav-tabContent">#}
-            {#                <div class="tab-pane fade show active pb-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"#}
-            {#                     tabindex="0">#}
-            {#                    <div class="row justify-content-md-center mx-0">#}
-            {##}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Вид объекта:</p>{{ data.object_type }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Категория объекта историко-культурного#}
-            {#                                значения:</p>{{ data.historical_Category }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Номер ЕГРОКН:</p>{{ data.UGROKN_number }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Регион:</p>{{ data.region }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Адрес:</p> {{ data.address }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Площадь объекта:</p> {{ data.object_area }}{{ data.unit }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Состояние объекта:</p> </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Технический этаж:</p> </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Лифт:</p> </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Дата проведения последнего капитального ремонта, реставрационных работ, реконструкции:</p> </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Охранное обязательство:</p> </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Скан документа:</p> </div>#}
-            {##}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Правообладатель:</p>{{ data.TypeofRightOwner }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Кадастровый номер/дата#}
-            {#                                присвоения:</p>{{ data.CadastralNumber }}/{{ data.Date_of_assignment_cadastral }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Вид обременения:</p> {{ data.KindEncumbrances }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Площадь обременения:</p>{{ data.encumbrance_area }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Лицо в пользу которого установлено#}
-            {#                                обременение:</p> {{ data.person_encumbrance }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Срок обременения:</p>{{ data.start_encumbrance }}-{{ data.end_encumbrance }}#}
-            {#                        </div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Срок пользования:</p> {{ data.start_use }}-{{ data.end_use }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Стоимость аренды:</p> {{ data.encumbrance_cost }}</div>#}
-            {#                        <div class="col-5 mx-4 my-2 px-5 shadow border border-top-0 border-start-0 border-end-0 p-3 mb-3 bg-body rounded-4">#}
-            {#                            <p class="fs-5">Прочие платежы:</p>{{ data.Other_payments }}</div>#}
-            {##}
-            {#                    </div>#}
-            {#                    <li>#}
-            {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
-            {#                        <div class="col-4 m-2">#}
-            {#                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"#}
-            {#                                    data-bs-target="#staticBackdrop">Редактировать#}
-            {#                            </button>#}
-            {#                        </div>#}
-            {##}
-            {#                    </li>#}
-            {#          <input type="submit" value="Submit">#}
-            {##}
-            {#                </div>#}
-            {#                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"#}
-            {#                     tabindex="0">#}
-            {#                    <div class="row">#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">План БТИ *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт технического состояния *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт осмотра *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на земельный участок *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">ЕГРН на здание *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">Охранное обязательство *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">Акт приема передачи *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {#                        <li class="col-7 m-2 py-2 border-bottom border-1">Договор *</li>#}
-            {#                        <div class="col-4">#}
-            {#                            <button type="button" class="btn btn-primary">Загрузить</button>#}
-            {#                        </div>#}
-            {##}
-            {#                    </div>#}
-            {##}
-            {#                </div>#}
-            {#                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"#}
-            {#                     tabindex="0">#}
-            {#                    <li>#}
-            {#              <div class="col-4 m-2"><a href="{{ url_for("cardhousedetailEdit", id=id) }}" role="button" class="btn btn-primary">Редактировать</a></div>#}
-            {#                        <div class="col-4 m-2">#}
-            {#                        </div>#}
-            {##}
-            {#                    </li>#}
-            {#                </div>#}
-            {#            </div>#}
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: smaller">
+                    <button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1"
+                            type="button" role="tab" aria-controls="nav-1" aria-selected="true">ОСНОВНЫЕ СВЕДЕНИЯ <br/>ОБ
+                        ОБЪЕКТЕ <br/>НЕДВИЖИМОГО ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2"
+                            type="button" role="tab" aria-controls="nav-2" aria-selected="false">СВЕДЕНИЯ О <br/>РЕГИСТРАЦИИ
+                        ОБЪЕКТА <br/>НЕДВИЖИМОГО ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3"
+                            type="button" role="tab" aria-controls="nav-3" aria-selected="false">СВедения об<br/>
+                        ограничениях (обременениях) <br/>на объект НЕДВИЖИМОГО <br/>ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-4-tab" data-bs-toggle="tab" data-bs-target="#nav-4"
+                            type="button" role="tab" aria-controls="nav-4" aria-selected="false">СВЕДЕНИЯ О <br/>ЖИЛЫХ
+                        ПОМЕЩЕНИЯХ
+                    </button>
+                    <button class="nav-link" id="nav-5-tab" data-bs-toggle="tab" data-bs-target="#nav-5"
+                            type="button" role="tab" aria-controls="nav-5" aria-selected="false">ПРОЧИЕ ТЕХНИЧЕСКИЕ<br/>
+                        ХАРАКТЕРИСТИКИ ОБЪЕКТА<br/> НЕДВИЖИМОГО ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-6-tab" data-bs-toggle="tab" data-bs-target="#nav-6"
+                            type="button" role="tab" aria-controls="nav-6" aria-selected="false">ФИНАНСОВЫЕ
+                        ПОКАЗАТЕЛИ<br/>
+                        ОБЪЕКТА НЕДВИЖИМОГО<br/> ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-7-tab" data-bs-toggle="tab" data-bs-target="#nav-7"
+                            type="button" role="tab" aria-controls="nav-7" aria-selected="false">ВЫБЫТИЕ ИМУЩЕСТВА<br/>
+                        ОБЪЕКТА НЕДВИЖИМОГО <br/>ИМУЩЕСТВА
+                    </button>
+                    <button class="nav-link" id="nav-8-tab" data-bs-toggle="tab" data-bs-target="#nav-8"
+                            type="button" role="tab" aria-controls="nav-8" aria-selected="false">ДОКУМЕНТЫ
+                    </button>
+                </div>
+            </nav>
+            <div class="tab-content mb-2" id="nav-tabContent">
+                <div class="tab-pane fade show active pb-3" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Статус карты
+                        </li>
+                        <li>Вид объекта недвижимого имущества (согласно данным ЕГРН)
+                        </li>
+                        <li>Наименование объекта недвижимого имущества (согласно данным ЕГРН)
+                        </li>
+                        <li>Назначение объекта недвижимого имущества (за исключением земельных участков)
+                        </li>
+                        <li>Вид права
+                        </li>
+                        <li>Категория земель
+                        </li>
+                        <li>Основной вид разрешенного использования (только для земельных участков)
+                        </li>
+                        <li>Вспомогательный вид разрешенного использования (только для земельных участков)
+                        </li>
+                        <li>Наименование документа о закреплении на праве оперативного управления, хозяйственного
+                            ведения, постоянного (бессрочного) пользования объекта недвижимого имущества
+                        </li>
+                        <li>Дата документа о закреплении на праве оперативного управления, хозяйственного ведения,
+                            постоянного (бессрочного) пользования объекта недвижимого имущества
+                        </li>
+                        <li>Номер документа о закреплении на праве оперативного управления, хозяйственного ведения,
+                            постоянного (бессрочного) пользования объекта недвижимого имущества
+                        </li>
+                        <li>Наименование субъекта Российской Федерации расположения объекта недвижимого имущества
+                        </li>
+                        <li>Наименование муниципального округа/ образования расположения объекта недвижимого имущества
+                        </li>
+                        <li>Адрес (местоположение) объекта недвижимого имущества
+                        </li>
+                        <li>Планируется изменение назначения объекта недвижимого имущества
+                        </li>
+                        <li>Является ли объектом культурного наследия
+                        </li>
+                        <li>Категория объекта историко-культурного значения
+                        </li>
+                        <li>Регистрационный номер объекта культурного наследия
+                        </li>
+                        <li>Номер записи государственной регистрации ограничения (обременения) имущественных прав на
+                            объект культурного наследия
+                        </li>
+                        <li>Дата государственной регистрации ограничения (обременения) имущественных прав на объект
+                            культурного наследия
+                        </li>
+                        <li>Протяженность (м), глубина (м), глубина залегания (м), площадь (кв.м), объем (куб.м), высота
+                            (м), площадь застройки (кв.м) объекта недвижимого имущества
+                        </li>
+                        <li>Технические параметры
+                        </li>
+                        <li>Единица измерения
+                        </li>
+                    </ul>
 
+                </div>
+                <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"
+                     tabindex="0">
 
-            {#            <div class="row row-cols-1 row-cols-md-3 g-3">#}
-            {#                {% for i in data.foto_list %}#}
-            {##}
-            {#                    <div class="col">#}
-            {#                        <div class="card">#}
-            {#                            <img src="{{ url_for('site.static', filename = i.fotoAdr ) }}" class="card-img-top">#}
-            {#                            <div class="card-body">#}
-            {#                                <h5 class="card-title">{{ data.name }}</h5>#}
-            {#                            </div>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {##}
-            {##}
-            {#                {% endfor %}#}
-            {#            </div>#}
+                    <ul>
+                        <li>Кадастровый номер (согласно данным ЕГРН)
+                        </li>
+                        <li>"Дата присвоения кадастрового номера</li>
+                        <li>(согласно данным ЕГРН)"
+                        </li>
+                        <li>Номер записи в ЕГРН о регистрации права собственности Российской Федерации на объект
+                            недвижимого имуществ
+                        </li>
+                        <li>Дата регистрации права собственности Российской Федерации на объект недвижимого имущества
+                        </li>
+                        <li>Номер записи в ЕГРН о регистрации права пользования на объект недвижимого имущества
+                        </li>
+                        <li>Дата регистрации права пользования на объект недвижимого имущества
+                        </li>
+                        <li>Плановая дата государственной регистрации права Российской Федерации (на неоформленные
+                            объекты недвижимости)
+                        </li>
+                        <li>Плановая дата государственной регистрации права оперативного управления (на неоформленные
+                            объекты недвижимости
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Наименование документа о предоставление в пользования объекта недвижимого имущества (аренда,
+                            безвозмездное пользоввание и иное)
+                        </li>
+                        <li>Наименование обременения (аренда, субаренда, арест, сервитут, безвозмездное и иное)
+                        </li>
+                        <li>Лицо в пользу которого установлено обременение (полное наименование / ФИО, ИНН, адрес,
+                            контактные данные)
+                        </li>
+                        <li>Цель установления ограничения (обременения)
+                        </li>
+                        <li>Дата документа-основания (согласия) о предоставление в пользования объекта недвижимого
+                            имущества
+                        </li>
+                        <li>Номер документа- основания (согласия) о предоставление в пользования объекта недвижимого
+                            имущества
+                        </li>
+                        <li>Площадь (кв.м), протяженность (м), глубина (м), глубина залегания (м), объем (куб.м), высота
+                            (м) обременения
+                        </li>
+                        <li>Технические параметры (см. выпадающий список)
+                        </li>
+                        <li>Единица измерения обременения (см. выпадающий список)
+                        </li>
+                        <li>Номер записи государственной регистрации ограничения (обременения)
+                        </li>
+                        <li>Дата государственной регистрации ограничения (обременения)
+                        </li>
+                        <li>Период действия договора (соглашения)
+                        </li>
+                        <li>Размер платежа
+                        </li>
+                        <li>Регистрационный номер объекта культурного наследия
+                        </li>
+                        <li>Номер записи государственной регистрации ограничения (обременения) имущественных прав на
+                            объект культурного наследия
+                        </li>
+                        <li>Дата государственной регистрации ограничения (обременения) имущественных прав на объект
+                            культурного наследия
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Отнесено ли жилое помещение к специализированному жилищному фонду
+                        </li>
+                        <li>Наименование документа-основания о предоставлении в пользование жилого фонда
+                        </li>
+                        <li>Дата и номер документа-основания о предоставлении в пользование жилого помещения
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Техническое состояние объекта недвижимого имущества
+                        </li>
+                        <li>Номер, тип этажа, на котором расположено помещение, машино-место
+                        </li>
+                        <li>Кадастровые номера иных объектов недвижимости, в пределах которых расположен объект
+                            недвижимости
+                        </li>
+                        <li>Кадастровые номера расположенных в пределах земельного участка объектов недвижимости
+                        </li>
+                        <li>Кадастровые номера объектов недвижимости, из которых образован объект недвижимости
+                        </li>
+                        <li>Кадастровые номера помещений, машино-мест, расположенных в здании или сооружении
+                        </li>
+                        <li>"Кадастровый номер земельного участка на котором расположен объект недвижимого имущества
+                            (сделать привязку - выбрать из списка уже внесенных объектов)
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Кадастровая стоимость по данным ЕГРН, рублей
+                        </li>
+                        <li>Кадастровая стоимость по данным РФИ, рублей
+                        </li>
+                        <li>Балансовая стоимость по данным бухгалтерского учета, рублей
+                        </li>
+                        <li>Балансовая стоимость по данным РФИ, рублей
+                        </li>
+                        <li>Остаточная стоимость по данным бухгалтерского учета, рублей
+                        </li>
+                        <li>Остаточная стоимость по данным РФИ, рублей
+                        </li>
+                        <li>Номер счета бухгалтерского учета
+                        </li>
+                        <li>Наименование счета бухгалтерского учета
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Основание выбытия недвижимого имущества
+                        </li>
+                        <li>Наименование документа-основания, послужившего основанием для выбытия объекта из владния
+                            Управления / Учреждения / Предприятия Минкультуры России
+                        </li>
+                        <li>Реквизиты документа-основания, послужившего основанием для выбытия объекта из владния
+                            Управления / Учреждения / Предприятия Минкультуры России
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"
+                     tabindex="0">
+                    <ul>
+                        <li>Выписка из ЕГРН об основных характеристиках и зарегистрированных правах на объект
+                            недвижимости (выписка из ЕГРН), содержащая сведения о государственной регистрации права
+                            собственности Российской Федерации / права оперативного управления на объект недвижимого
+                            имущества / права постоянного (бессрочного) пользования на земельный участок
+                            (актуализировать раз в пол года)
+                        </li>
+                        <li>Выписка из реестра федерального имущества (выписка из РФИ) (актуализировать раз в пол года)
+                        </li>
+                        <li>Документ-основание предоставления права постоянного (бессрочного) пользования земельного
+                            участка
+                        </li>
+                        <li>Документ-основание предоставления права оперативного управления объекта недвижимого
+                            имущества / права постоянного (бессрочного) пользования земельного участка
+                        </li>
+                        <li>Документ-основание отнесения жилого помещения к специализированному жилищному фонду
+                        </li>
+                        <li>Документ-основание возникновения договорных отношений в отношении объектов недвижимости,
+                            предоставляемых подведомственными Минкультуры России организациями на праве аренды
+                        </li>
+                        <li>Документ-основание возникновения договорных отношений в отношении объектов недвижимости,
+                            предоставляемых подведомственными Минкультуры России организациями в безвозмездное
+                            пользование
+                        </li>
+                        <li>Договор аренды
+                        </li>
+                        <li>Договор безвозмездного пользования
+                        </li>
+                        <li>Охранное обязательство на объект (выявленный объект) культурного наследия (здание, строение,
+                            сооружение)
+                        </li>
+                        <li>Технический паспорт
+                        </li>
+                        <li>Экспликация помещений
+                        </li>
+                        <li>Кадастровый паспорт
+                        </li>
+                        <li>Документ, подтверждающий первоначальную (балансовую) стоимость имущества (инвентарная
+                            карточка) (актуализировать раз в квартал)
+                        </li>
+                        <li>Справка о кадастровой стоимости (актуализировать раз в квартал)
+                        </li>
+                        <li>Оборотно-сальдовая ведомость на дату формирования по счетам: «Основные средства – недвижимое
+                            имущество учреждения (жилые помещения, нежилые помещения, здания, сооружения, водоходное
+                            судно и иные объекты недвижимости)», «Непроизведенные активы – недвижимое имущество
+                            учреждения (земельные участки)» с подробной расшифровкой всех строк в формате Excel -
+                            актуализировать раз в пол года
+                        </li>
+                        <li>Документы, подтверждающие выбытие объектов из владения (например, решение суда, распоряжение
+                            или иной документ)
+                        </li>
+                        <li>Заключение о соответствии жилого помещения предъявляемым к нему требованиям
+                        </li>
+                        <li>Заверенная в установленном порядке копия протокола заседания Комиссии
+                        </li>
+                        <li>Заверенная в установленном порядке копия распорядительного акта Организации о создании
+                            постоянно действующей комиссии
+                        </li>
+                        <li>Положение о постоянно действующей комиссии и сведения о ее составе
+                        </li>
+                        <li>Акт о списании федерального недвижимого имущества
+                        </li>
+                        <li>Заключение независимого эксперта о техническом состоянии объекта недвижимого имущества
+                            (включая объекты незавершенного строительства)
+                        </li>
+                        <li>Технико-экономическое обоснование
+                        </li>
+                        <li>Справка уполномоченного органа об отсутствии граждан, зарегистрированных для проживания по
+                            адресу местонахождения предлагаемого к списанию жилого здания (жилых зданий), в случае
+                            принятия решения о списании жилого здания (жилых зданий)
+                        </li>
+                        <li>"Акт о повреждениях, причиненных федеральному недвижимому имуществу</li>
+                        <li></li>
+                        <li>"
+                        </li>
+                        <li>Справки уполномоченных организаций, подтверждающей факт аварии, стихийного бедствия или иной
+                            чрезвычайной ситуации
+                        </li>
+                        <li>Постановление о возбуждении уголовного дела, вынесенного в соответствии со статьей 146
+                            Уголовно-процессуального кодекса Российской Федерации, копия постановления о прекращении
+                            уголовного дела и уголовного преследования, вынесенного в соответствии со статьей 213
+                            Уголовно-процессуального кодекса Российской Федерации, или иные документы, подтверждающие
+                            принятие мер по защите интересов Организации или Предприятия, или возмещению причиненного
+                            ущерба (при наличии)
+                        </li>
+                        <li>Судовые документы
+                        </li>
+                        <li>Выписка из Государственного реестра судов
+                        </li>
+                        <li>Заключение российской организации, осуществляющей классификацию и освидетельствование судов,
+                            зарегистрированных в Государственном судовом реестре, в бербоут-чартерном реестре или в
+                            Российском международном реестре судов, о результатах освидетельствования морского, речного
+                            судна, а также фотографии объекта, предлагаемого к списанию (с указанием даты съемки)
+                        </li>
+                        <li>Отчет об оценке рыночной стоимости права пользования и владения на условиях аренды
+                        </li>
+                        <li>Утвержденная аукционная (конкурсная) документация
+                        </li>
+                        <li>Документ уполномоченных органов, подтверждающий соответсвие помещений, планируемый к
+                            передачу в аренду (безвозмездное пользование), требованиям пожарной безопасности со сроком
+                            давности не более 3-х лет
+                        </li>
+                        <li>Устав Учреждения / Предприятия (с изменениями и дополнениями)
+                        </li>
+                        <li>Выписка из ЕГРЮЛ
+                        </li>
+                        <li>Свидетельство о внесении записи в ЕГРЮЛ
+                        </li>
+                        <li>Свидетельство о постановке на учет в налоговом органе
+                        </li>
+                        <li>Соглашение об установлении сервитута
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
 
         </ul>
@@ -1056,10 +1271,10 @@
     <script src="/static/1cintegr/js/script.js"></script>
     <script src="/static/1cintegr/js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>#}
-{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>#}
-{#              jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>#}
+    {#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>#}
+    {#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>#}
+    {#              jquery2.2отвечает за открытие ссылок ecnfhtk j,yjdbnm#}
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>#}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css"
           rel="stylesheet"/>

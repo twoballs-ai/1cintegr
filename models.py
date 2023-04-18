@@ -163,3 +163,16 @@ def podved_card_api(param_request, headers):
         print('Not auth.')
     data = response.json()
     return data
+
+
+def listdepartsments(headers):
+    headers = {'AccessToken': headers}
+    response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/listdepartments/", verify=False, headers=headers)
+    print('обрати внимание ')
+    print(response.json())
+    if response.status_code == 200:
+        print('Success!')
+    elif response.status_code == 401:
+        print('Not auth.')
+    data = response.json()['list_DP']
+    return data

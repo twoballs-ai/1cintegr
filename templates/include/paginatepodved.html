@@ -1,0 +1,314 @@
+{% block paginate %}
+<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {#                {% if page == max_page %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=page) }}">{{ page }}</a>#}
+                    {##}
+                    {#                    </li>#}
+                    {#                {% else %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=page) }}">{{ page }}</a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=page + 1) }}">{{ page + 1 }}</a>#}
+                    {#                    </li>#}
+                    {#                {% endif %}#}
+                    {% if page >= 1 and page <= max_page %}
+                        {% for item in range (1,max_page + 1) %}
+                            {% if page == max_page and item == max_page %}
+                                {% if page == 2 and item == max_page %}
+
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                    </li>
+                                {% elif page == 1 and item == max_page and max_page == 1 %}
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved",id=page - 1) }}">Пред. </a>
+                                    </li>
+
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                    </li>
+                                {% else %}
+
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 2) }}">{{ page - 2 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                    </li>
+                                {% endif %}
+
+                            {% elif item == 2 and page ==2 %}
+
+                                {% if item == 2 and max_page == 3 %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">{{ page + 1 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">{{ page + 1 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 2 ) }}">{{ page + 2 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                    </li>
+                                {% endif %}
+                            {% elif item == 1 and page ==1 %}
+                                {% if item == 1 and max_page == 2 %}
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">{{ page + 1 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">След. </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled"><a class="page-link"
+                                                                      href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link"
+                                                                    href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">{{ page + 1 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 2 ) }}">{{ page + 2 }} </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="{{ url_for("podved", id=page + 1 ) }}">След. </a>
+                                    </li>
+                                {% endif %}
+                            {% elif page == max_page -1 and item == max_page -1 %}
+
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page - 1) }}">Пред. </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page - 2) }}">{{ page - 2 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link active"
+                                                         href="{{ url_for("podved", id=page) }}">{{ page }} </a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page + 1) }}">{{ page + 1 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                </li>
+                            {% elif item == page %}
+
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved",id=page - 1) }}">Пред. </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page - 2) }}">{{ page - 2 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page - 1) }}">{{ page - 1 }} </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link"
+                                                                href="{{ url_for("podved", id=page) }}">{{ page }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page + 1) }}">{{ page + 1 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page + 2) }}">{{ page + 2 }} </a>
+                                </li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                                </li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% else %}
+
+                        <li class="page-item disabled"><a class="page-link"
+                                                          href="{{ url_for("podved",id=page - 1) }}">Пред. </a>
+                        </li>
+
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{{ url_for("podved", id= 1) }}">{{ page }} </a>
+                        </li>
+
+                        <li class="page-item disabled"><a class="page-link"
+                                                          href="{{ url_for("podved", id=page + 1 ) }}">След.</a>
+                        </li>
+                    {% endif %}
+
+                    {#                {% for x in range(1,100) %}#}
+                    {#                            {% if x == number2 and x<4 %}#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 1) }}">Предидущая</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 2) }}">{{ x - 2 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 1) }}">{{ x - 1 }}</a></li>#}
+                    {#                    <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x) }}">{{ x }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 1) }}">{{ x + 1 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 2) }}">{{ x + 2 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 3) }}">{{ x + 3 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 1) }}">Следующая</a></li>#}
+                    {#                    {% elif x == number2 %}#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 1) }}">Предидущая</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 3) }}">{{ x - 3 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 2) }}">{{ x - 2 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x - 1) }}">{{ x - 1 }}</a></li>#}
+                    {#                    <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x) }}">{{ x }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 1) }}">{{ x + 1 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 2) }}">{{ x + 2 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 3) }}">{{ x + 3 }}</a></li>#}
+                    {#                        <li class="page-item"><a class="page-link" href="{{ url_for("podved", id=x + 1) }}">Следующая</a></li>#}
+                    {##}
+                    {#                    {% endif %}#}
+                    {##}
+                    {##}
+                    {#                {% endfor %}#}
+                    {#                {% if number2 == 2 %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">Пред. </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item active"><a class="page-link"#}
+                    {#                                                    href="{{ url_for("podved", id=number2) }}">{{ number2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">След.</a>#}
+                    {#                    </li>#}
+                    {#                {% elif number2 ==1 %}#}
+                    {#                    <li class="page-item disabled"><a class="page-link"#}
+                    {#                                                      href="{{ url_for("podved", id=number2 - 1) }}">Пред. </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item active"><a class="page-link"#}
+                    {#                                                    href="{{ url_for("podved", id=number2) }}">{{ number2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">{{ number2 + 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 2 ) }}">{{ number2 + 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">След. </a>#}
+                    {#                    </li>#}
+                    {#                {% elif number2 ==37 %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">Пред. </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item active"><a class="page-link"#}
+                    {#                                                    href="{{ url_for("podved", id=number2) }}">{{ number2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item disabled"><a class="page-link"#}
+                    {#                                                      href="{{ url_for("podved", id=number2 + 1 ) }}">След.</a>#}
+                    {#                    </li>#}
+                    {#                {% elif number2 ==36 %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">Пред. </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link active"#}
+                    {#                                             href="{{ url_for("podved", id=number2) }}">{{ number2 }} </a></li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1) }}">{{ number2 + 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">След.</a>#}
+                    {#                    </li>#}
+                    {#                {% else %}#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved",id=number2 - 1) }}">Пред. </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 2) }}">{{ number2 - 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 - 1) }}">{{ number2 - 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item active"><a class="page-link"#}
+                    {#                                                    href="{{ url_for("podved", id=number2) }}">{{ number2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1) }}">{{ number2 + 1 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 2) }}">{{ number2 + 2 }} </a>#}
+                    {#                    </li>#}
+                    {#                    <li class="page-item"><a class="page-link"#}
+                    {#                                             href="{{ url_for("podved", id=number2 + 1 ) }}">След.</a>#}
+                    {#                    </li>#}
+                    {#                {% endif %}#}
+                </ul>
+
+            </nav>
+{% endblock %}

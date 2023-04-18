@@ -12,7 +12,7 @@ from werkzeug.utils import secure_filename
 from auth import validateAccesToken, getPodved, deleteTokens, refreshAccesToken, login_api, accessTokenApi, \
     validateAccesTokenApi
 from models import podved_list, objects_list, objects_list_api, podved_list_api, category_objects_list_api, \
-    object_card_api, podved_card, podved_card_api, object_card_api_post
+    object_card_api, podved_card, podved_card_api, object_card_api_post, listdepartsments
 from requests_obj import data_params_request, listDepartsments, getUserName
 from views import allowed_file
 import config
@@ -331,3 +331,10 @@ class CardhouseAPI(MethodView):
     def put(self, user_id):
         # update a single user
         pass
+
+@api_func.route('/redirec', methods=['GET', 'POST'])
+def get_departments_list():
+    headers = request.headers.get('access')
+    data = listdepartsments(headers)
+    context = {'data': data}
+    return context

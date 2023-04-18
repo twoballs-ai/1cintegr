@@ -810,8 +810,10 @@ class Customers(MethodView):
                                     'person_encumbrance': person_encumbrance, 'Other_payments': Other_payments,
                                     'start_encumbrance': start_encumbrance, 'end_encumbrance': end_encumbrance,
                                     'start_use': start_use, 'end_use': end_use, 'Payment_foruse': Payment_foruse,
-                                    'foto_main': foto_main, 'foto_main_thumbnail': foto_main_thumbnail,
-                                    'foto_multi': foto_multi, 'foto_multi_thumbnails': foto_multi_thumbnails,
+                                    'foto_main': foto_main,
+                                    # 'foto_main_thumbnail': foto_main_thumbnail,
+                                    'foto_multi': foto_multi,
+                                    # 'foto_multi_thumbnails': foto_multi_thumbnails,
                                     'code': 'new_object'
                                     }
                     print(post_request)

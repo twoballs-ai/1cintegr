@@ -76,6 +76,7 @@ class CustomersAPI(MethodView):
     def get(self, id):
         id = id
         headers = request.headers.get('access')
+        print('headers:')
         print(headers)
 
         param_request = {'page': id}
@@ -85,146 +86,98 @@ class CustomersAPI(MethodView):
         return jsonify(context)
 
     def post(self):
-        # create a new user
-        name = 'name'
-        # name = form.name.data
-        description = 'description'
-        object_type = 'object_type'
-        PurposeObject = 'PurposeObject'
-        Condition = 'Condition'
-        technicalFloor = 'technicalFloor'
-        Lift = 'Lift'
-        remontDate = 'remontDate'
-        SecurityObligation = 'SecurityObligation'
-        # if 'file' not in request.files:
-        #     # После перенаправления на страницу загрузки
-        #     # покажем сообщение пользователю
-        #     flash('Не могу прочитать файл')
-        #     print('проблема')
-        #     print('проблема', request.url)
-        #     return redirect(request.url)
-        #
-        # file = request.files['file']
-        # print(file)
-        # # Если файл не выбран, то браузер может
-        # # отправить пустой файл без имени.
-        #
-        # if file.filename == '':
-        #     foto_scan = ''
-        #
-        #     print('dfdf', foto_scan)
-        # if file and allowed_file(file.filename):
-        #     # безопасно извлекаем оригинальное имя файла
-        #     filename = secure_filename(file.filename)
-        #     # сохраняем файл
-        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #     foto_scan = "%s/%s" % (app.config['UPLOAD_FOLDER'], filename)
-        region = 'region'
-        address = 'address'
-        object_area = 'object_area'
-        LandCategory = 'LandCategory'
-        TypeOfPermittedUse = 'TypeOfPermittedUse'
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.get_json()
+            print(json)
+            headers = request.headers.get('access')
+            # create a new user
+            # name = 'name'
+            # name = form.name.data
+            card_status = json.get('card_status')
+            print(card_status)
+            description = 'description'
+            object_type = 'object_type'
+            PurposeObject = 'PurposeObject'
+            Condition = 'Condition'
+            technicalFloor = 'technicalFloor'
+            Lift = 'Lift'
+            remontDate = 'remontDate'
+            SecurityObligation = 'SecurityObligation'
 
-        RNFI = 'RNFI'
-        RNFI_date = 'RNFI_date'
-        owner_nomer = 'owner_nomer'
-        owner_date = 'owner_date'
-        RecordNumberVEGRP = 'RecordNumberVEGRP'
-        DateRecordsVEGRP = 'DateRecordsVEGRP'
-        TypeofRightOwner = 'TypeofRightOwner'
-        BalanceAccountNumber = 'BalanceAccountNumber'
-        date_of_registration_of_another_right = 'date_of_registration_of_another_right'
-        inventory_number = 'inventory_number'
-        balance_number = 'balance_number'
-        CadastralNumber = 'CadastralNumber'
-        Date_of_assignment_cadastral = 'Date_of_assignment_cadastral'
-        cadastralcost = 'cadastralcost'
-        Initial_cost = 'Initial_cost'
-        residual_value = 'residual_value'
+            region = 'region'
+            address = 'address'
+            object_area = 'object_area'
+            LandCategory = 'LandCategory'
+            TypeOfPermittedUse = 'TypeOfPermittedUse'
 
-        historical_Category = 'historical_Category'
-        UGROKN_number = 'UGROKN_number'
+            RNFI = 'RNFI'
+            RNFI_date = 'RNFI_date'
+            owner_nomer = 'owner_nomer'
+            owner_date = 'owner_date'
+            RecordNumberVEGRP = 'RecordNumberVEGRP'
+            DateRecordsVEGRP = 'DateRecordsVEGRP'
+            TypeofRightOwner = 'TypeofRightOwner'
+            BalanceAccountNumber = 'BalanceAccountNumber'
+            date_of_registration_of_another_right = 'date_of_registration_of_another_right'
+            inventory_number = 'inventory_number'
+            balance_number = 'balance_number'
+            CadastralNumber = 'CadastralNumber'
+            Date_of_assignment_cadastral = 'Date_of_assignment_cadastral'
+            cadastralcost = 'cadastralcost'
+            Initial_cost = 'Initial_cost'
+            residual_value = 'residual_value'
 
-        KindEncumbrances = 'KindEncumbrances'
-        encumbrance_area = 'encumbrance_area'
-        encumbrance_cost ='encumbrance_cost'
-        person_encumbrance = 'person_encumbrance'
-        Other_payments = 'Other_payments'
-        start_encumbrance = 'start_encumbrance'
-        end_encumbrance = 'end_encumbrance'
-        start_use = 'start_use'
-        end_use = 'end_use'
-        Payment_foruse = 'Payment_foruse'
+            historical_Category = 'historical_Category'
+            UGROKN_number = 'UGROKN_number'
 
-        # if 'file' not in request.files:
-        #     # После перенаправления на страницу загрузки
-        #     # покажем сообщение пользователю
-        #     flash('Не могу прочитать файл')
-        #     print('проблема')
-        #     print('проблема',request.url)
-        #     return redirect(request.url)
-        # foto_main = request.files['formFile']
-        # print(foto_main)
-        # # Если файл не выбран, то браузер может
-        # # отправить пустой файл без имени.
-        #
-        # if foto_main.filename == '':
-        #     print('название фото не может быть пустым', foto_main)
-        #
-        # if foto_main and allowed_file(foto_main.filename):
-        #     # безопасно извлекаем оригинальное имя файла
-        #     filename = secure_filename(foto_main.filename)
-        #     print(filename)
-        #     # сохраняем файл
-        #     foto_main.save(os.path.join(config.UPLOAD_FOLDER, filename))
-        #     foto_main = "%s/%s" % (config.UPLOAD_FOLDER, filename)
-        #
-        # # # загрузка мультифото
-        # # if 'files[]' not in request.files:
-        # #     flash('No file part')
-        # #     return redirect(request.url)
-        # files = request.files.getlist('files[]')
-        # foto_list = []
-        # for file in files:
-        #     if file and allowed_file(file.filename):
-        #         filename = secure_filename(file.filename)
-        #         file.save(os.path.join(config.UPLOAD_FOLDER_MULTI, filename))
-        #         foto_list.append("%s/%s" % (config.UPLOAD_FOLDER_MULTI, filename))
-        # foto_multi = foto_list
-        param_request = {'name': name, 'description': description, 'object_type': object_type,
-                        'PurposeObject': PurposeObject, 'Condition': Condition,
-                        'technicalFloor': technicalFloor,
-                        'Lift': Lift, 'remontDate': remontDate, 'SecurityObligation': SecurityObligation,
-                        'region': region, 'address': address,
-                        # 'foto_scan':foto_scan,
-                        'object_area': object_area, 'LandCategory': LandCategory,
-                        'TypeOfPermittedUse': TypeOfPermittedUse,
-                        'RNFI': RNFI, 'RNFI_date': RNFI_date, 'owner_nomer': owner_nomer,
-                        'owner_date': owner_date,
-                        'RecordNumberVEGRP': RecordNumberVEGRP, 'DateRecordsVEGRP': DateRecordsVEGRP,
-                        'TypeofRightOwner': TypeofRightOwner, 'BalanceAccountNumber': BalanceAccountNumber,
-                        'date_of_registration_of_another_right': date_of_registration_of_another_right,
-                        'inventory_number': inventory_number, 'balance_number': balance_number,
-                        'CadastralNumber': CadastralNumber,
-                        'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
-                        'cadastralcost': cadastralcost, 'Initial_cost': Initial_cost,
-                        'residual_value': residual_value,
-                        'historical_Category': historical_Category, 'UGROKN_number': UGROKN_number,
-                        'KindEncumbrances': KindEncumbrances,
-                        'encumbrance_area': encumbrance_area, 'encumbrance_cost': encumbrance_cost,
-                        'person_encumbrance': person_encumbrance, 'Other_payments': Other_payments,
-                        'start_encumbrance': start_encumbrance, 'end_encumbrance': end_encumbrance,
-                        'start_use': start_use, 'end_use': end_use, 'Payment_foruse': Payment_foruse,
-                        # 'foto_main': foto_main, 'foto_multi': foto_multi,
-                         'code': 'new_object'
-                        }
-        print(param_request)
-        headers = request.headers.get('access')
-        print(headers)
-        data = object_card_api_post(param_request, headers)
-        # responsePost.encoding = "ANSI"
-        context = {'data': data}
-        return jsonify(context)
+            KindEncumbrances = 'KindEncumbrances'
+            encumbrance_area = 'encumbrance_area'
+            encumbrance_cost = 'encumbrance_cost'
+            person_encumbrance = 'person_encumbrance'
+            Other_payments = 'Other_payments'
+            start_encumbrance = 'start_encumbrance'
+            end_encumbrance = 'end_encumbrance'
+            start_use = 'start_use'
+            end_use = 'end_use'
+            Payment_foruse = 'Payment_foruse'
+
+            param_request = {'name': 'gbcmrf', 'card_status': 'card_statusfff', 'description': description,
+                             'object_type': object_type,
+                             'PurposeObject': PurposeObject, 'Condition': Condition,
+                             'technicalFloor': technicalFloor,
+                             'Lift': Lift, 'remontDate': remontDate, 'SecurityObligation': SecurityObligation,
+                             'region': region, 'address': address,
+                             # 'foto_scan':foto_scan,
+                             'object_area': object_area, 'LandCategory': LandCategory,
+                             'TypeOfPermittedUse': TypeOfPermittedUse,
+                             'RNFI': RNFI, 'RNFI_date': RNFI_date, 'owner_nomer': owner_nomer,
+                             'owner_date': owner_date,
+                             'RecordNumberVEGRP': RecordNumberVEGRP, 'DateRecordsVEGRP': DateRecordsVEGRP,
+                             'TypeofRightOwner': TypeofRightOwner, 'BalanceAccountNumber': BalanceAccountNumber,
+                             'date_of_registration_of_another_right': date_of_registration_of_another_right,
+                             'inventory_number': inventory_number, 'balance_number': balance_number,
+                             'CadastralNumber': CadastralNumber,
+                             'Date_of_assignment_cadastral': Date_of_assignment_cadastral,
+                             'cadastralcost': cadastralcost, 'Initial_cost': Initial_cost,
+                             'residual_value': residual_value,
+                             'historical_Category': historical_Category, 'UGROKN_number': UGROKN_number,
+                             'KindEncumbrances': KindEncumbrances,
+                             'encumbrance_area': encumbrance_area, 'encumbrance_cost': encumbrance_cost,
+                             'person_encumbrance': person_encumbrance, 'Other_payments': Other_payments,
+                             'start_encumbrance': start_encumbrance, 'end_encumbrance': end_encumbrance,
+                             'start_use': start_use, 'end_use': end_use, 'Payment_foruse': Payment_foruse,
+                             # 'foto_main': foto_main, 'foto_multi': foto_multi,
+                             'code': 'new_object'
+                             }
+            print(param_request)
+
+            print('headers:')
+            print(headers)
+            data = object_card_api_post(param_request, headers)
+            # responsePost.encoding = "ANSI"
+            context = {'data': data}
+            return jsonify(context)
 
     def delete(self, user_id):
         # delete a single user
@@ -237,8 +190,34 @@ class CustomersAPI(MethodView):
 
 class PodvedAPI(MethodView):
 
-    def get(self):
-        param_request = {'page': '1'}
+    def get(self, page):
+        param_request = {'page': page}
+        headers = request.headers.get('access')
+        print(headers)
+        # берем данные из файла модели
+        data = podved_list_api(param_request, headers)
+        context = {'data': data}
+        return jsonify(context)
+
+    def post(self):
+        # create a new user
+        pass
+
+    def delete(self, user_id):
+        # delete a single user
+        pass
+
+    def put(self, user_id):
+        # update a single user
+        pass
+
+
+class DepartmentAPI(MethodView):
+
+    def get(self, page):
+        department = request.args.get('department')
+        param_request = {'page': page, 'department': department}
+        print(param_request)
         headers = request.headers.get('access')
         print(headers)
         # берем данные из файла модели
@@ -332,7 +311,8 @@ class CardhouseAPI(MethodView):
         # update a single user
         pass
 
-@api_func.route('/redirec', methods=['GET', 'POST'])
+
+@api_func.route('/api/v1.0/departent_list/', methods=['GET', 'POST'])
 def get_departments_list():
     headers = request.headers.get('access')
     data = listdepartsments(headers)

@@ -4,7 +4,7 @@ from flask import Flask, render_template, Blueprint, redirect, request, url_for,
 from flask_cors import CORS
 
 from api.api import api_func, CustomersAPI, PodvedAPI, CategoryAPI, CardhouseDetailAPI, LoginApi, GetAccessApi, \
-    ValidateAccessApi, CardhouseAPI
+    ValidateAccessApi, CardhouseAPI, DepartmentAPI
 from models import models_func
 from requests_obj import request_func
 from auth import auth_func
@@ -156,13 +156,17 @@ customers_view = CustomersAPI.as_view('customers_api')
 app.add_url_rule('/api/v1.0/customers/<int:id>/',
                  # defaults={'id': '1'},
                  view_func=customers_view, methods=['GET',])
-app.add_url_rule('/api/v1.0/customers/post/', view_func=customers_view, methods=['POST',])
+app.add_url_rule('/api/v1.0/customers/post/', view_func=customers_view, methods=['POST','GET'])
 # app.add_url_rule('/users/<int:user_id>', view_func=user_view,
 #                  methods=['GET', 'PUT', 'DELETE'])
 podved_view = PodvedAPI.as_view('podved_api')
-app.add_url_rule('/api/v1.0/podved/',
+app.add_url_rule('/api/v1.0/podved/<int:page>/',
                  # defaults={'id': '1'},
                  view_func=podved_view, methods=['GET',])
+department_view = DepartmentAPI.as_view('department_api')
+app.add_url_rule('/api/v1.0/department/<int:page>/',
+                 # defaults={'id': '1'},
+                 view_func=department_view, methods=['GET',])
 category_view = CategoryAPI.as_view('category_api')
 app.add_url_rule('/api/v1.0/category/',
                  # defaults={'id': '1'},

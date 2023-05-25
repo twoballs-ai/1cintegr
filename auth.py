@@ -93,6 +93,7 @@ def validateAccesTokenApi(access_token):
     param_request = {'AccessToken': access}
     response = requests.post("https://localhost/copy_1/hs/HTTP_SERVER/Auth20", data=param_request,
                              verify=False)
+    print(response.json())
     return response.json()
 
 

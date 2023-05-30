@@ -99,7 +99,8 @@ def objects_list_api(param_request, headers):
         print('Success!')
     elif response.status_code == 401:
         print('Not auth.')
-    data = response.json()['list_OC']
+    # print(response.json())
+    data = response.json()
     return data
 
 

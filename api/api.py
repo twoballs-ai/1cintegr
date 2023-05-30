@@ -81,8 +81,10 @@ class CustomersAPI(MethodView):
 
         param_request = {'page': id}
         # берем данные из файла модели
-        data = objects_list_api(param_request, headers)
-        context = {'data': data}
+        data = objects_list_api(param_request, headers)['list_OC']
+        page_info = objects_list_api(param_request, headers)['Page_info']
+        context = {'data': data,'page_info':page_info}
+        print(context)
         return jsonify(context)
 
     def post(self):
